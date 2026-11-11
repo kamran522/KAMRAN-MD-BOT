@@ -25,6 +25,8 @@ const fs = require("fs");
 const os = require("os");
 const path = require("path");
 const { execFile } = require("child_process");
+const { Readable } = require("stream");
+const { pipeline } = require("stream/promises");
 
 // ---------------------------------------------------------------------------------------
 // helpers
@@ -209,9 +211,141 @@ async function ytDownloadToFile(input, quality = "360p", dir = tmpDir("yt")) {
 // Baileys accepts { url: "/local/path" } so the existing plugins keep working unchanged.
 // ---------------------------------------------------------------------------------------
 
-/** Instagram post/reel -> array of local file paths. (Often needs YTDLP_COOKIES.) */
+const SOCIAL_USER_AGENT =
+  "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36";
+
+function validateSocialUrl(input, platform) {
+  let parsed;
+  try {
+    parsed = new URL(String(input || "").trim());
+  } catch (_) {
+    throw new Error("Please provide a valid social-media URL.");
+  }
+  if (!["http:", "https:"].includes(parsed.protocol)) {
+    throw new Error("Only HTTP and HTTPS links are supported.");
+  }
+  const allowedHosts = {
+    instagram: ["instagram.com", "instagr.am"],
+    tiktok: ["tiktok.com"],
+  }[platform];
+  if (!allowedHosts || !allowedHosts.some(
+    (host) => parsed.hostname === host || parsed.hostname.endsWith("." + host)
+  )) {
+    throw new Error(`That link is not a supported ${platform} URL.`);
+  }
+  return parsed.href;
+}
+
+function selectDirectVideoFormat(entry) {
+  const formats = Array.isArray(entry?.formats) ? entry.formats : [];
+  const candidates = formats.filter(
+    (format) => format?.url && format.vcodec && format.vcodec !== "none" &&
+      /^https?:\/\//i.test(format.url),
+  );
+  candidates.sort((a, b) => {
+    const score = (format) =>
+      (format.ext === "mp4" ? 100000 : 0) +
+      (format.acodec && format.acodec !== "none" ? 50000 : 0) +
+      (Number(format.height) || 0);
+    return score(b) - score(a);
+  });
+  if (candidates.length) return candidates[0];
+  if (entry?.url && /^https?:\/\//i.test(entry.url) &&
+      (!entry.vcodec || entry.vcodec !== "none")) return entry;
+  return null;
+}
+
+/** Extract locally with yt-dlp, then stream the returned media URL directly to disk. */
+async function downloadExtractedMedia(entry, sourceUrl, directory, index) {
+  const format = selectDirectVideoFormat(entry);
+  if (!format?.url) return null;
+  const mediaUrl = new URL(format.url);
+  if (!["http:", "https:"].includes(mediaUrl.protocol)) {
+    throw new Error("The extractor returned an unsupported media URL.");
+  }
+  const extension = /^[a-z0-9]{2,5}$/i.test(String(format.ext || ""))
+    ? format.ext.toLowerCase() : "mp4";
+  const filePath = path.join(directory, `${uid()}_${index}.${extension}`);
+  const headers = { ...(entry.http_headers || {}), ...(format.http_headers || {}) };
+  if (!Object.keys(headers).some((key) => key.toLowerCase() === "user-agent")) {
+    headers["User-Agent"] = SOCIAL_USER_AGENT;
+  }
+  if (!Object.keys(headers).some((key) => key.toLowerCase() === "referer")) {
+    headers.Referer = sourceUrl;
+  }
+  const response = await fetch(mediaUrl, {
+    headers, signal: AbortSignal.timeout(120000),
+  });
+  if (!response.ok || !response.body) {
+    throw new Error(`Direct media request failed with HTTP ${response.status}.`);
+  }
+  const contentType = (response.headers.get("content-type") || "").toLowerCase();
+  if (contentType.includes("text/html") || contentType.includes("application/json")) {
+    throw new Error("The media URL returned a page instead of a video.");
+  }
+  try {
+    await pipeline(Readable.fromWeb(response.body), fs.createWriteStream(filePath));
+    const stat = await fs.promises.stat(filePath);
+    if (!stat.size) throw new Error("The extracted media file is empty.");
+    return filePath;
+  } catch (error) {
+    await fs.promises.rm(filePath, { force: true }).catch(() => {});
+    throw error;
+  }
+}
+
+async function downloadWithExtractedUrls(url, platform) {
+  const directory = tmpDir(`${platform}-direct`);
+  const args = ["--dump-single-json"];
+  if (platform === "instagram") args.push("--yes-playlist", "--playlist-end", "10");
+  args.push(url);
+  const { stdout } = await ytdlp(args, { timeout: 180000 });
+  let metadata;
+  try {
+    metadata = JSON.parse(stdout);
+  } catch (_) {
+    throw new Error("yt-dlp did not return valid media metadata.");
+  }
+  const entries = Array.isArray(metadata.entries)
+    ? metadata.entries.filter(Boolean).slice(0, platform === "instagram" ? 10 : 1)
+    : [metadata];
+  const downloaded = [];
+  const failures = [];
+  for (let index = 0; index < entries.length; index++) {
+    try {
+      const file = await downloadExtractedMedia(entries[index], url, directory, index);
+      if (file) downloaded.push(file);
+    } catch (error) {
+      failures.push(error.message);
+    }
+  }
+  if (!downloaded.length) {
+    throw new Error(failures[0] || "No direct video URL was found.");
+  }
+  return downloaded;
+}
+
+async function downloadSocialMedia(input, platform) {
+  const url = validateSocialUrl(input, platform);
+  try {
+    return await downloadFiles(url, {
+      playlist: platform === "instagram",
+      format: "best[ext=mp4]/best",
+    });
+  } catch (primaryError) {
+    try {
+      return await downloadWithExtractedUrls(url, platform);
+    } catch (fallbackError) {
+      throw new Error(
+        `${platform} download failed. yt-dlp: ${primaryError.message}; direct-stream fallback: ${fallbackError.message}`,
+      );
+    }
+  }
+}
+
+/** Instagram posts/reels -> local media files. Private posts may need YTDLP_COOKIES. */
 async function instagram(url) {
-  return await downloadFiles(url, { playlist: true });
+  return downloadSocialMedia(url, "instagram");
 }
 
 async function facebook(url) {
@@ -219,8 +353,9 @@ async function facebook(url) {
   return { url: file };
 }
 
+/** TikTok -> local video file with the extractor/direct-stream fallback. */
 async function tiktok(url) {
-  const [file] = await downloadFiles(url);
+  const [file] = await downloadSocialMedia(url, "tiktok");
   return { url: file };
 }
 
