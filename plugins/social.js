@@ -28,8 +28,8 @@ Module(
     use: "download",
   },
   async (message, match) => {
-    let mediaLinks = match[1] || message.reply_message?.text;
-    if (mediaLinks.startsWith("ll")) return;
+    let mediaLinks = (match?.[1] || message.reply_message?.text || "").trim();
+    if (mediaLinks?.startsWith("ll")) return;
     if (!mediaLinks)
       return await message.sendReply("_*Need Instagram link(s)*_");
 
@@ -197,7 +197,7 @@ Module(
   },
   async (message, match) => {
     let userIdentifier =
-      match[1] !== "" ? match[1] : message.reply_message.text;
+      (match?.[1] || message.reply_message?.text || "").trim();
 
     if (
       userIdentifier &&
@@ -251,7 +251,7 @@ Module(
     use: "download",
   },
   async (message, match) => {
-    let userQuery = match[1] !== "" ? match[1] : message.reply_message.text;
+    let userQuery = (match?.[1] || message.reply_message?.text || "").trim();
     if (userQuery === "g") return;
     if (!userQuery)
       return await message.sendReply("_Need search term or pin video link_");
@@ -341,13 +341,15 @@ Module(
     use: "download",
   },
   async (message, match) => {
-    let videoLink = match[1] !== "" ? match[1] : message.reply_message.text;
+    let videoLink = (match?.[1] || message.reply_message?.text || "").trim();
     if (!videoLink) return await message.sendReply("_Need a TikTok URL_");
-    videoLink = videoLink.match(/\bhttps?:\/\/\S+/gi)[0];
+    videoLink = videoLink.match(/\bhttps?:\/\/\S+/i)?.[0]?.replace(/[)\].,!?>]*$/, "");
+    if (!videoLink) return await message.sendReply("_Need a valid TikTok URL_");
     let downloadResult;
     try {
       downloadResult = await tiktok(videoLink);
-      await message.sendReply(downloadResult, "video");
+      if (!downloadResult?.url) throw new Error("TikTok returned no video file.");
+      return await message.sendReply(downloadResult, "video");
     } catch (error) {
       return await message.sendReply(
         "_Something went wrong, Please try again!_"
