@@ -17,6 +17,7 @@
  * Environment variables (all optional)
  *  YTDLP_PATH     path to the yt-dlp binary            (default: "yt-dlp")
  *  YTDLP_ARGS     extra yt-dlp arguments, space-separated, e.g. "--js-runtimes node"
+ *  YTDLP_USER_AGENT optional browser User-Agent for sites such as TikTok
  *  YTDLP_COOKIES  path to a cookies.txt file (needed by Instagram and some YouTube videos)
  *  ACR_HOST, ACR_ACCESS_KEY, ACR_ACCESS_SECRET   YOUR OWN ACRCloud project (music identify)
  */
@@ -84,12 +85,13 @@ const ytdlp = (args, opts) => run(process.env.YTDLP_PATH || "yt-dlp", [...ytdlpB
 const normalizeYoutube = (u) => (/^[\w-]{11}$/.test(String(u)) ? `https://www.youtube.com/watch?v=${u}` : String(u));
 
 /** Download one URL with yt-dlp into a temp dir and return the produced file paths. */
-async function downloadFiles(url, { playlist = false, format } = {}) {
+async function downloadFiles(url, { playlist = false, format, userAgent } = {}) {
   const dir = tmpDir("dl");
   const id = uid();
   const args = ["-o", path.join(dir, `${id}_%(autonumber)s.%(ext)s`)];
   if (playlist) args.push("--yes-playlist", "--max-downloads", "10");
   args.push("-f", format || "b[ext=mp4]/bv*[ext=mp4]+ba[ext=m4a]/b", "--merge-output-format", "mp4");
+  if (userAgent) args.push("--user-agent", userAgent);
   args.push(url);
   try {
     await ytdlp(args, { timeout: 10 * 60 * 1000 });
@@ -211,8 +213,8 @@ async function ytDownloadToFile(input, quality = "360p", dir = tmpDir("yt")) {
 // Baileys accepts { url: "/local/path" } so the existing plugins keep working unchanged.
 // ---------------------------------------------------------------------------------------
 
-const SOCIAL_USER_AGENT =
-  "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36";
+const SOCIAL_USER_AGENT = process.env.YTDLP_USER_AGENT ||
+  "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/157.0.0.0 Safari/537.36 Edg/157.0.0.0";
 
 function validateSocialUrl(input, platform) {
   let parsed;
@@ -297,6 +299,7 @@ async function downloadExtractedMedia(entry, sourceUrl, directory, index) {
 async function downloadWithExtractedUrls(url, platform) {
   const directory = tmpDir(`${platform}-direct`);
   const args = ["--dump-single-json"];
+  if (platform === "tiktok") args.push("--user-agent", SOCIAL_USER_AGENT);
   if (platform === "instagram") args.push("--yes-playlist", "--playlist-end", "10");
   args.push(url);
   const { stdout } = await ytdlp(args, { timeout: 180000 });
@@ -331,6 +334,7 @@ async function downloadSocialMedia(input, platform) {
     return await downloadFiles(url, {
       playlist: platform === "instagram",
       format: "best[ext=mp4]/best",
+      userAgent: platform === "tiktok" ? SOCIAL_USER_AGENT : undefined,
     });
   } catch (primaryError) {
     try {
