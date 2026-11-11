@@ -326,8 +326,9 @@ Module({ on: "text", fromMe }, async (message) => {
           const downloadResult = await tiktok(platformGroups["tiktok"][0]);
           await message.sendReply(downloadResult, "video");
         } catch (err) {
-          if (config.DEBUG)
-            console.error("[AutoDL TikTok]", err?.message || err);
+          console.error("[AutoDL TikTok]", err?.message || err);
+          const reason = String(err?.message || "Unknown error").slice(0, 250);
+          await message.sendReply(`_TikTok download failed: ${reason}_`);
           await message.react("❌");
         }
         return;
