@@ -351,9 +351,9 @@ Module(
       if (!downloadResult?.url) throw new Error("TikTok returned no video file.");
       return await message.sendReply(downloadResult, "video");
     } catch (error) {
-      return await message.sendReply(
-        "_Something went wrong, Please try again!_"
-      );
+      console.error("TikTok download error:", error?.message || error);
+      const reason = String(error?.message || "Unknown error").slice(0, 300);
+      return await message.sendReply(`_TikTok download failed: ${reason}_`);
     }
   }
 );
