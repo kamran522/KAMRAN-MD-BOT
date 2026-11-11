@@ -340,9 +340,15 @@ Module(
     const botName = infoParts[0] || "My Bot";
     const botOwner = infoParts[1] || "N/A";
     const botVersion = VERSION;
+    const defaultMenuImage = path.join(
+      __dirname,
+      "utils",
+      "images",
+      "default.jpg"
+    );
     let botImageLink = infoParts[2] || "";
-    if (botImageLink === "default") {
-      botImageLink = path.join(__dirname, "utils", "images", "default.png");
+    if (botImageLink.toLowerCase() === "default") {
+      botImageLink = defaultMenuImage;
     }
 
     const menu = `╭═══〘 \`${botName}\` 〙═══⊷❍
@@ -366,21 +372,31 @@ Module(
 
 ${cmdmenu}`;
     try {
-      if (
-        botImageLink === path.join(__dirname, "utils", "images", "default.png")
-      ) {
+      const isRemoteImage = /^https?:\\/\\//i.test(botImageLink);
+      if (botImageLink && !isRemoteImage) {
+        const imagePath = path.isAbsolute(botImageLink)
+          ? botImageLink
+          : path.resolve(process.cwd(), botImageLink);
+        if (!fs.existsSync(imagePath)) {
+          throw new Error(`Menu image file not found: ${imagePath}`);
+        }
+
         await message.client.sendMessage(message.jid, {
-          image: fs.readFileSync(botImageLink),
+          image: fs.readFileSync(imagePath),
           caption: menu,
         });
-      } else {
+      } else if (isRemoteImage) {
         await message.client.sendMessage(message.jid, {
           image: { url: botImageLink },
           caption: menu,
         });
+      } else {
+        await message.client.sendMessage(message.jid, {
+          text: menu,
+        });
       }
     } catch (error) {
-      console.error("Error sending menu:", error);
+      console.error("Error sending menu image:", error);
       await message.client.sendMessage(message.jid, {
         text: menu,
       });
