@@ -17,7 +17,7 @@ const URL_PATTERNS = {
   spotify:
     /^https?:\/\/(?:open\.)?spotify\.com\/(?:intl-[a-z]{2}\/)?track\/[A-Za-z0-9]+(?:\?.*)?$/i,
   tiktok:
-    /^https?:\/\/(?:www\.)?(?:tiktok\.com\/@?[A-Za-z0-9_.-]+\/video\/\d+|vm\.tiktok\.com\/[A-Za-z0-9_-]+\/?|vt\.tiktok\.com\/[A-Za-z0-9_-]+\/?|v\.tiktok\.com\/[A-Za-z0-9_-]+\/?)(?:\?.*)?$/i,
+    /^https?:\/\/(?:(?:www|m)\.)?tiktok\.com\/(?:@?[A-Za-z0-9_.-]+\/video\/\d+|t\/[A-Za-z0-9_-]+\/?)(?:\?.*)?$|^https?:\/\/(?:vm|vt|v)\.tiktok\.com\/[A-Za-z0-9_-]+\/?(?:\?.*)?$/i,
   pinterest:
     /^https?:\/\/(?:www\.)?(?:pinterest\.com\/(?:pin\/\d+\/?[A-Za-z0-9_-]*)\/?|pin\.it\/[A-Za-z0-9_-]+\/?)(?:\?.*)?$/i,
   twitter:
