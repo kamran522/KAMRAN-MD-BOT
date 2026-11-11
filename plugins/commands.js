@@ -372,7 +372,8 @@ Module(
 
 ${cmdmenu}`;
     try {
-      const isRemoteImage = /^https?:\\/\\//i.test(botImageLink);
+      const isRemoteImage =
+        botImageLink.startsWith("http://") || botImageLink.startsWith("https://");
       if (botImageLink && !isRemoteImage) {
         const imagePath = path.isAbsolute(botImageLink)
           ? botImageLink
