@@ -254,7 +254,7 @@ const baseConfig = {
   WARN: process.env.WARN || "4",
   ANTILINK_WARN: process.env.ANTILINK_WARN || "",
   ANTI_DELETE: convertToBool(process.env.ANTI_DELETE) || false,
-  SUDO: process.env.SUDO || "9231118401",
+  SUDO: process.env.SUDO || "923111008401",
   LANGUAGE: process.env.LANGUAGE || "english",
   AUTO_UPDATE: false, // remote auto-update removed in this build
   SUPPORT_GROUP: process.env.SUPPORT_GROUP || "",
