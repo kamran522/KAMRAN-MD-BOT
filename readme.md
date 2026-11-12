@@ -1,63 +1,129 @@
 # Kamran Hasil Bot
 
-A WhatsApp bot (Baileys). This build contains **no closed-source code and no connection to the original
-authors' servers**. Everything runs on your machine; sessions are created and stored locally.
-See `SECURITY-CHANGES.md` for exactly what was removed.
+A WhatsApp bot built with Baileys. This build contains **no closed-source code and no connection to the original authors' servers**. Everything runs on your own machine or server, and WhatsApp session credentials are stored locally. See [SECURITY-CHANGES.md](SECURITY-CHANGES.md) for details.
 
 ## Requirements
-- Node.js 20+ and npm
-- `ffmpeg` and libwebp tools:  `sudo apt install ffmpeg webp`
-- `yt-dlp` (all downloads run locally):  `sudo apt install pipx && pipx install yt-dlp`  (or the official binary)
-- PM2 for 24/7:  `sudo npm i -g pm2`
 
-## Install
+- Node.js 20 or newer and npm
+- FFmpeg and WebP tools
+- yt-dlp for media downloads
+- PM2 (optional, for keeping the bot online)
+
+### Install system dependencies (Ubuntu/Debian)
+
 ```bash
+sudo apt update
+sudo apt install -y ffmpeg webp pipx
+pipx install yt-dlp
+sudo npm install -g pm2
+```
+
+## Installation
+
+Clone the repository and install its dependencies:
+
+```bash
+git clone https://github.com/kamran522/KAMRAN-MD-BOT.git
+cd KAMRAN-MD-BOT
 npm install
 ```
 
-## First login (local — nobody else ever sees your session)
-Option A — pairing code (best for a server):
+## Connect WhatsApp
+
+### Option A: Pairing code (recommended for servers)
+
 ```bash
 PAIR_NUMBER=923XXXXXXXXX node index.js
-# type the printed code in WhatsApp > Linked devices > Link with phone number
 ```
-Option B — QR code: `node index.js` and scan the QR shown in the terminal.
 
-Credentials are stored only in your own database (`./bot.db` by default; set `DATABASE_URL` to use PostgreSQL).
-Keep `bot.db` private (`chmod 600 bot.db`) — whoever holds it can log in as you.
+Enter the pairing code printed in the terminal in WhatsApp under **Linked devices → Link with phone number**.
 
-## Run 24/7
+### Option B: QR code
+
+```bash
+node index.js
+```
+
+Scan the QR code displayed in your terminal using WhatsApp's Linked devices feature.
+
+Your credentials are stored in your local database (`./bot.db` by default). You can use PostgreSQL by setting `DATABASE_URL`. Keep your database private: anyone who obtains your session credentials may be able to access your WhatsApp account.
+
+## Owner / SUDO configuration
+
+The default owner number is:
+
+```text
+923111008401
+```
+
+To use a different owner number, set `SUDO` in your environment or configuration. Multiple owner numbers can be comma-separated:
+
+```bash
+SUDO=923111008401,923XXXXXXXXX
+```
+
+**Important:** An environment variable named `SUDO` overrides the default value in `config.js`. If you have set it in your hosting panel, update it there as well.
+
+## Run continuously with PM2
+
 ```bash
 pm2 start ecosystem.config.js
-pm2 startup   # run the command it prints
+pm2 startup
+# Run the command printed by pm2 startup
 pm2 save
 ```
 
-## Configuration (`config.env`, optional)
-| Variable | Meaning |
-|---|---|
-| `SESSION` | local session name(s), default `main` (several: `main,second`) |
-| `SUDO` | owner number(s) with country code, comma separated (default `9231118401`) |
-| `MODE` | `private` (default) or `public` |
-| `PAIR_NUMBER` | number for pairing-code login |
-| `DATABASE_URL` | default sqlite `./bot.db`, or a PostgreSQL URL |
-| `YTDLP_PATH` / `YTDLP_ARGS` / `YTDLP_COOKIES` | yt-dlp binary / extra args (e.g. `--js-runtimes node`) / cookies.txt |
-| `ACR_HOST`, `ACR_ACCESS_KEY`, `ACR_ACCESS_SECRET` | your own ACRCloud project (music identify) |
-| `WA_VERSION` | pin the WhatsApp Web version, e.g. `2.3000.1015901307` (stops the version lookup on GitHub) |
+To restart after changing configuration:
 
-## Verify it yourself
 ```bash
-npm run audit:hosts     # lists every external host mentioned in the code
+pm2 restart all
 ```
 
-## Features that need something you provide
-Instagram usually needs `YTDLP_COOKIES`; music identify needs your ACRCloud keys. Instagram stories/profile lookup,
-Pinterest search and lyrics were server-side features of the original authors and are disabled
-(see `core/services.js` to plug in a source you trust).
+Without PM2, you can run:
 
-Licensed under GPL-3.0-or-later (see `LICENSE`).
+```bash
+node index.js
+```
+
+## Configuration
+
+The following environment variables are supported:
+
+| Variable | Purpose |
+|---|---|
+| `SESSION` | Local session name(s); default is `main`. Multiple names can be comma-separated. |
+| `SUDO` | Owner number(s), including country code, comma-separated. Default: `923111008401`. |
+| `MODE` | Bot mode: `private` (default) or `public`. |
+| `PAIR_NUMBER` | WhatsApp number used for pairing-code login. |
+| `DATABASE_URL` | Database connection; defaults to local SQLite at `./bot.db`. |
+| `YTDLP_PATH` | Optional path to the yt-dlp executable. |
+| `YTDLP_ARGS` | Optional extra arguments passed to yt-dlp. |
+| `YTDLP_COOKIES` | Optional path to a cookies file; Instagram downloads may require it. |
+| `ACR_HOST`, `ACR_ACCESS_KEY`, `ACR_ACCESS_SECRET` | Credentials for your own ACRCloud music-identification project. |
+| `WA_VERSION` | Optional WhatsApp Web version override. |
+
+## Media and optional services
+
+- Media downloads use the locally installed yt-dlp executable.
+- Instagram downloads may require a valid cookies file configured through `YTDLP_COOKIES`.
+- Music identification requires your own ACRCloud credentials.
+- Instagram stories/profile lookup, Pinterest search, and lyrics features from the original authors' server-side services are disabled. See `core/services.js` if you want to integrate a service you trust.
+
+## Verify external hosts
+
+Run the included audit script to list external hosts referenced in the code:
+
+```bash
+npm run audit:hosts
+```
 
 ## Windows notes
-- Use `npm start` (it now uses `ecosystem.config.js`, which works on Windows). If an old broken PM2 entry exists, run `pm2 delete kamran-hasil-bot` first.
-- Simplest option without PM2: `npm run start:node` (or `node index.js`).
-- Windows also needs `ffmpeg` and `yt-dlp` on your PATH (e.g. `winget install yt-dlp ffmpeg`); `anim_dump`/libwebp tools are only needed for webp->mp4.
+
+- Install Node.js 20+ and make sure Node.js and npm are available in your terminal.
+- Install FFmpeg and yt-dlp and add them to your PATH (for example, using `winget install yt-dlp ffmpeg`).
+- Start the bot with `npm start` or `node index.js`.
+- For PM2, use `pm2 start ecosystem.config.js`. If an old broken PM2 process exists, remove it with `pm2 delete kamran-hasil-bot` before starting again.
+
+## License
+
+Licensed under **GPL-3.0-or-later**. See [LICENSE](LICENSE).
