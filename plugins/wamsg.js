@@ -97,55 +97,98 @@ Module(
     });
   }
 );
+// Unwrap WhatsApp's ephemeral/document wrappers and remove the view-once
+// flag from a cloned payload so the original quoted object is not mutated.
+function unwrapViewOnceMessage(input) {
+  if (!input || typeof input !== "object") return null;
+
+  let current = JSON.parse(JSON.stringify(input));
+  let foundViewOnceWrapper = false;
+
+  for (let depth = 0; depth < 5; depth++) {
+    if (current.ephemeralMessage?.message) {
+      current = current.ephemeralMessage.message;
+      continue;
+    }
+    if (current.documentWithCaptionMessage?.message) {
+      current = current.documentWithCaptionMessage.message;
+      continue;
+    }
+
+    const wrapper = [
+      "viewOnceMessage",
+      "viewOnceMessageV2",
+      "viewOnceMessageV2Extension",
+    ].find((key) => current[key]?.message);
+
+    if (wrapper) {
+      foundViewOnceWrapper = true;
+      current = current[wrapper].message;
+      continue;
+    }
+    break;
+  }
+
+  const mediaType = [
+    "imageMessage",
+    "videoMessage",
+    "audioMessage",
+    "documentMessage",
+  ].find((type) => current[type]);
+
+  if (!mediaType) return null;
+
+  const media = current[mediaType];
+  if (!foundViewOnceWrapper && !media.viewOnce) return null;
+
+  delete media.viewOnce;
+  return { [mediaType]: media };
+}
+
 Module(
   {
     pattern: "vv ?(.*)",
     fromMe: true,
-    desc: "Anti view once",
+    desc: "Recover and forward replied view-once media",
+    usage: ".vv (reply to a view-once photo, video, audio or document)",
     use: "utility",
   },
   async (m, match) => {
-    const quoted = m.quoted?.message,
-      realQuoted = m.quoted;
-
-    if (!m.reply_message || !quoted) {
-      return await m.sendReply("_Not a view once msg!_");
+    if (!m.reply_message || !m.quoted?.message) {
+      return m.sendReply("_Reply directly to a view-once photo or video with .vv_");
     }
 
-    if (match[1] && match[1].includes("@")) m.jid = match[1];
+    const cleanMessage = unwrapViewOnceMessage(m.quoted.message);
+    if (!cleanMessage) {
+      return m.sendReply("_That quoted message is not supported view-once media._");
+    }
 
-    const viewOnceKey = [
-      "viewOnceMessage",
-      "viewOnceMessageV2",
-      "viewOnceMessageV2Extension",
-    ].find((key) => quoted.hasOwnProperty(key));
+    const target = (match?.[1] || "").trim();
+    if (target) {
+      if (target.includes("@")) {
+        m.jid = target;
+      } else {
+        const digits = target.replace(/\D/g, "");
+        if (digits.length < 7) {
+          return m.sendReply("_Invalid destination. Provide a WhatsApp number or JID._");
+        }
+        m.jid = digits + "@s.whatsapp.net";
+      }
+    }
 
-    if (viewOnceKey) {
-      const realMessage = quoted[viewOnceKey].message;
-      const msgType = Object.keys(realMessage)[0];
-      if (realMessage[msgType]?.viewOnce) realMessage[msgType].viewOnce = false;
-      m.quoted.message = realMessage;
-      return await m.forwardMessage(m.jid, m.quoted, {
+    const forwarded = {
+      key: { ...m.quoted.key },
+      message: cleanMessage,
+    };
+
+    try {
+      return await m.forwardMessage(m.jid, forwarded, {
         contextInfo: { isForwarded: false },
       });
+    } catch (error) {
+      console.error(".vv forwarding error:", error);
+      return m.sendReply("_Unable to forward this view-once media. The media may have expired or WhatsApp may no longer provide it._");
     }
-
-    const directType = quoted.imageMessage
-      ? "imageMessage"
-      : quoted.audioMessage
-      ? "audioMessage"
-      : quoted.videoMessage
-      ? "videoMessage"
-      : null;
-
-    if (directType && quoted[directType]?.viewOnce) {
-      quoted[directType].viewOnce = false;
-      return await m.forwardMessage(m.jid, m.quoted, {
-        contextInfo: { isForwarded: false },
-      });
-    }
-
-    await m.sendReply("_Not a view once msg!_");
   }
 );
 Module(
