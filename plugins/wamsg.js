@@ -178,7 +178,8 @@ Module(
         return debug(
           "❌ .vv error: the quoted message does not contain supported View Once media.\n" +
           "Detected message keys: " + (quotedKeys.join(", ") || "(none)") + "\n" +
-          "Supported: image, video, audio, document."
+          "Supported: image, video, audio, document.\\n" +
+          "If WhatsApp Web supplied only a placeholder, the media is unavailable to the bot. Open it on your phone or ask the sender to send a regular copy."
         );
       }
 
@@ -204,6 +205,7 @@ Module(
         await m.forwardMessage(m.jid, forwarded, {
           contextInfo: { isForwarded: false },
         });
+        await debug("✅ .vv forward request submitted. Check the destination chat on your phone; delivery is not confirmed by this response.");
       } catch (error) {
         console.error(".vv forwarding error:", error);
         const detail = String(error?.stack || error?.message || error).slice(0, 2500);
