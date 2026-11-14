@@ -154,40 +154,74 @@ Module(
     use: "utility",
   },
   async (m, match) => {
-    if (!m.reply_message || !m.quoted?.message) {
-      return m.sendReply("_Reply directly to a view-once photo or video with .vv_");
-    }
-
-    const cleanMessage = unwrapViewOnceMessage(m.quoted.message);
-    if (!cleanMessage) {
-      return m.sendReply("_That quoted message is not supported view-once media._");
-    }
-
-    const target = (match?.[1] || "").trim();
-    if (target) {
-      if (target.includes("@")) {
-        m.jid = target;
-      } else {
-        const digits = target.replace(/\D/g, "");
-        if (digits.length < 7) {
-          return m.sendReply("_Invalid destination. Provide a WhatsApp number or JID._");
-        }
-        m.jid = digits + "@s.whatsapp.net";
+    const debug = async (text) => {
+      try {
+        await m.sendReply(text);
+      } catch (sendError) {
+        console.error(".vv could not send diagnostic to chat:", sendError);
       }
-    }
-
-    const forwarded = {
-      key: { ...m.quoted.key },
-      message: cleanMessage,
     };
 
+    // This message confirms that the command matcher reached the .vv handler.
+    await debug("🔎 .vv diagnostic: command received. Checking the quoted message...");
+
     try {
-      return await m.forwardMessage(m.jid, forwarded, {
-        contextInfo: { isForwarded: false },
-      });
+      if (!m.reply_message || !m.quoted?.message) {
+        return debug(
+          "❌ .vv error: no quoted message was detected. Reply directly to the View Once media, then send .vv."
+        );
+      }
+
+      const quotedKeys = Object.keys(m.quoted.message || {});
+      const cleanMessage = unwrapViewOnceMessage(m.quoted.message);
+      if (!cleanMessage) {
+        return debug(
+          "❌ .vv error: the quoted message does not contain supported View Once media.\n" +
+          "Detected message keys: " + (quotedKeys.join(", ") || "(none)") + "\n" +
+          "Supported: image, video, audio, document."
+        );
+      }
+
+      const target = (match?.[1] || "").trim();
+      if (target) {
+        if (target.includes("@")) {
+          m.jid = target;
+        } else {
+          const digits = target.replace(/\D/g, "");
+          if (digits.length < 7) {
+            return debug("❌ .vv error: invalid destination. Provide a WhatsApp number or JID.");
+          }
+          m.jid = digits + "@s.whatsapp.net";
+        }
+      }
+
+      const forwarded = {
+        key: { ...m.quoted.key },
+        message: cleanMessage,
+      };
+
+      try {
+        await m.forwardMessage(m.jid, forwarded, {
+          contextInfo: { isForwarded: false },
+        });
+      } catch (error) {
+        console.error(".vv forwarding error:", error);
+        const detail = String(error?.stack || error?.message || error).slice(0, 2500);
+        await debug(
+          "❌ .vv forwarding failed.\n" +
+          "Error: " + String(error?.message || error) + "\n\n" +
+          "Diagnostic details:\n" + detail
+        );
+        return;
+      }
     } catch (error) {
-      console.error(".vv forwarding error:", error);
-      return m.sendReply("_Unable to forward this view-once media. The media may have expired or WhatsApp may no longer provide it._");
+      console.error(".vv handler error:", error);
+      const detail = String(error?.stack || error?.message || error).slice(0, 2500);
+      await debug(
+        "❌ .vv handler crashed.\n" +
+        "Error: " + String(error?.message || error) + "\n\n" +
+        "Diagnostic details:\n" + detail
+      );
     }
   }
 );
