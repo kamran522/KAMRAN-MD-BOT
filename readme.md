@@ -102,6 +102,29 @@ The following environment variables are supported:
 | `ACR_HOST`, `ACR_ACCESS_KEY`, `ACR_ACCESS_SECRET` | Credentials for your own ACRCloud music-identification project. |
 | `WA_VERSION` | Optional WhatsApp Web version override. |
 
+## Local AI chatbot (no API key required)
+
+The chatbot and `.ai` command use a local Ollama model. No Gemini/OpenAI API key or paid AI API is needed. The model runs on the same machine as the bot by default.
+
+Install Ollama from https://ollama.com, then download a model and start the Ollama service:
+
+```bash
+ollama pull llama3.2:3b
+ollama serve
+```
+
+In another terminal, enable the chatbot in the current WhatsApp chat with `.chatbot on`. It will answer ordinary text messages in that chat, including group messages without requiring a mention. Use `.chatbot off` to disable it. The `.ai your question` command asks the local model directly.
+
+Optional environment settings:
+
+| Variable | Default | Purpose |
+|---|---|---|
+| `LOCAL_AI_URL` | `http://127.0.0.1:11434` | Ollama server URL |
+| `LOCAL_AI_MODEL` | `llama3.2:3b` | Installed Ollama model name |
+| `LOCAL_AI_TIMEOUT` | `120000` | Request timeout in milliseconds |
+
+The model must be downloaded with `ollama pull` before use. Local inference uses your machine's CPU/RAM/GPU; larger models need more resources. The current chatbot handles text messages; image analysis is not enabled.
+
 ## Media and optional services
 
 - Media downloads use the locally installed yt-dlp executable.
