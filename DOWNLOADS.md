@@ -20,16 +20,32 @@ Restart the container through your usual deployment process. Merely restarting a
 
 ## Non-Docker deployments
 
-Install Node.js 22+, Python 3.11+, `ffmpeg`, and both downloaders in the same environment as the bot:
+On Ubuntu VPS hosts, use a virtual environment to avoid Python's
+`externally-managed-environment` (PEP 668) error. Install Node.js 22+ and run
+the following commands **from the bot repository root**:
 
 ```sh
-python3 -m pip install -U 'yt-dlp[default]' gallery-dl
-yt-dlp --version
-gallery-dl --version
+sudo apt update
+sudo apt install -y python3-venv ffmpeg
+python3 -m venv .venv
+./.venv/bin/python -m pip install -U 'yt-dlp[default]' gallery-dl
+./.venv/bin/yt-dlp --version
+./.venv/bin/gallery-dl --version
 node --version
 ```
 
-Ensure the `yt-dlp` and `gallery-dl` commands are on `PATH`, or set `YTDLP_PATH` and `GALLERYDL_PATH`. `core/services.js` enables `--js-runtimes node` for yt-dlp; `YTDLP_ARGS` can still provide extra options.
+The bot automatically detects `.venv/bin/yt-dlp` and
+`.venv/bin/gallery-dl`, even when PM2 does not inherit interactive shell
+exports. You can still override their locations through `YTDLP_PATH` and
+`GALLERYDL_PATH`. `core/services.js` enables `--js-runtimes node` for
+yt-dlp; `YTDLP_ARGS` can provide extra options.
+
+After pulling the latest code, restart PM2:
+
+```sh
+git pull origin main
+pm2 restart kamran-MD-bot --update-env
+```
 
 ## Instagram login-required content
 
@@ -59,3 +75,20 @@ To run the offline regression tests without connecting to Instagram or YouTube:
 ```sh
 node --test tests/media-downloads.test.js
 ```
+
+## Diagnose persistent errors on a VPS
+
+Run the following from the bot's root folder (these do not change your code):
+
+```sh
+./.venv/bin/yt-dlp --js-runtimes node -F 'https://youtube.com/shorts/-rumnXioCL8'
+./.venv/bin/gallery-dl --range 1-10 'https://www.instagram.com/reel/Dfvwcy1sA5_/'
+pm2 logs kamran-MD-bot --lines 80 --nostream
+```
+
+If yt-dlp reports an EJS or JavaScript challenge issue, upgrade
+`yt-dlp[default]` in the venv and verify Node.js is v22 or newer. If the
+extractor reports HTTP 403, 429, or login required, the site may be rejecting
+the server IP or requiring valid cookies. Instagram can require valid cookies
+even for some public Reels; a bot update alone cannot overcome server-side
+restrictions. Never post session cookies or credentials in issue logs.

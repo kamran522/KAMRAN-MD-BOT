@@ -240,7 +240,20 @@ async function downloadFromExternalAPI(youtubeUrl, quality = "360p") {
  * @returns {Promise<{ path: string, title: string }>}
  */
 async function downloadVideo(url, quality = "360p") {
-  const info = await getVideoInfo(url);
+  let info;
+  try {
+    info = await getVideoInfo(url);
+  } catch (infoError) {
+    // Metadata discovery can fail independently of a direct yt-dlp download.
+    try {
+      const file = await downloadFromExternalAPI(url, quality);
+      return { path: file, title: "YouTube video" };
+    } catch (downloadError) {
+      throw new Error(
+        `YouTube video failed. Metadata: ${infoError.message}; download: ${downloadError.message}`
+      );
+    }
+  }
   const restricted = isRestrictedVideo(info);
 
   // If the video is geo-locked or IP-bound (e.g. licensed music videos),
@@ -380,7 +393,19 @@ async function downloadVideo(url, quality = "360p") {
  * @returns {Promise<{ path: string, title: string, info: Object }>}
  */
 async function downloadAudio(url) {
-  const info = await getVideoInfo(url);
+  let info;
+  try {
+    info = await getVideoInfo(url);
+  } catch (infoError) {
+    try {
+      const file = await downloadFromExternalAPI(url, "audio");
+      return { path: file, title: "YouTube audio", info: {} };
+    } catch (downloadError) {
+      throw new Error(
+        `YouTube audio failed. Metadata: ${infoError.message}; download: ${downloadError.message}`
+      );
+    }
+  }
   const restricted = isRestrictedVideo(info);
 
   if (restricted) {

@@ -81,7 +81,21 @@ function ytdlpBase() {
   return args;
 }
 
-const ytdlp = (args, opts) => run(process.env.YTDLP_PATH || "yt-dlp", [...ytdlpBase(), ...args], opts);
+/**
+ * Prefer the downloaders installed in this repository's virtual environment.
+ * PM2 does not automatically inherit exports from an interactive SSH shell.
+ */
+function downloaderBinary(name, envKey) {
+  if (process.env[envKey]) return process.env[envKey];
+  const isWindows = process.platform === "win32";
+  const local = path.resolve(
+    __dirname, "..", ".venv", isWindows ? "Scripts" : "bin",
+    isWindows ? `${name}.exe` : name,
+  );
+  return fs.existsSync(local) ? local : name;
+}
+
+const ytdlp = (args, opts) => run(downloaderBinary("yt-dlp", "YTDLP_PATH"), [...ytdlpBase(), ...args], opts);
 
 const normalizeYoutube = (u) => (/^[\w-]{11}$/.test(String(u)) ? `https://www.youtube.com/watch?v=${u}` : String(u));
 
@@ -357,9 +371,31 @@ async function downloadSocialMedia(input, platform) {
 }
 
 /**
- * gallery-dl supports photos and mixed carousel posts, unlike yt-dlp which
- * intentionally only supports Instagram video extraction.
+ * gallery-dl defaults to platform/account subdirectories. Recursively collect
+ * media files instead of assuming everything is written to the base directory.
  */
+function collectMediaFiles(directory, maxFiles = 10) {
+  const files = [];
+  function walk(current) {
+    const entries = fs.readdirSync(current, { withFileTypes: true })
+      .sort((a, b) => a.name.localeCompare(b.name, undefined, { numeric: true }));
+    for (const entry of entries) {
+      if (files.length >= maxFiles) break;
+      const file = path.join(current, entry.name);
+      if (entry.isDirectory()) {
+        walk(file);
+      } else if (entry.isFile() &&
+                 /\.(?:jpe?g|png|webp|heic|mp4|m4v|mov|webm)$/i.test(entry.name) &&
+                 fs.statSync(file).size > 0) {
+        files.push(file);
+      }
+    }
+  }
+  walk(directory);
+  return files;
+}
+
+/** gallery-dl supports photos and mixed carousel posts. */
 async function downloadInstagramGallery(url) {
   const directory = tmpDir(`instagram-gallery/${uid()}`);
   const args = ["--no-input", "--range", "1-10", "--directory", directory];
@@ -368,13 +404,8 @@ async function downloadInstagramGallery(url) {
   }
   args.push(url);
   try {
-    await run(process.env.GALLERYDL_PATH || "gallery-dl", args, { timeout: 10 * 60 * 1000 });
-    const files = fs.readdirSync(directory)
-      .filter((name) => /\.(?:jpe?g|png|webp|heic|mp4|m4v|mov|webm)$/i.test(name))
-      .sort()
-      .map((name) => path.join(directory, name))
-      .filter((file) => fs.statSync(file).isFile() && fs.statSync(file).size > 0)
-      .slice(0, 10);
+    await run(downloaderBinary("gallery-dl", "GALLERYDL_PATH"), args, { timeout: 10 * 60 * 1000 });
+    const files = collectMediaFiles(directory, 10);
     if (!files.length) throw new Error("gallery-dl returned no downloadable media");
     return files;
   } catch (error) {
