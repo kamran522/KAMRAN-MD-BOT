@@ -47,17 +47,68 @@ git pull origin main
 pm2 restart kamran-MD-bot --update-env
 ```
 
-## Instagram login-required content
+## Instagram and YouTube login-required content
 
-For posts/stories needing Instagram login, export **your own** browser session cookies in Netscape `cookies.txt` format, then set:
+YouTube can return `Sign in to confirm you're not a bot` for server IP
+addresses, and Instagram can redirect anonymous downloads to the login page.
+These are site-side authentication restrictions, **not an installation error**.
 
-```sh
-YTDLP_COOKIES=/secure/path/instagram-cookies.txt
+Export authorized cookies from **your own logged-in browser sessions** for
+the relevant sites, using Netscape `cookies.txt` format. For YouTube, follow
+[yt-dlp's official export instructions](https://github.com/yt-dlp/yt-dlp/wiki/Extractors#exporting-youtube-cookies).
+Keep the two cookie files separate. Never commit, paste, or send these files
+to anyone: they grant access to your browser sessions.
+
+Store them outside the Git repository (example locations on an Ubuntu VPS):
+
+```text
+/home/ubuntu/.config/kamran-md/youtube-cookies.txt
+/home/ubuntu/.config/kamran-md/instagram-cookies.txt
 ```
 
-The same file is passed to `gallery-dl` and `yt-dlp`. Make the file readable by the bot process, keep it private, never commit it to Git, and replace it if expired. The account must have permission to view the content. Some content remains unavailable due to website restrictions, rate limits, region restrictions, or unavailable extractor support.
+Create the private directory on the VPS and copy the exported files there
+using a secure transfer (for example, `scp`). Then set permissions:
 
-If you also need YouTube cookies, use the appropriate cookies file for the site you are downloading; the single `YTDLP_COOKIES` setting applies to both downloaders.
+```sh
+mkdir -p "$HOME/.config/kamran-md"
+chmod 700 "$HOME/.config/kamran-md"
+chmod 600 "$HOME/.config/kamran-md/"*cookies.txt
+```
+
+To configure the **existing** PM2 process, run from the bot directory:
+
+```sh
+YTDLP_COOKIES_YOUTUBE="$HOME/.config/kamran-md/youtube-cookies.txt" \
+YTDLP_COOKIES_INSTAGRAM="$HOME/.config/kamran-md/instagram-cookies.txt" \
+pm2 restart kamran-MD-bot --update-env
+
+pm2 save
+```
+
+The bot passes `YTDLP_COOKIES_YOUTUBE` only to YouTube requests, and
+`YTDLP_COOKIES_INSTAGRAM` to Instagram requests from both `gallery-dl`
+and `yt-dlp`. The old `YTDLP_COOKIES` variable remains a fallback for
+older deployments but should not be used to share a site's session cookies
+with another site. For Instagram stories, an Instagram cookie file is required.
+The account must already have access to the requested content.
+
+You can test the cookie files **locally on the VPS**, without showing their
+contents to anyone:
+
+```sh
+./.venv/bin/yt-dlp --js-runtimes node \
+  --cookies "$HOME/.config/kamran-md/youtube-cookies.txt" \
+  -F 'https://youtube.com/shorts/-rumnXioCL8'
+
+./.venv/bin/gallery-dl \
+  --cookies "$HOME/.config/kamran-md/instagram-cookies.txt" \
+  --range 1-10 'https://www.instagram.com/reel/Dfvwcy1sA5_/'
+```
+
+Cookies can expire or be revoked. Even valid cookies may not solve YouTube
+IP-based challenges or Instagram rate limits. If access is still denied,
+check the site in your browser, wait for rate limits to clear, or use a
+permitted download method; do not repeatedly retry blocked requests.
 
 ## Check a failing URL
 
