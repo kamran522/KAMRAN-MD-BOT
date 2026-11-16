@@ -81,7 +81,7 @@ test("YouTube metadata provides readable qualities and sizes", async () => {
 
 test("YouTube audio is converted to m4a for WhatsApp", async () => {
   const file = await services.ytDownloadToFile("dQw4w9WgXcQ", "audio", binDir);
-  assert.match(file, /\\.m4a$/);
+  assert.match(file, /\.m4a$/);
   assert.ok(fs.existsSync(file));
   const args = lastYtArgs();
   assert.ok(args.includes("-x"));
@@ -92,8 +92,8 @@ test("YouTube audio is converted to m4a for WhatsApp", async () => {
 test("Instagram gallery returns photos and video in order", async () => {
   const files = await services.instagram("https://www.instagram.com/p/ABC123xyz/");
   assert.equal(files.length, 2);
-  assert.match(files[0], /01\\.jpg$/);
-  assert.match(files[1], /02\\.mp4$/);
+  assert.match(files[0], /01\.jpg$/);
+  assert.match(files[1], /02\.mp4$/);
   assert.ok(files.every((file) => fs.existsSync(file)));
   for (const file of files) fs.rmSync(file);
 });
@@ -103,7 +103,7 @@ test("Instagram Reels use yt-dlp fallback if gallery-dl fails", async () => {
   try {
     const files = await services.instagram("https://www.instagram.com/reel/ABC123xyz/");
     assert.equal(files.length, 1);
-    assert.match(files[0], /\\.mp4$/);
+    assert.match(files[0], /\.mp4$/);
     assert.ok(lastYtArgs().includes("--yes-playlist"));
     for (const file of files) fs.rmSync(file);
   } finally {
