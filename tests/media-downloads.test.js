@@ -10,6 +10,7 @@ const binDir = fs.mkdtempSync(path.join(os.tmpdir(), "kamran-media-test-"));
 const ytPath = path.join(binDir, "fake-yt-dlp");
 const galleryPath = path.join(binDir, "fake-gallery-dl");
 const logPath = path.join(binDir, "yt-args.json");
+const galleryLogPath = path.join(binDir, "gallery-args.json");
 
 fs.writeFileSync(ytPath, `#!/usr/bin/env node
 const fs = require("fs");
@@ -45,6 +46,7 @@ fs.writeFileSync(galleryPath, `#!/usr/bin/env node
 const fs = require("fs");
 const path = require("path");
 const args = process.argv.slice(2);
+fs.writeFileSync(process.env.FAKE_GALLERY_ARGS, JSON.stringify(args));
 if (process.env.FAKE_GALLERY_FAIL === "1") {
   process.stderr.write("simulated Instagram extractor failure");
   process.exit(1);
@@ -63,12 +65,20 @@ const previous = {
   YTDLP_PATH: process.env.YTDLP_PATH,
   GALLERYDL_PATH: process.env.GALLERYDL_PATH,
   FAKE_YT_ARGS: process.env.FAKE_YT_ARGS,
+  FAKE_GALLERY_ARGS: process.env.FAKE_GALLERY_ARGS,
+  YTDLP_COOKIES: process.env.YTDLP_COOKIES,
+  YTDLP_COOKIES_YOUTUBE: process.env.YTDLP_COOKIES_YOUTUBE,
+  YTDLP_COOKIES_INSTAGRAM: process.env.YTDLP_COOKIES_INSTAGRAM,
   FAKE_GALLERY_FAIL: process.env.FAKE_GALLERY_FAIL,
   FAKE_YT_INFO_FAIL: process.env.FAKE_YT_INFO_FAIL,
 };
 process.env.YTDLP_PATH = ytPath;
 process.env.GALLERYDL_PATH = galleryPath;
 process.env.FAKE_YT_ARGS = logPath;
+process.env.FAKE_GALLERY_ARGS = galleryLogPath;
+delete process.env.YTDLP_COOKIES;
+delete process.env.YTDLP_COOKIES_YOUTUBE;
+delete process.env.YTDLP_COOKIES_INSTAGRAM;
 
 const services = require("../core/services");
 
@@ -109,6 +119,56 @@ test("YouTube can download when metadata probe fails", async () => {
     fs.rmSync(video.path);
   } finally {
     delete process.env.FAKE_YT_INFO_FAIL;
+  }
+});
+
+
+test("YouTube commands use only YouTube cookies, not Instagram cookies", async () => {
+  process.env.YTDLP_COOKIES_YOUTUBE = "/secure/youtube.txt";
+  process.env.YTDLP_COOKIES_INSTAGRAM = "/secure/instagram.txt";
+  try {
+    await services.ytInfo("dQw4w9WgXcQ");
+    const args = lastYtArgs();
+    assert.equal(args[args.indexOf("--cookies") + 1], "/secure/youtube.txt");
+    assert.ok(!args.includes("/secure/instagram.txt"));
+  } finally {
+    delete process.env.YTDLP_COOKIES_YOUTUBE;
+    delete process.env.YTDLP_COOKIES_INSTAGRAM;
+  }
+});
+
+test("Instagram gallery and its yt-dlp fallback use only Instagram cookies", async () => {
+  process.env.YTDLP_COOKIES_YOUTUBE = "/secure/youtube.txt";
+  process.env.YTDLP_COOKIES_INSTAGRAM = "/secure/instagram.txt";
+  try {
+    const url = "https://www.instagram.com/reel/ABC123xyz/";
+    const galleryFiles = await services.instagram(url);
+    const galleryArgs = JSON.parse(fs.readFileSync(galleryLogPath, "utf8"));
+    assert.equal(galleryArgs[galleryArgs.indexOf("--cookies") + 1], "/secure/instagram.txt");
+    assert.ok(!galleryArgs.includes("/secure/youtube.txt"));
+    for (const file of galleryFiles) fs.rmSync(file);
+
+    process.env.FAKE_GALLERY_FAIL = "1";
+    const fallbackFiles = await services.instagram(url);
+    const ytArgs = lastYtArgs();
+    assert.equal(ytArgs[ytArgs.indexOf("--cookies") + 1], "/secure/instagram.txt");
+    assert.ok(!ytArgs.includes("/secure/youtube.txt"));
+    for (const file of fallbackFiles) fs.rmSync(file);
+  } finally {
+    delete process.env.FAKE_GALLERY_FAIL;
+    delete process.env.YTDLP_COOKIES_YOUTUBE;
+    delete process.env.YTDLP_COOKIES_INSTAGRAM;
+  }
+});
+
+test("Legacy shared cookie option still works for YouTube", async () => {
+  process.env.YTDLP_COOKIES = "/secure/legacy.txt";
+  try {
+    await services.ytInfo("dQw4w9WgXcQ");
+    const args = lastYtArgs();
+    assert.equal(args[args.indexOf("--cookies") + 1], "/secure/legacy.txt");
+  } finally {
+    delete process.env.YTDLP_COOKIES;
   }
 });
 
