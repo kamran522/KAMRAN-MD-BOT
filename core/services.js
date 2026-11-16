@@ -18,7 +18,9 @@
  *  YTDLP_PATH     path to the yt-dlp binary            (default: "yt-dlp")
  *  YTDLP_ARGS     extra yt-dlp arguments, space-separated, e.g. "--js-runtimes node"
  *  YTDLP_USER_AGENT optional browser User-Agent for sites such as TikTok
- *  YTDLP_COOKIES  path to a cookies.txt file (needed by Instagram and some YouTube videos)
+ *  YTDLP_COOKIES  legacy fallback cookies.txt file for all sites
+ *  YTDLP_COOKIES_YOUTUBE  YouTube-only cookies.txt file
+ *  YTDLP_COOKIES_INSTAGRAM  Instagram-only cookies.txt file
  *  GALLERYDL_PATH  path to gallery-dl for Instagram images/carousels (default: "gallery-dl")
  *  ACR_HOST, ACR_ACCESS_KEY, ACR_ACCESS_SECRET   YOUR OWN ACRCloud project (music identify)
  */
@@ -73,10 +75,32 @@ function run(cmd, args, { timeout = 120000, input } = {}) {
   });
 }
 
-function ytdlpBase() {
+/**
+ * Match each site to its own browser session, never sending a YouTube-only
+ * cookies file to Instagram (or vice versa). Legacy YTDLP_COOKIES is retained.
+ */
+function cookiesForUrl(input) {
+  let hostname;
+  try {
+    hostname = new URL(String(input)).hostname.toLowerCase();
+  } catch (_) {
+    return process.env.YTDLP_COOKIES;
+  }
+  const isHost = (domain) => hostname === domain || hostname.endsWith("." + domain);
+  if (isHost("youtube.com") || isHost("youtu.be")) {
+    return process.env.YTDLP_COOKIES_YOUTUBE || process.env.YTDLP_COOKIES;
+  }
+  if (isHost("instagram.com") || isHost("instagr.am")) {
+    return process.env.YTDLP_COOKIES_INSTAGRAM || process.env.YTDLP_COOKIES;
+  }
+  return process.env.YTDLP_COOKIES;
+}
+
+function ytdlpBase(url) {
   // retries + parallel fragments + socket timeout = fewer failed / stalled downloads
   const args = ["--no-warnings", "--no-playlist", "--retries", "4", "--fragment-retries", "4", "--socket-timeout", "30", "-N", "4", "--js-runtimes", "node"];
-  if (process.env.YTDLP_COOKIES) args.push("--cookies", process.env.YTDLP_COOKIES);
+  const cookieFile = cookiesForUrl(url);
+  if (cookieFile) args.push("--cookies", cookieFile);
   if (process.env.YTDLP_ARGS) args.push(...process.env.YTDLP_ARGS.split(/\s+/).filter(Boolean));
   return args;
 }
@@ -95,7 +119,7 @@ function downloaderBinary(name, envKey) {
   return fs.existsSync(local) ? local : name;
 }
 
-const ytdlp = (args, opts) => run(downloaderBinary("yt-dlp", "YTDLP_PATH"), [...ytdlpBase(), ...args], opts);
+const ytdlp = (args, opts) => run(downloaderBinary("yt-dlp", "YTDLP_PATH"), [...ytdlpBase(args[args.length - 1]), ...args], opts);
 
 const normalizeYoutube = (u) => (/^[\w-]{11}$/.test(String(u)) ? `https://www.youtube.com/watch?v=${u}` : String(u));
 
@@ -399,9 +423,8 @@ function collectMediaFiles(directory, maxFiles = 10) {
 async function downloadInstagramGallery(url) {
   const directory = tmpDir(`instagram-gallery/${uid()}`);
   const args = ["--no-input", "--range", "1-10", "--directory", directory];
-  if (process.env.YTDLP_COOKIES) {
-    args.push("--cookies", process.env.YTDLP_COOKIES);
-  }
+  const cookieFile = cookiesForUrl(url);
+  if (cookieFile) args.push("--cookies", cookieFile);
   args.push(url);
   try {
     await run(downloaderBinary("gallery-dl", "GALLERYDL_PATH"), args, { timeout: 10 * 60 * 1000 });
@@ -424,9 +447,9 @@ async function instagram(input) {
     try {
       return await downloadSocialMedia(url, "instagram");
     } catch (videoError) {
-      const hint = process.env.YTDLP_COOKIES
-        ? "Check that your Instagram cookies are still valid."
-        : "For login-required posts/stories, set YTDLP_COOKIES to a valid Netscape cookies.txt file.";
+      const hint = cookiesForUrl(url)
+        ? "Check that your Instagram cookies are still valid and accessible by the bot."
+        : "Instagram login is required. Set YTDLP_COOKIES_INSTAGRAM to your account's Netscape cookies.txt file.";
       throw new Error(
         `Instagram media could not be downloaded. gallery-dl: ${galleryError.message}; yt-dlp: ${videoError.message}. ${hint}`,
       );
@@ -489,12 +512,12 @@ async function igStalk(username) {
   };
 }
 
-/** Stories are downloaded through yt-dlp. Instagram only serves them to logged-in users: set YTDLP_COOKIES. */
+/** Instagram stories require the account's authenticated cookies. */
 async function instagramStory(user) {
   const u = String(user || "");
   const url = /^https?:\/\//i.test(u) ? u : `https://www.instagram.com/stories/${u.replace(/^@/, "")}/`;
-  if (!process.env.YTDLP_COOKIES) {
-    throw new Error("Instagram stories need a logged-in cookies file: set YTDLP_COOKIES=/path/cookies.txt");
+  if (!cookiesForUrl(url)) {
+    throw new Error("Instagram stories need a logged-in cookie file: set YTDLP_COOKIES_INSTAGRAM=/secure/path/cookies.txt");
   }
   return instagram(url);
 }
