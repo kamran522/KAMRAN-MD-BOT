@@ -6,18 +6,32 @@ const {
   tiktok,
   igStalk,
   fb,
+  story,
 } = require("./utils");
 const botConfig = require("../config");
 const axios = require("axios");
 const isFromMe = botConfig.MODE === "public" ? false : true;
 
 async function checkRedirect(url) {
-  let split_url = url.split("/");
-  if (split_url.includes("share")) {
-    let res = await axios.get(url);
-    return res.request.res.responseUrl;
+  // Only follow Instagram share links. Do not request unrelated URLs.
+  let parsed;
+  try {
+    parsed = new URL(url);
+  } catch (_) {
+    return null;
   }
-  return url;
+  if (!["instagram.com", "www.instagram.com", "instagr.am", "www.instagr.am"].includes(parsed.hostname)) {
+    return null;
+  }
+  if (!parsed.pathname.startsWith("/share/")) return parsed.href;
+  try {
+    const res = await axios.get(parsed.href, { timeout: 10000, maxRedirects: 5 });
+    const redirected = res.request?.res?.responseUrl;
+    const target = new URL(redirected || parsed.href);
+    return ["instagram.com", "www.instagram.com"].includes(target.hostname) ? target.href : null;
+  } catch (_) {
+    return null;
+  }
 }
 Module(
   {
@@ -41,22 +55,14 @@ Module(
     // filter and validate instagram urls
     const instagramUrls = [];
     const instagramRegex =
-      /(?:https?:\/\/)?(?:www\.)?instagram\.com\/(?:p|s|reel|tv)\/[\w-]+/i;
+      /^https?:\/\/(?:www\.)?instagram\.com\/(?:p|reel|tv)\/[\w-]+/i;
 
     for (let url of allUrls) {
       if (url.includes("gist") || url.includes("youtu") || url.startsWith("ll"))
         continue;
 
-      url = await checkRedirect(url);
-
-      if (url.includes("stories")) continue;
-
-      if (!url.includes("instagram.com")) continue;
-
-      if (instagramRegex.test(url)) {
-        const mediaId = url.match(/\/([\w-]+)\/?$/)?.[1];
-        if (mediaId && mediaId.length > 20) continue; // skip private accounts
-
+      url = await checkRedirect(url.replace(/[)\].,!?>]*$/, ""));
+      if (url && instagramRegex.test(url)) {
         instagramUrls.push(url);
       }
     }
@@ -84,7 +90,7 @@ Module(
 
       if (!allMediaUrls.length)
         return await message.sendReply(
-          "_Something went wrong, Please try again!_"
+          "_Instagram download failed. Check that the link is public, or configure YTDLP_COOKIES for login-required media._"
         );
 
       // send as single media or album
@@ -214,9 +220,12 @@ Module(
       : userIdentifier.match(/\bhttps?:\/\/\S+/gi)[0];
 
     try {
-      var storyData = await downloadGram(userIdentifier);
-    } catch {
-      return await message.sendReply("*_Sorry, server error_*");
+      var storyData = await story(userIdentifier);
+    } catch (err) {
+      console.error("Instagram story download error:", err?.message || err);
+      return await message.sendReply(
+        "_Story download failed. Instagram stories require valid YTDLP_COOKIES and an account with access._"
+      );
     }
     if (!storyData || !storyData.length)
       return await message.sendReply("*_Not found!_*");

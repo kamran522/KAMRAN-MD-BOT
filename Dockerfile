@@ -1,7 +1,7 @@
 FROM node:22-alpine
 
 # ffmpeg + libwebp tools: conversions/stickers.  yt-dlp: all media downloads (runs locally).
-RUN apk add --no-cache ffmpeg libwebp-tools python3 py3-pip make g++ && pip install --no-cache-dir --break-system-packages -U yt-dlp
+RUN apk add --no-cache ffmpeg libwebp-tools python3 py3-pip make g++ && pip install --no-cache-dir --break-system-packages -U 'yt-dlp[default]' gallery-dl
 
 WORKDIR /kamran
 

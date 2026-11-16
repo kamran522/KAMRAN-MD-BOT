@@ -19,6 +19,7 @@
  *  YTDLP_ARGS     extra yt-dlp arguments, space-separated, e.g. "--js-runtimes node"
  *  YTDLP_USER_AGENT optional browser User-Agent for sites such as TikTok
  *  YTDLP_COOKIES  path to a cookies.txt file (needed by Instagram and some YouTube videos)
+ *  GALLERYDL_PATH  path to gallery-dl for Instagram images/carousels (default: "gallery-dl")
  *  ACR_HOST, ACR_ACCESS_KEY, ACR_ACCESS_SECRET   YOUR OWN ACRCloud project (music identify)
  */
 
@@ -74,7 +75,7 @@ function run(cmd, args, { timeout = 120000, input } = {}) {
 
 function ytdlpBase() {
   // retries + parallel fragments + socket timeout = fewer failed / stalled downloads
-  const args = ["--no-warnings", "--no-playlist", "--retries", "4", "--fragment-retries", "4", "--socket-timeout", "30", "-N", "4"];
+  const args = ["--no-warnings", "--no-playlist", "--retries", "4", "--fragment-retries", "4", "--socket-timeout", "30", "-N", "4", "--js-runtimes", "node"];
   if (process.env.YTDLP_COOKIES) args.push("--cookies", process.env.YTDLP_COOKIES);
   if (process.env.YTDLP_ARGS) args.push(...process.env.YTDLP_ARGS.split(/\s+/).filter(Boolean));
   return args;
@@ -154,16 +155,22 @@ async function ytInfo(input) {
       if (!sizes.has(f.height) || (size && size > sizes.get(f.height))) sizes.set(f.height, size);
     }
   }
+  const readableSize = (bytes) => {
+    if (!Number.isFinite(bytes) || bytes <= 0) return null;
+    const unit = bytes >= 1024 ** 3 ? "GB" : bytes >= 1024 ** 2 ? "MB" : "KB";
+    const divisor = unit === "GB" ? 1024 ** 3 : unit === "MB" ? 1024 ** 2 : 1024;
+    return `${(bytes / divisor).toFixed(2)} ${unit}`;
+  };
   const video = [...sizes.keys()]
     .sort((a, b) => a - b)
-    .map((h) => ({ quality: `${h}p`, url: page, hasAudio: false, size: sizes.get(h), requiresExternalDownload: true }));
+    .map((h) => ({ quality: `${h}p`, url: page, hasAudio: false, size: readableSize(sizes.get(h)), requiresExternalDownload: true }));
   const bestAudio = (j.formats || []).filter((f) => f.acodec && f.acodec !== "none" && (!f.vcodec || f.vcodec === "none"));
   const audio = [
     {
       quality: "audio",
       url: page,
       hasAudio: true,
-      size: bestAudio.length ? bestAudio[bestAudio.length - 1].filesize || null : null,
+      size: bestAudio.length ? readableSize(bestAudio[bestAudio.length - 1].filesize || bestAudio[bestAudio.length - 1].filesize_approx) : null,
       requiresExternalDownload: true,
     },
   ];
@@ -188,10 +195,12 @@ async function ytInfo(input) {
 async function ytDownloadToFile(input, quality = "360p", dir = tmpDir("yt")) {
   const url = normalizeYoutube(input);
   const isAudio = /^(audio|mp3|m4a)$/i.test(String(quality));
+  fs.mkdirSync(dir, { recursive: true });
   const id = uid();
   const args = ["-o", path.join(dir, `${id}.%(ext)s`)];
   if (isAudio) {
-    args.push("-f", "bestaudio[ext=m4a]/bestaudio/best");
+    // Convert non-AAC inputs to m4a so WhatsApp receives the correct MIME type.
+    args.push("-f", "bestaudio/best", "-x", "--audio-format", "m4a");
   } else {
     const h = parseInt(quality, 10) || 360;
     args.push(
@@ -347,9 +356,51 @@ async function downloadSocialMedia(input, platform) {
   }
 }
 
-/** Instagram posts/reels -> local media files. Private posts may need YTDLP_COOKIES. */
-async function instagram(url) {
-  return downloadSocialMedia(url, "instagram");
+/**
+ * gallery-dl supports photos and mixed carousel posts, unlike yt-dlp which
+ * intentionally only supports Instagram video extraction.
+ */
+async function downloadInstagramGallery(url) {
+  const directory = tmpDir(`instagram-gallery/${uid()}`);
+  const args = ["--no-input", "--range", "1-10", "--directory", directory];
+  if (process.env.YTDLP_COOKIES) {
+    args.push("--cookies", process.env.YTDLP_COOKIES);
+  }
+  args.push(url);
+  try {
+    await run(process.env.GALLERYDL_PATH || "gallery-dl", args, { timeout: 10 * 60 * 1000 });
+    const files = fs.readdirSync(directory)
+      .filter((name) => /\.(?:jpe?g|png|webp|heic|mp4|m4v|mov|webm)$/i.test(name))
+      .sort()
+      .map((name) => path.join(directory, name))
+      .filter((file) => fs.statSync(file).isFile() && fs.statSync(file).size > 0)
+      .slice(0, 10);
+    if (!files.length) throw new Error("gallery-dl returned no downloadable media");
+    return files;
+  } catch (error) {
+    fs.rmSync(directory, { recursive: true, force: true });
+    throw error;
+  }
+}
+
+/** Instagram posts/reels/stories -> local photo or video files. */
+async function instagram(input) {
+  const url = validateSocialUrl(input, "instagram");
+  try {
+    return await downloadInstagramGallery(url);
+  } catch (galleryError) {
+    // Keep yt-dlp as a fallback for Reels and video posts.
+    try {
+      return await downloadSocialMedia(url, "instagram");
+    } catch (videoError) {
+      const hint = process.env.YTDLP_COOKIES
+        ? "Check that your Instagram cookies are still valid."
+        : "For login-required posts/stories, set YTDLP_COOKIES to a valid Netscape cookies.txt file.";
+      throw new Error(
+        `Instagram media could not be downloaded. gallery-dl: ${galleryError.message}; yt-dlp: ${videoError.message}. ${hint}`,
+      );
+    }
+  }
 }
 
 async function facebook(url) {

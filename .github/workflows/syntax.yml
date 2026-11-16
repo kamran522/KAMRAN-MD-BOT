@@ -14,3 +14,5 @@ jobs:
           node-version: 22
       - name: Check JavaScript syntax
         run: npm run check
+      - name: Test downloader services without network access
+        run: node --test tests/media-downloads.test.js
