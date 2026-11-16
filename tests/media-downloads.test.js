@@ -69,6 +69,7 @@ const previous = {
   YTDLP_COOKIES: process.env.YTDLP_COOKIES,
   YTDLP_COOKIES_YOUTUBE: process.env.YTDLP_COOKIES_YOUTUBE,
   YTDLP_COOKIES_INSTAGRAM: process.env.YTDLP_COOKIES_INSTAGRAM,
+  YTDLP_YOUTUBE_CLIENT: process.env.YTDLP_YOUTUBE_CLIENT,
   FAKE_GALLERY_FAIL: process.env.FAKE_GALLERY_FAIL,
   FAKE_YT_INFO_FAIL: process.env.FAKE_YT_INFO_FAIL,
 };
@@ -79,6 +80,7 @@ process.env.FAKE_GALLERY_ARGS = galleryLogPath;
 delete process.env.YTDLP_COOKIES;
 delete process.env.YTDLP_COOKIES_YOUTUBE;
 delete process.env.YTDLP_COOKIES_INSTAGRAM;
+delete process.env.YTDLP_YOUTUBE_CLIENT;
 
 const services = require("../core/services");
 
@@ -93,6 +95,7 @@ test("YouTube metadata provides readable qualities and sizes", async () => {
   assert.match(info.audio[0].size, /KB$/);
   const args = lastYtArgs();
   assert.deepEqual(args.slice(args.indexOf("--js-runtimes"), args.indexOf("--js-runtimes") + 2), ["--js-runtimes", "node"]);
+  assert.equal(args[args.indexOf("--extractor-args") + 1], "youtube:player_client=web_safari");
 });
 
 test("YouTube audio is converted to m4a for WhatsApp", async () => {
@@ -137,6 +140,22 @@ test("YouTube commands use only YouTube cookies, not Instagram cookies", async (
   }
 });
 
+test("YouTube player client can be overridden or disabled", async () => {
+  try {
+    process.env.YTDLP_YOUTUBE_CLIENT = "mweb";
+    await services.ytInfo("dQw4w9WgXcQ");
+    let args = lastYtArgs();
+    assert.equal(args[args.indexOf("--extractor-args") + 1], "youtube:player_client=mweb");
+
+    process.env.YTDLP_YOUTUBE_CLIENT = "default";
+    await services.ytInfo("dQw4w9WgXcQ");
+    args = lastYtArgs();
+    assert.ok(!args.includes("--extractor-args"));
+  } finally {
+    delete process.env.YTDLP_YOUTUBE_CLIENT;
+  }
+});
+
 test("Instagram gallery and its yt-dlp fallback use only Instagram cookies", async () => {
   process.env.YTDLP_COOKIES_YOUTUBE = "/secure/youtube.txt";
   process.env.YTDLP_COOKIES_INSTAGRAM = "/secure/instagram.txt";
@@ -153,6 +172,7 @@ test("Instagram gallery and its yt-dlp fallback use only Instagram cookies", asy
     const ytArgs = lastYtArgs();
     assert.equal(ytArgs[ytArgs.indexOf("--cookies") + 1], "/secure/instagram.txt");
     assert.ok(!ytArgs.includes("/secure/youtube.txt"));
+    assert.ok(!ytArgs.includes("--extractor-args"), "Do not apply YouTube player options to Instagram");
     for (const file of fallbackFiles) fs.rmSync(file);
   } finally {
     delete process.env.FAKE_GALLERY_FAIL;
