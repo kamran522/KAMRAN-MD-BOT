@@ -16,6 +16,23 @@ const fromMe = MODE === "public" ? false : true;
 
 const VIDEO_SIZE_LIMIT = 150 * 1024 * 1024;
 
+function downloadFailureReason(error) {
+  const detail = String(error?.message || "");
+  if (/not found|ENOENT|command not found/i.test(detail)) {
+    return "yt-dlp was not found. Install it in .venv and restart PM2.";
+  }
+  if (/cookies|sign in|log in|confirm you.re not a bot|authentication/i.test(detail)) {
+    return "YouTube requires login/cookies or has blocked this session.";
+  }
+  if (/js runtime|javascript runtime|yt-dlp-ejs|challenge|nsig|signature/i.test(detail)) {
+    return "Update yt-dlp[default] and ensure Node.js 22+ is installed.";
+  }
+  if (/403|429|forbidden|rate.limit/i.test(detail)) {
+    return "The server request was blocked or rate-limited (HTTP 403/429).";
+  }
+  return "See the bot's PM2 logs for the exact downloader error.";
+}
+
 function formatBytes(bytes) {
   if (bytes === 0) return "0 B";
   const k = 1024;
@@ -252,7 +269,7 @@ Module(
     } catch (error) {
       console.error("YTV info error:", error);
       await message.sendReply(
-        "_Failed to fetch video info. Please check the link._"
+        `_Failed to fetch video info. ${downloadFailureReason(error)}_`
       );
     }
   }
@@ -326,7 +343,7 @@ Module(
     } catch (error) {
       console.error("Video download error:", error);
       if (downloadMsg) {
-        await message.edit("_Download failed!_", message.jid, downloadMsg.key);
+        await message.edit(`_Download failed. ${downloadFailureReason(error)}_`, message.jid, downloadMsg.key);
       } else {
         await message.sendReply("_Download failed. Please try again._");
       }
@@ -397,7 +414,7 @@ Module(
     } catch (error) {
       console.error("YTA download error:", error);
       if (downloadMsg) {
-        await message.edit("_Download failed!_", message.jid, downloadMsg.key);
+        await message.edit(`_Download failed. ${downloadFailureReason(error)}_`, message.jid, downloadMsg.key);
       } else {
         await message.sendReply("_Download failed. Please try again._");
       }
