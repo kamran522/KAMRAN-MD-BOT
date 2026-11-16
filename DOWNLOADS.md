@@ -110,6 +110,44 @@ IP-based challenges or Instagram rate limits. If access is still denied,
 check the site in your browser, wait for rate limits to clear, or use a
 permitted download method; do not repeatedly retry blocked requests.
 
+## YouTube playback client on AWS EC2
+
+The authenticated YouTube Shorts download on the AWS VPS succeeded using
+the `web_safari` player client, a running bgutil PO-token provider on
+`127.0.0.1:4416`, Node.js 22, and refreshed YouTube cookies. The bot
+now automatically adds `--extractor-args youtube:player_client=web_safari`
+to **YouTube-only** yt-dlp commands (metadata, video, and audio).
+
+The Python `bgutil-ytdlp-pot-provider` package and its local token server
+are separate VPS dependencies; merely pulling the bot from GitHub does not
+install or launch the token server. Check:
+
+```sh
+pm2 list
+./.venv/bin/python -m pip show bgutil-ytdlp-pot-provider
+```
+
+Use `YTDLP_YOUTUBE_CLIENT=mweb` (or another client supported by your yt-dlp
+version) to override the default for your environment. Use
+`YTDLP_YOUTUBE_CLIENT=default` to leave the selection to yt-dlp. Instagram
+downloads are unaffected.
+
+After updating the bot, restart PM2 with your private cookie paths:
+
+```sh
+cd ~/KAMRAN-MD-BOT
+git pull origin main
+
+YTDLP_COOKIES_YOUTUBE="$HOME/.config/kamran-md/youtube-cookies.txt" \
+YTDLP_COOKIES_INSTAGRAM="$HOME/.config/kamran-md/instagram-cookies.txt" \
+pm2 restart kamran-MD-bot --update-env
+pm2 save
+```
+
+A successful command-line test proves that those particular video fragments
+were accessible when tested. It does not guarantee that every YouTube video
+will work or that credentials will stay valid.
+
 ## Check a failing URL
 
 Try the URL in the container or server first:
