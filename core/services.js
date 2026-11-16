@@ -16,7 +16,8 @@
  *
  * Environment variables (all optional)
  *  YTDLP_PATH     path to the yt-dlp binary            (default: "yt-dlp")
- *  YTDLP_ARGS     extra yt-dlp arguments, space-separated, e.g. "--js-runtimes node"
+ *  YTDLP_ARGS     extra yt-dlp arguments, space-separated
+ *  YTDLP_YOUTUBE_CLIENT  YouTube player client (default: web_safari; "default" to disable override)
  *  YTDLP_USER_AGENT optional browser User-Agent for sites such as TikTok
  *  YTDLP_COOKIES  legacy fallback cookies.txt file for all sites
  *  YTDLP_COOKIES_YOUTUBE  YouTube-only cookies.txt file
@@ -101,6 +102,24 @@ function ytdlpBase(url) {
   const args = ["--no-warnings", "--no-playlist", "--retries", "4", "--fragment-retries", "4", "--socket-timeout", "30", "-N", "4", "--js-runtimes", "node"];
   const cookieFile = cookiesForUrl(url);
   if (cookieFile) args.push("--cookies", cookieFile);
+
+  // On the user's EC2 host, authenticated web_safari plus the local bgutil
+  // PO-token provider successfully downloads video fragments where the
+  // default YouTube client and format 18 returned HTTP 403.
+  // Only apply the override to YouTube, not Instagram or other sites.
+  let youtubeHost = false;
+  try {
+    const host = new URL(String(url)).hostname.toLowerCase();
+    youtubeHost = ["youtube.com", "youtu.be"].some(
+      (domain) => host === domain || host.endsWith("." + domain),
+    );
+  } catch (_) {}
+  if (youtubeHost) {
+    const client = process.env.YTDLP_YOUTUBE_CLIENT || "web_safari";
+    if (client !== "default") {
+      args.push("--extractor-args", `youtube:player_client=${client}`);
+    }
+  }
   if (process.env.YTDLP_ARGS) args.push(...process.env.YTDLP_ARGS.split(/\s+/).filter(Boolean));
   return args;
 }
