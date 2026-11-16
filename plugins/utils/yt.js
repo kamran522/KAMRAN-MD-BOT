@@ -458,7 +458,7 @@ async function convertM4aToMp3(m4aPath, meta = null) {
                 `audio_final_${timestamp}.m4a`,
               );
 
-              await new Promise((innerResolve) => {
+              const finalPath = await new Promise((innerResolve) => {
                 let proc = ffmpeg(taggedM4a)
                   .input(coverPath)
                   .outputOptions([
@@ -488,7 +488,7 @@ async function convertM4aToMp3(m4aPath, meta = null) {
                 proc.run();
               });
 
-              resolve(finalM4a);
+              resolve(finalPath);
             } else {
               resolve(taggedM4a);
             }
