@@ -17,6 +17,10 @@ const path = require("path");
 const args = process.argv.slice(2);
 fs.writeFileSync(process.env.FAKE_YT_ARGS, JSON.stringify(args));
 if (args.includes("-J")) {
+  if (process.env.FAKE_YT_INFO_FAIL === "1") {
+    process.stderr.write("Simulated metadata error");
+    process.exit(1);
+  }
   console.log(JSON.stringify({
     id: "dQw4w9WgXcQ",
     title: "Test video",
@@ -47,9 +51,10 @@ if (process.env.FAKE_GALLERY_FAIL === "1") {
 }
 const dir = args[args.indexOf("--directory") + 1];
 if (!dir) process.exit(2);
-fs.mkdirSync(dir, {recursive:true});
-fs.writeFileSync(path.join(dir, "01.jpg"), "fake-jpg");
-fs.writeFileSync(path.join(dir, "02.mp4"), "fake-video");
+const nested = path.join(dir, "instagram", "example_account");
+fs.mkdirSync(nested, {recursive:true});
+fs.writeFileSync(path.join(nested, "01.jpg"), "fake-jpg");
+fs.writeFileSync(path.join(nested, "02.mp4"), "fake-video");
 `);
 fs.chmodSync(ytPath, 0o755);
 fs.chmodSync(galleryPath, 0o755);
@@ -59,6 +64,7 @@ const previous = {
   GALLERYDL_PATH: process.env.GALLERYDL_PATH,
   FAKE_YT_ARGS: process.env.FAKE_YT_ARGS,
   FAKE_GALLERY_FAIL: process.env.FAKE_GALLERY_FAIL,
+  FAKE_YT_INFO_FAIL: process.env.FAKE_YT_INFO_FAIL,
 };
 process.env.YTDLP_PATH = ytPath;
 process.env.GALLERYDL_PATH = galleryPath;
@@ -89,7 +95,24 @@ test("YouTube audio is converted to m4a for WhatsApp", async () => {
   fs.rmSync(file);
 });
 
-test("Instagram gallery returns photos and video in order", async () => {
+test("YouTube can download when metadata probe fails", async () => {
+  process.env.FAKE_YT_INFO_FAIL = "1";
+  try {
+    const { downloadAudio, downloadVideo } = require("../plugins/utils/yt");
+    const audio = await downloadAudio("https://www.youtube.com/watch?v=dQw4w9WgXcQ");
+    assert.match(audio.path, /\.m4a$/);
+    assert.ok(fs.existsSync(audio.path));
+    fs.rmSync(audio.path);
+    const video = await downloadVideo("https://www.youtube.com/watch?v=dQw4w9WgXcQ", "360p");
+    assert.match(video.path, /\.mp4$/);
+    assert.ok(fs.existsSync(video.path));
+    fs.rmSync(video.path);
+  } finally {
+    delete process.env.FAKE_YT_INFO_FAIL;
+  }
+});
+
+test("Instagram gallery returns photos and video in nested folders", async () => {
   const files = await services.instagram("https://www.instagram.com/p/ABC123xyz/");
   assert.equal(files.length, 2);
   assert.match(files[0], /01\.jpg$/);
