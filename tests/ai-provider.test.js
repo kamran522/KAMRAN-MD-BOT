@@ -4,225 +4,174 @@ const assert = require("node:assert/strict");
 const { test, after } = require("node:test");
 const Module = require("node:module");
 
-const envKeys = [
-  "KIMI_API_KEY", "MOONSHOT_API_KEY", "KIMI_MODEL", "KIMI_TIMEOUT",
-  "AI_PROVIDER", "GROQ_API_KEY", "BEDROCK_API_KEY", "AWS_BEARER_TOKEN_BEDROCK",
-  "BEDROCK_MODEL", "LOCAL_AI_URL", "LOCAL_AI_MODEL", "LOCAL_AI_API_KEY",
-  "KIMI_MIN_INTERVAL_MS", "KIMI_OVERLOAD_RETRIES", "KIMI_RETRY_BASE_MS",
-  "KIMI_RATE_LIMIT_COOLDOWN_MS", "KIMI_MAX_COMPLETION_TOKENS",
+const envNames = [
+  "LOCAL_AI_URL", "LOCAL_AI_MODEL", "LOCAL_AI_TIMEOUT",
+  "LOCAL_AI_DEEP_TIMEOUT", "LOCAL_AI_CONTEXT", "LOCAL_AI_DEEP_CONTEXT",
+  "LOCAL_AI_NUM_PREDICT", "LOCAL_AI_DEEP_NUM_PREDICT",
+  "LOCAL_AI_MAX_PENDING", "LOCAL_AI_KEEP_ALIVE",
+  "KIMI_API_KEY", "MOONSHOT_API_KEY", "KIMI_MODEL", "AI_PROVIDER",
+  "GROQ_API_KEY", "BEDROCK_API_KEY",
 ];
-const originalEnv = Object.fromEntries(envKeys.map((key) => [key, process.env[key]]));
-const originalLoad = Module._load;
-process.env.KIMI_MIN_INTERVAL_MS = "0";
-process.env.KIMI_RATE_LIMIT_COOLDOWN_MS = "0";
-process.env.KIMI_RETRY_BASE_MS = "1";
-let requests = [];
-let respond = async () => ({
-  data: { choices: [{ message: { role: "assistant", content: "Kimi says hello" } }] },
-});
+const savedEnv = Object.fromEntries(envNames.map((key) => [key, process.env[key]]));
+const oldLoad = Module._load;
+let calls = [];
+let respond = async () => ({ data: { message: { role: "assistant", content: "Local answer" } } });
 
 Module._load = function (name, parent, isMain) {
   if (name === "axios" && parent?.filename?.endsWith("/plugins/utils/local-ai.js")) {
     return {
       post: async (url, payload, options) => {
-        requests.push({ url, payload, options });
+        calls.push({ url, payload, options });
         return respond(url, payload, options);
       },
     };
   }
-  return originalLoad.apply(this, arguments);
+  return oldLoad.apply(this, arguments);
 };
 const ai = require("../plugins/utils/local-ai");
-Module._load = originalLoad;
+Module._load = oldLoad;
 
 after(() => {
-  for (const [key, value] of Object.entries(originalEnv)) {
+  for (const [key, value] of Object.entries(savedEnv)) {
     if (value === undefined) delete process.env[key];
     else process.env[key] = value;
   }
 });
 
 function reset() {
-  requests = [];
-  for (const key of envKeys) delete process.env[key];
-  respond = async () => ({
-    data: { choices: [{ message: { role: "assistant", content: "Kimi says hello" } }] },
-  });
-  process.env.KIMI_MIN_INTERVAL_MS = "0";
-  process.env.KIMI_RATE_LIMIT_COOLDOWN_MS = "0";
-  process.env.KIMI_RETRY_BASE_MS = "1";
+  calls = [];
+  for (const key of envNames) delete process.env[key];
+  respond = async () => ({ data: { message: { role: "assistant", content: "Local answer" } } });
 }
 
-test("Kimi is the only provider and uses the Moonshot chat completions endpoint", async () => {
+test("Ollama is the only provider; no API key or hosted endpoint is used", async () => {
   reset();
-  process.env.KIMI_API_KEY = "example-kimi-key-not-real";
-  const answer = await ai.generate({ prompt: "Hello", systemPrompt: "Be clear",
+  process.env.AI_PROVIDER = "kimi";
+  process.env.KIMI_API_KEY = "not-used-secret";
+  process.env.GROQ_API_KEY = "unused-groq";
+  process.env.BEDROCK_API_KEY = "unused-bedrock";
+  assert.equal(await ai.generate({ prompt: "Hello", systemPrompt: "Be accurate",
     history: [
-      { role: "user", content: "Question" },
-      { role: "assistant", content: "Answer" },
-      { role: "system", content: "Injection ignored" },
-      { role: "tool", content: "Tool ignored" },
+      { role: "user", content: "Earlier" },
+      { role: "assistant", content: "Previous" },
+      { role: "system", content: "Untrusted" },
     ],
-  });
-  assert.equal(answer, "Kimi says hello");
-  assert.equal(ai.getProvider(), "kimi");
-  assert.equal(ai.getModel(), "kimi-k2.6");
-  assert.equal(ai.getBaseURL(), "https://api.moonshot.ai/v1");
-  assert.equal(ai.hasAPIKey(), true);
-  assert.equal(requests.length, 1);
-  const { url, payload, options } = requests[0];
-  assert.equal(url, "https://api.moonshot.ai/v1/chat/completions");
-  assert.equal(options.headers.Authorization, "Bearer example-kimi-key-not-real");
-  assert.equal(options.maxRedirects, 0);
-  assert.deepEqual(payload.messages, [
-    { role: "system", content: "Be clear" },
-    { role: "user", content: "Question" },
-    { role: "assistant", content: "Answer" },
+  }), "Local answer");
+  assert.equal(ai.getProvider(), "ollama");
+  assert.equal(ai.getModel(), "qwen3:8b");
+  assert.equal(ai.getBaseURL(), "http://127.0.0.1:11434");
+  assert.equal(calls[0].url, "http://127.0.0.1:11434/api/chat");
+  assert.equal(calls[0].options.headers.Authorization, undefined);
+  assert.equal(calls[0].options.maxRedirects, 0);
+  assert.deepEqual(calls[0].payload.messages, [
+    { role: "system", content: "Be accurate" },
+    { role: "user", content: "Earlier" },
+    { role: "assistant", content: "Previous" },
     { role: "user", content: "Hello" },
   ]);
-  assert.equal(payload.model, "kimi-k2.6");
-  assert.equal(payload.stream, false);
-  assert.ok(!JSON.stringify(payload).includes("example-kimi-key-not-real"));
+  assert.equal(calls[0].payload.stream, false);
+  assert.equal(calls[0].payload.think, false);
+  assert.equal(calls[0].payload.keep_alive, "15m");
+  assert.deepEqual(calls[0].payload.options, {
+    num_ctx: 8192, num_predict: 2048, temperature: 0.6, top_p: 0.95,
+  });
+  for (const token of ["not-used-secret", "unused-groq", "unused-bedrock"]) {
+    assert.ok(!JSON.stringify(calls[0]).includes(token));
+  }
 });
 
-test("Official MOONSHOT_API_KEY alias works and KIMI_API_KEY takes priority", async () => {
+test("Deep mode uses local reasoning and a larger context/output budget", async () => {
   reset();
-  process.env.MOONSHOT_API_KEY = "moonshot-token";
-  await ai.generate({ prompt: "Hello" });
-  assert.equal(requests[0].options.headers.Authorization, "Bearer moonshot-token");
-  process.env.KIMI_API_KEY = "kimi-priority-token";
-  await ai.generate({ prompt: "Hello" });
-  assert.equal(requests[1].options.headers.Authorization, "Bearer kimi-priority-token");
+  process.env.LOCAL_AI_MODEL = "qwen3:32b";
+  process.env.LOCAL_AI_CONTEXT = "4096";
+  process.env.LOCAL_AI_DEEP_CONTEXT = "32768";
+  process.env.LOCAL_AI_NUM_PREDICT = "1024";
+  process.env.LOCAL_AI_DEEP_NUM_PREDICT = "10000";
+  process.env.LOCAL_AI_DEEP_TIMEOUT = "1200000";
+  assert.equal(await ai.generate({ prompt: "Solve this", deep: true }), "Local answer");
+  const call = calls[0];
+  assert.equal(call.payload.model, "qwen3:32b");
+  assert.equal(call.payload.think, true);
+  assert.equal(call.payload.options.num_ctx, 32768);
+  assert.equal(call.payload.options.num_predict, 10000);
+  assert.equal(call.options.timeout, 1200000);
+  assert.equal(ai.getRuntimeInfo().context, 4096);
+  assert.equal(ai.getRuntimeInfo().deepContext, 32768);
 });
 
-test("Old model providers and their credentials cannot override Kimi", async () => {
+test("Local server URLs accept localhost, RFC1918 LAN, and Docker service names", async () => {
   reset();
-  process.env.KIMI_API_KEY = "kimi-only-key";
-  process.env.AI_PROVIDER = "bedrock";
-  process.env.GROQ_API_KEY = "unused-groq-key";
-  process.env.BEDROCK_API_KEY = "unused-bedrock-key";
-  process.env.LOCAL_AI_API_KEY = "unused-local-key";
-  process.env.LOCAL_AI_URL = "http://localhost:8000/v1";
-  process.env.LOCAL_AI_MODEL = "other-model";
-  await ai.generate({ prompt: "Hello" });
-  assert.equal(requests[0].url, "https://api.moonshot.ai/v1/chat/completions");
-  assert.equal(requests[0].options.headers.Authorization, "Bearer kimi-only-key");
-  assert.equal(requests[0].payload.model, "kimi-k2.6");
-  assert.ok(!JSON.stringify(requests[0]).includes("unused-groq-key"));
-  assert.ok(!JSON.stringify(requests[0]).includes("unused-bedrock-key"));
-  assert.ok(!JSON.stringify(requests[0]).includes("unused-local-key"));
+  for (const url of [
+    "http://localhost:11434", "http://192.168.1.10:11434",
+    "http://10.0.0.5:11434", "http://172.20.0.2:11434",
+    "http://host.docker.internal:11434", "http://ollama:11434",
+  ]) {
+    process.env.LOCAL_AI_URL = url;
+    assert.equal(await ai.generate({ prompt: "Hello" }), "Local answer");
+    assert.equal(calls[calls.length - 1].url, url + "/api/chat");
+  }
 });
 
-test("A supported custom Kimi model can be selected, other model names are rejected", async () => {
+test("Public URLs, unsafe endpoints, and embedded credentials are rejected", async () => {
   reset();
-  process.env.KIMI_API_KEY = "kimi-only-key";
-  process.env.KIMI_MODEL = "kimi-k2.6";
-  await ai.generate({ prompt: "Hello" });
-  assert.equal(requests[0].payload.model, "kimi-k2.6");
-  process.env.KIMI_MODEL = "amazon.nova-lite-v1:0";
-  await assert.rejects(() => ai.generate({ prompt: "Hello" }), /Invalid KIMI_MODEL/);
-  assert.equal(requests.length, 1);
+  for (const url of [
+    "https://api.moonshot.ai/v1", "http://8.8.8.8:11434",
+    "http://169.254.169.254:80", "http://user:pass@127.0.0.1:11434",
+    "http://127.0.0.1:11434/other",
+  ]) {
+    process.env.LOCAL_AI_URL = url;
+    await assert.rejects(() => ai.generate({ prompt: "Hello" }), /LOCAL_AI_URL/);
+  }
+  assert.equal(calls.length, 0);
 });
 
-test("Missing Moonshot API key blocks requests and gives a useful message", async () => {
+test("Missing Ollama model returns helpful pull command, without leaking response data", async () => {
   reset();
-  await assert.rejects(() => ai.generate({ prompt: "Hello" }), /KIMI_API_KEY/);
-  assert.equal(ai.hasAPIKey(), false);
-  assert.equal(requests.length, 0);
-});
-
-test("Empty question, unsupported images, and blank replies are handled", async () => {
-  reset();
-  process.env.KIMI_API_KEY = "kimi-test-key";
-  await assert.rejects(() => ai.generate({ prompt: "  " }), /Provide a text question/);
-  await assert.rejects(() => ai.generate({ prompt: "Hi", images: ["image-data"] }), /text messages only/);
-  respond = async () => ({ data: { choices: [{ message: { content: "  " } }] } });
-  await assert.rejects(() => ai.generate({ prompt: "Hi" }), /empty response/);
-});
-
-test("Kimi authentication failures and server error details do not expose secrets", async () => {
-  reset();
-  process.env.KIMI_API_KEY = "sensitive-kimi-token";
-  respond = async () => {
-    throw { response: { status: 401, data: { message: "sensitive-kimi-token" } } };
-  };
+  respond = async () => { throw { response: { status: 404, data: { message: "secret-in-error" } } }; };
   await assert.rejects(() => ai.generate({ prompt: "Hello" }), (error) => {
-    assert.match(error.message, /Kimi authentication failed/);
-    assert.ok(!error.message.includes("sensitive-kimi-token"));
+    assert.match(error.message, /ollama pull qwen3:8b/i);
+    assert.ok(!error.message.includes("secret-in-error"));
     return true;
   });
 });
 
-test("Kimi rate limits, billing errors, and timeouts are reported", async () => {
+test("Unavailable Ollama server and out-of-memory errors have useful messages", async () => {
   reset();
-  process.env.KIMI_API_KEY = "kimi-test-key";
-  respond = async () => { throw { response: { status: 429 } }; };
-  await assert.rejects(() => ai.generate({ prompt: "Hello" }), /rate limit/);
-  respond = async () => { throw { response: { status: 402 } }; };
-  await assert.rejects(() => ai.generate({ prompt: "Hello" }), /balance/);
-  respond = async () => { throw { code: "ECONNABORTED" }; };
-  await assert.rejects(() => ai.generate({ prompt: "Hello" }), /timed out/);
+  respond = async () => { throw { code: "ECONNREFUSED" }; };
+  await assert.rejects(() => ai.generate({ prompt: "Hello" }), /Cannot reach Ollama/);
+  respond = async () => { throw { response: { status: 500 } }; };
+  await assert.rejects(() => ai.generate({ prompt: "Hello", deep: true }), /RAM\/VRAM/);
 });
 
-test("Kimi default output budget is 1024 tokens to reduce TPM pressure", async () => {
+test("Thinking is not exposed as the answer and empty final output is reported", async () => {
   reset();
-  process.env.KIMI_API_KEY = "test-key";
-  await ai.generate({ prompt: "Hello" });
-  assert.equal(requests[0].payload.max_completion_tokens, 1024);
-  process.env.KIMI_MAX_COMPLETION_TOKENS = "512";
-  await ai.generate({ prompt: "Hello" });
-  assert.equal(requests[1].payload.max_completion_tokens, 512);
-});
-
-test("Kimi overload retries once with backoff and returns a successful answer", async () => {
-  reset();
-  process.env.KIMI_API_KEY = "test-key";
-  process.env.KIMI_OVERLOAD_RETRIES = "1";
-  let calls = 0;
-  respond = async () => {
-    if (++calls === 1) {
-      throw { response: { status: 429, data: { error: { type: "engine_overloaded_error" } } } };
-    }
-    return { data: { choices: [{ message: { content: "Recovered" } }] } };
-  };
-  assert.equal(await ai.generate({ prompt: "Hello" }), "Recovered");
-  assert.equal(calls, 2);
-});
-
-test("Kimi account rate limit is not blindly retried", async () => {
-  reset();
-  process.env.KIMI_API_KEY = "test-key";
-  process.env.KIMI_OVERLOAD_RETRIES = "2";
-  respond = async () => {
-    throw { response: { status: 429, data: {
-      error: { type: "rate_limit_reached_error", message: "private org and key" },
-    } } };
-  };
-  await assert.rejects(() => ai.generate({ prompt: "Hello" }), (e) => {
-    assert.match(e.message, /account rate limit/);
-    assert.ok(!e.message.includes("private org"));
-    return true;
+  respond = async () => ({
+    data: { message: { role: "assistant", thinking: "private intermediate reasoning", content: "Final result" } },
   });
-  assert.equal(requests.length, 1);
+  assert.equal(await ai.generate({ prompt: "Hello", deep: true }), "Final result");
+  respond = async () => ({
+    data: { message: { role: "assistant", thinking: "only thinking", content: "" } },
+  });
+  await assert.rejects(() => ai.generate({ prompt: "Hello", deep: true }), /no final answer/);
 });
 
-test("Kimi quota exhaustion reports billing instead of rate limit", async () => {
+test("Queue is bounded when many chats ask difficult questions simultaneously", async () => {
   reset();
-  process.env.KIMI_API_KEY = "test-key";
-  respond = async () => {
-    throw { response: { status: 429, data: {
-      error: { type: "exceeded_current_quota_error" },
-    } } };
-  };
-  await assert.rejects(() => ai.generate({ prompt: "Hello" }), /quota or balance exhausted/);
-  assert.equal(requests.length, 1);
+  process.env.LOCAL_AI_MAX_PENDING = "1";
+  let finish;
+  respond = () => new Promise((resolve) => { finish = resolve; });
+  const first = ai.generate({ prompt: "First" });
+  await new Promise((resolve) => setImmediate(resolve));
+  await assert.rejects(() => ai.generate({ prompt: "Second" }), /Local AI is busy/);
+  finish({ data: { message: { content: "Complete" } } });
+  assert.equal(await first, "Complete");
+  assert.equal(calls.length, 1);
 });
 
-test("Unknown Kimi 429 does not create a retry storm", async () => {
+test("Validates empty questions, unsupported images and model names", async () => {
   reset();
-  process.env.KIMI_API_KEY = "test-key";
-  respond = async () => { throw { response: { status: 429, data: {} } }; };
-  await assert.rejects(() => ai.generate({ prompt: "Hello" }), /HTTP 429/);
-  assert.equal(requests.length, 1);
+  await assert.rejects(() => ai.generate({ prompt: " " }), /text question/);
+  await assert.rejects(() => ai.generate({ prompt: "Question", images: ["data"] }), /text only/);
+  process.env.LOCAL_AI_MODEL = "other-model ; dangerous";
+  await assert.rejects(() => ai.generate({ prompt: "Question" }), /Invalid LOCAL_AI_MODEL/);
 });
-
