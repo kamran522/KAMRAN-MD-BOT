@@ -9,7 +9,7 @@
     "audit:hosts": "node scripts/audit-hosts.js",
     "start:node": "node index.js",
     "check": "node scripts/check-syntax.js",
-    "test:ai": "node --test tests/ai-provider.test.js"
+    "test:ai": "node --test tests/ai-provider.test.js tests/chatbot-command.test.js"
   },
   "keywords": [
     "whatsapp",

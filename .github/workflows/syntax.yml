@@ -14,7 +14,7 @@ jobs:
           node-version: 22
       - name: Check JavaScript syntax
         run: npm run check
-      - name: Test AI providers without network access
-        run: node --test tests/ai-provider.test.js
+      - name: Test local AI without network access
+        run: npm run test:ai
       - name: Test downloader services without network access
         run: node --test tests/media-downloads.test.js

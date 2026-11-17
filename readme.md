@@ -102,95 +102,91 @@ The following environment variables are supported:
 | `ACR_HOST`, `ACR_ACCESS_KEY`, `ACR_ACCESS_SECRET` | Credentials for your own ACRCloud music-identification project. |
 | `WA_VERSION` | Optional WhatsApp Web version override. |
 
-## Kimi AI chatbot (Moonshot AI only)
+## Fully local AI chatbot (Ollama)
 
-The `.ai` and `.chatbot` commands now use **Kimi by Moonshot AI only**.
-GroqCloud, Amazon Bedrock, Ollama, and custom local AI backends have been
-removed from the AI request path. Existing chatbot history, system prompts,
-and the WhatsApp enable/disable commands are unchanged.
+The bot's `.ai` and `.chatbot` commands now use **Ollama only**. Kimi, Moonshot,
+GroqCloud, Bedrock and other hosted AI providers are not called. No AI API
+key or paid inference service is required. This setup still needs an Ollama
+server and a downloaded model; it does not run a model inside Node.js.
 
-### Setup
+### Install and start the local inference server
 
-Create a Moonshot API key at https://platform.kimi.ai/ and set these
-environment variables on your hosting platform or in the ignored local
-`config.env` file:
+Install Ollama from https://ollama.com/download, then download the suggested
+reasoning model and start its service:
 
-~~~env
-KIMI_API_KEY=REPLACE_WITH_YOUR_MOONSHOT_KEY
-KIMI_MODEL=kimi-k2.6
+~~~bash
+ollama pull qwen3:8b
+ollama serve
 ~~~
 
-The official `MOONSHOT_API_KEY` name is supported as an alternative. When both
-names are present, `KIMI_API_KEY` takes priority. `KIMI_MODEL` is optional and
-defaults to `kimi-k2.6`; only IDs starting with `kimi-` are accepted.
-Check that a selected Kimi model is accessible to your Moonshot account.
+On systems where Ollama is already running as a service, do not start a second
+server; use `ollama list` to verify installed models and
+`curl http://127.0.0.1:11434/api/tags` to test connectivity.
 
-The fixed endpoint is `https://api.moonshot.ai/v1/chat/completions`, using
-`Authorization: Bearer <API key>`. Set `KIMI_TIMEOUT=120000` to configure
-the timeout in milliseconds (minimum 10000, maximum 300000).
+Qwen3 offers local reasoning and thinking mode. Suggested model sizes:
 
-**Migration:** Previous `AI_PROVIDER`, `GROQ_*`, `BEDROCK_*`,
-`LOCAL_AI_*`, and AWS bearer-token settings are ignored by the AI module.
-Remove those obsolete secrets and settings from your host; old Groq and Bedrock
-keys cannot be used as Kimi credentials. The bot uses an internet-hosted
-Moonshot service, not a locally hosted model. Usage may incur charges.
+| Model | Ollama download size | Hardware guidance |
+|---|---:|---|
+| `qwen3:4b` | approx. 2.5 GB | Lower-memory machines, lower reasoning quality |
+| `qwen3:8b` (default) | approx. 5.2 GB | General reasoning; use a machine with roughly 8–12+ GB free RAM/VRAM |
+| `qwen3:14b` | approx. 9.3 GB | Stronger reasoning; roughly 16+ GB free memory recommended |
+| `qwen3:32b` | approx. 20 GB | Heavier tasks; roughly 32+ GB free memory recommended |
 
-Do not commit your Moonshot API key or send it using WhatsApp commands such
-as `.setvar` or `.setenv`. Kimi key values are hidden by `.getvar` and
-`.allvar`. Setting or changing the API key on your host requires restarting
-the bot.
+Download size is not runtime memory; context cache and concurrent tasks use
+extra RAM/VRAM. Large models can run on CPUs but may be slow. For complex work,
+pick the largest model that fits your hardware. No local model automatically
+becomes a coding agent or a tool-using research system.
 
-### Kimi 429 rate-limit troubleshooting
+~~~env
+LOCAL_AI_URL=http://127.0.0.1:11434
+LOCAL_AI_MODEL=qwen3:8b
+LOCAL_AI_CONTEXT=8192
+LOCAL_AI_DEEP_CONTEXT=16384
+LOCAL_AI_NUM_PREDICT=2048
+LOCAL_AI_DEEP_NUM_PREDICT=8192
+LOCAL_AI_TIMEOUT=300000
+LOCAL_AI_DEEP_TIMEOUT=900000
+LOCAL_AI_MAX_PENDING=3
+LOCAL_AI_CHATBOT_COOLDOWN_MS=5000
+LOCAL_AI_KEEP_ALIVE=15m
+~~~
 
-Kimi HTTP 429 has multiple causes. The bot now distinguishes:
-- `engine_overloaded_error`: provider overload. One bounded retry with
-  exponential backoff honors `Retry-After` when provided.
-- `rate_limit_reached_error`: organization RPM/TPM/TPD or concurrency limit.
-  The bot does **not** blindly retry account limits.
-- `exceeded_current_quota_error`: quota/balance/voucher problem. Check
-  billing in the Kimi Open Platform console.
-- Unknown HTTP 429: safely pauses attempts rather than creating a retry storm.
+The `LOCAL_AI_URL` must resolve to a loopback/LAN address or an internal
+Docker service name. Public API hosts are rejected by default so your
+WhatsApp content is not sent to a remote inference vendor.
 
-The bot serializes calls within the process, spaces them by 2 seconds, and
-temporarily pauses new calls after a 429. Automatic chatbot replies in each
-chat are throttled to one request per 10 seconds; messages arriving while a
-reply is in progress are ignored to avoid unwanted backlog. These measures
-reduce traffic; they **cannot** override Moonshot account quotas.
+**Docker deployment:** `127.0.0.1` inside a container is that container,
+not the host. Run Ollama in a separate container on the same Docker network
+and use `LOCAL_AI_URL=http://ollama:11434`, or connect to a local host service
+using `http://host.docker.internal:11434` with correct Docker networking.
+The existing bot Docker image does not include Ollama or model weights.
 
-Optional environment settings:
-- `KIMI_MAX_COMPLETION_TOKENS=1024` (default; previous default was 2048)
-- `KIMI_MIN_INTERVAL_MS=2000` (minimum spacing across requests)
-- `KIMI_CHATBOT_COOLDOWN_MS=10000` (per-chat auto-reply cooldown)
-- `KIMI_OVERLOAD_RETRIES=1` (0-2 retries for overload only)
-- `KIMI_RATE_LIMIT_COOLDOWN_MS=60000` (local cooldown after API 429)
-- `KIMI_MAX_PENDING=10` (maximum queued requests)
+**Migration:** Remove `KIMI_API_KEY`, `MOONSHOT_API_KEY`, `KIMI_MODEL` and
+other unused cloud AI settings from the hosting platform after upgrading.
+The bot ignores old keys and does not require any Kimi account balance.
+Keep old API keys private and revoke ones you no longer use.
 
-Rate limits are account-level and cover concurrency, requests per minute,
-tokens per minute, and tokens per day. Kimi counts requested
-`max_completion_tokens` toward token-rate reservations. Review usage, API
-balance and tier at https://platform.kimi.ai. API access is distinct from
-Kimi Membership and Kimi Code benefits. Avoid enabling global
-`.chatbot on groups` unless your quota supports that traffic.
+### Harder and longer questions
 
-Official documentation:
-https://www.kimi.ai/help/kimi-api/api-troubleshooting and
-https://www.kimi.ai/help/kimi-api/api-rate-limits.
+- `.ai What is a database index?` — ordinary local answer
+- `.ai deep Design a scalable database schema with migration plan` —
+  requests thinking mode, a larger context and a higher output budget
+- `.chatbot on`, `.chatbot off`, `.chatbot status`, `.chatbot clear` —
+  normal existing chatbot controls
 
-### WhatsApp commands
+Deep requests can take several minutes and use significantly more memory.
+Large answers are split across WhatsApp messages. By default the bot
+serializes local inference, with at most three queued or running requests
+to reduce memory pressure; extra requests receive a busy message.
 
-- `.ai your question` sends a single request to Kimi.
-- `.chatbot on` and `.chatbot off` control auto-replies in the current chat.
-- `.chatbot status` shows Kimi model and whether a key is configured.
-- `.chatbot clear` clears conversation history.
-- `.chatbot on groups` / `.chatbot on dms` enable global auto-replies;
-  monitor API usage and costs when enabling these modes.
+The model handles text only and has no filesystem, browser, command execution,
+external search, or background-work capabilities. It can draft plans, code,
+analysis and documents in chat, but cannot independently perform a software
+deployment or execute a large project. Provide relevant text and split very
+large tasks into stages. Increase context only when hardware permits.
 
-The existing chatbot is **text-only**. Image understanding is not wired into
-the WhatsApp commands. Verify behavior with `npm run test:ai` (offline tests).
-
-Official Kimi API details: https://api.moonshot.ai/v1, with examples at
-https://platform.kimi.ai.
-
+Test the local provider without an Ollama server using `npm run test:ai`.
+Run the full JavaScript checks with `npm run check`.
 ## Instagram video playback on Android and iOS
 
 Instagram Reels, stories, posts, and AutoDL now convert videos with local

@@ -1,191 +1,174 @@
 "use strict";
 
 const axios = require("axios");
-const KIMI_BASE_URL = "https://api.moonshot.ai/v1";
-const DEFAULT_KIMI_MODEL = "kimi-k2.6";
+const net = require("node:net");
 
-function boundedNumber(name, fallback, minimum, maximum) {
-  const raw = process.env[name];
+const DEFAULT_MODEL = "qwen3:8b";
+const DEFAULT_ENDPOINT = "http://127.0.0.1:11434";
+
+function numberSetting(key, fallback, min, max) {
+  const raw = process.env[key];
   if (raw === undefined || raw === "") return fallback;
-  const parsed = Number(raw);
-  return Number.isFinite(parsed) ?
-    Math.max(minimum, Math.min(maximum, Math.floor(parsed))) : fallback;
+  const value = Number(raw);
+  return Number.isFinite(value) ? Math.max(min, Math.min(max, Math.floor(value))) : fallback;
+}
+
+function isPrivateHost(hostname) {
+  const host = hostname.replace(/^\[|\]$/g, "").toLowerCase();
+  if (host === "localhost" || host === "host.docker.internal" ||
+      host === "host.containers.internal" || host.endsWith(".local") ||
+      /^[a-z0-9-]+$/.test(host)) return true;
+  const version = net.isIP(host);
+  if (version === 4) {
+    const [a, b] = host.split(".").map(Number);
+    return a === 10 || a === 127 || (a === 192 && b === 168) ||
+      (a === 172 && b >= 16 && b <= 31);
+  }
+  if (version === 6) {
+    return host === "::1" || /^(fc|fd|fe8|fe9|fea|feb)/i.test(host);
+  }
+  return false;
+}
+
+function localEndpoint(input) {
+  let url;
+  try { url = new URL(String(input).trim()); }
+  catch (_) { throw new Error("Invalid LOCAL_AI_URL. Provide a local Ollama URL."); }
+  if (!["http:", "https:"].includes(url.protocol) || url.username || url.password ||
+      url.pathname !== "/" || url.search || url.hash ||
+      !isPrivateHost(url.hostname)) {
+    throw new Error("LOCAL_AI_URL must point to a trusted local/LAN Ollama server; " +
+      "public endpoints, credentials and extra URL paths are not allowed.");
+  }
+  return url.origin;
 }
 
 function getSettings() {
-  const apiKey = String(process.env.KIMI_API_KEY || process.env.MOONSHOT_API_KEY || "").trim();
-  const model = String(process.env.KIMI_MODEL || DEFAULT_KIMI_MODEL).trim();
-  if (!/^kimi-[a-z0-9][a-z0-9._-]*$/i.test(model)) {
-    throw new Error("Invalid KIMI_MODEL. Use a supported Kimi model ID (e.g. kimi-k2.6).");
+  const model = String(process.env.LOCAL_AI_MODEL || DEFAULT_MODEL).trim();
+  if (!/^[a-zA-Z0-9][a-zA-Z0-9._:/-]{0,149}$/.test(model)) {
+    throw new Error("Invalid LOCAL_AI_MODEL. Use an installed Ollama model name.");
+  }
+  const keepAlive = String(process.env.LOCAL_AI_KEEP_ALIVE || "15m").trim();
+  if (!/^(?:\d+(?:ms|s|m|h)|-1)$/.test(keepAlive)) {
+    throw new Error("Invalid LOCAL_AI_KEEP_ALIVE. Use e.g. 15m, 1h or -1.");
   }
   return {
-    apiKey, model, baseURL: KIMI_BASE_URL,
-    timeout: boundedNumber("KIMI_TIMEOUT", 120000, 10000, 300000),
-    outputTokens: boundedNumber("KIMI_MAX_COMPLETION_TOKENS", 1024, 128, 8192),
-    minInterval: boundedNumber("KIMI_MIN_INTERVAL_MS", 2000, 0, 60000),
-    maxPending: boundedNumber("KIMI_MAX_PENDING", 10, 1, 100),
-    maxRetries: boundedNumber("KIMI_OVERLOAD_RETRIES", 1, 0, 2),
-    retryBaseMs: boundedNumber("KIMI_RETRY_BASE_MS", 1000, 1, 10000),
-    cooldownMs: boundedNumber("KIMI_RATE_LIMIT_COOLDOWN_MS", 60000, 0, 300000),
+    model,
+    endpoint: localEndpoint(process.env.LOCAL_AI_URL || DEFAULT_ENDPOINT),
+    timeout: numberSetting("LOCAL_AI_TIMEOUT", 300000, 10000, 1800000),
+    deepTimeout: numberSetting("LOCAL_AI_DEEP_TIMEOUT", 900000, 10000, 1800000),
+    context: numberSetting("LOCAL_AI_CONTEXT", 8192, 2048, 131072),
+    deepContext: numberSetting("LOCAL_AI_DEEP_CONTEXT", 16384, 2048, 262144),
+    predict: numberSetting("LOCAL_AI_NUM_PREDICT", 2048, 128, 16384),
+    deepPredict: numberSetting("LOCAL_AI_DEEP_NUM_PREDICT", 8192, 256, 32768),
+    maxPending: numberSetting("LOCAL_AI_MAX_PENDING", 3, 1, 20),
+    keepAlive,
   };
 }
 
-function getProvider() { return "kimi"; }
+function getProvider() { return "ollama"; }
 function getModel() { return getSettings().model; }
-function getBaseURL() { return KIMI_BASE_URL; }
-function hasAPIKey() { return Boolean(getSettings().apiKey); }
-
-const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
-
-// In-process shared queue: reduces concurrent Kimi requests from group/DM
-// chatbot triggers. A bounded queue prevents unlimited resource consumption.
-let requestTail = Promise.resolve();
-let pending = 0;
-let nextAllowedStart = 0;
-let cooldownUntil = 0;
-
-function cooldownMessage() {
-  const seconds = Math.max(1, Math.ceil((cooldownUntil - Date.now()) / 1000));
-  return "Kimi requests are temporarily paused after a 429 response. " +
-    "Try again in about " + seconds + " seconds. Check your API limits and balance.";
+function getBaseURL() { return getSettings().endpoint; }
+function getRuntimeInfo() {
+  const settings = getSettings();
+  return {
+    context: settings.context, deepContext: settings.deepContext,
+    predict: settings.predict, deepPredict: settings.deepPredict,
+  };
 }
 
-async function withRequestSlot(settings, operation) {
+// One Ollama request at a time by default, avoiding excessive model memory
+// usage when multiple chats ask large questions simultaneously.
+let queueTail = Promise.resolve();
+let pending = 0;
+async function withLocalSlot(settings, fn) {
   if (pending >= settings.maxPending) {
-    throw new Error("Kimi is busy processing messages. Try again shortly.");
+    throw new Error("Local AI is busy. Try again after the current requests finish.");
   }
   pending++;
-  const task = requestTail.then(async () => {
-    if (Date.now() < cooldownUntil) throw new Error(cooldownMessage());
-    const pauseMs = Math.max(0, nextAllowedStart - Date.now());
-    if (pauseMs) await sleep(pauseMs);
-    if (Date.now() < cooldownUntil) throw new Error(cooldownMessage());
-    nextAllowedStart = Date.now() + settings.minInterval;
-    return operation();
-  });
-  requestTail = task.then(() => {}, () => {});
-  try {
-    return await task;
-  } finally {
-    pending--;
-  }
+  const task = queueTail.then(fn);
+  queueTail = task.then(() => {}, () => {});
+  try { return await task; }
+  finally { pending--; }
 }
 
-function retryAfterMs(headers) {
-  const value = headers?.["retry-after"] ?? headers?.["Retry-After"];
-  if (value === undefined || value === null) return null;
-  const raw = Array.isArray(value) ? value[0] : String(value);
-  if (/^\d+(?:\.\d+)?$/.test(raw.trim())) {
-    return Math.max(0, Math.min(300000, Math.ceil(Number(raw) * 1000)));
-  }
-  const parsed = Date.parse(raw);
-  return Number.isFinite(parsed)
-    ? Math.max(0, Math.min(300000, parsed - Date.now())) : null;
-}
-
-function applyCooldown(settings, headers, fallbackMs = settings.cooldownMs) {
-  cooldownUntil = Math.max(
-    cooldownUntil,
-    Date.now() + (retryAfterMs(headers) ?? fallbackMs),
-  );
-}
-
-async function requestKimi(settings, messages) {
-  const endpoint = KIMI_BASE_URL + "/chat/completions";
-  const payload = {
-    model: settings.model, messages, stream: false,
-    max_completion_tokens: settings.outputTokens,
-  };
-  const options = {
-    headers: {
-      "Content-Type": "application/json",
-      Authorization: "Bearer " + settings.apiKey,
-    },
-    timeout: settings.timeout,
-    maxRedirects: 0,
-  };
-
-  for (let attempt = 0; attempt <= settings.maxRetries; attempt++) {
-    try {
-      const response = await axios.post(endpoint, payload, options);
-      const raw = response.data?.choices?.[0]?.message?.content;
-      const answer = typeof raw === "string" ? raw.trim() : "";
-      if (!answer) throw new Error("Kimi returned an empty response.");
-      return answer;
-    } catch (error) {
-      if (error.message === "Kimi returned an empty response.") throw error;
-      const status = error.response?.status;
-      const type = error.response?.data?.error?.type;
-      if (status === 429) {
-        if (type === "exceeded_current_quota_error") {
-          applyCooldown(settings, error.response?.headers);
-          throw new Error("Kimi API quota or balance exhausted. " +
-            "Check available balance and billing at platform.kimi.ai.");
-        }
-        if (type === "rate_limit_reached_error") {
-          applyCooldown(settings, error.response?.headers);
-          throw new Error("Kimi account rate limit reached (RPM, TPM, TPD or concurrency). " +
-            "Check your Kimi API tier and usage at platform.kimi.ai.");
-        }
-        if (type === "engine_overloaded_error") {
-          const retryMs = retryAfterMs(error.response?.headers) ??
-            settings.retryBaseMs * (2 ** attempt);
-          if (attempt < settings.maxRetries && retryMs <= 15000) {
-            await sleep(retryMs);
-            continue;
-          }
-          applyCooldown(settings, error.response?.headers, Math.max(5000, settings.cooldownMs));
-          throw new Error("Kimi service is overloaded. Try again after the provider recovers.");
-        }
-        // Unrecognized 429 must not trigger blind automatic retries.
-        applyCooldown(settings, error.response?.headers);
-        throw new Error("Kimi returned HTTP 429. Check your API quota, balance, and rate limits.");
-      }
-      if (status === 401 || status === 403) {
-        throw new Error("Kimi authentication failed or access was denied. Check your Moonshot API key, permissions and balance.");
-      }
-      if (status === 402) {
-        throw new Error("Kimi API balance or billing is insufficient.");
-      }
-      if (status === 400 || status === 404) {
-        throw new Error("Kimi rejected the request. Check that KIMI_MODEL is available to your account.");
-      }
-      if (status >= 500) throw new Error("Kimi API is temporarily unavailable.");
-      if (error.code === "ECONNABORTED" || error.code === "ETIMEDOUT") {
-        throw new Error("Kimi request timed out. Try again.");
-      }
-      if (["ECONNREFUSED", "ENOTFOUND", "EHOSTUNREACH", "ENETUNREACH"].includes(error.code)) {
-        throw new Error("Cannot reach Moonshot AI. Check your server's internet connection.");
-      }
-      // Never include raw Kimi response bodies or credentials in WhatsApp replies.
-      throw new Error("Kimi request failed. Check API settings and network connection.");
-    }
-  }
-}
-
-async function generate({ prompt, history = [], systemPrompt, images = [] }) {
+async function generate({ prompt, history = [], systemPrompt, images = [], deep = false }) {
   const settings = getSettings();
-  if (images.length) throw new Error("The Kimi chatbot currently supports text messages only.");
+  if (images.length) throw new Error("This local AI chatbot currently supports text only.");
   const question = String(prompt || "").trim();
   if (!question) throw new Error("Provide a text question.");
-  if (!settings.apiKey) {
-    throw new Error("KIMI_API_KEY (or MOONSHOT_API_KEY) is missing. " +
-      "Set a Moonshot AI API key in your hosting environment.");
-  }
+
   const messages = [
     {
       role: "system",
       content: systemPrompt ||
-        "You are Kamran Hasil Bot, a helpful and accurate assistant powered by Kimi. " +
-        "Answer clearly using WhatsApp-friendly formatting. Do not claim to have live internet access.",
+        "You are Kamran Hasil Bot, a careful local AI assistant. " +
+        "Analyze difficult questions logically, explain assumptions and limitations, " +
+        "and provide actionable answers in WhatsApp-friendly formatting. " +
+        "Do not claim to browse the internet or access files or tools.",
     },
     ...(Array.isArray(history) ? history : []).filter((item) =>
       item && ["user", "assistant"].includes(item.role) &&
       typeof item.content === "string" && item.content.trim()
-    ).slice(-12),
+    ).slice(-12).map(({ role, content }) => ({ role, content: content.slice(-8000) })),
     { role: "user", content: question },
   ];
-  return withRequestSlot(settings, () => requestKimi(settings, messages));
+
+  return withLocalSlot(settings, async () => {
+    try {
+      const response = await axios.post(
+        settings.endpoint + "/api/chat",
+        {
+          model: settings.model,
+          messages,
+          stream: false,
+          think: Boolean(deep),
+          keep_alive: settings.keepAlive,
+          options: {
+            num_ctx: deep ? settings.deepContext : settings.context,
+            num_predict: deep ? settings.deepPredict : settings.predict,
+            temperature: 0.6,
+            top_p: 0.95,
+          },
+        },
+        {
+          headers: { "Content-Type": "application/json" },
+          timeout: deep ? settings.deepTimeout : settings.timeout,
+          maxRedirects: 0,
+        },
+      );
+      const raw = response.data?.message?.content;
+      const answer = typeof raw === "string" ? raw.trim() : "";
+      if (!answer) {
+        throw new Error("Local AI returned no final answer. " +
+          "Try a shorter prompt or increase LOCAL_AI_DEEP_NUM_PREDICT.");
+      }
+      return answer;
+    } catch (error) {
+      if (typeof error?.message === "string" &&
+          error.message.startsWith("Local AI returned no final answer.")) throw error;
+      const status = error.response?.status;
+      if (status === 404) {
+        throw new Error("Ollama model not found. Run: ollama pull " + settings.model);
+      }
+      if (status === 400) {
+        throw new Error("Ollama rejected the request. Check the model's support " +
+          "for thinking mode and the configured context settings.");
+      }
+      if (status === 500 || status === 503) {
+        throw new Error("Local inference failed. Check Ollama logs and available " +
+          "RAM/VRAM; try a smaller model or lower LOCAL_AI_DEEP_CONTEXT.");
+      }
+      if (error.code === "ECONNABORTED" || error.code === "ETIMEDOUT") {
+        throw new Error("Local AI timed out. Try a smaller model or increase LOCAL_AI_DEEP_TIMEOUT.");
+      }
+      if (["ECONNREFUSED", "ENOTFOUND", "EHOSTUNREACH", "ENETUNREACH"].includes(error.code)) {
+        throw new Error("Cannot reach Ollama at " + settings.endpoint +
+          ". Start 'ollama serve' and check LOCAL_AI_URL (including Docker networking).");
+      }
+      throw new Error("Local Ollama request failed. Check the Ollama service and server logs.");
+    }
+  });
 }
 
-module.exports = { generate, getProvider, getModel, getBaseURL, hasAPIKey };
+module.exports = { generate, getProvider, getModel, getBaseURL, getRuntimeInfo };

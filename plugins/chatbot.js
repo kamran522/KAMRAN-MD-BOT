@@ -11,7 +11,7 @@ const MAX_CONTEXT_MESSAGES = 20;
 const chatbotBusy = new Set();
 const chatbotLastRequestAt = new Map();
 const CHATBOT_COOLDOWN_MS = Math.max(
-  0, Math.min(60000, Number(process.env.KIMI_CHATBOT_COOLDOWN_MS || 10000) || 10000),
+  0, Math.min(60000, Number(process.env.LOCAL_AI_CHATBOT_COOLDOWN_MS || 5000) || 5000),
 );
 
 let globalSystemPrompt =
@@ -93,12 +93,13 @@ function rememberExchange(jid, prompt, answer) {
   }
 }
 
-async function getAIResponse(prompt, chatJid, useHistory = true) {
+async function getAIResponse(prompt, chatJid, useHistory = true, deep = false) {
   try {
     const answer = await localAI.generate({
       prompt,
       history: useHistory ? getHistory(chatJid) : [],
       systemPrompt: globalSystemPrompt,
+      deep,
     });
     if (useHistory) rememberExchange(chatJid, prompt, answer);
     return answer;
@@ -109,11 +110,32 @@ async function getAIResponse(prompt, chatJid, useHistory = true) {
 }
 
 function providerLabel() {
-  return "Kimi (Moonshot AI)";
+  return "Local Ollama (offline inference)";
 }
 
-function keyStatus() {
-  return localAI.hasAPIKey() ? "Configured" : "Missing";
+// Long local model answers may exceed WhatsApp's practical text size.
+// Split near paragraph boundaries and cap reply count to avoid flooding chats.
+async function sendAIReply(message, text) {
+  let remaining = String(text || "").trim();
+  const maxLength = 3500;
+  const maxParts = 8;
+  let sent = 0;
+  while (remaining && sent < maxParts) {
+    if (remaining.length <= maxLength) {
+      await message.sendReply(remaining);
+      return;
+    }
+    let cut = remaining.lastIndexOf("\n", maxLength);
+    if (cut < maxLength / 2) cut = remaining.lastIndexOf(" ", maxLength);
+    if (cut < maxLength / 2) cut = maxLength;
+    const chunk = remaining.slice(0, cut).trim();
+    if (chunk) await message.sendReply(chunk);
+    remaining = remaining.slice(cut).trimStart();
+    sent++;
+  }
+  if (remaining) await message.sendReply(
+    "_Output truncated at 8 messages. Ask for a specific section to continue._",
+  );
 }
 
 function commandHelp(jid) {
@@ -123,7 +145,7 @@ function commandHelp(jid) {
     "🔌 Provider: " + providerLabel() + "\n" +
     "🧠 Model: " + localAI.getModel() + "\n" +
     "🌐 Endpoint: " + localAI.getBaseURL() + "\n" +
-    "🔐 API key: " + keyStatus() + "\n" +
+    "🔒 API key: Not required (local)\n" +
     "💬 Context messages: " + getHistory(jid).length + "\n\n" +
     "*Commands*\n" +
     "• .chatbot on — enable in this chat\n" +
@@ -135,9 +157,10 @@ function commandHelp(jid) {
     '• .chatbot set "instructions" — set assistant instructions\n' +
     "• .chatbot clear — clear this chat's history\n" +
     "• .chatbot status — show status\n" +
-    "• .ai your question — ask AI directly\n\n" +
+    "• .ai your question — ask local AI\n" +
+    "• .ai deep your question — extended reasoning\n\n" +
     "When enabled, the bot replies to ordinary text messages. " +
-    "Kimi needs a Moonshot API key. Auto-replies are rate-limited to reduce API usage and charges."
+    "Inference runs through your Ollama server; performance depends on hardware and the installed model."
   );
 }
 
@@ -147,7 +170,7 @@ Module(
   {
     pattern: "chatbot ?(.*)",
     fromMe: true,
-    desc: "Manage the Kimi (Moonshot AI) chatbot",
+    desc: "Manage the offline Ollama chatbot",
     usage: '.chatbot on/off | .chatbot on/off groups/dms | .chatbot set "prompt" | .chatbot clear | .chatbot status',
   },
   async (message, match) => {
@@ -188,7 +211,7 @@ Module(
           );
         }
         await disableChatbot(jid);
-        return message.sendReply("🤖 Kimi chatbot disabled in this chat. Its conversation history was cleared.");
+        return message.sendReply("🤖 Local chatbot disabled in this chat. Its conversation history was cleared.");
 
       case "set": {
         const promptMatch = input.match(/^set\s+["“](.+)["”]$/s);
@@ -222,7 +245,9 @@ Module(
           "• Model: " + localAI.getModel() + "\n" +
           "• Endpoint: " + localAI.getBaseURL() + "\n" +
           "• Context messages: " + getHistory(jid).length + "\n" +
-          "• API key: " + keyStatus(),
+          "• API key: Not required (local)\n" +
+          "• Context: " + localAI.getRuntimeInfo().context + " tokens\n" +
+          "• Deep context: " + localAI.getRuntimeInfo().deepContext + " tokens",
         );
 
       default:
@@ -259,7 +284,7 @@ Module(
       chatbotBusy.add(jid);
       try {
         const answer = await getAIResponse(prompt, jid, true);
-        if (answer) await message.sendReply(answer);
+        if (answer) await sendAIReply(message, answer);
       } finally {
         chatbotBusy.delete(jid);
         if (chatbotLastRequestAt.size > 500) {
@@ -277,21 +302,26 @@ Module(
   {
     pattern: "ai ?(.*)",
     fromMe: config.MODE !== "public",
-    desc: "Ask Kimi (Moonshot AI) directly",
+    desc: "Ask local Ollama AI (use .ai deep for difficult tasks)",
     type: "ai",
   },
   async (message, match) => {
     let prompt = match[1]?.trim() || "";
+    const deep = /^deep(?:\s|$)/i.test(prompt);
+    if (deep) prompt = prompt.replace(/^deep(?:\s+|$)/i, "").trim();
     if (message.reply_message?.text && !prompt) {
       prompt = message.reply_message.text.trim();
     }
     if (!prompt) {
-      return message.sendReply("Please provide a question or reply to a text message.\nExample: .ai explain JavaScript promises");
+      return message.sendReply(
+        "Provide a question or reply to a text message.\n" +
+        "Examples: .ai explain JavaScript promises\n.ai deep design a database schema",
+      );
     }
     if (message.reply_message?.image) {
-      return message.sendReply("The AI chatbot currently supports text questions only. Image analysis is not enabled.");
+      return message.sendReply("Local AI currently supports text questions only. Image analysis is not enabled.");
     }
-    const answer = await getAIResponse(prompt, message.jid, false);
-    return message.sendReply(answer);
+    const answer = await getAIResponse(prompt, message.jid, false, deep);
+    return sendAIReply(message, answer);
   },
 );
