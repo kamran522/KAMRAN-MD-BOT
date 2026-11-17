@@ -102,28 +102,60 @@ The following environment variables are supported:
 | `ACR_HOST`, `ACR_ACCESS_KEY`, `ACR_ACCESS_SECRET` | Credentials for your own ACRCloud music-identification project. |
 | `WA_VERSION` | Optional WhatsApp Web version override. |
 
-## Local AI chatbot (no API key required)
+## AI chatbot: GroqCloud or a local model
 
-The chatbot and `.ai` command use a local Ollama model. No Gemini/OpenAI API key or paid AI API is needed. The model runs on the same machine as the bot by default.
+Both `.ai` and `.chatbot` use one configurable AI provider and keep the existing chat-history behavior. **Groq** (with a q) is a hosted inference API, not xAI **Grok**. A `gsk_...` token is for GroqCloud and cannot access xAI Grok. GroqCloud requests are not locally hosted.
 
-Install Ollama from https://ollama.com, then download a model and start the Ollama service:
+### GroqCloud (hosted, API key required)
 
-```bash
+Create a **new** key in https://console.groq.com/keys and add these variables to your deployment environment (or the ignored local `config.env` file):
+
+~~~env
+AI_PROVIDER=groq
+GROQ_API_KEY=REPLACE_WITH_A_NEW_KEY
+GROQ_MODEL=openai/gpt-oss-20b
+~~~
+
+Never commit your key or send it in a WhatsApp command. If a key has been shared, rotate it in GroqCloud first. The default Groq model is `openai/gpt-oss-20b`; you can change `GROQ_MODEL` to another supported Groq model. GroqCloud may charge for requests. Groq API availability, model selection and limits are managed by Groq.
+
+### Self-hosted Ollama (no key required)
+
+Install https://ollama.com and run:
+
+~~~bash
 ollama pull llama3.2:3b
 ollama serve
-```
+~~~
 
-In another terminal, enable the chatbot in the current WhatsApp chat with `.chatbot on`. It will answer ordinary text messages in that chat, including group messages without requiring a mention. Use `.chatbot off` to disable it. The `.ai your question` command asks the local model directly.
+Use these environment variables:
 
-Optional environment settings:
+~~~env
+AI_PROVIDER=ollama
+LOCAL_AI_URL=http://127.0.0.1:11434
+LOCAL_AI_MODEL=llama3.2:3b
+~~~
 
-| Variable | Default | Purpose |
-|---|---|---|
-| `LOCAL_AI_URL` | `http://127.0.0.1:11434` | Ollama server URL |
-| `LOCAL_AI_MODEL` | `llama3.2:3b` | Installed Ollama model name |
-| `LOCAL_AI_TIMEOUT` | `120000` | Request timeout in milliseconds |
+If `AI_PROVIDER` is omitted, the bot selects Groq when `GROQ_API_KEY` exists; otherwise it selects Ollama. For Docker, `127.0.0.1` is inside the container. Configure `LOCAL_AI_URL` to a reachable Ollama host address or run both services on a suitable shared network.
 
-The model must be downloaded with `ollama pull` before use. Local inference uses your machine's CPU/RAM/GPU; larger models need more resources. The current chatbot handles text messages; image analysis is not enabled.
+### Another self-hosted OpenAI-compatible endpoint
+
+To connect a self-hosted model server exposing `/v1/chat/completions` (for example vLLM), configure:
+
+~~~env
+AI_PROVIDER=openai-compatible
+LOCAL_AI_URL=http://127.0.0.1:8000/v1
+LOCAL_AI_MODEL=YOUR_SERVED_MODEL_ID
+# Optional if your local server requires authentication:
+# LOCAL_AI_API_KEY=YOUR_LOCAL_SERVER_KEY
+~~~
+
+`LOCAL_AI_TIMEOUT=120000` sets the request timeout in milliseconds (minimum 10000, maximum 300000). The bot supports text only. It does not download or provide any Grok model weights; use only a model you are authorized and able to host.
+
+### WhatsApp commands
+
+Use `.ai your question` for a single question, `.chatbot on` to auto-reply in the current chat, `.chatbot off` to disable, `.chatbot status` for provider/model info, and `.chatbot clear` to reset the chat context. Global `.chatbot on groups` and `.chatbot on dms` can generate a high number of cloud API requests. Restart the bot after changing provider environment variables.
+
+Run `node --test tests/ai-provider.test.js` to test provider routing without network access.
 
 ## Media and optional services
 

@@ -96,18 +96,31 @@ async function getAIResponse(prompt, chatJid, useHistory = true) {
     if (useHistory) rememberExchange(chatJid, prompt, answer);
     return answer;
   } catch (error) {
-    console.error("Local AI error:", error.message);
-    return "❌ Local AI error: " + error.message +
-      "\n\nEnsure Ollama is running and the configured model is installed.";
+    console.error("AI error:", error.message);
+    return "❌ AI error: " + error.message;
   }
+}
+
+function providerLabel() {
+  const provider = localAI.getProvider();
+  return provider === "groq" ? "GroqCloud" :
+    provider === "ollama" ? "Local Ollama" : "Local OpenAI-compatible";
+}
+
+function keyStatus() {
+  if (localAI.getProvider() === "ollama") return "Not needed";
+  return localAI.hasAPIKey() ? "Configured" :
+    (localAI.getProvider() === "groq" ? "Missing" : "Not set (optional)");
 }
 
 function commandHelp(jid) {
   return (
-    "*🤖 Local AI Chatbot*\n\n" +
+    "*🤖 AI Chatbot*\n\n" +
     "📊 Status: " + (isChatbotEnabled(jid) ? "Enabled ✅" : "Disabled ❌") + "\n" +
+    "🔌 Provider: " + providerLabel() + "\n" +
     "🧠 Model: " + localAI.getModel() + "\n" +
-    "🌐 Ollama: " + localAI.getBaseURL() + "\n" +
+    "🌐 Endpoint: " + localAI.getBaseURL() + "\n" +
+    "🔐 API key: " + keyStatus() + "\n" +
     "💬 Context messages: " + getHistory(jid).length + "\n\n" +
     "*Commands*\n" +
     "• .chatbot on — enable in this chat\n" +
@@ -120,7 +133,8 @@ function commandHelp(jid) {
     "• .chatbot clear — clear this chat's history\n" +
     "• .chatbot status — show status\n" +
     "• .ai your question — ask AI directly\n\n" +
-    "When enabled in a chat, the bot replies to ordinary text messages there. Group chats do not require a mention or reply."
+    "When enabled, the bot replies to ordinary text messages. " +
+    "GroqCloud calls use the internet and may incur usage charges."
   );
 }
 
@@ -130,7 +144,7 @@ Module(
   {
     pattern: "chatbot ?(.*)",
     fromMe: true,
-    desc: "Manage the local Ollama AI chatbot (no API key required)",
+    desc: "Manage the GroqCloud or locally hosted AI chatbot",
     usage: '.chatbot on/off | .chatbot on/off groups/dms | .chatbot set "prompt" | .chatbot clear | .chatbot status',
   },
   async (message, match) => {
@@ -148,17 +162,17 @@ Module(
           const key = scope === "groups" ? "CHATBOT_ALL_GROUPS" : "CHATBOT_ALL_DMS";
           await setVar(key, "true");
           return message.sendReply(
-            "🤖 Local chatbot enabled for all " + scope +
+            "🤖 AI chatbot (" + providerLabel() + ") enabled for all " + scope +
             ". It will answer ordinary text messages in those chats.\nModel: " +
             localAI.getModel(),
           );
         }
         await enableChatbot(jid);
         return message.sendReply(
-          "🤖 Local chatbot enabled in this " +
+          "🤖 AI chatbot (" + providerLabel() + ") enabled in this " +
           (jid.endsWith("@g.us") ? "group" : "private chat") +
           ".\nModel: " + localAI.getModel() +
-          "\nNo API key is needed. I will answer ordinary text messages in this chat.",
+          "\nI will answer ordinary text messages in this chat.",
         );
 
       case "off":
@@ -179,7 +193,7 @@ Module(
           return message.sendReply('Usage: .chatbot set "You are a helpful programming assistant."');
         }
         await saveSystemPrompt(promptMatch[1].trim());
-        return message.sendReply("✅ Local AI system instructions updated.");
+        return message.sendReply("✅ AI system instructions updated.");
       }
 
       case "clear":
@@ -199,12 +213,13 @@ Module(
 
       case "status":
         return message.sendReply(
-          "*🤖 Local AI Status*\n\n" +
+          "*🤖 AI Chatbot Status*\n\n" +
           "• Chatbot: " + (isChatbotEnabled(jid) ? "Enabled ✅" : "Disabled ❌") + "\n" +
+          "• Provider: " + providerLabel() + "\n" +
           "• Model: " + localAI.getModel() + "\n" +
-          "• Ollama URL: " + localAI.getBaseURL() + "\n" +
+          "• Endpoint: " + localAI.getBaseURL() + "\n" +
           "• Context messages: " + getHistory(jid).length + "\n" +
-          "• API key: Not required",
+          "• API key: " + keyStatus(),
         );
 
       default:
@@ -235,7 +250,7 @@ Module(
       const answer = await getAIResponse(prompt, jid, true);
       if (answer) await message.sendReply(answer);
     } catch (error) {
-      console.error("Local chatbot message handler error:", error);
+      console.error("AI chatbot message handler error:", error);
     }
   },
 );
@@ -244,7 +259,7 @@ Module(
   {
     pattern: "ai ?(.*)",
     fromMe: config.MODE !== "public",
-    desc: "Ask the locally hosted Ollama AI model (no API key required)",
+    desc: "Ask the GroqCloud or locally hosted AI model",
     type: "ai",
   },
   async (message, match) => {
@@ -256,7 +271,7 @@ Module(
       return message.sendReply("Please provide a question or reply to a text message.\nExample: .ai explain JavaScript promises");
     }
     if (message.reply_message?.image) {
-      return message.sendReply("The local text model currently supports text questions only. Image analysis is not enabled.");
+      return message.sendReply("The AI chatbot currently supports text questions only. Image analysis is not enabled.");
     }
     const answer = await getAIResponse(prompt, message.jid, false);
     return message.sendReply(answer);

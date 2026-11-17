@@ -50,7 +50,14 @@ const { BotVariable } = require("../core/database");
 
 var handler = config.HANDLERS !== "false" ? config.HANDLERS.split("")[0] : "";
 
+function isAISecret(key) {
+  return /^(GROQ_API_KEY|LOCAL_AI_API_KEY)$/i.test(String(key || "").trim());
+}
+
 async function setVar(key, value, message = false) {
+  if (isAISecret(key)) {
+    throw new Error("Configure API keys using your hosting environment, not .setvar.");
+  }
   await BotVariable.upsert({
     key: key.trim(),
     value: value,
@@ -120,6 +127,9 @@ Module(
     }
 
     const variable = config[key];
+    if (isAISecret(key)) {
+      return await message.sendReply(variable ? "_API key configured (value hidden)._" : "_API key not configured._");
+    }
     if (variable) {
       await message.sendReply(`_Variable '${key}': ${variable}_`);
     } else {
@@ -200,7 +210,9 @@ Module(
       fs.writeFileSync("./config.env", updatedLines.join("\n"));
 
       await message.sendReply(
-        `_Environment variable '${trimmedKey}' set to '${value}' in config.env_\n\n_Note: Restart required for changes to take effect._`
+        isAISecret(trimmedKey)
+          ? `_Secret environment variable '${trimmedKey}' saved (value hidden). Restart required._`
+          : `_Environment variable '${trimmedKey}' set in config.env. Restart required._`
       );
     } catch (error) {
       await message.sendReply(
@@ -222,7 +234,7 @@ Module(
       let msg = "*All Bot Variables:*\n\n";
       for (const key in config) {
         if (!variables.find((v) => v.key === key)) {
-          msg += `*${key}*: ${config[key]}\n`;
+          msg += `*${key}*: ${isAISecret(key) ? "[HIDDEN]" : config[key]}\n`;
         }
       }
 
