@@ -8,6 +8,11 @@ const localAI = require("./utils/local-ai");
 const chatbotStates = new Map();
 const chatContexts = new Map();
 const MAX_CONTEXT_MESSAGES = 20;
+const chatbotBusy = new Set();
+const chatbotLastRequestAt = new Map();
+const CHATBOT_COOLDOWN_MS = Math.max(
+  0, Math.min(60000, Number(process.env.KIMI_CHATBOT_COOLDOWN_MS || 10000) || 10000),
+);
 
 let globalSystemPrompt =
   "You are a helpful AI assistant named Kamran Hasil. Be concise, friendly, accurate, and informative. Use WhatsApp-friendly formatting.";
@@ -57,11 +62,13 @@ async function enableChatbot(jid) {
 async function disableChatbot(jid) {
   chatbotStates.set(jid, false);
   chatContexts.delete(jid);
+  chatbotLastRequestAt.delete(jid);
   await saveChatbotData();
 }
 
 function clearContext(jid) {
   chatContexts.delete(jid);
+  chatbotLastRequestAt.delete(jid);
 }
 
 function getHistory(jid) {
@@ -130,7 +137,7 @@ function commandHelp(jid) {
     "• .chatbot status — show status\n" +
     "• .ai your question — ask AI directly\n\n" +
     "When enabled, the bot replies to ordinary text messages. " +
-    "Kimi requires a Moonshot API key and uses hosted inference that may incur charges."
+    "Kimi needs a Moonshot API key. Auto-replies are rate-limited to reduce API usage and charges."
   );
 }
 
@@ -243,8 +250,23 @@ Module(
           : [];
       if (prefixes.some((prefix) => prompt.startsWith(prefix))) return;
 
-      const answer = await getAIResponse(prompt, jid, true);
-      if (answer) await message.sendReply(answer);
+      // Do not create parallel completions for the same chat. Drop rapidly
+      // repeated messages instead of sending a burst of costly API requests.
+      if (chatbotBusy.has(jid)) return;
+      const now = Date.now();
+      if (now - (chatbotLastRequestAt.get(jid) || 0) < CHATBOT_COOLDOWN_MS) return;
+      chatbotLastRequestAt.set(jid, now);
+      chatbotBusy.add(jid);
+      try {
+        const answer = await getAIResponse(prompt, jid, true);
+        if (answer) await message.sendReply(answer);
+      } finally {
+        chatbotBusy.delete(jid);
+        if (chatbotLastRequestAt.size > 500) {
+          const oldest = chatbotLastRequestAt.keys().next().value;
+          if (oldest) chatbotLastRequestAt.delete(oldest);
+        }
+      }
     } catch (error) {
       console.error("AI chatbot message handler error:", error);
     }
