@@ -7,7 +7,9 @@ const Module = require("node:module");
 const originalLoad = Module._load;
 const originalEnv = Object.fromEntries(
   ["AI_PROVIDER", "GROQ_API_KEY", "GROQ_MODEL", "LOCAL_AI_URL",
-    "LOCAL_AI_MODEL", "LOCAL_AI_API_KEY", "LOCAL_AI_TIMEOUT"]
+    "LOCAL_AI_MODEL", "LOCAL_AI_API_KEY", "LOCAL_AI_TIMEOUT",
+    "BEDROCK_API_KEY", "AWS_BEARER_TOKEN_BEDROCK",
+    "BEDROCK_REGION", "AWS_REGION", "BEDROCK_MODEL"]
     .map((name) => [name, process.env[name]])
 );
 let requests = [];
@@ -112,6 +114,112 @@ test("Provider error bodies never leak back to WhatsApp", async () => {
   await assert.rejects(() => ai.generate({ prompt: "hi" }), (err) => {
     assert.match(err.message, /authentication failed/i);
     assert.ok(!err.message.includes("secret-sensitive-detail"));
+    return true;
+  });
+});
+
+
+test("Bedrock Converse sends bearer key, model, system and message history", async () => {
+  reset();
+  process.env.AI_PROVIDER = "bedrock";
+  process.env.BEDROCK_API_KEY = "bedrock-mock-key";
+  process.env.BEDROCK_REGION = "us-east-1";
+  respond = async () => ({ data: { output: {
+    message: { content: [{ text: "Part one" }, { text: "part two" }] },
+  } } });
+  assert.equal(await ai.generate({
+    prompt: "Now", systemPrompt: "Be precise", history: [
+      { role: "user", content: "Before" },
+      { role: "assistant", content: "Reply" },
+      { role: "system", content: "Not allowed" },
+    ],
+  }), "Part one\npart two");
+  assert.equal(ai.getProvider(), "bedrock");
+  assert.equal(ai.getBaseURL(), "https://bedrock-runtime.us-east-1.amazonaws.com");
+  assert.equal(ai.getModel(), "amazon.nova-lite-v1:0");
+  assert.equal(requests[0].url,
+    "https://bedrock-runtime.us-east-1.amazonaws.com/model/amazon.nova-lite-v1:0/converse");
+  assert.equal(requests[0].options.headers.Authorization, "Bearer bedrock-mock-key");
+  assert.equal(requests[0].options.maxRedirects, 0);
+  assert.deepEqual(requests[0].payload.system, [{ text: "Be precise" }]);
+  assert.deepEqual(requests[0].payload.messages, [
+    { role: "user", content: [{ text: "Before" }] },
+    { role: "assistant", content: [{ text: "Reply" }] },
+    { role: "user", content: [{ text: "Now" }] },
+  ]);
+  assert.equal(requests[0].payload.inferenceConfig.maxTokens, 1024);
+  assert.ok(!JSON.stringify(requests[0].payload).includes("bedrock-mock-key"));
+});
+
+test("Bedrock supports official AWS token environment, custom Region and model", async () => {
+  reset();
+  process.env.AI_PROVIDER = "amazon-bedrock";
+  process.env.AWS_BEARER_TOKEN_BEDROCK = "aws-mock-token";
+  process.env.AWS_REGION = "eu-west-1";
+  process.env.BEDROCK_MODEL = "eu.amazon.nova-lite-v1:0";
+  respond = async () => ({ data: { output: {
+    message: { content: [{ text: "AWS response" }] },
+  } } });
+  assert.equal(await ai.generate({ prompt: "Hi" }), "AWS response");
+  assert.equal(requests[0].url,
+    "https://bedrock-runtime.eu-west-1.amazonaws.com/model/eu.amazon.nova-lite-v1:0/converse");
+  assert.equal(requests[0].options.headers.Authorization, "Bearer aws-mock-token");
+});
+
+test("Bedrock token never leaks to another provider", async () => {
+  reset();
+  process.env.GROQ_API_KEY = "groq-key";
+  process.env.BEDROCK_API_KEY = "bedrock-secret";
+  await ai.generate({ prompt: "Hi" });
+  assert.equal(ai.getProvider(), "groq");
+  assert.equal(requests[0].options.headers.Authorization, "Bearer groq-key");
+
+  reset();
+  process.env.AI_PROVIDER = "ollama";
+  process.env.BEDROCK_API_KEY = "bedrock-secret";
+  respond = async () => ({ data: { message: { content: "Local" } } });
+  assert.equal(await ai.generate({ prompt: "Hi" }), "Local");
+  assert.equal(requests[0].options.headers.Authorization, undefined);
+
+  reset();
+  process.env.AI_PROVIDER = "openai-compatible";
+  process.env.BEDROCK_API_KEY = "bedrock-secret";
+  await ai.generate({ prompt: "Hi" });
+  assert.equal(requests[0].options.headers.Authorization, undefined);
+});
+
+test("Bedrock selects automatically when no Groq key is present", async () => {
+  reset();
+  process.env.BEDROCK_API_KEY = "mock-token";
+  respond = async () => ({ data: { output: {
+    message: { content: [{ text: "Automatic" }] },
+  } } });
+  assert.equal(await ai.generate({ prompt: "Hi" }), "Automatic");
+  assert.equal(ai.getProvider(), "bedrock");
+});
+
+test("Missing Bedrock key and malformed Region fail before network requests", async () => {
+  reset();
+  process.env.AI_PROVIDER = "bedrock";
+  await assert.rejects(() => ai.generate({ prompt: "Hi" }), /BEDROCK_API_KEY/);
+  assert.equal(requests.length, 0);
+
+  process.env.BEDROCK_API_KEY = "mock-token";
+  process.env.BEDROCK_REGION = "us-east-1.evil.example";
+  await assert.rejects(() => ai.generate({ prompt: "Hi" }), /Invalid BEDROCK_REGION/);
+  assert.equal(requests.length, 0);
+});
+
+test("Bedrock errors are sanitized before reaching the user", async () => {
+  reset();
+  process.env.AI_PROVIDER = "bedrock";
+  process.env.BEDROCK_API_KEY = "sensitive-token";
+  respond = async () => {
+    throw { response: { status: 403, data: { message: "sensitive-token" } } };
+  };
+  await assert.rejects(() => ai.generate({ prompt: "Hi" }), (err) => {
+    assert.match(err.message, /authentication failed/i);
+    assert.ok(!err.message.includes("sensitive-token"));
     return true;
   });
 });
