@@ -145,7 +145,8 @@ async function generate({ prompt, history = [], systemPrompt, images = [], deep 
       }
       return answer;
     } catch (error) {
-      if (error.message.startsWith("Local AI returned no final answer.")) throw error;
+      if (typeof error?.message === "string" &&
+          error.message.startsWith("Local AI returned no final answer.")) throw error;
       const status = error.response?.status;
       if (status === 404) {
         throw new Error("Ollama model not found. Run: ollama pull " + settings.model);
