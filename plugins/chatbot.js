@@ -143,7 +143,8 @@ function commandHelp(jid) {
     "*🤖 AI Chatbot*\n\n" +
     "📊 Status: " + (isChatbotEnabled(jid) ? "Enabled ✅" : "Disabled ❌") + "\n" +
     "🔌 Provider: " + providerLabel() + "\n" +
-    "🧠 Model: " + localAI.getModel() + "\n" +
+    "⚡ Fast model: " + localAI.getModel() + "\n" +
+    "🧠 Deep model: " + localAI.getDeepModel() + "\n" +
     "🌐 Endpoint: " + localAI.getBaseURL() + "\n" +
     "🔒 API key: Not required (local)\n" +
     "💬 Context messages: " + getHistory(jid).length + "\n\n" +
@@ -157,10 +158,11 @@ function commandHelp(jid) {
     '• .chatbot set "instructions" — set assistant instructions\n' +
     "• .chatbot clear — clear this chat's history\n" +
     "• .chatbot status — show status\n" +
-    "• .ai your question — ask local AI\n" +
+    "• .ai your question — quick local reply\n" +
+    "• .ai fast your question — quick local reply\n" +
     "• .ai deep your question — extended reasoning\n\n" +
     "When enabled, the bot replies to ordinary text messages. " +
-    "Inference runs through your Ollama server; performance depends on hardware and the installed model."
+    "Quick replies use a small local model; .ai deep uses a larger model. No API key is needed."
   );
 }
 
@@ -242,11 +244,12 @@ Module(
           "*🤖 AI Chatbot Status*\n\n" +
           "• Chatbot: " + (isChatbotEnabled(jid) ? "Enabled ✅" : "Disabled ❌") + "\n" +
           "• Provider: " + providerLabel() + "\n" +
-          "• Model: " + localAI.getModel() + "\n" +
+          "• Fast model: " + localAI.getModel() + "\n" +
+          "• Deep model: " + localAI.getDeepModel() + "\n" +
           "• Endpoint: " + localAI.getBaseURL() + "\n" +
           "• Context messages: " + getHistory(jid).length + "\n" +
           "• API key: Not required (local)\n" +
-          "• Context: " + localAI.getRuntimeInfo().context + " tokens\n" +
+          "• Fast context: " + localAI.getRuntimeInfo().context + " tokens\n" +
           "• Deep context: " + localAI.getRuntimeInfo().deepContext + " tokens",
         );
 
@@ -283,7 +286,7 @@ Module(
       chatbotLastRequestAt.set(jid, now);
       chatbotBusy.add(jid);
       try {
-        const answer = await getAIResponse(prompt, jid, true);
+        const answer = await getAIResponse(prompt, jid, true, false);
         if (answer) await sendAIReply(message, answer);
       } finally {
         chatbotBusy.delete(jid);
@@ -302,13 +305,14 @@ Module(
   {
     pattern: "ai ?(.*)",
     fromMe: config.MODE !== "public",
-    desc: "Ask local Ollama AI (use .ai deep for difficult tasks)",
+    desc: "Fast local AI replies; use .ai deep for harder questions",
     type: "ai",
   },
   async (message, match) => {
     let prompt = match[1]?.trim() || "";
     const deep = /^deep(?:\s|$)/i.test(prompt);
     if (deep) prompt = prompt.replace(/^deep(?:\s+|$)/i, "").trim();
+    else prompt = prompt.replace(/^fast(?:\s+|$)/i, "").trim();
     if (message.reply_message?.text && !prompt) {
       prompt = message.reply_message.text.trim();
     }

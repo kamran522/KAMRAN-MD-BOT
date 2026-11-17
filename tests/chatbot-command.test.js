@@ -11,7 +11,8 @@ test("WhatsApp .ai deep selects local thinking and long replies are split", asyn
   let reply = "Local answer";
   const fakeAI = {
     generate: async (args) => { requests.push(args); return reply; },
-    getModel: () => "qwen3:8b",
+    getModel: () => "qwen3:1.7b",
+    getDeepModel: () => "qwen3:8b",
     getBaseURL: () => "http://127.0.0.1:11434",
     getRuntimeInfo: () => ({ context: 8192, deepContext: 16384 }),
   };
@@ -52,11 +53,18 @@ test("WhatsApp .ai deep selects local thinking and long replies are split", asyn
   assert.equal(replies.join(""), reply);
 
   replies.length = 0;
+  reply = "Fast answer";
+  await ai.fn(message, ["", "fast quick question"]);
+  assert.equal(requests[2].deep, false);
+  assert.equal(requests[2].prompt, "quick question");
+  assert.deepEqual(replies, ["Fast answer"]);
+
+  replies.length = 0;
   reply = "Quote answer";
   message.reply_message = { text: "Quoted request" };
   await ai.fn(message, ["", "deep"]);
-  assert.equal(requests[2].deep, true);
-  assert.equal(requests[2].prompt, "Quoted request");
+  assert.equal(requests[3].deep, true);
+  assert.equal(requests[3].prompt, "Quoted request");
   assert.deepEqual(replies, ["Quote answer"]);
 
   replies.length = 0;
@@ -64,6 +72,8 @@ test("WhatsApp .ai deep selects local thinking and long replies are split", asyn
   assert.ok(chatbot);
   await chatbot.fn(message, ["", "status"]);
   assert.match(replies[0], /Local Ollama/);
+  assert.match(replies[0], /Fast model: qwen3:1.7b/);
+  assert.match(replies[0], /Deep model: qwen3:8b/);
   assert.match(replies[0], /API key: Not required/);
   assert.doesNotMatch(replies[0], /Kimi|Moonshot|Bedrock|GroqCloud/);
 });

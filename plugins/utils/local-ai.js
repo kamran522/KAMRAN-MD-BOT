@@ -3,7 +3,9 @@
 const axios = require("axios");
 const net = require("node:net");
 
-const DEFAULT_MODEL = "qwen3:8b";
+// Fast replies use a small model; complex requests keep a stronger model.
+const DEFAULT_FAST_MODEL = "qwen3:1.7b";
+const DEFAULT_DEEP_MODEL = "qwen3:8b";
 const DEFAULT_ENDPOINT = "http://127.0.0.1:11434";
 
 function numberSetting(key, fallback, min, max) {
@@ -44,34 +46,44 @@ function localEndpoint(input) {
 }
 
 function getSettings() {
-  const model = String(process.env.LOCAL_AI_MODEL || DEFAULT_MODEL).trim();
-  if (!/^[a-zA-Z0-9][a-zA-Z0-9._:/-]{0,149}$/.test(model)) {
-    throw new Error("Invalid LOCAL_AI_MODEL. Use an installed Ollama model name.");
+  // LOCAL_AI_MODEL is a legacy override for the deep model only. It
+  // should not silently force every quick reply through a large 8B/32B model.
+  const fastModel = String(process.env.LOCAL_AI_FAST_MODEL || DEFAULT_FAST_MODEL).trim();
+  const deepModel = String(process.env.LOCAL_AI_DEEP_MODEL ||
+    process.env.LOCAL_AI_MODEL || DEFAULT_DEEP_MODEL).trim();
+  const modelPattern = /^[a-zA-Z0-9][a-zA-Z0-9._:/-]{0,149}$/;
+  if (!modelPattern.test(fastModel) || !modelPattern.test(deepModel)) {
+    throw new Error("Invalid LOCAL_AI_FAST_MODEL or LOCAL_AI_DEEP_MODEL. Use installed Ollama model names.");
   }
-  const keepAlive = String(process.env.LOCAL_AI_KEEP_ALIVE || "15m").trim();
-  if (!/^(?:\d+(?:ms|s|m|h)|-1)$/.test(keepAlive)) {
-    throw new Error("Invalid LOCAL_AI_KEEP_ALIVE. Use e.g. 15m, 1h or -1.");
+  const keepAlive = String(process.env.LOCAL_AI_KEEP_ALIVE || "30m").trim();
+  // Unload the deep model after use by default to preserve memory for fast replies.
+  const deepKeepAlive = String(process.env.LOCAL_AI_DEEP_KEEP_ALIVE || "0").trim();
+  if (![keepAlive, deepKeepAlive].every((v) => /^(?:\d+(?:ms|s|m|h)?|-1)$/.test(v))) {
+    throw new Error("Invalid Ollama keep-alive setting. Use e.g. 30m, 1h, 0 or -1.");
   }
   return {
-    model,
+    fastModel, deepModel,
     endpoint: localEndpoint(process.env.LOCAL_AI_URL || DEFAULT_ENDPOINT),
-    timeout: numberSetting("LOCAL_AI_TIMEOUT", 300000, 10000, 1800000),
+    timeout: numberSetting("LOCAL_AI_TIMEOUT", 180000, 10000, 1800000),
     deepTimeout: numberSetting("LOCAL_AI_DEEP_TIMEOUT", 900000, 10000, 1800000),
-    context: numberSetting("LOCAL_AI_CONTEXT", 8192, 2048, 131072),
+    context: numberSetting("LOCAL_AI_FAST_CONTEXT", 2048, 1024, 32768),
     deepContext: numberSetting("LOCAL_AI_DEEP_CONTEXT", 16384, 2048, 262144),
-    predict: numberSetting("LOCAL_AI_NUM_PREDICT", 2048, 128, 16384),
+    predict: numberSetting("LOCAL_AI_FAST_NUM_PREDICT", 512, 64, 4096),
     deepPredict: numberSetting("LOCAL_AI_DEEP_NUM_PREDICT", 8192, 256, 32768),
+    fastHistory: numberSetting("LOCAL_AI_FAST_HISTORY", 4, 0, 12),
     maxPending: numberSetting("LOCAL_AI_MAX_PENDING", 3, 1, 20),
-    keepAlive,
+    keepAlive, deepKeepAlive,
   };
 }
 
 function getProvider() { return "ollama"; }
-function getModel() { return getSettings().model; }
+function getModel() { return getSettings().fastModel; }
+function getDeepModel() { return getSettings().deepModel; }
 function getBaseURL() { return getSettings().endpoint; }
 function getRuntimeInfo() {
   const settings = getSettings();
   return {
+    fastModel: settings.fastModel, deepModel: settings.deepModel,
     context: settings.context, deepContext: settings.deepContext,
     predict: settings.predict, deepPredict: settings.deepPredict,
   };
@@ -107,10 +119,11 @@ async function generate({ prompt, history = [], systemPrompt, images = [], deep 
         "and provide actionable answers in WhatsApp-friendly formatting. " +
         "Do not claim to browse the internet or access files or tools.",
     },
-    ...(Array.isArray(history) ? history : []).filter((item) =>
+    ...(deep ? (Array.isArray(history) ? history : []).slice(-12) :
+      (settings.fastHistory ? (Array.isArray(history) ? history : []).slice(-settings.fastHistory) : [])).filter((item) =>
       item && ["user", "assistant"].includes(item.role) &&
       typeof item.content === "string" && item.content.trim()
-    ).slice(-12).map(({ role, content }) => ({ role, content: content.slice(-8000) })),
+    ).map(({ role, content }) => ({ role, content: content.slice(deep ? -8000 : -1600) })),
     { role: "user", content: question },
   ];
 
@@ -119,11 +132,11 @@ async function generate({ prompt, history = [], systemPrompt, images = [], deep 
       const response = await axios.post(
         settings.endpoint + "/api/chat",
         {
-          model: settings.model,
+          model: deep ? settings.deepModel : settings.fastModel,
           messages,
           stream: false,
           think: Boolean(deep),
-          keep_alive: settings.keepAlive,
+          keep_alive: deep ? settings.deepKeepAlive : settings.keepAlive,
           options: {
             num_ctx: deep ? settings.deepContext : settings.context,
             num_predict: deep ? settings.deepPredict : settings.predict,
@@ -141,7 +154,8 @@ async function generate({ prompt, history = [], systemPrompt, images = [], deep 
       const answer = typeof raw === "string" ? raw.trim() : "";
       if (!answer) {
         throw new Error("Local AI returned no final answer. " +
-          "Try a shorter prompt or increase LOCAL_AI_DEEP_NUM_PREDICT.");
+          (deep ? "Try increasing LOCAL_AI_DEEP_NUM_PREDICT." :
+            "Try a shorter prompt or increase LOCAL_AI_FAST_NUM_PREDICT."));
       }
       return answer;
     } catch (error) {
@@ -149,7 +163,8 @@ async function generate({ prompt, history = [], systemPrompt, images = [], deep 
           error.message.startsWith("Local AI returned no final answer.")) throw error;
       const status = error.response?.status;
       if (status === 404) {
-        throw new Error("Ollama model not found. Run: ollama pull " + settings.model);
+        throw new Error("Ollama model not found. Run: ollama pull " +
+          (deep ? settings.deepModel : settings.fastModel));
       }
       if (status === 400) {
         throw new Error("Ollama rejected the request. Check the model's support " +
@@ -171,4 +186,4 @@ async function generate({ prompt, history = [], systemPrompt, images = [], deep 
   });
 }
 
-module.exports = { generate, getProvider, getModel, getBaseURL, getRuntimeInfo };
+module.exports = { generate, getProvider, getModel, getDeepModel, getBaseURL, getRuntimeInfo };

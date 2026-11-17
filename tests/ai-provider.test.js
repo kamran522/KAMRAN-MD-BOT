@@ -9,6 +9,8 @@ const envNames = [
   "LOCAL_AI_DEEP_TIMEOUT", "LOCAL_AI_CONTEXT", "LOCAL_AI_DEEP_CONTEXT",
   "LOCAL_AI_NUM_PREDICT", "LOCAL_AI_DEEP_NUM_PREDICT",
   "LOCAL_AI_MAX_PENDING", "LOCAL_AI_KEEP_ALIVE",
+  "LOCAL_AI_FAST_MODEL", "LOCAL_AI_DEEP_MODEL", "LOCAL_AI_FAST_CONTEXT",
+  "LOCAL_AI_FAST_NUM_PREDICT", "LOCAL_AI_FAST_HISTORY", "LOCAL_AI_DEEP_KEEP_ALIVE",
   "KIMI_API_KEY", "MOONSHOT_API_KEY", "KIMI_MODEL", "AI_PROVIDER",
   "GROQ_API_KEY", "BEDROCK_API_KEY",
 ];
@@ -58,7 +60,8 @@ test("Ollama is the only provider; no API key or hosted endpoint is used", async
     ],
   }), "Local answer");
   assert.equal(ai.getProvider(), "ollama");
-  assert.equal(ai.getModel(), "qwen3:8b");
+  assert.equal(ai.getModel(), "qwen3:1.7b");
+  assert.equal(ai.getDeepModel(), "qwen3:8b");
   assert.equal(ai.getBaseURL(), "http://127.0.0.1:11434");
   assert.equal(calls[0].url, "http://127.0.0.1:11434/api/chat");
   assert.equal(calls[0].options.headers.Authorization, undefined);
@@ -71,9 +74,10 @@ test("Ollama is the only provider; no API key or hosted endpoint is used", async
   ]);
   assert.equal(calls[0].payload.stream, false);
   assert.equal(calls[0].payload.think, false);
-  assert.equal(calls[0].payload.keep_alive, "15m");
+  assert.equal(calls[0].payload.keep_alive, "30m");
+  assert.equal(calls[0].payload.model, "qwen3:1.7b");
   assert.deepEqual(calls[0].payload.options, {
-    num_ctx: 8192, num_predict: 2048, temperature: 0.6, top_p: 0.95,
+    num_ctx: 2048, num_predict: 512, temperature: 0.6, top_p: 0.95,
   });
   for (const token of ["not-used-secret", "unused-groq", "unused-bedrock"]) {
     assert.ok(!JSON.stringify(calls[0]).includes(token));
@@ -83,14 +87,15 @@ test("Ollama is the only provider; no API key or hosted endpoint is used", async
 test("Deep mode uses local reasoning and a larger context/output budget", async () => {
   reset();
   process.env.LOCAL_AI_MODEL = "qwen3:32b";
-  process.env.LOCAL_AI_CONTEXT = "4096";
+  process.env.LOCAL_AI_FAST_CONTEXT = "4096";
   process.env.LOCAL_AI_DEEP_CONTEXT = "32768";
-  process.env.LOCAL_AI_NUM_PREDICT = "1024";
+  process.env.LOCAL_AI_FAST_NUM_PREDICT = "1024";
   process.env.LOCAL_AI_DEEP_NUM_PREDICT = "10000";
   process.env.LOCAL_AI_DEEP_TIMEOUT = "1200000";
   assert.equal(await ai.generate({ prompt: "Solve this", deep: true }), "Local answer");
   const call = calls[0];
   assert.equal(call.payload.model, "qwen3:32b");
+  assert.equal(call.payload.keep_alive, "0");
   assert.equal(call.payload.think, true);
   assert.equal(call.payload.options.num_ctx, 32768);
   assert.equal(call.payload.options.num_predict, 10000);
@@ -129,7 +134,7 @@ test("Missing Ollama model returns helpful pull command, without leaking respons
   reset();
   respond = async () => { throw { response: { status: 404, data: { message: "secret-in-error" } } }; };
   await assert.rejects(() => ai.generate({ prompt: "Hello" }), (error) => {
-    assert.match(error.message, /ollama pull qwen3:8b/i);
+    assert.match(error.message, /ollama pull qwen3:1.7b/i);
     assert.ok(!error.message.includes("secret-in-error"));
     return true;
   });
@@ -172,6 +177,60 @@ test("Validates empty questions, unsupported images and model names", async () =
   reset();
   await assert.rejects(() => ai.generate({ prompt: " " }), /text question/);
   await assert.rejects(() => ai.generate({ prompt: "Question", images: ["data"] }), /text only/);
-  process.env.LOCAL_AI_MODEL = "other-model ; dangerous";
-  await assert.rejects(() => ai.generate({ prompt: "Question" }), /Invalid LOCAL_AI_MODEL/);
+  process.env.LOCAL_AI_FAST_MODEL = "other-model ; dangerous";
+  await assert.rejects(() => ai.generate({ prompt: "Question" }), /Invalid LOCAL_AI_FAST_MODEL/);
+});
+
+
+test("Fast mode uses a lightweight model; old LOCAL_AI_MODEL affects deep only", async () => {
+  reset();
+  process.env.LOCAL_AI_MODEL = "qwen3:14b";
+  await ai.generate({ prompt: "quick" });
+  await ai.generate({ prompt: "complex", deep: true });
+  assert.equal(calls[0].payload.model, "qwen3:1.7b");
+  assert.equal(calls[0].payload.think, false);
+  assert.equal(calls[0].payload.options.num_predict, 512);
+  assert.equal(calls[1].payload.model, "qwen3:14b");
+  assert.equal(calls[1].payload.think, true);
+  assert.equal(ai.getDeepModel(), "qwen3:14b");
+});
+
+test("Fast and deep models can be chosen independently", async () => {
+  reset();
+  process.env.LOCAL_AI_FAST_MODEL = "qwen3:4b";
+  process.env.LOCAL_AI_DEEP_MODEL = "qwen3:8b";
+  process.env.LOCAL_AI_FAST_NUM_PREDICT = "256";
+  process.env.LOCAL_AI_FAST_CONTEXT = "1024";
+  await ai.generate({ prompt: "fast question" });
+  assert.equal(calls[0].payload.model, "qwen3:4b");
+  assert.equal(calls[0].payload.options.num_ctx, 1024);
+  assert.equal(calls[0].payload.options.num_predict, 256);
+  await ai.generate({ prompt: "hard question", deep: true });
+  assert.equal(calls[1].payload.model, "qwen3:8b");
+  assert.equal(calls[1].payload.options.num_ctx, 16384);
+  assert.equal(calls[1].payload.options.num_predict, 8192);
+});
+
+test("Fast replies carry only limited recent chat history", async () => {
+  reset();
+  const history = Array.from({ length: 10 }, (_, i) => ({
+    role: i % 2 ? "assistant" : "user",
+    content: "Earlier " + i + " " + "x".repeat(2000),
+  }));
+  await ai.generate({ prompt: "answer", history });
+  const quick = calls[0].payload.messages;
+  assert.equal(quick.length, 6);
+  assert.ok(quick.slice(1, -1).every(item => item.content.length <= 1600));
+  await ai.generate({ prompt: "answer", history, deep: true });
+  assert.equal(calls[1].payload.messages.length, 12);
+  process.env.LOCAL_AI_FAST_HISTORY = "0";
+  await ai.generate({ prompt: "answer", history });
+  assert.equal(calls[2].payload.messages.length, 2);
+});
+
+test("Missing deep model error tells operator what to install", async () => {
+  reset();
+  respond = async () => { throw { response: { status: 404 } }; };
+  await assert.rejects(() => ai.generate({ prompt: "difficult", deep: true }),
+    /ollama pull qwen3:8b/);
 });

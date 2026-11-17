@@ -115,7 +115,9 @@ Install Ollama from https://ollama.com/download, then download the suggested
 reasoning model and start its service:
 
 ~~~bash
+ollama pull qwen3:1.7b
 ollama pull qwen3:8b
+# Start Ollama ONLY if it is not already running:
 ollama serve
 ~~~
 
@@ -123,14 +125,17 @@ On systems where Ollama is already running as a service, do not start a second
 server; use `ollama list` to verify installed models and
 `curl http://127.0.0.1:11434/api/tags` to test connectivity.
 
-Qwen3 offers local reasoning and thinking mode. Suggested model sizes:
+Qwen3 supports local reasoning. The bot now has **fast** and **deep** modes:
+ordinary `.ai` questions and automatic chatbot replies default to the small
+`qwen3:1.7b` model, with thinking disabled. `.ai deep` uses the stronger
+`qwen3:8b` model with thinking enabled.
 
-| Model | Ollama download size | Hardware guidance |
+| Model | Approximate download | Purpose |
 |---|---:|---|
-| `qwen3:4b` | approx. 2.5 GB | Lower-memory machines, lower reasoning quality |
-| `qwen3:8b` (default) | approx. 5.2 GB | General reasoning; use a machine with roughly 8–12+ GB free RAM/VRAM |
-| `qwen3:14b` | approx. 9.3 GB | Stronger reasoning; roughly 16+ GB free memory recommended |
-| `qwen3:32b` | approx. 20 GB | Heavier tasks; roughly 32+ GB free memory recommended |
+| `qwen3:1.7b` (fast default) | 1.4 GB | Short, fast answers; less capable |
+| `qwen3:4b` | 2.5 GB | Better quality, somewhat slower |
+| `qwen3:8b` (deep default) | 5.2 GB | Difficult questions; requires more memory |
+| `qwen3:14b` or `qwen3:32b` | 9.3 GB / 20 GB | Harder work on powerful hardware |
 
 Download size is not runtime memory; context cache and concurrent tasks use
 extra RAM/VRAM. Large models can run on CPUs but may be slow. For complex work,
@@ -139,16 +144,19 @@ becomes a coding agent or a tool-using research system.
 
 ~~~env
 LOCAL_AI_URL=http://127.0.0.1:11434
-LOCAL_AI_MODEL=qwen3:8b
-LOCAL_AI_CONTEXT=8192
+LOCAL_AI_FAST_MODEL=qwen3:1.7b
+LOCAL_AI_DEEP_MODEL=qwen3:8b
+LOCAL_AI_FAST_CONTEXT=2048
 LOCAL_AI_DEEP_CONTEXT=16384
-LOCAL_AI_NUM_PREDICT=2048
+LOCAL_AI_FAST_NUM_PREDICT=512
 LOCAL_AI_DEEP_NUM_PREDICT=8192
-LOCAL_AI_TIMEOUT=300000
+LOCAL_AI_FAST_HISTORY=4
+LOCAL_AI_TIMEOUT=180000
 LOCAL_AI_DEEP_TIMEOUT=900000
 LOCAL_AI_MAX_PENDING=3
 LOCAL_AI_CHATBOT_COOLDOWN_MS=5000
-LOCAL_AI_KEEP_ALIVE=15m
+LOCAL_AI_KEEP_ALIVE=30m
+LOCAL_AI_DEEP_KEEP_ALIVE=0
 ~~~
 
 The `LOCAL_AI_URL` must resolve to a loopback/LAN address or an internal
@@ -168,11 +176,26 @@ Keep old API keys private and revoke ones you no longer use.
 
 ### Harder and longer questions
 
-- `.ai What is a database index?` — ordinary local answer
+- `.ai What is a database index?` — fast local answer
+- `.ai fast Explain DNS` — same fast mode explicitly
 - `.ai deep Design a scalable database schema with migration plan` —
   requests thinking mode, a larger context and a higher output budget
 - `.chatbot on`, `.chatbot off`, `.chatbot status`, `.chatbot clear` —
   normal existing chatbot controls
+
+**Speed notes:** Normal replies use a 2,048-token context, at most four recent
+history messages, and a 512-token output budget by default. This reduces
+work for CPU-based machines. If you want maximum speed on a small VPS,
+use `qwen3:1.7b`; for somewhat better answers, install `qwen3:4b` and set
+`LOCAL_AI_FAST_MODEL=qwen3:4b`. A larger model may still be slow on CPU.
+The older `LOCAL_AI_MODEL` setting (if present) now controls only the deep
+model; `LOCAL_AI_FAST_MODEL` always controls normal replies. Legacy
+`LOCAL_AI_CONTEXT` and `LOCAL_AI_NUM_PREDICT` values do not override the new
+fast-mode limits.
+
+If you already have Ollama running on port 11434, do not start another
+`ollama serve` process. Use `ollama list` and `ollama ps` to diagnose
+downloads and GPU versus CPU execution.
 
 Deep requests can take several minutes and use significantly more memory.
 Large answers are split across WhatsApp messages. By default the bot
