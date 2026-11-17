@@ -102,16 +102,11 @@ async function getAIResponse(prompt, chatJid, useHistory = true) {
 }
 
 function providerLabel() {
-  const provider = localAI.getProvider();
-  return provider === "groq" ? "GroqCloud" :
-    provider === "bedrock" ? "Amazon Bedrock" :
-    provider === "ollama" ? "Local Ollama" : "Local OpenAI-compatible";
+  return "Kimi (Moonshot AI)";
 }
 
 function keyStatus() {
-  if (localAI.getProvider() === "ollama") return "Not needed";
-  return localAI.hasAPIKey() ? "Configured" :
-    (["groq", "bedrock"].includes(localAI.getProvider()) ? "Missing" : "Not set (optional)");
+  return localAI.hasAPIKey() ? "Configured" : "Missing";
 }
 
 function commandHelp(jid) {
@@ -135,7 +130,7 @@ function commandHelp(jid) {
     "• .chatbot status — show status\n" +
     "• .ai your question — ask AI directly\n\n" +
     "When enabled, the bot replies to ordinary text messages. " +
-    "GroqCloud and Amazon Bedrock calls use the internet and may incur usage charges."
+    "Kimi requires a Moonshot API key and uses hosted inference that may incur charges."
   );
 }
 
@@ -145,7 +140,7 @@ Module(
   {
     pattern: "chatbot ?(.*)",
     fromMe: true,
-    desc: "Manage the GroqCloud, Amazon Bedrock, or locally hosted AI chatbot",
+    desc: "Manage the Kimi (Moonshot AI) chatbot",
     usage: '.chatbot on/off | .chatbot on/off groups/dms | .chatbot set "prompt" | .chatbot clear | .chatbot status',
   },
   async (message, match) => {
@@ -186,7 +181,7 @@ Module(
           );
         }
         await disableChatbot(jid);
-        return message.sendReply("🤖 Local chatbot disabled in this chat. Its conversation history was cleared.");
+        return message.sendReply("🤖 Kimi chatbot disabled in this chat. Its conversation history was cleared.");
 
       case "set": {
         const promptMatch = input.match(/^set\s+["“](.+)["”]$/s);
@@ -260,7 +255,7 @@ Module(
   {
     pattern: "ai ?(.*)",
     fromMe: config.MODE !== "public",
-    desc: "Ask the GroqCloud, Amazon Bedrock, or locally hosted AI model",
+    desc: "Ask Kimi (Moonshot AI) directly",
     type: "ai",
   },
   async (message, match) => {

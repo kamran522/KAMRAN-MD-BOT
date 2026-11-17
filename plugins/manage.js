@@ -51,7 +51,7 @@ const { BotVariable } = require("../core/database");
 var handler = config.HANDLERS !== "false" ? config.HANDLERS.split("")[0] : "";
 
 function isAISecret(key) {
-  return /^(GROQ_API_KEY|LOCAL_AI_API_KEY|BEDROCK_API_KEY|AWS_BEARER_TOKEN_BEDROCK)$/i.test(String(key || "").trim());
+  return /^(GROQ_API_KEY|LOCAL_AI_API_KEY|BEDROCK_API_KEY|AWS_BEARER_TOKEN_BEDROCK|KIMI_API_KEY|MOONSHOT_API_KEY)$/i.test(String(key || "").trim());
 }
 
 async function setVar(key, value, message = false) {
