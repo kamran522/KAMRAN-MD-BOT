@@ -102,101 +102,58 @@ The following environment variables are supported:
 | `ACR_HOST`, `ACR_ACCESS_KEY`, `ACR_ACCESS_SECRET` | Credentials for your own ACRCloud music-identification project. |
 | `WA_VERSION` | Optional WhatsApp Web version override. |
 
-## AI chatbot: Amazon Bedrock, GroqCloud, or a local model
+## Kimi AI chatbot (Moonshot AI only)
 
-Both `.ai` and `.chatbot` use one configurable AI provider and keep the existing chat-history behavior. Bedrock and GroqCloud are hosted inference services; only Ollama and self-hosted OpenAI-compatible services run locally. **Groq** (with a q) is a hosted inference API, not xAI **Grok**. A `gsk_...` token is for GroqCloud and cannot access xAI Grok. GroqCloud requests are not locally hosted.
+The `.ai` and `.chatbot` commands now use **Kimi by Moonshot AI only**.
+GroqCloud, Amazon Bedrock, Ollama, and custom local AI backends have been
+removed from the AI request path. Existing chatbot history, system prompts,
+and the WhatsApp enable/disable commands are unchanged.
 
-### Amazon Bedrock (hosted, API key required)
+### Setup
 
-Generate an Amazon Bedrock API key in the [AWS Bedrock console](https://console.aws.amazon.com/bedrock) for your AWS Region, then set the key in your hosting environment (or manually in the ignored local `config.env` file):
-
-~~~env
-AI_PROVIDER=bedrock
-BEDROCK_API_KEY=REPLACE_WITH_YOUR_BEDROCK_KEY
-BEDROCK_REGION=us-east-1
-BEDROCK_MODEL=amazon.nova-lite-v1:0
-~~~
-
-Both `.ai` and `.chatbot` use the [Amazon Bedrock Runtime Converse API](https://docs.aws.amazon.com/bedrock/latest/userguide/conversation-inference.html), using bearer-token authorization, system instructions, and chat history. Choose a model ID or inference profile supporting Converse in your configured AWS Region. The default is Amazon Nova Lite; inference incurs AWS charges. Model access and IAM permissions must be configured in AWS.
-
-`AWS_BEARER_TOKEN_BEDROCK` can also supply the token, and `AWS_REGION` can supply the Region. The explicit `BEDROCK_*` variables take priority. This integration implements **Bedrock API key/Bearer authentication only** (not AWS access key/secret SigV4 authentication). AWS recommends short-term credentials for production, which require renewal; the bot reads a current key from its environment and does not refresh expired keys.
-
-Never send API keys through WhatsApp commands such as `.setvar` or `.setenv` or commit them to GitHub. The bot hides Bedrock credentials from variable-output commands.
-
-### Troubleshooting Amazon Bedrock HTTP 401 or 403
-
-A successful `.chatbot on` means the WhatsApp handler is enabled; it does **not** verify AWS model access. A successful `.chatbot status` only reports whether an API key is configured, not whether AWS accepts it.
-
-- **HTTP 401:** Check that `BEDROCK_API_KEY` is a genuine Amazon Bedrock API key, has not expired, and matches the AWS Region. Short-term keys expire within 12 hours (or sooner when their console session ends).
-- **HTTP 403:** Check the IAM identity linked to the API key and any AWS Organizations policies. The identity needs permission to invoke the model (`bedrock:InvokeModel`) and must not be denied `bedrock:CallWithBearerToken`. Check account/model activation or billing restrictions as applicable.
-- **Wrong Region:** Set `BEDROCK_REGION` to the Region where you generated your key (especially for short-term keys). Ensure `BEDROCK_MODEL` is available in that Region.
-- **Wrong secret loaded:** `BEDROCK_API_KEY` takes precedence over `AWS_BEARER_TOKEN_BEDROCK`. If both are set, an old `BEDROCK_API_KEY` can override a fresh `AWS_BEARER_TOKEN_BEDROCK`. Restart the bot after replacing environment secrets.
-
-You can test a non-streaming inference request directly from the bot's host without printing the key:
-
-~~~bash
-curl -sS -o /tmp/bedrock-check.json -w 'HTTP %{http_code}\n' \
-  -X POST "https://bedrock-runtime.us-east-1.amazonaws.com/model/amazon.nova-lite-v1:0/converse" \
-  -H "Content-Type: application/json" \
-  -H "Authorization: Bearer $BEDROCK_API_KEY" \
-  -d '{"messages":[{"role":"user","content":[{"text":"Say hello"}]}]}'
-cat /tmp/bedrock-check.json
-~~~
-
-Use the same Region/model as your deployment (adjust the URL accordingly). Run this only where the `BEDROCK_API_KEY` environment variable is loaded. Never post API keys or complete HTTP request headers in a support chat. The AWS error body may help diagnose permissions; redact account identifiers before sharing logs.
-
-AWS references: [API keys](https://docs.aws.amazon.com/bedrock/latest/userguide/api-keys.html), [Use an API key](https://docs.aws.amazon.com/bedrock/latest/userguide/api-keys-use.html), [Converse permissions](https://docs.aws.amazon.com/bedrock/latest/APIReference/API_runtime_Converse.html).
-
-### GroqCloud (hosted, API key required)
-
-Create a **new** key in https://console.groq.com/keys and add these variables to your deployment environment (or the ignored local `config.env` file):
+Create a Moonshot API key at https://platform.kimi.ai/ and set these
+environment variables on your hosting platform or in the ignored local
+`config.env` file:
 
 ~~~env
-AI_PROVIDER=groq
-GROQ_API_KEY=REPLACE_WITH_A_NEW_KEY
-GROQ_MODEL=openai/gpt-oss-20b
+KIMI_API_KEY=REPLACE_WITH_YOUR_MOONSHOT_KEY
+KIMI_MODEL=kimi-k2.6
 ~~~
 
-Never commit your key or send it in a WhatsApp command. If a key has been shared, rotate it in GroqCloud first. The default Groq model is `openai/gpt-oss-20b`; you can change `GROQ_MODEL` to another supported Groq model. GroqCloud may charge for requests. Groq API availability, model selection and limits are managed by Groq.
+The official `MOONSHOT_API_KEY` name is supported as an alternative. When both
+names are present, `KIMI_API_KEY` takes priority. `KIMI_MODEL` is optional and
+defaults to `kimi-k2.6`; only IDs starting with `kimi-` are accepted.
+Check that a selected Kimi model is accessible to your Moonshot account.
 
-### Self-hosted Ollama (no key required)
+The fixed endpoint is `https://api.moonshot.ai/v1/chat/completions`, using
+`Authorization: Bearer <API key>`. Set `KIMI_TIMEOUT=120000` to configure
+the timeout in milliseconds (minimum 10000, maximum 300000).
 
-Install https://ollama.com and run:
+**Migration:** Previous `AI_PROVIDER`, `GROQ_*`, `BEDROCK_*`,
+`LOCAL_AI_*`, and AWS bearer-token settings are ignored by the AI module.
+Remove those obsolete secrets and settings from your host; old Groq and Bedrock
+keys cannot be used as Kimi credentials. The bot uses an internet-hosted
+Moonshot service, not a locally hosted model. Usage may incur charges.
 
-~~~bash
-ollama pull llama3.2:3b
-ollama serve
-~~~
-
-Use these environment variables:
-
-~~~env
-AI_PROVIDER=ollama
-LOCAL_AI_URL=http://127.0.0.1:11434
-LOCAL_AI_MODEL=llama3.2:3b
-~~~
-
-If `AI_PROVIDER` is omitted, the bot selects Groq if `GROQ_API_KEY` exists, otherwise Bedrock if a Bedrock key exists, or Ollama if neither key exists. If both keys exist, explicitly set `AI_PROVIDER=bedrock` to use Bedrock. For Docker, `127.0.0.1` is inside the container. Configure `LOCAL_AI_URL` to a reachable Ollama host address or run both services on a suitable shared network.
-
-### Another self-hosted OpenAI-compatible endpoint
-
-To connect a self-hosted model server exposing `/v1/chat/completions` (for example vLLM), configure:
-
-~~~env
-AI_PROVIDER=openai-compatible
-LOCAL_AI_URL=http://127.0.0.1:8000/v1
-LOCAL_AI_MODEL=YOUR_SERVED_MODEL_ID
-# Optional if your local server requires authentication:
-# LOCAL_AI_API_KEY=YOUR_LOCAL_SERVER_KEY
-~~~
-
-`LOCAL_AI_TIMEOUT=120000` sets the request timeout in milliseconds (minimum 10000, maximum 300000). The bot supports text only. It does not download or provide any Grok model weights; use only a model you are authorized and able to host.
+Do not commit your Moonshot API key or send it using WhatsApp commands such
+as `.setvar` or `.setenv`. Kimi key values are hidden by `.getvar` and
+`.allvar`. Setting or changing the API key on your host requires restarting
+the bot.
 
 ### WhatsApp commands
 
-Use `.ai your question` for a single question, `.chatbot on` to auto-reply in the current chat, `.chatbot off` to disable, `.chatbot status` for provider/model info, and `.chatbot clear` to reset the chat context. Global `.chatbot on groups` and `.chatbot on dms` can generate a high number of cloud API requests and charges. Restart the bot after changing provider environment variables.
+- `.ai your question` sends a single request to Kimi.
+- `.chatbot on` and `.chatbot off` control auto-replies in the current chat.
+- `.chatbot status` shows Kimi model and whether a key is configured.
+- `.chatbot clear` clears conversation history.
+- `.chatbot on groups` / `.chatbot on dms` enable global auto-replies;
+  monitor API usage and costs when enabling these modes.
 
-Run `node --test tests/ai-provider.test.js` to test provider routing without network access.
+The existing chatbot is **text-only**. Image understanding is not wired into
+the WhatsApp commands. Verify behavior with `npm run test:ai` (offline tests).
+
+Official Kimi API details: https://api.moonshot.ai/v1, with examples at
+https://platform.kimi.ai.
 
 ## Instagram video playback on Android and iOS
 
