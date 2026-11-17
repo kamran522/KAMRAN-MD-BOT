@@ -15,6 +15,6 @@ jobs:
       - name: Check JavaScript syntax
         run: npm run check
       - name: Test local AI without network access
-        run: node --test tests/ai-provider.test.js
+        run: npm run test:ai
       - name: Test downloader services without network access
         run: node --test tests/media-downloads.test.js

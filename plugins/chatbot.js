@@ -307,15 +307,15 @@ Module(
   },
   async (message, match) => {
     let prompt = match[1]?.trim() || "";
-    const deep = /^deep(?:\\s|$)/i.test(prompt);
-    if (deep) prompt = prompt.replace(/^deep(?:\\s+|$)/i, "").trim();
+    const deep = /^deep(?:\s|$)/i.test(prompt);
+    if (deep) prompt = prompt.replace(/^deep(?:\s+|$)/i, "").trim();
     if (message.reply_message?.text && !prompt) {
       prompt = message.reply_message.text.trim();
     }
     if (!prompt) {
       return message.sendReply(
-        "Provide a question or reply to a text message.\\n" +
-        "Examples: .ai explain JavaScript promises\\n.ai deep design a database schema",
+        "Provide a question or reply to a text message.\n" +
+        "Examples: .ai explain JavaScript promises\n.ai deep design a database schema",
       );
     }
     if (message.reply_message?.image) {
