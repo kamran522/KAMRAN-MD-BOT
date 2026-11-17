@@ -149,6 +149,16 @@ async function generate({ prompt, history = [], systemPrompt, images = [] }) {
   } catch (error) {
     if (error.message === "The AI model returned an empty response.") throw error;
     const status = error.response?.status;
+    if (settings.provider === "bedrock" && status === 401) {
+      throw new Error("Amazon Bedrock HTTP 401: API key authentication failed. " +
+        "Check that you supplied a current Bedrock API key, not an AWS access key, " +
+        "and that BEDROCK_REGION matches the key's AWS Region.");
+    }
+    if (settings.provider === "bedrock" && status === 403) {
+      throw new Error("Amazon Bedrock HTTP 403: access denied. Check that the key " +
+        "is active, the IAM identity allows bedrock:CallWithBearerToken and " +
+        "bedrock:InvokeModel, and your AWS account can use this model in this Region.");
+    }
     if (status === 401 || status === 403) {
       throw new Error("AI authentication failed. Check the configured API key and access.");
     }

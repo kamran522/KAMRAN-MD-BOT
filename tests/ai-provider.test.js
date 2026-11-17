@@ -218,8 +218,39 @@ test("Bedrock errors are sanitized before reaching the user", async () => {
     throw { response: { status: 403, data: { message: "sensitive-token" } } };
   };
   await assert.rejects(() => ai.generate({ prompt: "Hi" }), (err) => {
-    assert.match(err.message, /authentication failed/i);
+    assert.match(err.message, /HTTP 403: access denied/i);
+    assert.match(err.message, /bedrock:CallWithBearerToken/);
     assert.ok(!err.message.includes("sensitive-token"));
+    return true;
+  });
+});
+
+
+test("Bedrock HTTP 401 identifies API key failure without disclosing error bodies", async () => {
+  reset();
+  process.env.AI_PROVIDER = "bedrock";
+  process.env.BEDROCK_API_KEY = "test-hidden-secret";
+  respond = async () => {
+    throw { response: { status: 401, data: { message: "test-hidden-secret" } } };
+  };
+  await assert.rejects(() => ai.generate({ prompt: "Hi" }), (error) => {
+    assert.match(error.message, /Amazon Bedrock HTTP 401/);
+    assert.match(error.message, /API key authentication failed/);
+    assert.ok(!error.message.includes("test-hidden-secret"));
+    return true;
+  });
+});
+
+test("Groq HTTP 401 retains existing error behavior", async () => {
+  reset();
+  process.env.AI_PROVIDER = "groq";
+  process.env.GROQ_API_KEY = "test-hidden-secret";
+  respond = async () => {
+    throw { response: { status: 401, data: { message: "test-hidden-secret" } } };
+  };
+  await assert.rejects(() => ai.generate({ prompt: "Hi" }), (error) => {
+    assert.match(error.message, /AI authentication failed/);
+    assert.ok(!error.message.includes("test-hidden-secret"));
     return true;
   });
 });

@@ -123,6 +123,30 @@ Both `.ai` and `.chatbot` use the [Amazon Bedrock Runtime Converse API](https://
 
 Never send API keys through WhatsApp commands such as `.setvar` or `.setenv` or commit them to GitHub. The bot hides Bedrock credentials from variable-output commands.
 
+### Troubleshooting Amazon Bedrock HTTP 401 or 403
+
+A successful `.chatbot on` means the WhatsApp handler is enabled; it does **not** verify AWS model access. A successful `.chatbot status` only reports whether an API key is configured, not whether AWS accepts it.
+
+- **HTTP 401:** Check that `BEDROCK_API_KEY` is a genuine Amazon Bedrock API key, has not expired, and matches the AWS Region. Short-term keys expire within 12 hours (or sooner when their console session ends).
+- **HTTP 403:** Check the IAM identity linked to the API key and any AWS Organizations policies. The identity needs permission to invoke the model (`bedrock:InvokeModel`) and must not be denied `bedrock:CallWithBearerToken`. Check account/model activation or billing restrictions as applicable.
+- **Wrong Region:** Set `BEDROCK_REGION` to the Region where you generated your key (especially for short-term keys). Ensure `BEDROCK_MODEL` is available in that Region.
+- **Wrong secret loaded:** `BEDROCK_API_KEY` takes precedence over `AWS_BEARER_TOKEN_BEDROCK`. If both are set, an old `BEDROCK_API_KEY` can override a fresh `AWS_BEARER_TOKEN_BEDROCK`. Restart the bot after replacing environment secrets.
+
+You can test a non-streaming inference request directly from the bot's host without printing the key:
+
+~~~bash
+curl -sS -o /tmp/bedrock-check.json -w 'HTTP %{http_code}\n' \
+  -X POST "https://bedrock-runtime.us-east-1.amazonaws.com/model/amazon.nova-lite-v1:0/converse" \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer $BEDROCK_API_KEY" \
+  -d '{"messages":[{"role":"user","content":[{"text":"Say hello"}]}]}'
+cat /tmp/bedrock-check.json
+~~~
+
+Use the same Region/model as your deployment (adjust the URL accordingly). Run this only where the `BEDROCK_API_KEY` environment variable is loaded. Never post API keys or complete HTTP request headers in a support chat. The AWS error body may help diagnose permissions; redact account identifiers before sharing logs.
+
+AWS references: [API keys](https://docs.aws.amazon.com/bedrock/latest/userguide/api-keys.html), [Use an API key](https://docs.aws.amazon.com/bedrock/latest/userguide/api-keys-use.html), [Converse permissions](https://docs.aws.amazon.com/bedrock/latest/APIReference/API_runtime_Converse.html).
+
 ### GroqCloud (hosted, API key required)
 
 Create a **new** key in https://console.groq.com/keys and add these variables to your deployment environment (or the ignored local `config.env` file):
