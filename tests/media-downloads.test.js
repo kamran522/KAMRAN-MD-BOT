@@ -11,6 +11,8 @@ const ytPath = path.join(binDir, "fake-yt-dlp");
 const galleryPath = path.join(binDir, "fake-gallery-dl");
 const logPath = path.join(binDir, "yt-args.json");
 const galleryLogPath = path.join(binDir, "gallery-args.json");
+const ffmpegLogPath = path.join(binDir, "ffmpeg-args.json");
+const ffmpegPath = path.join(binDir, "fake-ffmpeg");
 
 fs.writeFileSync(ytPath, `#!/usr/bin/env node
 const fs = require("fs");
@@ -60,6 +62,13 @@ fs.writeFileSync(path.join(nested, "02.mp4"), "fake-video");
 `);
 fs.chmodSync(ytPath, 0o755);
 fs.chmodSync(galleryPath, 0o755);
+fs.writeFileSync(ffmpegPath, "#!/usr/bin/env node\n" +
+  "const fs = require('fs');\n" +
+  "const args = process.argv.slice(2);\n" +
+  "fs.writeFileSync(process.env.FAKE_FFMPEG_ARGS, JSON.stringify(args));\n" +
+  "if (process.env.FAKE_FFMPEG_FAIL === '1') process.exit(1);\n" +
+  "fs.writeFileSync(args[args.length - 1], Buffer.alloc(256, 42));\n");
+fs.chmodSync(ffmpegPath, 0o755);
 
 const previous = {
   YTDLP_PATH: process.env.YTDLP_PATH,
@@ -72,9 +81,14 @@ const previous = {
   YTDLP_YOUTUBE_CLIENT: process.env.YTDLP_YOUTUBE_CLIENT,
   FAKE_GALLERY_FAIL: process.env.FAKE_GALLERY_FAIL,
   FAKE_YT_INFO_FAIL: process.env.FAKE_YT_INFO_FAIL,
+  FFMPEG_PATH: process.env.FFMPEG_PATH,
+  FAKE_FFMPEG_ARGS: process.env.FAKE_FFMPEG_ARGS,
+  FAKE_FFMPEG_FAIL: process.env.FAKE_FFMPEG_FAIL,
 };
 process.env.YTDLP_PATH = ytPath;
 process.env.GALLERYDL_PATH = galleryPath;
+process.env.FFMPEG_PATH = ffmpegPath;
+process.env.FAKE_FFMPEG_ARGS = ffmpegLogPath;
 process.env.FAKE_YT_ARGS = logPath;
 process.env.FAKE_GALLERY_ARGS = galleryLogPath;
 delete process.env.YTDLP_COOKIES;
@@ -196,7 +210,7 @@ test("Instagram gallery returns photos and video in nested folders", async () =>
   const files = await services.instagram("https://www.instagram.com/p/ABC123xyz/");
   assert.equal(files.length, 2);
   assert.match(files[0], /01\.jpg$/);
-  assert.match(files[1], /02\.mp4$/);
+  assert.match(files[1], /instagram-ready[\\/].*\.mp4$/);
   assert.ok(files.every((file) => fs.existsSync(file)));
   for (const file of files) fs.rmSync(file);
 });
@@ -211,6 +225,36 @@ test("Instagram Reels use yt-dlp fallback if gallery-dl fails", async () => {
     for (const file of files) fs.rmSync(file);
   } finally {
     delete process.env.FAKE_GALLERY_FAIL;
+  }
+});
+
+test("Instagram normalizes videos for iOS/Android WhatsApp playback", async () => {
+  const files = await services.instagram("https://www.instagram.com/p/ABC123xyz/");
+  assert.equal(files.length, 2);
+  assert.match(files[0], /01\.jpg$/);
+  assert.match(files[1], /instagram-ready[\/\\].*\.mp4$/);
+  const args = JSON.parse(fs.readFileSync(ffmpegLogPath, "utf8"));
+  const val = (name) => args[args.indexOf(name) + 1];
+  assert.equal(val("-c:v"), "libx264");
+  assert.equal(val("-c:a"), "aac");
+  assert.equal(val("-profile:v"), "baseline");
+  assert.equal(val("-movflags"), "+faststart");
+  assert.equal(val("-f"), "mp4");
+  assert.match(val("-vf"), /format=yuv420p/);
+  assert.match(val("-vf"), /force_original_aspect_ratio=decrease/);
+  assert.ok(fs.statSync(files[1]).size > 0);
+  for (const file of files) fs.rmSync(file);
+});
+
+test("Instagram does not send an unplayable source when FFmpeg fails", async () => {
+  process.env.FAKE_FFMPEG_FAIL = "1";
+  try {
+    await assert.rejects(
+      services.instagram("https://www.instagram.com/reel/ABC123xyz/"),
+      /Instagram media could not be downloaded/,
+    );
+  } finally {
+    delete process.env.FAKE_FFMPEG_FAIL;
   }
 });
 

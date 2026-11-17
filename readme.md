@@ -198,6 +198,17 @@ Use `.ai your question` for a single question, `.chatbot on` to auto-reply in th
 
 Run `node --test tests/ai-provider.test.js` to test provider routing without network access.
 
+## Instagram video playback on Android and iOS
+
+Instagram Reels, stories, posts, and AutoDL now convert videos with local
+FFmpeg before sending. Converted MP4 uses H.264 Baseline/yuv420p, optional
+AAC audio, a fast-start index, at most 1280 pixels per side and 30 fps.
+This applies to gallery-dl and yt-dlp fallback; photos are unchanged.
+
+Install FFmpeg with libx264 and AAC support (included in the Docker image).
+Set `FFMPEG_PATH` if FFmpeg is not on PATH. Transcoding takes extra CPU time.
+Conversion failures stop the bot from sending unplayable source videos.
+Previously sent WhatsApp videos cannot be fixed; resend after deployment.
 ## Media and optional services
 
 - Media downloads use the locally installed yt-dlp executable.
