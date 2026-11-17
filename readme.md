@@ -102,9 +102,26 @@ The following environment variables are supported:
 | `ACR_HOST`, `ACR_ACCESS_KEY`, `ACR_ACCESS_SECRET` | Credentials for your own ACRCloud music-identification project. |
 | `WA_VERSION` | Optional WhatsApp Web version override. |
 
-## AI chatbot: GroqCloud or a local model
+## AI chatbot: Amazon Bedrock, GroqCloud, or a local model
 
-Both `.ai` and `.chatbot` use one configurable AI provider and keep the existing chat-history behavior. **Groq** (with a q) is a hosted inference API, not xAI **Grok**. A `gsk_...` token is for GroqCloud and cannot access xAI Grok. GroqCloud requests are not locally hosted.
+Both `.ai` and `.chatbot` use one configurable AI provider and keep the existing chat-history behavior. Bedrock and GroqCloud are hosted inference services; only Ollama and self-hosted OpenAI-compatible services run locally. **Groq** (with a q) is a hosted inference API, not xAI **Grok**. A `gsk_...` token is for GroqCloud and cannot access xAI Grok. GroqCloud requests are not locally hosted.
+
+### Amazon Bedrock (hosted, API key required)
+
+Generate an Amazon Bedrock API key in the [AWS Bedrock console](https://console.aws.amazon.com/bedrock) for your AWS Region, then set the key in your hosting environment (or manually in the ignored local `config.env` file):
+
+~~~env
+AI_PROVIDER=bedrock
+BEDROCK_API_KEY=REPLACE_WITH_YOUR_BEDROCK_KEY
+BEDROCK_REGION=us-east-1
+BEDROCK_MODEL=amazon.nova-lite-v1:0
+~~~
+
+Both `.ai` and `.chatbot` use the [Amazon Bedrock Runtime Converse API](https://docs.aws.amazon.com/bedrock/latest/userguide/conversation-inference.html), using bearer-token authorization, system instructions, and chat history. Choose a model ID or inference profile supporting Converse in your configured AWS Region. The default is Amazon Nova Lite; inference incurs AWS charges. Model access and IAM permissions must be configured in AWS.
+
+`AWS_BEARER_TOKEN_BEDROCK` can also supply the token, and `AWS_REGION` can supply the Region. The explicit `BEDROCK_*` variables take priority. This integration implements **Bedrock API key/Bearer authentication only** (not AWS access key/secret SigV4 authentication). AWS recommends short-term credentials for production, which require renewal; the bot reads a current key from its environment and does not refresh expired keys.
+
+Never send API keys through WhatsApp commands such as `.setvar` or `.setenv` or commit them to GitHub. The bot hides Bedrock credentials from variable-output commands.
 
 ### GroqCloud (hosted, API key required)
 
@@ -135,7 +152,7 @@ LOCAL_AI_URL=http://127.0.0.1:11434
 LOCAL_AI_MODEL=llama3.2:3b
 ~~~
 
-If `AI_PROVIDER` is omitted, the bot selects Groq when `GROQ_API_KEY` exists; otherwise it selects Ollama. For Docker, `127.0.0.1` is inside the container. Configure `LOCAL_AI_URL` to a reachable Ollama host address or run both services on a suitable shared network.
+If `AI_PROVIDER` is omitted, the bot selects Groq if `GROQ_API_KEY` exists, otherwise Bedrock if a Bedrock key exists, or Ollama if neither key exists. If both keys exist, explicitly set `AI_PROVIDER=bedrock` to use Bedrock. For Docker, `127.0.0.1` is inside the container. Configure `LOCAL_AI_URL` to a reachable Ollama host address or run both services on a suitable shared network.
 
 ### Another self-hosted OpenAI-compatible endpoint
 
@@ -153,7 +170,7 @@ LOCAL_AI_MODEL=YOUR_SERVED_MODEL_ID
 
 ### WhatsApp commands
 
-Use `.ai your question` for a single question, `.chatbot on` to auto-reply in the current chat, `.chatbot off` to disable, `.chatbot status` for provider/model info, and `.chatbot clear` to reset the chat context. Global `.chatbot on groups` and `.chatbot on dms` can generate a high number of cloud API requests. Restart the bot after changing provider environment variables.
+Use `.ai your question` for a single question, `.chatbot on` to auto-reply in the current chat, `.chatbot off` to disable, `.chatbot status` for provider/model info, and `.chatbot clear` to reset the chat context. Global `.chatbot on groups` and `.chatbot on dms` can generate a high number of cloud API requests and charges. Restart the bot after changing provider environment variables.
 
 Run `node --test tests/ai-provider.test.js` to test provider routing without network access.
 
