@@ -8,9 +8,14 @@ const envKeys = [
   "KIMI_API_KEY", "MOONSHOT_API_KEY", "KIMI_MODEL", "KIMI_TIMEOUT",
   "AI_PROVIDER", "GROQ_API_KEY", "BEDROCK_API_KEY", "AWS_BEARER_TOKEN_BEDROCK",
   "BEDROCK_MODEL", "LOCAL_AI_URL", "LOCAL_AI_MODEL", "LOCAL_AI_API_KEY",
+  "KIMI_MIN_INTERVAL_MS", "KIMI_OVERLOAD_RETRIES", "KIMI_RETRY_BASE_MS",
+  "KIMI_RATE_LIMIT_COOLDOWN_MS", "KIMI_MAX_COMPLETION_TOKENS",
 ];
 const originalEnv = Object.fromEntries(envKeys.map((key) => [key, process.env[key]]));
 const originalLoad = Module._load;
+process.env.KIMI_MIN_INTERVAL_MS = "0";
+process.env.KIMI_RATE_LIMIT_COOLDOWN_MS = "0";
+process.env.KIMI_RETRY_BASE_MS = "1";
 let requests = [];
 let respond = async () => ({
   data: { choices: [{ message: { role: "assistant", content: "Kimi says hello" } }] },
@@ -43,6 +48,9 @@ function reset() {
   respond = async () => ({
     data: { choices: [{ message: { role: "assistant", content: "Kimi says hello" } }] },
   });
+  process.env.KIMI_MIN_INTERVAL_MS = "0";
+  process.env.KIMI_RATE_LIMIT_COOLDOWN_MS = "0";
+  process.env.KIMI_RETRY_BASE_MS = "1";
 }
 
 test("Kimi is the only provider and uses the Moonshot chat completions endpoint", async () => {
@@ -155,3 +163,66 @@ test("Kimi rate limits, billing errors, and timeouts are reported", async () => 
   respond = async () => { throw { code: "ECONNABORTED" }; };
   await assert.rejects(() => ai.generate({ prompt: "Hello" }), /timed out/);
 });
+
+test("Kimi default output budget is 1024 tokens to reduce TPM pressure", async () => {
+  reset();
+  process.env.KIMI_API_KEY = "test-key";
+  await ai.generate({ prompt: "Hello" });
+  assert.equal(requests[0].payload.max_completion_tokens, 1024);
+  process.env.KIMI_MAX_COMPLETION_TOKENS = "512";
+  await ai.generate({ prompt: "Hello" });
+  assert.equal(requests[1].payload.max_completion_tokens, 512);
+});
+
+test("Kimi overload retries once with backoff and returns a successful answer", async () => {
+  reset();
+  process.env.KIMI_API_KEY = "test-key";
+  process.env.KIMI_OVERLOAD_RETRIES = "1";
+  let calls = 0;
+  respond = async () => {
+    if (++calls === 1) {
+      throw { response: { status: 429, data: { error: { type: "engine_overloaded_error" } } } };
+    }
+    return { data: { choices: [{ message: { content: "Recovered" } }] } };
+  };
+  assert.equal(await ai.generate({ prompt: "Hello" }), "Recovered");
+  assert.equal(calls, 2);
+});
+
+test("Kimi account rate limit is not blindly retried", async () => {
+  reset();
+  process.env.KIMI_API_KEY = "test-key";
+  process.env.KIMI_OVERLOAD_RETRIES = "2";
+  respond = async () => {
+    throw { response: { status: 429, data: {
+      error: { type: "rate_limit_reached_error", message: "private org and key" },
+    } } };
+  };
+  await assert.rejects(() => ai.generate({ prompt: "Hello" }), (e) => {
+    assert.match(e.message, /account rate limit/);
+    assert.ok(!e.message.includes("private org"));
+    return true;
+  });
+  assert.equal(requests.length, 1);
+});
+
+test("Kimi quota exhaustion reports billing instead of rate limit", async () => {
+  reset();
+  process.env.KIMI_API_KEY = "test-key";
+  respond = async () => {
+    throw { response: { status: 429, data: {
+      error: { type: "exceeded_current_quota_error" },
+    } } };
+  };
+  await assert.rejects(() => ai.generate({ prompt: "Hello" }), /quota or balance exhausted/);
+  assert.equal(requests.length, 1);
+});
+
+test("Unknown Kimi 429 does not create a retry storm", async () => {
+  reset();
+  process.env.KIMI_API_KEY = "test-key";
+  respond = async () => { throw { response: { status: 429, data: {} } }; };
+  await assert.rejects(() => ai.generate({ prompt: "Hello" }), /HTTP 429/);
+  assert.equal(requests.length, 1);
+});
+

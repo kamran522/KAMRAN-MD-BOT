@@ -140,6 +140,42 @@ as `.setvar` or `.setenv`. Kimi key values are hidden by `.getvar` and
 `.allvar`. Setting or changing the API key on your host requires restarting
 the bot.
 
+### Kimi 429 rate-limit troubleshooting
+
+Kimi HTTP 429 has multiple causes. The bot now distinguishes:
+- `engine_overloaded_error`: provider overload. One bounded retry with
+  exponential backoff honors `Retry-After` when provided.
+- `rate_limit_reached_error`: organization RPM/TPM/TPD or concurrency limit.
+  The bot does **not** blindly retry account limits.
+- `exceeded_current_quota_error`: quota/balance/voucher problem. Check
+  billing in the Kimi Open Platform console.
+- Unknown HTTP 429: safely pauses attempts rather than creating a retry storm.
+
+The bot serializes calls within the process, spaces them by 2 seconds, and
+temporarily pauses new calls after a 429. Automatic chatbot replies in each
+chat are throttled to one request per 10 seconds; messages arriving while a
+reply is in progress are ignored to avoid unwanted backlog. These measures
+reduce traffic; they **cannot** override Moonshot account quotas.
+
+Optional environment settings:
+- `KIMI_MAX_COMPLETION_TOKENS=1024` (default; previous default was 2048)
+- `KIMI_MIN_INTERVAL_MS=2000` (minimum spacing across requests)
+- `KIMI_CHATBOT_COOLDOWN_MS=10000` (per-chat auto-reply cooldown)
+- `KIMI_OVERLOAD_RETRIES=1` (0-2 retries for overload only)
+- `KIMI_RATE_LIMIT_COOLDOWN_MS=60000` (local cooldown after API 429)
+- `KIMI_MAX_PENDING=10` (maximum queued requests)
+
+Rate limits are account-level and cover concurrency, requests per minute,
+tokens per minute, and tokens per day. Kimi counts requested
+`max_completion_tokens` toward token-rate reservations. Review usage, API
+balance and tier at https://platform.kimi.ai. API access is distinct from
+Kimi Membership and Kimi Code benefits. Avoid enabling global
+`.chatbot on groups` unless your quota supports that traffic.
+
+Official documentation:
+https://www.kimi.ai/help/kimi-api/api-troubleshooting and
+https://www.kimi.ai/help/kimi-api/api-rate-limits.
+
 ### WhatsApp commands
 
 - `.ai your question` sends a single request to Kimi.
