@@ -303,13 +303,14 @@ Module({ on: "text", fromMe }, async (message) => {
             /\.(jpg|jpeg|png|webp|heic)(\?|$)/i.test(allMediaUrls[0])
               ? "image"
               : "video",
-            { quoted: quotedMessage }
+            { quoted: quotedMessage,
+              ...(/\.mp4$/i.test(allMediaUrls[0]) ? { mimetype: "video/mp4" } : {}) }
           );
         } else {
           const albumObject = allMediaUrls.map((mediaUrl) => {
             return /\.(jpg|jpeg|png|webp|heic)(\?|$)/i.test(mediaUrl)
               ? { image: mediaUrl }
-              : { video: mediaUrl };
+              : { video: mediaUrl, mimetype: "video/mp4" };
           });
           await message.client.albumMessage(
             message.jid,

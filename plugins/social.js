@@ -102,6 +102,7 @@ Module(
             : "video",
           {
             quoted: quotedMessage,
+            ...(/\.mp4$/i.test(allMediaUrls[0]) ? { mimetype: "video/mp4" } : {}),
           }
         );
       }
@@ -110,7 +111,7 @@ Module(
       const albumObject = allMediaUrls.map((mediaUrl) => {
         return /\.(jpg|jpeg|png|webp|heic)(\?|$)/i.test(mediaUrl)
           ? { image: mediaUrl }
-          : { video: mediaUrl };
+          : { video: mediaUrl, mimetype: "video/mp4" };
       });
       albumObject[0].caption = `_Download complete! (${allMediaUrls.length} items)_`;
       return await message.client.albumMessage(
@@ -224,7 +225,7 @@ Module(
     } catch (err) {
       console.error("Instagram story download error:", err?.message || err);
       return await message.sendReply(
-        "_Story download failed. Instagram stories require valid YTDLP_COOKIES and an account with access._"
+        "_Story download or video conversion failed. Check logs, cookies and FFmpeg installation._"
       );
     }
     if (!storyData || !storyData.length)
@@ -232,7 +233,8 @@ Module(
     if (storyData.length === 1)
       return await message.sendReply(
         { url: storyData[0] },
-        /\.(jpg|jpeg|png|webp)(\?|$)/i.test(storyData[0]) ? "image" : "video"
+        /\.(jpg|jpeg|png|webp)(\?|$)/i.test(storyData[0]) ? "image" : "video",
+        /\.(jpg|jpeg|png|webp)(\?|$)/i.test(storyData[0]) ? {} : { mimetype: "video/mp4" }
       );
     userIdentifier = userIdentifier
       .replace("https://instagram.com/stories/", "")
@@ -240,7 +242,7 @@ Module(
     let albumObject = storyData.map((storyMediaUrl) => {
       return /\.(jpg|jpeg|png|webp)(\?|$)/i.test(storyMediaUrl)
         ? { image: storyMediaUrl }
-        : { video: storyMediaUrl };
+        : { video: storyMediaUrl, mimetype: "video/mp4" };
     });
     albumObject[0].caption = `_Stories from ${userIdentifier}_`;
     return await message.client.albumMessage(

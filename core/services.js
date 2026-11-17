@@ -456,15 +456,62 @@ async function downloadInstagramGallery(url) {
   }
 }
 
+/**
+ * Normalize videos before WhatsApp upload. An MP4 file extension does not
+ * guarantee that mobile clients can decode its video/audio codec.
+ */
+async function normalizeInstagramMedia(files) {
+  const ready = [];
+  try {
+    for (const input of files) {
+      if (/\.(?:jpe?g|png|webp|heic)$/i.test(input)) {
+        ready.push(input);
+        continue;
+      }
+      if (!/\.(?:mp4|m4v|mov|webm)$/i.test(input)) {
+        throw new Error("Unsupported Instagram media format.");
+      }
+      const output = path.join(tmpDir("instagram-ready"), uid() + ".mp4");
+      try {
+        await run(process.env.FFMPEG_PATH || "ffmpeg", [
+          "-hide_banner", "-loglevel", "error", "-nostdin", "-y",
+          "-i", input,
+          "-map", "0:v:0", "-map", "0:a:0?",
+          "-vf", "fps=30,scale=1280:1280:force_original_aspect_ratio=decrease:force_divisible_by=2,format=yuv420p",
+          "-c:v", "libx264", "-profile:v", "baseline", "-level:v", "4.0",
+          "-preset", "veryfast", "-crf", "24", "-maxrate", "2500k",
+          "-bufsize", "5000k",
+          "-c:a", "aac", "-b:a", "128k", "-ac", "2", "-ar", "44100",
+          "-movflags", "+faststart", "-f", "mp4", output,
+        ], { timeout: 5 * 60 * 1000 });
+        if ((await fs.promises.stat(output)).size === 0) {
+          throw new Error("FFmpeg produced an empty MP4.");
+        }
+        ready.push(output);
+      } catch (error) {
+        await fs.promises.rm(output, { force: true }).catch(() => {});
+        throw new Error("Instagram video conversion failed: " + error.message);
+      }
+    }
+    return ready;
+  } catch (error) {
+    await Promise.all(ready.filter((file) => /instagram-ready[\/\\]/.test(file))
+      .map((file) => fs.promises.rm(file, { force: true }).catch(() => {})));
+    throw error;
+  }
+}
+
 /** Instagram posts/reels/stories -> local photo or video files. */
 async function instagram(input) {
   const url = validateSocialUrl(input, "instagram");
   try {
-    return await downloadInstagramGallery(url);
+    const files = await downloadInstagramGallery(url);
+    return await normalizeInstagramMedia(files);
   } catch (galleryError) {
     // Keep yt-dlp as a fallback for Reels and video posts.
     try {
-      return await downloadSocialMedia(url, "instagram");
+      const files = await downloadSocialMedia(url, "instagram");
+      return await normalizeInstagramMedia(files);
     } catch (videoError) {
       const hint = cookiesForUrl(url)
         ? "Check that your Instagram cookies are still valid and accessible by the bot."
