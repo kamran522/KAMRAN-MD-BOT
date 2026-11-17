@@ -142,7 +142,7 @@ async function requestKimi(settings, messages) {
         throw new Error("Kimi returned HTTP 429. Check your API quota, balance, and rate limits.");
       }
       if (status === 401 || status === 403) {
-        throw new Error("Kimi API authentication or permission failed. Check your API key and access.");
+        throw new Error("Kimi authentication failed or access was denied. Check your Moonshot API key, permissions and balance.");
       }
       if (status === 402) {
         throw new Error("Kimi API balance or billing is insufficient.");
