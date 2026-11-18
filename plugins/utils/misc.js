@@ -1,1 +1,262 @@
-const _0x11b4c5=_0x2de3;(function(_0x58a4fb,_0x69461e){const _0x42b9bf=_0x2de3,_0x504fbd=_0x58a4fb();while(!![]){try{const _0x18a79a=-parseInt(_0x42b9bf(0x1e5))/0x1*(parseInt(_0x42b9bf(0x221))/0x2)+-parseInt(_0x42b9bf(0x1da))/0x3*(parseInt(_0x42b9bf(0x218))/0x4)+-parseInt(_0x42b9bf(0x1ee))/0x5+-parseInt(_0x42b9bf(0x1ef))/0x6*(parseInt(_0x42b9bf(0x201))/0x7)+-parseInt(_0x42b9bf(0x1f5))/0x8*(-parseInt(_0x42b9bf(0x1f6))/0x9)+parseInt(_0x42b9bf(0x1e4))/0xa*(-parseInt(_0x42b9bf(0x212))/0xb)+parseInt(_0x42b9bf(0x20c))/0xc;if(_0x18a79a===_0x69461e)break;else _0x504fbd['push'](_0x504fbd['shift']());}catch(_0x41fe71){_0x504fbd['push'](_0x504fbd['shift']());}}}(_0x234f,0x445dc));const fs=require('fs'),config=require('../../config'),{getTempPath,getTempSubdir}=require(_0x11b4c5(0x1ff)),googleTTS=require(_0x11b4c5(0x1d5)),priv=require(_0x11b4c5(0x217)),apiCall=priv['apiCall'];function _0x2de3(_0x57573b,_0x532da0){const _0x234f96=_0x234f();return _0x2de3=function(_0x2de35f,_0x58a926){_0x2de35f=_0x2de35f-0x1d3;let _0x1d431d=_0x234f96[_0x2de35f];if(_0x2de3['emrEKv']===undefined){var _0x5e49fd=function(_0x2624ac){const _0x192394='abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789+/=';let _0x815309='',_0x5616a6='';for(let _0x4d58b7=0x0,_0x15f38e,_0x3e74bd,_0x2d1afe=0x0;_0x3e74bd=_0x2624ac['charAt'](_0x2d1afe++);~_0x3e74bd&&(_0x15f38e=_0x4d58b7%0x4?_0x15f38e*0x40+_0x3e74bd:_0x3e74bd,_0x4d58b7++%0x4)?_0x815309+=String['fromCharCode'](0xff&_0x15f38e>>(-0x2*_0x4d58b7&0x6)):0x0){_0x3e74bd=_0x192394['indexOf'](_0x3e74bd);}for(let _0x44b09a=0x0,_0x5a6d6f=_0x815309['length'];_0x44b09a<_0x5a6d6f;_0x44b09a++){_0x5616a6+='%'+('00'+_0x815309['charCodeAt'](_0x44b09a)['toString'](0x10))['slice'](-0x2);}return decodeURIComponent(_0x5616a6);};_0x2de3['rhcSUm']=_0x5e49fd,_0x57573b=arguments,_0x2de3['emrEKv']=!![];}const _0x3628f1=_0x234f96[0x0],_0x16547f=_0x2de35f+_0x3628f1,_0x59238e=_0x57573b[_0x16547f];return!_0x59238e?(_0x1d431d=_0x2de3['rhcSUm'](_0x1d431d),_0x57573b[_0x16547f]=_0x1d431d):_0x1d431d=_0x59238e,_0x1d431d;},_0x2de3(_0x57573b,_0x532da0);}function parseUptime(_0x2624ac){const _0xd576aa=_0x11b4c5;function _0x192394(_0x15f38e){return(_0x15f38e<0xa?'0':'')+_0x15f38e;}const _0x815309=Math[_0xd576aa(0x1fd)](_0x2624ac/(0x3c*0x3c)),_0x5616a6=Math[_0xd576aa(0x1fd)](_0x2624ac%(0x3c*0x3c)/0x3c),_0x4d58b7=Math[_0xd576aa(0x1fd)](_0x2624ac%0x3c);return _0x192394(_0x815309)+_0xd576aa(0x1e3)+_0x192394(_0x5616a6)+_0xd576aa(0x219)+_0x192394(_0x4d58b7)+_0xd576aa(0x1d7);}function isNumeric(_0x3e74bd){return!isNaN(parseFloat(_0x3e74bd))&&isFinite(_0x3e74bd);}async function isAdmin(_0x2d1afe,_0x44b09a=null){const _0x4dd97b=_0x11b4c5;!_0x44b09a&&(_0x44b09a=_0x2d1afe[_0x4dd97b(0x224)][_0x4dd97b(0x228)]?.['lid']?.[_0x4dd97b(0x206)](':')[0x0]+'@lid');const _0x5a6d6f=await _0x2d1afe['client'][_0x4dd97b(0x20d)](_0x2d1afe['jid']),_0x4e75c5=_0x5a6d6f[_0x4dd97b(0x1f7)][_0x4dd97b(0x1f4)](_0x501485=>_0x501485[_0x4dd97b(0x214)]!==null)['map'](_0x40ad23=>_0x40ad23['id']),_0x55cf6c=_0x44b09a['split']('@')[0x0];return _0x4e75c5[_0x4dd97b(0x1f4)](_0x3a24d9=>_0x3a24d9[_0x4dd97b(0x202)](_0x55cf6c))[_0x4dd97b(0x1e2)]>0x0;}function mentionjid(_0x226c89){const _0x1d26f8=_0x11b4c5;return'@'+_0x226c89['split']('@')[0x0][_0x1d26f8(0x206)](':')[0x0]+'\x20';}async function getJson(_0x5d19ed){const _0x5321f7=_0x11b4c5,_0x1cf527=await fetch(_0x5d19ed,{'signal':AbortSignal[_0x5321f7(0x1e0)](0x7530)});if(!_0x1cf527['ok'])throw new Error(_0x5321f7(0x20b)+_0x1cf527[_0x5321f7(0x227)]);return await _0x1cf527[_0x5321f7(0x1f3)]();}function bytesToSize(_0x272e3f){const _0x528ce7=_0x11b4c5,_0x425be4=[_0x528ce7(0x21d),'KB','MB','GB','TB'];if(_0x272e3f==0x0)return _0x528ce7(0x1de);const _0x3669d6=parseInt(Math[_0x528ce7(0x1fd)](Math['log'](_0x272e3f)/Math[_0x528ce7(0x220)](0x400)));return Math[_0x528ce7(0x1d9)](_0x272e3f/Math[_0x528ce7(0x222)](0x400,_0x3669d6),0x2)+'\x20'+_0x425be4[_0x3669d6];}function isFake(_0x254a0e,_0x2a9b4c){const _0x3170bc=_0x11b4c5;return!_0x2a9b4c[_0x3170bc(0x20a)](_0x43753c=>_0x254a0e[_0x3170bc(0x1d3)](_0x43753c));}async function processOnwa(_0x22d989,_0x31208e){const _0x1b1fc4=_0x11b4c5;try{const _0x4ed21a=String[_0x1b1fc4(0x1ea)](0x200e)[_0x1b1fc4(0x210)](0xfa1),_0x29a1e2=_0x203201=>{const _0x229d3f=_0x1b1fc4;let _0x4d4873=_0x203201['replace'](/\+/g,'');const _0x23d04b=_0x4d4873[_0x229d3f(0x1e2)],_0x35ed9e=_0x4d4873[_0x229d3f(0x206)]('')[_0x229d3f(0x1f4)](_0x11484b=>_0x11484b==='x')[_0x229d3f(0x1e2)];let _0x3b4104=0x0;if(_0x35ed9e===0x1)_0x3b4104=0xa;if(_0x35ed9e===0x2)_0x3b4104=0x64;if(_0x35ed9e===0x3)_0x3b4104=0x3e8;if(_0x35ed9e>0x3)throw new Error(_0x229d3f(0x215));const _0x5b74ba=[];for(let _0x340a86=0x0;_0x340a86<_0x3b4104;_0x340a86++){let _0x97ef81='';if((_0x4d4873[_0x229d3f(0x216)](/x/g,'')+_0x340a86)['length']===_0x23d04b-0x2)_0x97ef81=_0x4d4873['replace']('x','00'+_0x340a86);if((_0x4d4873[_0x229d3f(0x216)](/x/g,'')+_0x340a86)[_0x229d3f(0x1e2)]===_0x23d04b-0x1)_0x97ef81=_0x4d4873[_0x229d3f(0x216)]('x','0'+_0x340a86);if((_0x4d4873[_0x229d3f(0x216)](/x/g,'')+_0x340a86)[_0x229d3f(0x1e2)]===_0x23d04b)_0x97ef81=_0x4d4873[_0x229d3f(0x216)]('x',_0x340a86);_0x97ef81=_0x97ef81['replace'](/x/g,''),_0x5b74ba[_0x229d3f(0x1e1)](_0x97ef81);}return _0x5b74ba;},_0x55e58f=async(_0x262941,_0x375838)=>{const _0xe2bd74=_0x1b1fc4,_0x29b25d=_0x29a1e2(_0x375838);if(!_0x29b25d['length'])return _0xe2bd74(0x21e);const _0x5a9ebe={'datewise':{},'notonwa':[]},_0x36e6f7=(await _0x262941['client'][_0xe2bd74(0x205)](..._0x29b25d))[_0xe2bd74(0x1fa)](_0x4bb85a=>_0x4bb85a[_0xe2bd74(0x1f0)]),_0x1d6bc6=_0x29b25d[_0xe2bd74(0x1f4)](_0x34b0e3=>!_0x36e6f7[_0xe2bd74(0x20a)](_0x24df8d=>_0x24df8d[_0xe2bd74(0x1d3)](_0x34b0e3)))[_0xe2bd74(0x1fa)](_0x35e0da=>'+'+_0x35e0da);for(const _0x2ac758 of _0x36e6f7){try{const {status:_0x507857,setAt:_0x551d7b}=await _0x262941['client'][_0xe2bd74(0x1f2)](_0x2ac758);if(_0x507857){const _0x310f2a=_0x551d7b[_0xe2bd74(0x229)]('en-US',{'weekday':_0xe2bd74(0x207),'year':_0xe2bd74(0x22a),'month':_0xe2bd74(0x207),'day':_0xe2bd74(0x22a)}),_0x42306c=_0x310f2a[_0xe2bd74(0x206)](',')[0x2]?.[_0xe2bd74(0x1f8)]()||_0xe2bd74(0x211);if(!_0x5a9ebe[_0xe2bd74(0x21b)][_0x42306c])_0x5a9ebe[_0xe2bd74(0x21b)][_0x42306c]=[];_0x5a9ebe[_0xe2bd74(0x21b)][_0x42306c][_0xe2bd74(0x1e1)]({'status':_0x507857,'date':_0x310f2a,'number':'+'+_0x2ac758[_0xe2bd74(0x206)]('@')[0x0]});}}catch(_0x2fd014){console['error']('Error\x20fetching\x20status:',_0x2fd014);}}return _0x5a9ebe[_0xe2bd74(0x208)]=_0x1d6bc6,_0x5a9ebe[_0xe2bd74(0x1e6)]=_0x36e6f7['map'](_0x211f42=>'+'+_0x211f42['split']('@')[0x0]),_0x5a9ebe;},_0x1b5c54=await _0x55e58f(_0x22d989,_0x31208e),_0x38bd5b='_*❌===\x20Not\x20registered\x20on\x20WA\x20===❌:*_\x0a'+_0x4ed21a+'\x0a'+_0x1b5c54[_0x1b1fc4(0x208)][_0x1b1fc4(0x1db)]('\x0a');let _0x1b4cc7='';for(const _0x330987 in _0x1b5c54[_0x1b1fc4(0x21b)]){_0x1b4cc7+='*⭕===\x20'+_0x330987+'\x20===⭕*\x0a'+_0x1b5c54[_0x1b1fc4(0x21b)][_0x330987][_0x1b1fc4(0x1fa)](_0x56b08e=>'_Number:\x20'+_0x56b08e[_0x1b1fc4(0x226)]+_0x1b1fc4(0x1f9)+_0x56b08e[_0x1b1fc4(0x227)]+_0x1b1fc4(0x20f)+_0x56b08e[_0x1b1fc4(0x209)]+'_')['join']('\x0a\x0a')+'\x0a\x0a';}const _0x9ced6c=_0x1b1fc4(0x1fc)+_0x4ed21a+'\x0a'+_0x1b4cc7,_0x28d34c=_0x1b1fc4(0x1dc)+_0x4ed21a+'\x0a'+_0x1b5c54['onwa'][_0x1b1fc4(0x1db)]('\x0a');await _0x22d989[_0x1b1fc4(0x1dd)](_0x9ced6c),await _0x22d989['sendReply'](_0x38bd5b),await _0x22d989['sendReply'](_0x28d34c);}catch(_0x46014e){await _0x22d989['sendReply'](_0x46014e[_0x1b1fc4(0x223)]);}}const findMusic=_0x1f050f=>priv['identifyMusic'](_0x1f050f),downloadGram=_0x1ea118=>priv['instagram'](_0x1ea118),pinterestDl=_0x178897=>priv[_0x11b4c5(0x1e7)](_0x178897),pinterestSearch=(_0x39e7d2,_0x123d98)=>priv['pinterestSearch'](_0x39e7d2,_0x123d98),lyrics=_0x56072c=>priv[_0x11b4c5(0x1fb)](_0x56072c),fb=_0x195387=>priv[_0x11b4c5(0x1df)](_0x195387),igStalk=_0x1b9277=>priv[_0x11b4c5(0x204)](_0x1b9277),tiktok=_0x9a6436=>priv[_0x11b4c5(0x1d8)](_0x9a6436),spotifyTrack=_0x523984=>priv[_0x11b4c5(0x21c)](_0x523984),story=_0x516bf4=>priv[_0x11b4c5(0x20e)](_0x516bf4);function _0x234f(){const _0x3abc86=['zMv0y2HtDgf0Dxm','ANnVBG','zMLSDgvY','mJG4uxDAB0Tj','nti2nwrkwuznrq','CgfYDgLJAxbHBNrZ','DhjPBq','xWPFqMLVoIa','BwfW','BhLYAwnZ','kL89pt0Grgf0zsb3AxnLihjLC3vSDca9pt1FkGO','zMXVB3i','BM93','lI4VlI4Vy29Yzs9OzwXWzxjZ','Ahr0Chm6lY90CMfUC2XHDguUz29Vz2XLlMnVBq','mJaWoxbOu0XWvG','Aw5JBhvKzxm','D3jPDgvgAwXLu3LUyW','AwDtDgfSAW','B25xAgf0C0fWCa','C3bSAxq','Bg9UzW','BM90B253yq','zgf0zq','C29Tzq','sfruuca','mtC4ntu3otzsCe5VAxy','z3jVDxbnzxrHzgf0yq','Aw5ZDgfNCMfTu3rVCNK','xWPFrgf0ztOG','CMvWzwf0','tM8Gzgf0zq','mJjztuXXBee','lM1WmW','ywrTAw4','vg9Vig1HBNKGD2LSzgnHCMrZ','CMvWBgfJzq','lI4VlI4Vy29Yzs9Zzxj2AwnLCW','odaWmJaWqKvxDw1R','ig1PBNv0zxmG','zxHWB3j0CW','zgf0zxDPC2u','C3bVDgLMEvrYywnR','qNL0zxm','x05VihbVC3nPyMXLig51BwjLCNmHxW','Dg9tDhjPBMC','Bg9N','mJbWshPUu2e','Cg93','BwvZC2fNzq','y2XPzw50','zMzTCgvN','BNvTyMvY','C3rHDhvZ','DxnLCG','Dg9mB2nHBgveyxrLu3rYAw5N','BNvTzxjPyW','C3rHCNrZv2L0Aa','C2XPy2u','z29Vz2XLlxr0CY1HCgK','oMfD','ihnLy29Uzhm','DgLRDg9R','CM91BMq','m2PjB2L2va','AM9PBG','xYO9pt0Gvg90ywWGCMvNAxn0zxjLzcbUDw1IzxjZid09psPFcG','C2vUzfjLCgX5','mcbcExrL','zMfJzwjVB2S','DgLTzw91Da','ChvZAa','BgvUz3rO','igHVDxjZia','mty0mZm1menVDxnNyG','mZm0mJDUwhv4qxK','B253yq','CgLUDgvYzxn0rgW','y29Uy2f0pw49','Dg9mB3DLCKnHC2u','zNjVBunOyxjdB2rL','zNjVBq','CMfUzg9T','z2v0qwXSqxvKAw9vCMXZ','nJi2mtyWqNvZt2X1','ntaZnfzWAgTRva','AMLK','oNy9mdPHpte'];_0x234f=function(){return _0x3abc86;};return _0x234f();}async function getBuffer(_0x4596fe){const _0x3a1e1d=_0x11b4c5,_0xa73410=await fetch(_0x4596fe,{'signal':AbortSignal['timeout'](0x7530)});if(!_0xa73410['ok'])throw new Error(_0x3a1e1d(0x20b)+_0xa73410[_0x3a1e1d(0x227)]);return Buffer[_0x3a1e1d(0x1eb)](await _0xa73410['arrayBuffer']());}async function gtts(_0x3a2064,_0x53e8ab){const _0x49def5=_0x11b4c5,_0x444533=googleTTS[_0x49def5(0x1ed)](_0x3a2064,{'lang':_0x53e8ab[_0x49def5(0x1e9)](),'slow':![],'host':_0x49def5(0x200),'splitPunct':'\x0a'})[_0x49def5(0x1fa)](_0x244116=>_0x244116['url']);if(_0x444533['length']===0x1)return await getBuffer(_0x444533[0x0]);const _0x1879b6=getTempSubdir('tts/'+Date[_0x49def5(0x1fe)]()+'_'+Math[_0x49def5(0x1ec)]()[_0x49def5(0x21f)](0x24)[_0x49def5(0x1d4)](0x2,0x8)),_0x4ed8c0=[];for(let _0x496be1=0x0;_0x496be1<_0x444533[_0x49def5(0x1e2)];_0x496be1++){const _0x580e90=_0x1879b6+'/'+_0x496be1+_0x49def5(0x213);fs[_0x49def5(0x203)](_0x580e90,await getBuffer(_0x444533[_0x496be1])),_0x4ed8c0['push'](_0x580e90);}const _0x407354=_0x1879b6+'/result.mp3',_0x588eff=_0x4ed8c0['flatMap'](_0x2f340a=>['-i',_0x2f340a]),_0x19a02d=_0x4ed8c0[_0x49def5(0x1fa)]((_0x54404c,_0x1ed6c4)=>'['+_0x1ed6c4+_0x49def5(0x1d6))['join']('');try{return await new Promise((_0x4f783e,_0x5bfcd5)=>{const _0x411c87=_0x49def5;require('child_process')['execFile'](_0x411c87(0x225),['-y',..._0x588eff,'-filter_complex',_0x19a02d+_0x411c87(0x1e8)+_0x4ed8c0['length']+_0x411c87(0x1f1),_0x407354],{'timeout':0x1d4c0},_0x2e2d33=>_0x2e2d33?_0x5bfcd5(_0x2e2d33):_0x4f783e());}),fs['readFileSync'](_0x407354);}finally{fs['rm'](_0x1879b6,{'recursive':!![],'force':!![]},()=>{});}}module[_0x11b4c5(0x21a)]={'parseUptime':parseUptime,'isNumeric':isNumeric,'isAdmin':isAdmin,'mentionjid':mentionjid,'getJson':getJson,'bytesToSize':bytesToSize,'isFake':isFake,'processOnwa':processOnwa,'findMusic':findMusic,'downloadGram':downloadGram,'pinterestDl':pinterestDl,'pinterestSearch':pinterestSearch,'fb':fb,'igStalk':igStalk,'tiktok':tiktok,'story':story,'gtts':gtts,'getBuffer':getBuffer,'lyrics':lyrics,'apiCall':apiCall,'spotifyTrack':spotifyTrack};
+const fs = require("fs");
+const config = require("../../config");
+const { getTempPath, getTempSubdir } = require("../../core/helpers");
+const googleTTS = require("google-tts-api");
+const priv = require("../../core/services");
+const apiCall = priv.apiCall;
+
+// Parse uptime to human readable format
+function parseUptime(seconds) {
+  function pad(s) {
+    return (s < 10 ? "0" : "") + s;
+  }
+
+  const hours = Math.floor(seconds / (60 * 60));
+  const minutes = Math.floor((seconds % (60 * 60)) / 60);
+  const secs = Math.floor(seconds % 60);
+
+  return `${pad(hours)} hours ${pad(minutes)} minutes ${pad(secs)} seconds`;
+}
+
+// Check if value is numeric
+function isNumeric(n) {
+  return !isNaN(parseFloat(n)) && isFinite(n);
+}
+
+async function isAdmin(message, user = null) {
+  if (!message?.jid?.endsWith("@g.us")) return false;
+  const normalize = (jid) =>
+    String(jid || "")
+      .replace(/:\d+@/, "@")
+      .replace(/@c\.us$/, "@s.whatsapp.net");
+  // Bot and group members can have either phone-number JIDs or LIDs.
+  const candidates = user
+    ? [user]
+    : [message.client.user?.lid, message.client.user?.id];
+  const wanted = new Set(candidates.map(normalize).filter(Boolean));
+  if (!wanted.size) return false;
+  const metadata = await message.client.groupMetadata(message.jid);
+  return (metadata.participants || []).some((member) => {
+    if (!member.admin) return false;
+    return [member.id, member.phoneNumber, member.lid, member.jid]
+      .some((jid) => wanted.has(normalize(jid)));
+  });
+}
+
+// Create mention from JID
+function mentionjid(jid) {
+  return "@" + jid.split("@")[0].split(":")[0] + " ";
+}
+
+// Fetch JSON from URL
+async function getJson(url) {
+  const response = await fetch(url, { signal: AbortSignal.timeout(30000) });
+  if (!response.ok) throw new Error(`HTTP ${response.status}`);
+  return await response.json();
+}
+
+// Convert bytes to human readable size
+function bytesToSize(bytes) {
+  const sizes = ["Bytes", "KB", "MB", "GB", "TB"];
+  if (bytes == 0) return "0 Byte";
+  const i = parseInt(Math.floor(Math.log(bytes) / Math.log(1024)));
+  return Math.round(bytes / Math.pow(1024, i), 2) + " " + sizes[i];
+}
+
+// Check if participant is fake
+function isFake(participant, allowed) {
+  return !allowed.some((prefix) => participant.startsWith(prefix));
+}
+// Process WhatsApp number lookup
+async function processOnwa(message, match) {
+  try {
+    const readMore = String.fromCharCode(8206).repeat(4001);
+
+    const createPossibleNumbersArray = (match) => {
+      let ph = match.replace(/\+/g, "");
+      const total = ph.length;
+      const xn = ph.split("").filter((x) => x === "x").length;
+      let lst = 0;
+
+      if (xn === 1) lst = 10;
+      if (xn === 2) lst = 100;
+      if (xn === 3) lst = 1000;
+      if (xn > 3) throw new Error("Too many wildcards");
+
+      const possibleNumbers = [];
+      for (let i = 0; i < lst; i++) {
+        let rs = "";
+        if ((ph.replace(/x/g, "") + i).length === total - 2)
+          rs = ph.replace("x", "00" + i);
+        if ((ph.replace(/x/g, "") + i).length === total - 1)
+          rs = ph.replace("x", "0" + i);
+        if ((ph.replace(/x/g, "") + i).length === total)
+          rs = ph.replace("x", i);
+        rs = rs.replace(/x/g, "");
+        possibleNumbers.push(rs);
+      }
+      return possibleNumbers;
+    };
+
+    const getOnwaResult = async (message, match) => {
+      const possibleNumbers = createPossibleNumbersArray(match);
+      if (!possibleNumbers.length) return "_No possible numbers!_";
+
+      const result = { datewise: {}, notonwa: [] };
+      const numbersOnWa = (
+        await message.client.onWhatsApp(...possibleNumbers)
+      ).map((x) => x.jid);
+      const numbersNotOnWa = possibleNumbers
+        .filter((x) => !numbersOnWa.some((jid) => jid.startsWith(x)))
+        .map((e) => "+" + e);
+
+      for (const jid of numbersOnWa) {
+        try {
+          const { status, setAt } = await message.client.fetchStatus(jid);
+          if (status) {
+            const date = setAt.toLocaleDateString("en-US", {
+              weekday: "long",
+              year: "numeric",
+              month: "long",
+              day: "numeric",
+            });
+
+            const year = date.split(",")[2]?.trim() || "No date";
+            if (!result.datewise[year]) result.datewise[year] = [];
+
+            result.datewise[year].push({
+              status,
+              date,
+              number: "+" + jid.split("@")[0],
+            });
+          }
+        } catch (error) {
+          console.error("Error fetching status:", error);
+        }
+      }
+
+      result.notonwa = numbersNotOnWa;
+      result.onwa = numbersOnWa.map((x) => "+" + x.split("@")[0]);
+      return result;
+    };
+
+    const result = await getOnwaResult(message, match);
+    const notonmsg = `_*❌=== Not registered on WA ===❌:*_\n${readMore}\n${result.notonwa.join(
+      "\n",
+    )}`;
+
+    let msg = "";
+    for (const i in result.datewise) {
+      msg +=
+        `*⭕=== ${i} ===⭕*\n` +
+        result.datewise[i]
+          .map(
+            (e) =>
+              `_Number: ${e.number}_\n_Bio: ${e.status}_\n_Date: ${e.date}_`,
+          )
+          .join("\n\n") +
+        "\n\n";
+    }
+
+    const datewisemsg = `*_=== Date wise result ===_*\n${readMore}\n${msg}`;
+    const totalnumbersonwa = `_*=== Total registered numbers ===*_\n${readMore}\n${result.onwa.join(
+      "\n",
+    )}`;
+
+    await message.sendReply(datewisemsg);
+    await message.sendReply(notonmsg);
+    await message.sendReply(totalnumbersonwa);
+  } catch (e) {
+    await message.sendReply(e.message);
+  }
+}
+
+// thin wrappers so existing plugin imports keep working
+const findMusic = (file) => priv.identifyMusic(file);
+const downloadGram = (url) => priv.instagram(url);
+const pinterestDl = (url) => priv.pinterestDl(url);
+const pinterestSearch = (query, limit) => priv.pinterestSearch(query, limit);
+const lyrics = (query) => priv.lyrics(query);
+const fb = (url) => priv.facebook(url);
+const igStalk = (username) => priv.igStalk(username);
+const tiktok = (url) => priv.tiktok(url);
+const spotifyTrack = (url) => priv.spotifyTrack(url);
+const story = (user) => priv.instagramStory(user);
+
+async function getBuffer(url) {
+  const response = await fetch(url, { signal: AbortSignal.timeout(30000) });
+  if (!response.ok) throw new Error(`HTTP ${response.status}`);
+  return Buffer.from(await response.arrayBuffer());
+}
+
+// Google TTS
+async function gtts(text, lang) {
+  const results = googleTTS
+    .getAllAudioUrls(text, {
+      lang: lang.toLowerCase(),
+      slow: false,
+      host: "https://translate.google.com",
+      splitPunct: "\n",
+    })
+    .map((e) => e.url);
+
+  if (results.length === 1) return await getBuffer(results[0]);
+
+  // unique dir per call so parallel requests don't clobber each other
+  const jobDir = getTempSubdir(
+    `tts/${Date.now()}_${Math.random().toString(36).slice(2, 8)}`,
+  );
+  const parts = [];
+  for (let i = 0; i < results.length; i++) {
+    const part = `${jobDir}/${i}.mp3`;
+    fs.writeFileSync(part, await getBuffer(results[i]));
+    parts.push(part);
+  }
+  const out = `${jobDir}/result.mp3`;
+  const inputs = parts.flatMap((p) => ["-i", p]);
+  const labels = parts.map((_, i) => `[${i}:a]`).join("");
+
+  try {
+    await new Promise((resolve, reject) => {
+      require("child_process").execFile(
+        "ffmpeg",
+        [
+          "-y",
+          ...inputs,
+          "-filter_complex",
+          `${labels}concat=n=${parts.length}:v=0:a=1`,
+          out,
+        ],
+        { timeout: 120000 },
+        (err) => (err ? reject(err) : resolve()),
+      );
+    });
+    return fs.readFileSync(out);
+  } finally {
+    fs.rm(jobDir, { recursive: true, force: true }, () => {});
+  }
+}
+
+module.exports = {
+  parseUptime,
+  isNumeric,
+  isAdmin,
+  mentionjid,
+  getJson,
+  bytesToSize,
+  isFake,
+  processOnwa,
+  findMusic,
+  downloadGram,
+  pinterestDl,
+  pinterestSearch,
+  fb,
+  igStalk,
+  tiktok,
+  story,
+  gtts,
+  getBuffer,
+  lyrics,
+  apiCall,
+  spotifyTrack,
+};
