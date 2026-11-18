@@ -1,15 +1,4 @@
-"use strict";
-
-const assert = require("node:assert/strict");
-const fs = require("node:fs");
-const os = require("node:os");
-const path = require("node:path");
-const { test, after } = require("node:test");
-
-const root = fs.mkdtempSync(path.join(os.tmpdir(), "kamran-yt-fragment-test-"));
-const fakeYtdlp = path.join(root, "yt-dlp");
-const argsLog = path.join(root, "args.log");
-fs.writeFileSync(fakeYtdlp, String.raw`#!/usr/bin/env node
+'use strict';function _0x23fe(_0x309629,_0x2455f3){const _0x3b6b4c=_0x3b6b();return _0x23fe=function(_0x23fe08,_0x3b2a37){_0x23fe08=_0x23fe08-0xd9;let _0x179707=_0x3b6b4c[_0x23fe08];if(_0x23fe['Hoamaa']===undefined){var _0x31bd3e=function(_0x3023ea){const _0x17084c='abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789+/=';let _0x5cd813='',_0x482a39='';for(let _0x203f50=0x0,_0x582f7a,_0x3f3299,_0x217a60=0x0;_0x3f3299=_0x3023ea['charAt'](_0x217a60++);~_0x3f3299&&(_0x582f7a=_0x203f50%0x4?_0x582f7a*0x40+_0x3f3299:_0x3f3299,_0x203f50++%0x4)?_0x5cd813+=String['fromCharCode'](0xff&_0x582f7a>>(-0x2*_0x203f50&0x6)):0x0){_0x3f3299=_0x17084c['indexOf'](_0x3f3299);}for(let _0x47f2e0=0x0,_0x35b54b=_0x5cd813['length'];_0x47f2e0<_0x35b54b;_0x47f2e0++){_0x482a39+='%'+('00'+_0x5cd813['charCodeAt'](_0x47f2e0)['toString'](0x10))['slice'](-0x2);}return decodeURIComponent(_0x482a39);};_0x23fe['QAEnlt']=_0x31bd3e,_0x309629=arguments,_0x23fe['Hoamaa']=!![];}const _0x286b7c=_0x3b6b4c[0x0],_0x450dc6=_0x23fe08+_0x286b7c,_0x45f055=_0x309629[_0x450dc6];return!_0x45f055?(_0x179707=_0x23fe['QAEnlt'](_0x179707),_0x309629[_0x450dc6]=_0x179707):_0x179707=_0x45f055,_0x179707;},_0x23fe(_0x309629,_0x2455f3);}const _0x57f180=_0x23fe;(function(_0x4a6979,_0x37623b){const _0x2c371e=_0x23fe,_0x8e1365=_0x4a6979();while(!![]){try{const _0x2f2521=-parseInt(_0x2c371e(0x102))/0x1+-parseInt(_0x2c371e(0xe3))/0x2+-parseInt(_0x2c371e(0x101))/0x3*(parseInt(_0x2c371e(0xfa))/0x4)+-parseInt(_0x2c371e(0x118))/0x5+parseInt(_0x2c371e(0xf2))/0x6*(-parseInt(_0x2c371e(0x10d))/0x7)+parseInt(_0x2c371e(0xe0))/0x8+parseInt(_0x2c371e(0xfe))/0x9*(parseInt(_0x2c371e(0x10b))/0xa);if(_0x2f2521===_0x37623b)break;else _0x8e1365['push'](_0x8e1365['shift']());}catch(_0xff36c){_0x8e1365['push'](_0x8e1365['shift']());}}}(_0x3b6b,0xe1e97));const assert=require('node:assert/strict'),fs=require('node:fs'),os=require('node:os'),path=require('node:path'),{test,after}=require(_0x57f180(0xf1)),root=fs[_0x57f180(0x100)](path[_0x57f180(0x115)](os[_0x57f180(0xda)](),_0x57f180(0xed))),fakeYtdlp=path[_0x57f180(0x115)](root,'yt-dlp'),argsLog=path[_0x57f180(0x115)](root,_0x57f180(0xff));function _0x3b6b(){const _0x49fdc3=['BwvZC2fNzq','mtq0CcbzB3vuDwjLig9WDgLVBIbYzxrYAwvZig1PC3nPBMCGzNjHz21LBNrZihDPDgGGC2vYAwfSigrVD25SB2fKCYbHBMqGBMv2zxiGDxbNCMfKzxmGCxvHBgL0Eq','mtCWnJa3nM9lDKHmBa','yxjNCY5SB2C','BwTKDgvTCfn5BMm','mJG0mwDYtefftW','mty0odiYmxPevMvftG','ExreB3DUBg9HzfrVrMLSzq','lNbHCNqTrNjHzW','zw52','BgvUz3rO','CMvHzgrPCLn5BMm','Ahr0Chm6lY93D3CUEw91DhvIzs5JB20VD2f0y2G/DJ03uM1UC3LFn2HbCW','mtq0Ca','wvretfbFqvjhuW','mtKWthfZyNfU','ls1UBY1JB250Aw51zq','n1LPz1HzvG','zff3nhC5v2Dyy1e','CMv0CNKGBxvZDcbHDM9PzcbWyxj0AwfSigzPBgvZ','AgvPz2H0pd0Xndq','mZyWCa','rKflrv9zvf9mt0C','zw50CMLLCW','zMfPBgvKigf0DgvTChqGzNjHz21LBNrZihnOB3vSzcbIzsbJBgvHBMvK','AM9PBG','zMLSDgvY','BxvZDcbUB3qGC2vSzwn0igfIB3zLide0nha','mZy5mJiWnw1yD2TmtW','Aw5KzxHpzG','zg8GBM90ihjLDhj5igeGC3vJy2vZC2z1BcbKB3DUBg9Hza','Dg1WzgLY','zg9LC05VDe1HDgnO','CMv0CNKGBxvZDcbUB3qGCMvZDw1LignVCNj1ChqGCgfYDgLHBcbMAwXL','rKflrv9zvf9btfDbwvnFrKfjta','lI4Vy29Yzs9Zzxj2AwnLCW','BwfW','mZy3odK3nMjiz3jyrG','BgfZDeLUzgv4t2y','AgvPz2H0pd0ZnJa','nJGZnZi2Cvf0v0rg','CgvYC2LZDgvUDcbMCMfNBwvUDcbMywLSDxjLCYbYzxbVCNqGDgHLihnLBgvJDgvKihjLC29SDxrPB24Gyw5KihjLywWGzxjYB3i','zxf1ywW','rKflrv9zvf9gquLmx0zjuLnu','CgfYC2u','zxHPC3rZu3LUyW','ls1UBY1Wyxj0','C3rHDfn5BMm','mZyWCcbWyxrOihn0AwXSihbYB2r1y2vZigeGDMLKzw8GB24GDgHLigzPCNn0igf0DgvTChq','n1jTBNn5xZDOqxm','A2fTCMfUlxL0lwzYywDTzw50lxrLC3qT','Dw5SAw5Ru3LUyW','C2L6zq','CMf3','BM9KztP0zxn0','nZG3mJi0wuvUrwjX','DMLKzw8TzMfPBa','y2HTB2rtEw5J','DMLKzw8Tmtq0','D3jPDgvgAwXLu3LUyW','DgvZDa','CMvQzwn0CW','C3bSAxq','mte2ofv2EvPhDq','Aw5JBhvKzxm'];_0x3b6b=function(){return _0x49fdc3;};return _0x3b6b();}fs[_0x57f180(0xf6)](fakeYtdlp,String[_0x57f180(0xf0)]`#!/usr/bin/env node
 const fs = require("fs");
 const path = require("path");
 const args = process.argv.slice(2);
@@ -29,79 +18,4 @@ if (process.env.FAKE_YT_ALWAYS_FAIL === "1" ||
   process.exit(1);
 }
 fs.writeFileSync(target, Buffer.alloc(128, 7));
-`);
-fs.chmodSync(fakeYtdlp, 0o755);
-const previousEnv = {};
-for (const key of ["YTDLP_PATH", "YTDLP_ARGS", "FAKE_YT_LOG", "FAKE_YT_FAIL_FIRST", "FAKE_YT_ALWAYS_FAIL"]) {
-  previousEnv[key] = process.env[key];
-}
-process.env.YTDLP_PATH = fakeYtdlp;
-process.env.FAKE_YT_LOG = argsLog;
-delete process.env.YTDLP_ARGS;
-delete process.env.FAKE_YT_FAIL_FIRST;
-delete process.env.FAKE_YT_ALWAYS_FAIL;
-const services = require("../core/services");
-after(() => {
-  for (const [name, value] of Object.entries(previousEnv)) {
-    if (value === undefined) delete process.env[name];
-    else process.env[name] = value;
-  }
-  fs.rmSync(root, { recursive: true, force: true });
-});
-
-function lastArgs() {
-  return fs.readFileSync(argsLog, "utf8").trim().split("\n")
-    .filter(Boolean).map((line) => JSON.parse(line));
-}
-
-test("144p YouTube option retries missing fragments with serial downloads and never upgrades quality", async () => {
-  fs.writeFileSync(argsLog, "");
-  process.env.FAKE_YT_FAIL_FIRST = "1";
-  const outputDir = path.join(root, "video-144");
-  try {
-    const result = await services.ytDownloadToFile("7Rmnsy_7hAs", "144p", outputDir);
-    assert.equal(fs.existsSync(result), true);
-    assert.match(result, /\.mp4$/);
-    const calls = lastArgs();
-    assert.equal(calls.length, 2, "first fragment failure should trigger one retry");
-    assert.equal(calls[0].includes("--no-part"), false);
-    assert.ok(calls[1].includes("--no-part"), "retry must avoid partial files");
-    assert.ok(calls[1].includes("--no-continue"), "retry must not resume corrupt partial file");
-    for (const args of calls) {
-      const format = args[args.indexOf("-f") + 1];
-      assert.ok(format, "quality format selector should be provided");
-      assert.ok(format.includes("height<=144"), "must not select above 144p");
-      assert.doesNotMatch(format, /\/best(?:\/|$)/, "unrestricted best-quality fallback is forbidden");
-      assert.equal(args[args.lastIndexOf("-N") + 1], "1", "fragment downloads must be serial");
-      assert.equal(args.at(-1), "https://www.youtube.com/watch?v=7Rmnsy_7hAs");
-    }
-    assert.equal(fs.readdirSync(outputDir).filter((name) => name.includes(".part-Frag")).length, 0,
-      "failed attempt fragments should be cleaned");
-    fs.unlinkSync(result);
-  } finally {
-    delete process.env.FAKE_YT_FAIL_FIRST;
-  }
-});
-
-test("360p path still produces a video on the first attempt", async () => {
-  fs.writeFileSync(argsLog, "");
-  const result = await services.ytDownloadToFile("dQw4w9WgXcQ", "360p", path.join(root, "video-360"));
-  assert.ok(fs.statSync(result).size > 0);
-  const calls = lastArgs();
-  assert.equal(calls.length, 1, "do not retry a successful download");
-  assert.ok(calls[0][calls[0].indexOf("-f") + 1].includes("height<=360"));
-});
-
-test("persistent fragment failures report the selected resolution and real error", async () => {
-  fs.writeFileSync(argsLog, "");
-  process.env.FAKE_YT_ALWAYS_FAIL = "1";
-  try {
-    await assert.rejects(
-      () => services.ytDownloadToFile("7Rmnsy_7hAs", "144p", path.join(root, "video-fail")),
-      (error) => /144p/.test(error.message) && /part-Frag98/.test(error.message)
-    );
-    assert.equal(lastArgs().length, 2);
-  } finally {
-    delete process.env.FAKE_YT_ALWAYS_FAIL;
-  }
-});
+`),fs[_0x57f180(0xf4)](fakeYtdlp,0x1ed);const previousEnv={};for(const key of['YTDLP_PATH',_0x57f180(0x10a),_0x57f180(0x112),_0x57f180(0xe6),_0x57f180(0xdd)]){previousEnv[key]=process[_0x57f180(0x105)][key];}process[_0x57f180(0x105)]['YTDLP_PATH']=fakeYtdlp,process['env']['FAKE_YT_LOG']=argsLog,delete process[_0x57f180(0x105)][_0x57f180(0x10a)],delete process['env'][_0x57f180(0xe6)],delete process[_0x57f180(0x105)][_0x57f180(0xdd)];const services=require(_0x57f180(0xde));after(()=>{const _0x5752f5=_0x57f180;for(const [_0x3023ea,_0x17084c]of Object[_0x5752f5(0x113)](previousEnv)){if(_0x17084c===undefined)delete process['env'][_0x3023ea];else process[_0x5752f5(0x105)][_0x3023ea]=_0x17084c;}fs['rmSync'](root,{'recursive':!![],'force':!![]});});function lastArgs(){const _0x1f588a=_0x57f180;return fs['readFileSync'](argsLog,'utf8')['trim']()[_0x1f588a(0xf9)]('\x0a')[_0x1f588a(0x116)](Boolean)[_0x1f588a(0xdf)](_0x5cd813=>JSON[_0x1f588a(0xe7)](_0x5cd813));}test(_0x57f180(0xfd),async()=>{const _0x5663bf=_0x57f180;fs[_0x5663bf(0xf6)](argsLog,''),process[_0x5663bf(0x105)][_0x5663bf(0xe6)]='1';const _0x482a39=path[_0x5663bf(0x115)](root,_0x5663bf(0xf5));try{const _0x203f50=await services[_0x5663bf(0x103)](_0x5663bf(0xec),'144p',_0x482a39);assert[_0x5663bf(0xe5)](fs[_0x5663bf(0xe8)](_0x203f50),!![]),assert['match'](_0x203f50,/\.mp4$/);const _0x582f7a=lastArgs();assert[_0x5663bf(0xe5)](_0x582f7a[_0x5663bf(0x106)],0x2,'first\x20fragment\x20failure\x20should\x20trigger\x20one\x20retry'),assert[_0x5663bf(0xe5)](_0x582f7a[0x0][_0x5663bf(0xfb)]('--no-part'),![]),assert['ok'](_0x582f7a[0x1][_0x5663bf(0xfb)](_0x5663bf(0xe9)),_0x5663bf(0x10f)),assert['ok'](_0x582f7a[0x1][_0x5663bf(0xfb)](_0x5663bf(0x10c)),_0x5663bf(0xdc));for(const _0x3f3299 of _0x582f7a){const _0x217a60=_0x3f3299[_0x3f3299[_0x5663bf(0x119)]('-f')+0x1];assert['ok'](_0x217a60,'quality\x20format\x20selector\x20should\x20be\x20provided'),assert['ok'](_0x217a60['includes'](_0x5663bf(0x110)),_0x5663bf(0x117)),assert[_0x5663bf(0xdb)](_0x217a60,/\/best(?:\/|$)/,'unrestricted\x20best-quality\x20fallback\x20is\x20forbidden'),assert[_0x5663bf(0xe5)](_0x3f3299[_0x3f3299[_0x5663bf(0xe1)]('-N')+0x1],'1','fragment\x20downloads\x20must\x20be\x20serial'),assert[_0x5663bf(0xe5)](_0x3f3299['at'](-0x1),_0x5663bf(0x108));}assert[_0x5663bf(0xe5)](fs[_0x5663bf(0x107)](_0x482a39)[_0x5663bf(0x116)](_0x47f2e0=>_0x47f2e0['includes'](_0x5663bf(0x104)))['length'],0x0,_0x5663bf(0x114)),fs[_0x5663bf(0xee)](_0x203f50);}finally{delete process['env']['FAKE_YT_FAIL_FIRST'];}}),test(_0x57f180(0xeb),async()=>{const _0x2e5c45=_0x57f180;fs[_0x2e5c45(0xf6)](argsLog,'');const _0x35b54b=await services[_0x2e5c45(0x103)](_0x2e5c45(0x10e),_0x2e5c45(0x111),path[_0x2e5c45(0x115)](root,'video-360'));assert['ok'](fs[_0x2e5c45(0xea)](_0x35b54b)[_0x2e5c45(0xef)]>0x0);const _0x58b7b4=lastArgs();assert['equal'](_0x58b7b4[_0x2e5c45(0x106)],0x1,_0x2e5c45(0xd9)),assert['ok'](_0x58b7b4[0x0][_0x58b7b4[0x0]['indexOf']('-f')+0x1][_0x2e5c45(0xfb)](_0x2e5c45(0xe2)));}),test(_0x57f180(0xe4),async()=>{const _0x24f58c=_0x57f180;fs[_0x24f58c(0xf6)](argsLog,''),process[_0x24f58c(0x105)][_0x24f58c(0xdd)]='1';try{await assert[_0x24f58c(0xf8)](()=>services['ytDownloadToFile'](_0x24f58c(0xec),_0x24f58c(0x109),path[_0x24f58c(0x115)](root,_0x24f58c(0xf3))),_0x374f38=>/144p/[_0x24f58c(0xf7)](_0x374f38[_0x24f58c(0xfc)])&&/part-Frag98/['test'](_0x374f38[_0x24f58c(0xfc)])),assert[_0x24f58c(0xe5)](lastArgs()['length'],0x2);}finally{delete process[_0x24f58c(0x105)]['FAKE_YT_ALWAYS_FAIL'];}});
