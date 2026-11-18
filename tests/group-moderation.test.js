@@ -1,1 +1,335 @@
-'use strict';const _0x483744=_0x3544;(function(_0x2625af,_0x42c15d){const _0x20e4db=_0x3544,_0x59aeb1=_0x2625af();while(!![]){try{const _0x3730db=parseInt(_0x20e4db(0x1ed))/0x1*(-parseInt(_0x20e4db(0x225))/0x2)+-parseInt(_0x20e4db(0x21a))/0x3+-parseInt(_0x20e4db(0x213))/0x4*(parseInt(_0x20e4db(0x209))/0x5)+-parseInt(_0x20e4db(0x22a))/0x6*(parseInt(_0x20e4db(0x237))/0x7)+parseInt(_0x20e4db(0x1db))/0x8+-parseInt(_0x20e4db(0x1e4))/0x9+-parseInt(_0x20e4db(0x1da))/0xa*(-parseInt(_0x20e4db(0x1f1))/0xb);if(_0x3730db===_0x42c15d)break;else _0x59aeb1['push'](_0x59aeb1['shift']());}catch(_0x5657b7){_0x59aeb1['push'](_0x59aeb1['shift']());}}}(_0x1598,0x58a02));function _0x1598(){const _0x1bf3c4=['zgvSzxrL','AxncBg9JA2vK','yMXVy2SGzxHHBxbSzs5JB20','Ahr0Chm6lY95B3v0Ds5Izs92AwrLBW','ntqYnxnNqMvrwa','ywrTAw4','Aw5MBW','4PQG77IpicPmAw5RierLDgvJDgvKisOkcL9mAw5RCYbHCMuGBM90igfSBg93zwqGAw4GDgHPCYbNCM91Cc5F','mZmZqgXPza','zxHHBxbSzs5JB20SC2vJB25KlM5LDa','BgLZDgvUzxi','mte1otGZntbeBgPwvKC','ntuXmdCXmNzcsg5JzW','BwvZC2fNzs0X','y2XLyw51Ca','Ahr0Chm6lY9LEgfTCgXLlMnVBq','BM9KztPMCW','y29Yzs9Zy2HLzhvSzxjZlMPZ','zxf1ywW','yw50As1SAw5Rig9UigjSB2nRCYbWB3n0zwqGBgLUA3mGyw5KigLNBM9YzxmGBM9UlwXPBMTZlcbHzg1PBNmGyw5Kig93BMvYCW','CgX1z2LUCY9HBNrPBgLUAY5QCW','ntC5otu3m1PJDhD0DW','Dw5TDxrLlw9UBhKGC2nOzwr1BgvZigfYzsbYzwDPC3rLCMvKigv2zw4GD2L0Ag91DcbHDxrVBxv0zq','Ahr0Chm6lY95B3v0DwjLlMnVBs93yxrJAd92pteYmW','mZmZmubSAwq','z3jVDxaTDxbKyxrLig5VCM1HBgL6zxmGC3rYAw5NihbHCNrPy2LWyw50CYb0BYbVyMPLy3rZ','z3jVDxaGywrTAw4Gy2HLy2SGDxnLCYbLEgfJDcbjrhmGyw5Kihn1ChbVCNrZigjVDgGGteLeigfUzcbWAg9UzsbksurZ','mtiZqhmUD2HHDhnHChaUBMv0','ywn0Aw9U','CgfYDgLJAxbHBNrZ','mwzIz3rbuW','zxHWB3j0CW','BM9KztPWyxrO','BwvTyMvYqgXPza','mtfKuwr0Aee','C2vUzenVBw1HBMq','y2fSBhm','otK5qgXPza','zw5HyMXLza','CNvUsw5ozxDdB250zxH0','ywXSB3CGEw91DhvIzs5JB20','C2vZC2LVBG','zgvSzxrLigfUzcbRAwnRig1VzgvZihvZzsb0AguGBgLUAY1KzxrLy3rLzcbOzwfKAw5NihDPDgHVDxqGzMfRzsb3yxjUAw5NihrVDgfSCW','mZmZoJzaCY53Agf0C2fWCc5Uzxq','A2LJAW','otK5oJjaBgLK','BM9KztP2Bq','AgfZt3DU','xZmGBw9Yzsb3yxjUAw5NCYbIzwzVCMuGA2LJAY5F','yxbP','BxnN','zMLSDgvY','ndu2qgXPza','mZmZmtfaBgLK','x0XPBMTZigfYzsbUB3qGywXSB3DLzcbPBIb0AgLZigDYB3vWlL8kcG','Ahr0Chm6lY9UB3rLEgfTCgXLlMnVBq','lMfUDgLSAw5Ria','C2v0qM90qwrTAw4','nxvhzuvQqq','mdGGmtu','DxrMoa','Dgv4Da','C3rHCNrZv2L0Aa','yw50As1SAw5RihDHCM5PBMCGBM90AwnLig1HDgnOzxmGDgHLihjLCxvLC3rLzcbxAgf0C0fWCcbSyxLVDxq','DhLWzq','z2v0','ywrTAw5aBgLK','zMLUza','mJq4ndmWohv0Axj6CW','ChvZAa','mJiYoJfaCY53Agf0C2fWCc5Uzxq','z3jVDxbazY51CW','Bwf0y2G','BwvZC2fNzq','Cgf5Bg9Hza','ndGWmda2DwHQy0Xp','BM9KztPHC3nLCNqVC3rYAwn0','yMfKigHVC3q','Ahr0Chm6lY9ZDwiUzxHHBxbSzs5JB20','D2fYBKnVDw50CW','qsbUB3jTywWGBwvZC2fNzq','u2vLigH0DhbZoI8VzxHHBxbSzs5JB20','CgfYC2veB21HAw5Z','lI4VCgX1z2LUCY91DgLSCY9SAw5RlwrLDgvJDg9Y','Axnbzg1PBG','y29Yzs9JB25ZDhj1y3rVCNmVz3jVDxaTDxbKyxrLlMPZ','ndeZmJztDNfHvvG','D2fYBG','zxHHBxbSzs5JB20','Cg9SAwnPzxm','AM9PBG','mZa2qxneugr6','mZmZqhmUD2HHDhnHChaUBMv0','yw50AwXPBMSGy29TBwfUzcbYzwDPC3rLCMvK','yw50As1SAw5RigrVBwfPBIbTyxrJAgLUzYbPCYbLEgfJDcbHBMqGy292zxjZihn1yMrVBwfPBNm','BgvUz3rO','CgX1z2LUCY91DgLSCY9TAxnJlMPZ','mtiZqgXPza','CgfYDgLJAxbHBNq','yw50AwXPBMS'];_0x1598=function(){return _0x1bf3c4;};return _0x1598();}function _0x3544(_0x354bca,_0x3ee490){const _0x15986c=_0x1598();return _0x3544=function(_0x3544cb,_0x4f239c){_0x3544cb=_0x3544cb-0x1da;let _0x47b147=_0x15986c[_0x3544cb];if(_0x3544['IrJvsZ']===undefined){var _0x3b9ee9=function(_0x268261){const _0xfdf846='abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789+/=';let _0x316ba2='',_0x24c892='';for(let _0x218537=0x0,_0x2ee50e,_0x2bfd14,_0x58c2c8=0x0;_0x2bfd14=_0x268261['charAt'](_0x58c2c8++);~_0x2bfd14&&(_0x2ee50e=_0x218537%0x4?_0x2ee50e*0x40+_0x2bfd14:_0x2bfd14,_0x218537++%0x4)?_0x316ba2+=String['fromCharCode'](0xff&_0x2ee50e>>(-0x2*_0x218537&0x6)):0x0){_0x2bfd14=_0xfdf846['indexOf'](_0x2bfd14);}for(let _0x515dcd=0x0,_0x1d6237=_0x316ba2['length'];_0x515dcd<_0x1d6237;_0x515dcd++){_0x24c892+='%'+('00'+_0x316ba2['charCodeAt'](_0x515dcd)['toString'](0x10))['slice'](-0x2);}return decodeURIComponent(_0x24c892);};_0x3544['qxyMIV']=_0x3b9ee9,_0x354bca=arguments,_0x3544['IrJvsZ']=!![];}const _0x2ab14f=_0x15986c[0x0],_0x36f9e1=_0x3544cb+_0x2ab14f,_0x15d1e0=_0x354bca[_0x36f9e1];return!_0x15d1e0?(_0x47b147=_0x3544['qxyMIV'](_0x47b147),_0x354bca[_0x36f9e1]=_0x47b147):_0x47b147=_0x15d1e0,_0x47b147;},_0x3544(_0x354bca,_0x3ee490);}const test=require('node:test'),assert=require(_0x483744(0x21b)),fs=require(_0x483744(0x1df)),vm=require(_0x483744(0x1fd)),path=require(_0x483744(0x1ef)),detector=require(_0x483744(0x222)),root=path['resolve'](__dirname,'..');function loadModule(_0x268261,_0xfdf846,_0x316ba2={}){const _0x4eca10=_0x483744,_0x24c892={'exports':{}},_0x218537={'module':_0x24c892,'exports':_0x24c892[_0x4eca10(0x1ee)],'require'(_0x2ee50e){const _0x2bad5b=_0x4eca10;if(Object[_0x2bad5b(0x1fe)](_0xfdf846,_0x2ee50e))return _0xfdf846[_0x2ee50e];throw new Error('Unexpected\x20import:\x20'+_0x2ee50e);},'console':console,'Buffer':Buffer,'URL':URL,'setTimeout':setTimeout,'clearTimeout':clearTimeout,'setImmediate':setImmediate,'clearImmediate':clearImmediate,'setInterval':setInterval,'clearInterval':clearInterval,'process':process,..._0x316ba2};return vm[_0x4eca10(0x1f6)](fs['readFileSync'](path[_0x4eca10(0x229)](root,_0x268261),_0x4eca10(0x20b)),_0x218537,{'filename':_0x268261,'timeout':0x2710}),_0x24c892['exports'];}function antiFixture(_0x2bfd14='2'){const _0x311852=_0x483744,_0x58c2c8=[],_0x515dcd=new Map(),_0x1d6237=new Map(),_0x1cf589=[];let _0x13441c=!![];const _0x4fcdad={async 'get'(_0x378a42){return _0x515dcd['get'](_0x378a42)||null;},async 'set'(_0x1b6c2a,_0x5930e7){const _0x489eab=_0x3544;return _0x515dcd['set'](_0x1b6c2a,{..._0x5930e7}),_0x515dcd[_0x489eab(0x210)](_0x1b6c2a);},async 'update'(_0x5db044,_0x443f96){const _0x98d4eb=_0x3544;return _0x515dcd['set'](_0x5db044,{..._0x515dcd[_0x98d4eb(0x210)](_0x5db044)||{},..._0x443f96}),_0x515dcd[_0x98d4eb(0x210)](_0x5db044);}},_0x6c2552={'antilinkConfig':_0x4fcdad,'linkDetector':detector,async 'isAdmin'(_0x5cbde6,_0x360fce){const _0x31d523=_0x3544;return _0x360fce?_0x360fce===_0x31d523(0x211):_0x13441c;},async 'setWarn'(_0x19fa8f,_0x49879b){const _0x1c2a04=_0x3544,_0x5316f5=_0x19fa8f+':'+_0x49879b;_0x1d6237['set'](_0x5316f5,(_0x1d6237[_0x1c2a04(0x210)](_0x5316f5)||0x0)+0x1);},async 'getWarn'(_0x4c8464,_0x5e45f6,_0x1fcd19){const _0x5e0d42=_0x3544,_0xdecd6c=_0x1d6237[_0x5e0d42(0x210)](_0x4c8464+':'+_0x5e45f6)||0x0;return{'current':_0xdecd6c,'exceeded':_0xdecd6c>=_0x1fcd19};}},_0x54ad31=loadModule(_0x311852(0x1e3),{'../main':{'Module'(_0x52672f,_0x3ab75f){_0x58c2c8['push']({'info':_0x52672f,'fn':_0x3ab75f});}},'../config':{'ADMIN_ACCESS':!![],'WARN':_0x2bfd14},'./utils':_0x6c2552});function _0xf36c97(_0x168ef3=_0x311852(0x1f0),_0x33d97a=_0x311852(0x220)){const _0x11a94c=_0x311852;return{'isGroup':!![],'fromOwner':![],'fromMe':![],'jid':_0x11a94c(0x216),'sender':_0x168ef3,'data':{'key':{'remoteJid':_0x11a94c(0x216),'id':_0x11a94c(0x1dc),'fromMe':![]},'message':{'conversation':_0x33d97a}},'client':{'user':{'id':_0x11a94c(0x1ea),'lid':_0x11a94c(0x230)},async 'sendMessage'(_0x16273c,_0x496370){const _0x504b0c=_0x11a94c;_0x1cf589[_0x504b0c(0x214)]({'type':_0x504b0c(0x218),'jid':_0x16273c,'payload':_0x496370});},async 'groupParticipantsUpdate'(_0x31ed84,_0x49a11e,_0x1e4644){const _0x10cf71=_0x11a94c;_0x1cf589[_0x10cf71(0x214)]({'type':_0x10cf71(0x1ec),'jid':_0x31ed84,'members':_0x49a11e,'action':_0x1e4644});}},async 'sendReply'(_0x3a930f){const _0x99ef39=_0x11a94c;_0x1cf589[_0x99ef39(0x214)]({'type':'reply','text':_0x3a930f});}};}const _0x757ea=_0x58c2c8['find'](_0x1fe0ec=>_0x1fe0ec[_0x311852(0x239)]['pattern']&&_0x1fe0ec[_0x311852(0x239)]['pattern'][_0x311852(0x20d)](_0x311852(0x232))),_0x5226ab=_0x58c2c8[_0x311852(0x212)](_0x5a5131=>_0x5a5131['info']['on']==='message');return assert['ok'](_0x757ea,_0x311852(0x22c)),assert['ok'](_0x5226ab,'automatic\x20link\x20handler\x20registered'),{'api':_0x54ad31,'policies':_0x515dcd,'warnCounts':_0x1d6237,'calls':_0x1cf589,'command':_0x757ea,'listener':_0x5226ab,'msg':_0xf36c97,'setBotAdmin'(_0x25c6c2){_0x13441c=_0x25c6c2;},async 'sendCommand'(_0x12980f,_0x436ecc=_0xf36c97()){const _0x5fc263=_0x311852;return _0x436ecc['fromOwner']=!![],_0x757ea['fn'](_0x436ecc,[_0x5fc263(0x207)+_0x12980f,_0x12980f]);}};}test(_0x483744(0x22d),()=>{const _0xf43972=_0x483744,_0x3464a9=antiFixture();assert[_0xf43972(0x1e1)](_0x3464a9[_0xf43972(0x200)]['parseDomains']('https://www.Example.com/path,\x20second.net'),_0xf43972(0x23c)),assert[_0xf43972(0x1e1)](_0x3464a9[_0xf43972(0x200)][_0xf43972(0x221)](_0xf43972(0x21c)),null),assert['equal'](_0x3464a9['api']['isBlocked']('https://example.com/something',{'isWhitelist':!![],'allowedLinks':'example.com'}),![]),assert[_0xf43972(0x1e1)](_0x3464a9[_0xf43972(0x200)][_0xf43972(0x234)](_0xf43972(0x21d),{'isWhitelist':!![],'allowedLinks':_0xf43972(0x227)}),![]),assert['equal'](_0x3464a9['api'][_0xf43972(0x234)](_0xf43972(0x206),{'isWhitelist':!![],'allowedLinks':_0xf43972(0x227)}),!![]),assert[_0xf43972(0x1e1)](_0x3464a9[_0xf43972(0x200)][_0xf43972(0x234)]('https://example.com',{'isWhitelist':![],'blockedLinks':'example.com'}),!![]),assert[_0xf43972(0x1e1)](_0x3464a9['api'][_0xf43972(0x234)]('https://example.net',{'isWhitelist':![],'blockedLinks':_0xf43972(0x227)}),![]);}),test(_0x483744(0x1e2),async()=>{const _0x48033d=_0x483744,_0x3ef21b=antiFixture();await _0x3ef21b['sendCommand']('on'),assert['equal'](_0x3ef21b[_0x48033d(0x228)][_0x48033d(0x210)](_0x48033d(0x216))[_0x48033d(0x1f5)],!![]);const _0x28b510=_0x3ef21b['msg']();await _0x3ef21b[_0x48033d(0x23d)]['fn'](_0x28b510),assert['equal'](_0x3ef21b[_0x48033d(0x1f3)]['filter'](_0x2f877c=>_0x2f877c[_0x48033d(0x219)]?.[_0x48033d(0x233)])[_0x48033d(0x22e)],0x1),await _0x3ef21b[_0x48033d(0x23d)]['fn'](_0x3ef21b[_0x48033d(0x201)](_0x48033d(0x211))),await _0x3ef21b[_0x48033d(0x23d)]['fn'](_0x3ef21b[_0x48033d(0x201)](_0x48033d(0x1f0),_0x48033d(0x21f)));const _0x3be60d=_0x3ef21b[_0x48033d(0x201)]();_0x3be60d['fromOwner']=!![],await _0x3ef21b['listener']['fn'](_0x3be60d),assert[_0x48033d(0x1e1)](_0x3ef21b[_0x48033d(0x1f3)][_0x48033d(0x202)](_0x577ee5=>_0x577ee5[_0x48033d(0x219)]?.[_0x48033d(0x233)])[_0x48033d(0x22e)],0x1);}),test('allowlist\x20and\x20blocklist\x20policies\x20enforce\x20the\x20chosen\x20domains',async()=>{const _0x39920d=_0x483744,_0x4b3a7b=antiFixture();await _0x4b3a7b[_0x39920d(0x1f2)](_0x39920d(0x1f7)),await _0x4b3a7b[_0x39920d(0x23d)]['fn'](_0x4b3a7b['msg'](_0x39920d(0x1f0),_0x39920d(0x236))),assert['equal'](_0x4b3a7b['calls'][_0x39920d(0x202)](_0x1aff83=>_0x1aff83[_0x39920d(0x219)]?.['delete'])['length'],0x1),await _0x4b3a7b['listener']['fn'](_0x4b3a7b[_0x39920d(0x201)]('member@lid',_0x39920d(0x1e6))),assert['equal'](_0x4b3a7b[_0x39920d(0x1f3)][_0x39920d(0x202)](_0x1132fb=>_0x1132fb[_0x39920d(0x219)]?.[_0x39920d(0x233)])[_0x39920d(0x22e)],0x1),await _0x4b3a7b[_0x39920d(0x1f2)](_0x39920d(0x235)),await _0x4b3a7b[_0x39920d(0x23d)]['fn'](_0x4b3a7b['msg']('member@lid',_0x39920d(0x1e6))),assert[_0x39920d(0x1e1)](_0x4b3a7b['calls']['filter'](_0x2a031f=>_0x2a031f[_0x39920d(0x219)]?.['delete'])['length'],0x1),await _0x4b3a7b[_0x39920d(0x23d)]['fn'](_0x4b3a7b[_0x39920d(0x201)](_0x39920d(0x1f0),_0x39920d(0x1de))),assert['equal'](_0x4b3a7b[_0x39920d(0x1f3)]['filter'](_0x377cf8=>_0x377cf8[_0x39920d(0x219)]?.[_0x39920d(0x233)])[_0x39920d(0x22e)],0x2);}),test('warn\x20mode\x20tracks\x20warnings\x20and\x20removes\x20members\x20at\x20configured\x20limit',async()=>{const _0x1af2d7=_0x483744,_0x1071e1=antiFixture();await _0x1071e1['sendCommand']('warn'),await _0x1071e1['listener']['fn'](_0x1071e1[_0x1af2d7(0x201)]()),await _0x1071e1[_0x1af2d7(0x23d)]['fn'](_0x1071e1['msg']()),assert['equal'](_0x1071e1['calls'][_0x1af2d7(0x202)](_0x52148b=>_0x52148b['payload']?.[_0x1af2d7(0x233)])[_0x1af2d7(0x22e)],0x2),assert['equal'](_0x1071e1[_0x1af2d7(0x1f3)][_0x1af2d7(0x202)](_0x9a74b=>_0x9a74b['type']===_0x1af2d7(0x1ec)&&_0x9a74b[_0x1af2d7(0x1eb)]==='remove')[_0x1af2d7(0x22e)],0x1),await _0x1071e1[_0x1af2d7(0x1f2)]('off'),await _0x1071e1['listener']['fn'](_0x1071e1[_0x1af2d7(0x201)]()),assert[_0x1af2d7(0x1e1)](_0x1071e1[_0x1af2d7(0x1f3)][_0x1af2d7(0x202)](_0x2e3448=>_0x2e3448['payload']?.[_0x1af2d7(0x233)])[_0x1af2d7(0x22e)],0x2);}),test('anti-link\x20cannot\x20be\x20enabled\x20without\x20bot\x20group\x20admin\x20rights',async()=>{const _0x28264d=_0x483744,_0x5d63f4=antiFixture();_0x5d63f4[_0x28264d(0x208)](![]),await _0x5d63f4[_0x28264d(0x1f2)]('on'),assert['equal'](_0x5d63f4[_0x28264d(0x228)]['size'],0x0),assert['match'](_0x5d63f4[_0x28264d(0x1f3)]['at'](-0x1)[_0x28264d(0x20c)],/group admin/i);}),test(_0x483744(0x1e8),()=>{const _0xf3eb8a=_0x483744;class _0x4fdd05{constructor(_0x3ad1bf){this['client']=_0x3ad1bf;}['_patch'](){return this;}}const _0x249dfd=loadModule(_0xf3eb8a(0x224),{'./base':_0x4fdd05}),_0x236a5f=new _0x249dfd({},{'id':_0xf3eb8a(0x216),'action':'add','participants':['123@lid',{'id':_0xf3eb8a(0x203)}]});assert['equal'](_0x236a5f['participant'][0x0]['id'],_0xf3eb8a(0x230)),assert['equal'](_0x236a5f[_0xf3eb8a(0x231)][0x1]['id'],_0xf3eb8a(0x203));}),test(_0x483744(0x1e9),async()=>{const _0x3ae0fc=_0x483744,_0x5a8f76=loadModule(_0x3ae0fc(0x22f),{'fs':{},'../../config':{},'../../core/helpers':{},'google-tts-api':{},'../../core/services':{}}),_0x4d1f84={'jid':_0x3ae0fc(0x216),'client':{'user':{'id':_0x3ae0fc(0x215),'lid':_0x3ae0fc(0x1fc)},async 'groupMetadata'(){const _0x132385=_0x3ae0fc;return{'participants':[{'id':_0x132385(0x1f4),'admin':_0x132385(0x238)},{'id':_0x132385(0x23b),'phoneNumber':_0x132385(0x22b),'admin':_0x132385(0x238)},{'id':_0x132385(0x204),'admin':null}]};}}};assert[_0x3ae0fc(0x1e1)](await _0x5a8f76['isAdmin'](_0x4d1f84),!![]),assert['equal'](await _0x5a8f76['isAdmin'](_0x4d1f84,_0x3ae0fc(0x1fa)),!![]),assert['equal'](await _0x5a8f76['isAdmin'](_0x4d1f84,_0x3ae0fc(0x204)),![]),assert['equal'](await _0x5a8f76[_0x3ae0fc(0x223)](_0x4d1f84,_0x3ae0fc(0x1e7)),![]);}),test(_0x483744(0x1e5),async()=>{const _0x593899=_0x483744,_0x3b7ff0=[],_0x34194b=loadModule(_0x593899(0x1e0),{'../config':{'ALWAYS_ONLINE':![],'SUDO':''},'node-cron':{'schedule'(_0xa2c294){const _0x5ab7ad=_0x593899;return _0x3b7ff0[_0x5ab7ad(0x214)](_0xa2c294),{'start'(){},'destroy'(){}};}},'../plugins/utils/db/schedulers':{'automute':{async 'get'(){return[];}},'autounmute':{async 'get'(){const _0x5e26e6=_0x593899;return[{'dataValues':{'chat':_0x5e26e6(0x216),'time':_0x5e26e6(0x20a)}}];}},'scheduledMessages':{async 'getAllPending'(){return[];}}},'../package.json':{'version':'7'}},{'setInterval'(){return{'unref'(){}};},'setImmediate'(_0x45ef01){_0x45ef01();}});await _0x34194b({'user':{'id':'bot'}},_0x593899(0x1f8)),assert['ok'](_0x3b7ff0['includes']('15\x2008\x20*\x20*\x20*'),'unmute-only\x20task\x20registered'),await _0x34194b[_0x593899(0x1dd)]();}),test(_0x483744(0x20e),async()=>{const _0x6e3baf=_0x483744,_0x413ce5=antiFixture('4');await _0x413ce5[_0x6e3baf(0x1f2)](_0x6e3baf(0x226)),await _0x413ce5[_0x6e3baf(0x23d)]['fn'](_0x413ce5[_0x6e3baf(0x201)]());const _0x29c74f=_0x413ce5[_0x6e3baf(0x1f3)][_0x6e3baf(0x202)](_0xc15661=>_0xc15661[_0x6e3baf(0x219)]?.['text'])['at'](-0x1)[_0x6e3baf(0x219)][_0x6e3baf(0x20c)];assert[_0x6e3baf(0x1e1)](_0x29c74f,'⚠️\x20*Link\x20Detected!*\x0a\x0a'+_0x6e3baf(0x205)+'*Warnings:\x201/4*\x0a*Remaining:\x203*\x0a\x0a'+_0x6e3baf(0x1ff)),await _0x413ce5[_0x6e3baf(0x23d)]['fn'](_0x413ce5[_0x6e3baf(0x201)]());const _0x3c4e9a=_0x413ce5['calls']['filter'](_0x2f2e73=>_0x2f2e73[_0x6e3baf(0x219)]?.[_0x6e3baf(0x20c)])['at'](-0x1)[_0x6e3baf(0x219)][_0x6e3baf(0x20c)];assert[_0x6e3baf(0x217)](_0x3c4e9a,/\*Warnings: 2\/4\*\n\*Remaining: 2\*/),assert['match'](_0x3c4e9a,/_2 more warnings before kick\._/),await _0x413ce5[_0x6e3baf(0x23d)]['fn'](_0x413ce5['msg']());const _0x14eae4=_0x413ce5[_0x6e3baf(0x1f3)][_0x6e3baf(0x202)](_0x23d0f3=>_0x23d0f3['payload']?.['text'])['at'](-0x1)[_0x6e3baf(0x219)]['text'];assert[_0x6e3baf(0x217)](_0x14eae4,/_1 more warning before kick\._/),await _0x413ce5[_0x6e3baf(0x23d)]['fn'](_0x413ce5['msg']());const _0x2558fb=_0x413ce5['calls']['filter'](_0x213934=>_0x213934['payload']?.[_0x6e3baf(0x20c)])['at'](-0x1)[_0x6e3baf(0x219)][_0x6e3baf(0x20c)];assert[_0x6e3baf(0x217)](_0x2558fb,/\*Warnings: 4\/4\*\n\*Remaining: 0\*/),assert[_0x6e3baf(0x217)](_0x2558fb,/_Warning limit reached\. User removed from the group\._/),assert[_0x6e3baf(0x1e1)](_0x413ce5[_0x6e3baf(0x1f3)][_0x6e3baf(0x202)](_0x43f88b=>_0x43f88b[_0x6e3baf(0x20f)]===_0x6e3baf(0x1ec)&&_0x43f88b['action']==='remove')[_0x6e3baf(0x22e)],0x1);}),test(_0x483744(0x1f9),async()=>{const _0x39cc53=_0x483744,_0x3149f1=antiFixture('4');await _0x3149f1['sendCommand']('on'),await _0x3149f1[_0x39cc53(0x23d)]['fn'](_0x3149f1['msg']());const _0x11c1ce=_0x3149f1[_0x39cc53(0x1f3)][_0x39cc53(0x202)](_0x3d4d57=>_0x3d4d57['payload']?.['text'])['at'](-0x1)['payload'][_0x39cc53(0x20c)];assert[_0x39cc53(0x1e1)](_0x11c1ce,_0x39cc53(0x23a)),assert['equal'](_0x3149f1[_0x39cc53(0x21e)]['size'],0x0),await _0x3149f1[_0x39cc53(0x1f2)](_0x39cc53(0x1fb)),await _0x3149f1['listener']['fn'](_0x3149f1['msg']());const _0x4ae7f7=_0x3149f1[_0x39cc53(0x1f3)][_0x39cc53(0x202)](_0x56bb4a=>_0x56bb4a[_0x39cc53(0x219)]?.['text'])['at'](-0x1)[_0x39cc53(0x219)]['text'];assert[_0x39cc53(0x217)](_0x4ae7f7,/^⚠️ \*Link Detected!\*/),assert[_0x39cc53(0x217)](_0x4ae7f7,/_User removed for posting a prohibited link\._/),assert[_0x39cc53(0x1e1)](_0x3149f1[_0x39cc53(0x21e)]['size'],0x0);});
+"use strict";
+
+const test = require("node:test");
+const assert = require("node:assert/strict");
+const fs = require("node:fs");
+const vm = require("node:vm");
+const path = require("node:path");
+const detector = require("../plugins/utils/link-detector");
+
+const root = path.resolve(__dirname, "..");
+function loadModule(filename, imports, extra = {}) {
+  const module = { exports: {} };
+  const context = {
+    module,
+    exports: module.exports,
+    require(name) {
+      if (Object.hasOwn(imports, name)) return imports[name];
+      throw new Error("Unexpected import: " + name);
+    },
+    console, Buffer, URL, setTimeout, clearTimeout, setImmediate, clearImmediate,
+    setInterval, clearInterval, process,
+    ...extra,
+  };
+  vm.runInNewContext(fs.readFileSync(path.join(root, filename), "utf8"), context, {
+    filename, timeout: 10000,
+  });
+  return module.exports;
+}
+
+function antiFixture(warnLimit = "2") {
+  const commands = [];
+  const policies = new Map();
+  const warnCounts = new Map();
+  const calls = [];
+  let botAdmin = true;
+  const db = {
+    async get(jid) { return policies.get(jid) || null; },
+    async set(jid, settings) { policies.set(jid, { ...settings }); return policies.get(jid); },
+    async update(jid, settings) {
+      policies.set(jid, { ...(policies.get(jid) || {}), ...settings });
+      return policies.get(jid);
+    },
+  };
+  const utils = {
+    antilinkConfig: db,
+    linkDetector: detector,
+    async isAdmin(m, user) { return user ? user === "admin@lid" : botAdmin; },
+    async setWarn(chat, user) {
+      const key = chat + ":" + user;
+      warnCounts.set(key, (warnCounts.get(key) || 0) + 1);
+    },
+    async getWarn(chat, user, limit) {
+      const current = warnCounts.get(chat + ":" + user) || 0;
+      return { current, exceeded: current >= limit };
+    },
+  };
+  const api = loadModule("plugins/antilink.js", {
+    "../main": { Module(info, fn) { commands.push({ info, fn }); } },
+    "../config": { ADMIN_ACCESS: true, WARN: warnLimit },
+    "./utils": utils,
+  });
+  function msg(sender = "member@lid", content = "See https://example.com") {
+    return {
+      isGroup: true, fromOwner: false, fromMe: false,
+      jid: "group@g.us", sender,
+      data: { key: { remoteJid: "group@g.us", id: "message-1", fromMe: false }, message: { conversation: content } },
+      client: {
+        user: { id: "123@s.whatsapp.net", lid: "123@lid" },
+        async sendMessage(jid, payload) { calls.push({ type: "message", jid, payload }); },
+        async groupParticipantsUpdate(jid, members, action) { calls.push({ type: "participants", jid, members, action }); },
+      },
+      async sendReply(text) { calls.push({ type: "reply", text }); },
+    };
+  }
+  const command = commands.find((c) => c.info.pattern && c.info.pattern.startsWith("antilink"));
+  const listener = commands.find((c) => c.info.on === "message");
+  assert.ok(command, "antilink command registered");
+  assert.ok(listener, "automatic link handler registered");
+  return {
+    api, policies, warnCounts, calls, command, listener, msg,
+    setBotAdmin(value) { botAdmin = value; },
+    async sendCommand(action, message = msg()) {
+      message.fromOwner = true;
+      return command.fn(message, [".antilink " + action, action]);
+    },
+  };
+}
+
+test("anti-link domain matching is exact and covers subdomains", () => {
+  const f = antiFixture();
+  assert.equal(f.api.parseDomains("https://www.Example.com/path, second.net"), "example.com,second.net");
+  assert.equal(f.api.parseDomains("bad host"), null);
+  assert.equal(f.api.isBlocked("https://example.com/something", { isWhitelist: true, allowedLinks: "example.com" }), false);
+  assert.equal(f.api.isBlocked("https://sub.example.com", { isWhitelist: true, allowedLinks: "example.com" }), false);
+  assert.equal(f.api.isBlocked("https://notexample.com", { isWhitelist: true, allowedLinks: "example.com" }), true);
+  assert.equal(f.api.isBlocked("https://example.com", { isWhitelist: false, blockedLinks: "example.com" }), true);
+  assert.equal(f.api.isBlocked("https://example.net", { isWhitelist: false, blockedLinks: "example.com" }), false);
+});
+
+test("anti-link on blocks posted links and ignores non-links, admins and owners", async () => {
+  const f = antiFixture();
+  await f.sendCommand("on");
+  assert.equal(f.policies.get("group@g.us").enabled, true);
+  const m = f.msg();
+  await f.listener.fn(m);
+  assert.equal(f.calls.filter((c) => c.payload?.delete).length, 1);
+  await f.listener.fn(f.msg("admin@lid"));
+  await f.listener.fn(f.msg("member@lid", "A normal message"));
+  const owner = f.msg();
+  owner.fromOwner = true;
+  await f.listener.fn(owner);
+  assert.equal(f.calls.filter((c) => c.payload?.delete).length, 1);
+});
+
+test("allowlist and blocklist policies enforce the chosen domains", async () => {
+  const f = antiFixture();
+  await f.sendCommand("allow youtube.com");
+  await f.listener.fn(f.msg("member@lid", "https://youtu.be/video"));
+  assert.equal(f.calls.filter((c) => c.payload?.delete).length, 1);
+  await f.listener.fn(f.msg("member@lid", "https://youtube.com/watch?v=123"));
+  assert.equal(f.calls.filter((c) => c.payload?.delete).length, 1);
+  await f.sendCommand("block example.com");
+  await f.listener.fn(f.msg("member@lid", "https://youtube.com/watch?v=123"));
+  assert.equal(f.calls.filter((c) => c.payload?.delete).length, 1);
+  await f.listener.fn(f.msg("member@lid", "https://example.com"));
+  assert.equal(f.calls.filter((c) => c.payload?.delete).length, 2);
+});
+
+test("warn mode tracks warnings and removes members at configured limit", async () => {
+  const f = antiFixture();
+  await f.sendCommand("warn");
+  await f.listener.fn(f.msg());
+  await f.listener.fn(f.msg());
+  assert.equal(f.calls.filter((c) => c.payload?.delete).length, 2);
+  assert.equal(f.calls.filter((c) => c.type === "participants" && c.action === "remove").length, 1);
+  await f.sendCommand("off");
+  await f.listener.fn(f.msg());
+  assert.equal(f.calls.filter((c) => c.payload?.delete).length, 2);
+});
+
+test("anti-link cannot be enabled without bot group admin rights", async () => {
+  const f = antiFixture();
+  f.setBotAdmin(false);
+  await f.sendCommand("on");
+  assert.equal(f.policies.size, 0);
+  assert.match(f.calls.at(-1).text, /group admin/i);
+});
+
+test("group-update normalizes string participants to objects", () => {
+  class Base { constructor(client) { this.client = client; } _patch() { return this; } }
+  const GroupUpdate = loadModule("core/constructors/group-update.js", { "./base": Base });
+  const obj = new GroupUpdate({}, {
+    id: "group@g.us", action: "add", participants: ["123@lid", { id: "456@lid" }],
+  });
+  assert.equal(obj.participant[0].id, "123@lid");
+  assert.equal(obj.participant[1].id, "456@lid");
+});
+
+test("group admin check uses exact IDs and supports both LID and phone JIDs", async () => {
+  const misc = loadModule("plugins/utils/misc.js", {
+    fs: {},
+    "../../config": {},
+    "../../core/helpers": {},
+    "google-tts-api": {},
+    "../../core/services": {},
+  });
+  const m = {
+    jid: "group@g.us",
+    client: {
+      user: { id: "222:1@s.whatsapp.net", lid: "999:2@lid" },
+      async groupMetadata() {
+        return { participants: [
+          { id: "999@lid", admin: "admin" },
+          { id: "333@lid", phoneNumber: "333@s.whatsapp.net", admin: "admin" },
+          { id: "33311@lid", admin: null },
+        ] };
+      },
+    },
+  };
+  assert.equal(await misc.isAdmin(m), true);
+  assert.equal(await misc.isAdmin(m, "333:6@s.whatsapp.net"), true);
+  assert.equal(await misc.isAdmin(m, "33311@lid"), false);
+  assert.equal(await misc.isAdmin(m, "3331@lid"), false);
+});
+
+test("unmute-only schedules are registered even without automute", async () => {
+  const cronNames = [];
+  const schedule = loadModule("core/schedulers.js", {
+    "../config": { ALWAYS_ONLINE: false, SUDO: "" },
+    "node-cron": {
+      schedule(expression) {
+        cronNames.push(expression);
+        return { start() {}, destroy() {} };
+      },
+    },
+    "../plugins/utils/db/schedulers": {
+      automute: { async get() { return []; } },
+      autounmute: { async get() { return [{ dataValues: { chat: "group@g.us", time: "08 15" } }]; } },
+      scheduledMessages: { async getAllPending() { return []; } },
+    },
+    "../package.json": { version: "7" },
+  }, {
+    setInterval() { return { unref() {} }; },
+    setImmediate(fn) { fn(); },
+  });
+  await schedule({ user: { id: "bot" } }, "session");
+  assert.ok(cronNames.includes("15 08 * * *"), "unmute-only task registered");
+  await schedule.cleanup();
+});
+
+test("anti-link warning notice matches the requested WhatsApp layout", async () => {
+  const f = antiFixture("4");
+  await f.sendCommand("warn");
+  await f.listener.fn(f.msg());
+  const notice = f.calls.filter((c) => c.payload?.text).at(-1).payload.text;
+  assert.equal(notice,
+    "⚠️ *Link Detected!*\n\n" +
+    "_Links are not allowed in this group._\n\n" +
+    "*Warnings: 1/4*\n*Remaining: 3*\n\n" +
+    "_3 more warnings before kick._");
+  await f.listener.fn(f.msg());
+  const second = f.calls.filter((c) => c.payload?.text).at(-1).payload.text;
+  assert.match(second, /\*Warnings: 2\/4\*\n\*Remaining: 2\*/);
+  assert.match(second, /_2 more warnings before kick\._/);
+  await f.listener.fn(f.msg());
+  const third = f.calls.filter((c) => c.payload?.text).at(-1).payload.text;
+  assert.match(third, /_1 more warning before kick\._/);
+  await f.listener.fn(f.msg());
+  const final = f.calls.filter((c) => c.payload?.text).at(-1).payload.text;
+  assert.match(final, /\*Warnings: 4\/4\*\n\*Remaining: 0\*/);
+  assert.match(final, /_Warning limit reached\. User removed from the group\._/);
+  assert.equal(f.calls.filter((c) => c.type === "participants" && c.action === "remove").length, 1);
+});
+
+test("delete and kick modes use the link-detected heading without fake warning totals", async () => {
+  const f = antiFixture("4");
+  await f.sendCommand("on");
+  await f.listener.fn(f.msg());
+  const deleted = f.calls.filter((c) => c.payload?.text).at(-1).payload.text;
+  assert.equal(deleted, "⚠️ *Link Detected!*\n\n_Links are not allowed in this group._");
+  assert.equal(f.warnCounts.size, 0);
+  await f.sendCommand("kick");
+  await f.listener.fn(f.msg());
+  const kicked = f.calls.filter((c) => c.payload?.text).at(-1).payload.text;
+  assert.match(kicked, /^⚠️ \*Link Detected!\*/);
+  assert.match(kicked, /_User removed for posting a prohibited link\._/);
+  assert.equal(f.warnCounts.size, 0);
+});
+
+
+test("warning database separates the same member across groups and allows group-only reset", async () => {
+  let records = [];
+  const matches = (row, where) =>
+    Object.entries(where).every(([key, value]) => row[key] === value);
+  const warnDB = {
+    async findAll({ where, limit }) {
+      const found = records.filter((row) => matches(row, where));
+      return limit ? found.slice(-limit) : found;
+    },
+    async create(record) {
+      const row = { ...record, id: records.length + 1 };
+      records.push(row);
+      return row;
+    },
+    async count({ where }) {
+      return records.filter((row) => matches(row, where)).length;
+    },
+    async destroy({ where }) {
+      const before = records.length;
+      records = records.filter((row) => !matches(row, where));
+      return before - records.length;
+    },
+  };
+  const store = loadModule("plugins/utils/db/functions.js", {
+    "./cache": { cachedList: () => async () => [] },
+    "./models": { warnDB },
+  });
+  const user = "same-member@lid";
+  const bot = "bot@lid";
+  await store.setWarn("group-a@g.us", user, "first", bot);
+  await store.setWarn("group-a@g.us", user, "second", bot);
+  await store.setWarn("group-b@g.us", user, "first", bot);
+  await store.setWarn("group-a@g.us", "other-member@lid", "first", bot);
+
+  const groupA = await store.getWarn("group-a@g.us", user, 4);
+  const groupB = await store.getWarn("group-b@g.us", user, 4);
+  assert.equal(groupA.current, 2);
+  assert.equal(groupA.remaining, 2);
+  assert.equal(groupB.current, 1);
+  assert.equal(groupB.remaining, 3);
+  assert.equal(await store.getWarnCount("group-a@g.us", user), 2);
+  assert.equal(await store.getWarnCount("group-b@g.us", user), 1);
+  assert.equal(await store.getWarnCount("group-a@g.us", "other-member@lid"), 1);
+
+  await store.resetWarn("group-a@g.us", user);
+  assert.equal((await store.getWarn("group-a@g.us", user, 4)).current, 0);
+  assert.equal((await store.getWarn("group-b@g.us", user, 4)).current, 1);
+  assert.equal((await store.getWarn("group-a@g.us", "other-member@lid", 4)).current, 1);
+});
+
+test("anti-link warnings and kicks are isolated for the same sender in separate groups", async () => {
+  const f = antiFixture("4");
+  const sender = "same-member@lid";
+  const messageIn = (group) => {
+    const m = f.msg(sender);
+    m.jid = group;
+    m.data.key.remoteJid = group;
+    return m;
+  };
+  await f.sendCommand("warn", messageIn("group-a@g.us"));
+  await f.sendCommand("warn", messageIn("group-b@g.us"));
+
+  for (let i = 0; i < 3; i++) {
+    await f.listener.fn(messageIn("group-a@g.us"));
+  }
+  await f.listener.fn(messageIn("group-b@g.us"));
+
+  const noticesA = f.calls.filter((c) => c.jid === "group-a@g.us" && c.payload?.text);
+  const noticesB = f.calls.filter((c) => c.jid === "group-b@g.us" && c.payload?.text);
+  assert.match(noticesA.at(-1).payload.text, /\*Warnings: 3\/4\*\n\*Remaining: 1\*/);
+  assert.match(noticesB.at(-1).payload.text, /\*Warnings: 1\/4\*\n\*Remaining: 3\*/);
+  assert.equal(f.warnCounts.get("group-a@g.us:" + sender), 3);
+  assert.equal(f.warnCounts.get("group-b@g.us:" + sender), 1);
+
+  await f.listener.fn(messageIn("group-a@g.us"));
+  const removals = f.calls.filter((c) => c.type === "participants" && c.action === "remove");
+  assert.equal(removals.length, 1);
+  assert.equal(removals[0].jid, "group-a@g.us");
+  assert.equal(f.warnCounts.get("group-b@g.us:" + sender), 1);
+
+  await f.listener.fn(messageIn("group-b@g.us"));
+  const noticesBAfter = f.calls.filter((c) => c.jid === "group-b@g.us" && c.payload?.text);
+  assert.match(noticesBAfter.at(-1).payload.text, /\*Warnings: 2\/4\*\n\*Remaining: 2\*/);
+  assert.equal(f.calls.filter((c) => c.type === "participants" && c.jid === "group-b@g.us").length, 0);
+});
