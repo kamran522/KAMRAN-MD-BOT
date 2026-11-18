@@ -17,6 +17,7 @@ function loadHelpers() {
     process, fs, path, os, console, Buffer, setInterval, setTimeout, clearTimeout,
     require(name) {
       if (name === "fluent-ffmpeg") return FakeFfmpeg;
+      if (name === "jimp") return { read: async () => { throw new Error("thumbnail unavailable in this test"); } };
       return require(name);
     },
   }, { filename: "core/helpers.js", timeout: 10000 });
