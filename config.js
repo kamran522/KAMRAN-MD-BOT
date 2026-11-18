@@ -309,6 +309,12 @@ const config = new Proxy(baseConfig, {
     return true;
   },
 
+  deleteProperty(target, prop) {
+    const key = typeof prop === "symbol" ? prop.toString() : prop;
+    dynamicValues.delete(key);
+    return true;
+  },
+
   has(target, prop) {
     const key = typeof prop === "symbol" ? prop.toString() : prop;
     return (
