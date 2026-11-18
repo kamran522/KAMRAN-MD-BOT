@@ -1,0 +1,84 @@
+name: Obfuscate JavaScript (config.js excluded)
+
+on:
+  push:
+    branches:
+      - build/obfuscate-js-except-config-20261118
+
+permissions:
+  contents: write
+
+jobs:
+  obfuscate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Install isolated JavaScript obfuscator
+        run: npm install --prefix "$RUNNER_TEMP/kamran-obfuscator" --no-audit --no-fund javascript-obfuscator@4.1.1
+      - name: Obfuscate every JavaScript file except config.js
+        run: |
+          node <<'NODE'
+          const fs = require('fs');
+          const path = require('path');
+          const obfuscator = require(path.join(process.env.RUNNER_TEMP, 'kamran-obfuscator/node_modules/javascript-obfuscator'));
+          const root = process.cwd();
+          const excludedDirectories = new Set(['.git', 'node_modules', 'temp']);
+          const files = [];
+          function collect(dir) {
+            for (const entry of fs.readdirSync(dir, { withFileTypes: true })) {
+              if (entry.isDirectory()) {
+                if (!excludedDirectories.has(entry.name)) collect(path.join(dir, entry.name));
+              } else if (entry.isFile() && entry.name.endsWith('.js')) {
+                const rel = path.relative(root, path.join(dir, entry.name)).replaceAll(path.sep, '/');
+                if (rel !== 'config.js') files.push(path.join(dir, entry.name));
+              }
+            }
+          }
+          collect(root);
+          files.sort();
+          if (files.length < 60) throw new Error('Unexpected number of JavaScript files: ' + files.length);
+          for (const file of files) {
+            const original = fs.readFileSync(file, 'utf8');
+            const output = obfuscator.obfuscate(original, {
+              target: 'node',
+              compact: true,
+              identifierNamesGenerator: 'hexadecimal',
+              renameGlobals: false,
+              renameProperties: false,
+              controlFlowFlattening: false,
+              deadCodeInjection: false,
+              stringArray: true,
+              stringArrayEncoding: ['base64'],
+              stringArrayThreshold: 0.65,
+              simplify: true,
+              selfDefending: false,
+              debugProtection: false,
+              disableConsoleOutput: false,
+              sourceMap: false
+            }).getObfuscatedCode();
+            fs.writeFileSync(file, output + '\n');
+          }
+          console.log('Obfuscated ' + files.length + ' JavaScript files. config.js is unchanged.');
+          NODE
+      - name: Verify config.js has not changed
+        run: git diff --exit-code -- config.js
+      - name: Check all JavaScript syntax
+        run: npm run check
+      - name: Run local AI tests
+        run: npm run test:ai
+      - name: Run downloader tests
+        run: node --test tests/media-downloads.test.js
+      - name: Commit obfuscated sources to this review branch
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -u
+          git diff --cached --quiet && exit 1
+          git commit -m "build: obfuscate JavaScript except config.js"
+          git push origin HEAD
