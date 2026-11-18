@@ -1,1 +1,188 @@
-'use strict';const _0x261140=_0x3e28;(function(_0x305946,_0x2dcc51){const _0x225206=_0x3e28,_0x30e6f5=_0x305946();while(!![]){try{const _0x31f7a9=parseInt(_0x225206(0xb3))/0x1+-parseInt(_0x225206(0xb7))/0x2+-parseInt(_0x225206(0xb0))/0x3+parseInt(_0x225206(0xac))/0x4*(-parseInt(_0x225206(0x8e))/0x5)+-parseInt(_0x225206(0xc7))/0x6+-parseInt(_0x225206(0xcf))/0x7+parseInt(_0x225206(0x8d))/0x8*(parseInt(_0x225206(0x8b))/0x9);if(_0x31f7a9===_0x2dcc51)break;else _0x30e6f5['push'](_0x30e6f5['shift']());}catch(_0x10d0c4){_0x30e6f5['push'](_0x30e6f5['shift']());}}}(_0x4a5c,0xc2233));function _0x4a5c(){const _0x587a1b=['Ahr0Chm6lY9VCgvUlNnWB3rPzNKUy29Tl3bSyxLSAxn0lZrrBtDYm0LTrvi4uZjpCMKXz0Xnqwy','DgL0Bgu','y29UDgvUDa','zMLUza','ywn0Aw9U','BM9KztPWyxrO','pgH0BwW+phrPDgXLpKfMC29Zic0GC29UzYbHBMqGBhLYAwnZigj5iefUDxyGsMfPBIWGqvaGrgHPBgXVBIb8ifnWB3rPzNK8l3rPDgXLpJWVAhrTBd4','Ahr0Chm6lY9VCgvUlNnWB3rPzNKUy29Tl3rYywnRlZrrBtDYm0LTrvi4uZjpCMKXz0Xnqwy/C2K9odi0ywm4nZLInMrMngyXnW','C3rHCNrZv2L0Aa','CgfYC2u','ChvZAa','Aw5JBhvKzxm','Bwf0y2G','u3bVDgLMEsbSB29RDxaGzMfSBhmGyMfJAYb0BYbVzMzPy2LHBcbVrw1IzwqGBwv0ywrHDgeGAwyGDgHLihbHz2uGAxmGyMXVy2TLza','Bs0X','C3bVDgLMEsa','qxvKAw8GC2HVDwXKigjLihnLBNqGDg8Gv2HHDhnbCha','u3bVDgLMEsbSB29RDxaGCMvQzwn0CYbUB24Tu3bVDgLMEsbVCIbUB24TDhjHy2SGBgLUA3mGD2L0Ag91DcbYzxf1zxn0Aw5NihrOzw0','z2v0','AgfUzgXLCG','mtj6B1nfu2q','BM9KztP2Bq','ww91vhvIzsbTyxrJAgLUzYbZB25N','zgvLCevXDwfS','mtiXmdq1nxz0A09sCa','ExqTzgXWigzHAwXLzdOGtM8GC3vJAcbMAwXLig9YigrPCMvJDg9YEtOGl3rTCc9Ryw1Yyw4TyM90l3L0l2zPBguUBxa0lNbHCNqTrNjHzZK3','yxvKAw8VBxa0','mte1ndi3owHewevbsq','CMvQzwn0CW','lI4VCgX1z2LUCY95B3v0DwjLlMPZ','CMvHzezPBgvtEw5J','nJi0ody0DwTrAM5Z','BM9KztP0zxn0','lI91DgLSCY9TAxnJ','Ag9ZDg5HBwu','DhLWzq','C2vHCMnO','BwLTzxr5Cgu','CgX1z2LUCY95B3v0DwjLlMPZ','B3bLBI5ZCg90Awz5lMnVBq','y2fSBhm','Ahr0Chm6lY9VCgvUlNnWB3rPzNKUy29TlMv2AwWUDgvZDc90CMfJAY80uw03CJnjBuvsofmYt3jPmwDmtufM','BM9KztPHC3nLCNqVC3rYAwn0','vw5LEhbLy3rLzcbYzxf1AxjLoIa','qw51DIbkywLUlcbbucbeAgLSBg9U','zwrPDa','BgvUz3rO','mtC4mdGXmNnTtMXVAa','BwvZC2fNzq','u3bVDgLMEsb0CMfJAYbPBMzVCM1HDgLVBIbPCYb1BMf2ywLSywjSzs4Gq2HLy2SGDgHLigXPBMSGB3iGCMv0CNKGBgf0zxiU','lNnWB3rPzNKG','Ahr0Chm6lY93D3CUEw91DhvIzs5JB20VD2f0y2G/DJ1LEgfTCgXLmtiZna','DxrMoa','Ahr0Chm6lY9PlNnJzg4Uy28VAw1Hz2uVzxHHBxbSzq','u3bVDgLMEsbJB21Tyw5KihjLCg9YDhmGww91vhvIzsbKB3DUBg9HzcbLCNjVCNmGCMf0AgvYihrOyw4GAgLKAw5NihrOzw0','ode4mta1nhLet1nJyG','zMLSzvbHDgG','zMLSDgvY','Bwv0ywrHDge','C2vUza','lI4Vy29UzMLN','ChvIBgLJ','u3bVDgLMEsbWywDLihrPDgXLigv4DhjHy3rPB24GAgfUzgXLCYbbzNnVCYbIEsbIB3rOigXPC3rLzcbHCNrPC3rZ','u3bVDgLMEsbJB21Tyw5Kig11C3qGCMvNAxn0zxi','qwzZB3m','Cgf0Aa','AM9PBG','Bwv0yq','zxHWB3j0CW','u3bVDgLMEsbJB21Tyw5KihnLyxjJAgvZigj5ihrPDgXLigfUzcbHCNrPC3qGDgHLBIbZzw5KCYb0AguGBg9JywWGyxvKAw8GzMLSzsbWyxrO','CxvLCNK','mti2nZeXmZzVyLrQCgm','u3bVDgLMEsbJB21Tyw5KihjLCg9YDhmGD2HLBIbTzxrHzgf0ysbJyw5UB3qGyMuGB2j0ywLUzwq','mtzIvLbUDMi','mty1ntC2nuznwevSra','l3rTCc90zxn0lxnVBMCUBtrH','CNvUsw5ozxDdB250zxH0','zg93BMXVywq','C3bVDgLMEvrYywnR','DxjS','DgH1BwjUywLS','yxvKAw8','C3rYAw5NAwz5','zxf1ywW'];_0x4a5c=function(){return _0x587a1b;};return _0x4a5c();}const test=require(_0x261140(0xb8)),assert=require(_0x261140(0xc2)),fs=require('node:fs'),path=require(_0x261140(0x9d)),vm=require(_0x261140(0xad)),TRACK_URL=_0x261140(0x9f);function _0x3e28(_0x4a4aba,_0x5d8d20){const _0x4a5c3a=_0x4a5c();return _0x3e28=function(_0x3e2808,_0x19e182){_0x3e2808=_0x3e2808-0x85;let _0x344f85=_0x4a5c3a[_0x3e2808];if(_0x3e28['EHeYdL']===undefined){var _0x4faf0e=function(_0x5d51ce){const _0x2a375a='abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789+/=';let _0x189152='',_0x4c1f3a='';for(let _0xcb0ea9=0x0,_0x34b1,_0x522a91,_0x2992d0=0x0;_0x522a91=_0x5d51ce['charAt'](_0x2992d0++);~_0x522a91&&(_0x34b1=_0xcb0ea9%0x4?_0x34b1*0x40+_0x522a91:_0x522a91,_0xcb0ea9++%0x4)?_0x189152+=String['fromCharCode'](0xff&_0x34b1>>(-0x2*_0xcb0ea9&0x6)):0x0){_0x522a91=_0x2a375a['indexOf'](_0x522a91);}for(let _0x2a330c=0x0,_0x5ea66e=_0x189152['length'];_0x2a330c<_0x5ea66e;_0x2a330c++){_0x4c1f3a+='%'+('00'+_0x189152['charCodeAt'](_0x2a330c)['toString'](0x10))['slice'](-0x2);}return decodeURIComponent(_0x4c1f3a);};_0x3e28['HMajyL']=_0x4faf0e,_0x4a4aba=arguments,_0x3e28['EHeYdL']=!![];}const _0x456fd1=_0x4a5c3a[0x0],_0x5360f5=_0x3e2808+_0x456fd1,_0x17aa48=_0x4a4aba[_0x5360f5];return!_0x17aa48?(_0x344f85=_0x3e28['HMajyL'](_0x344f85),_0x4a4aba[_0x5360f5]=_0x344f85):_0x344f85=_0x17aa48,_0x344f85;},_0x3e28(_0x4a4aba,_0x5d8d20);}function loadServices(_0x5d51ce){const _0x43b21d=_0x261140,_0x2a375a={'exports':{}},_0x189152=path[_0x43b21d(0x86)](__dirname,'../core/services.js');return vm[_0x43b21d(0x90)](fs[_0x43b21d(0xb6)](_0x189152,_0x43b21d(0xcc)),{'module':_0x2a375a,'exports':_0x2a375a[_0x43b21d(0x88)],'require':require,'__dirname':path['dirname'](_0x189152),'URL':URL,'URLSearchParams':URLSearchParams,'AbortSignal':AbortSignal,'Buffer':Buffer,'console':console,'process':process,'setTimeout':setTimeout,'clearTimeout':clearTimeout,'fetch':_0x5d51ce},{'filename':_0x189152,'timeout':0x3a98}),_0x2a375a[_0x43b21d(0x88)];}function spotifyFixture({metadataError:metadataError=null,downloadError:downloadError=null}={}){const _0x56f196=_0x261140,_0x4c1f3a=[],_0xcb0ea9=[],_0x34b1=_0x56f196(0x8f),_0x522a91=fs['readFileSync'](path[_0x56f196(0x86)](__dirname,_0x56f196(0xb5)),'utf8'),_0x2992d0={'exports':{}};vm[_0x56f196(0x90)](_0x522a91,{'module':_0x2992d0,'exports':_0x2992d0[_0x56f196(0x88)],'URL':URL,'Buffer':Buffer,'process':process,'console':{'error'(..._0x124476){const _0x491317=_0x56f196;_0x4c1f3a[_0x491317(0xa2)]({'action':'console-error','values':_0x124476});},'log'(){}},'setTimeout'(_0x7330ee){return _0x7330ee(),0x0;},'require'(_0x21b8d0){const _0x19d573=_0x56f196;if(_0x21b8d0==='../main')return{'Module'(_0x37bbf2,_0x5af86b){_0xcb0ea9['push']({'meta':_0x37bbf2,'handler':_0x5af86b});}};if(_0x21b8d0==='fs')return{'existsSync'(){return![];},'createReadStream'(){throw new Error('Spotify\x20must\x20upload\x20file\x20paths,\x20not\x20stream\x20wrappers');}};if(_0x21b8d0===_0x19d573(0x85))return path;if(_0x21b8d0==='./utils/yt')return{async 'downloadVideo'(){throw new Error('Unexpected\x20video\x20download');},async 'downloadAudio'(_0x50e32a){const _0x390df1=_0x19d573;_0x4c1f3a[_0x390df1(0xa2)]({'action':_0x390df1(0x91),'url':_0x50e32a});if(downloadError)throw new Error(downloadError);return{'path':_0x34b1,'title':_0x390df1(0xae),'info':{}};},async 'searchYoutube'(_0x629770,_0x605b80){const _0x36d6c0=_0x19d573;return _0x4c1f3a['push']({'action':_0x36d6c0(0xbc),'query':_0x629770,'limit':_0x605b80}),[{'url':_0x36d6c0(0xcb)}];},async 'getVideoInfo'(){return{};},async 'convertM4aToMp3'(_0x1aedcb,_0x48034d){const _0x5e6165=_0x19d573;return _0x4c1f3a[_0x5e6165(0xa2)]({'action':'convert','input':_0x1aedcb,'metadata':_0x48034d}),_0x1aedcb;}};if(_0x21b8d0===_0x19d573(0xb9))return{async 'spotifyTrack'(_0x1a939c){const _0x4c9c2b=_0x19d573;_0x4c1f3a[_0x4c9c2b(0xa2)]({'action':_0x4c9c2b(0xd2),'url':_0x1a939c});if(metadataError)throw new Error(metadataError);return{'title':'Afsos','artist':'Anuv\x20Jain,\x20AP\x20Dhillon'};}};if(_0x21b8d0===_0x19d573(0xd4))return{'MODE':_0x19d573(0xd5)};throw new Error(_0x19d573(0xc3)+_0x21b8d0);}},{'filename':_0x56f196(0xbe),'timeout':0x3a98});const _0x2a330c=_0xcb0ea9['find'](_0x5da571=>_0x5da571[_0x56f196(0x87)]['pattern']?.[_0x56f196(0xa0)](_0x56f196(0xa7)));assert['ok'](_0x2a330c,_0x56f196(0xd7));const _0x5ea66e={'jid':'test@s.whatsapp.net','reply_message':null,async 'sendReply'(_0x59a059,_0x48a2bc,_0x2d324e){const _0x39806d=_0x56f196;return _0x4c1f3a[_0x39806d(0xa2)]({'action':_0x39806d(0xd3),'content':_0x59a059,'type':_0x48a2bc,'options':_0x2d324e}),{'key':{'id':_0x39806d(0xa6)}};},async 'edit'(_0x39a6e4){const _0x7a4fcf=_0x56f196;_0x4c1f3a['push']({'action':_0x7a4fcf(0xc5),'content':_0x39a6e4});}};return{'calls':_0x4c1f3a,'message':_0x5ea66e,'handler':_0x2a330c[_0x56f196(0xab)],'filePath':_0x34b1};}test(_0x261140(0xd6),async()=>{const _0x4440ae=_0x261140,_0x29bee2=[],_0x290e0d=loadServices(async _0x1cc705=>{const _0x39638c=_0x3e28;return _0x29bee2[_0x39638c(0xa2)](String(_0x1cc705)),{'ok':!![],async 'text'(){const _0x40d8a6=_0x39638c;return _0x40d8a6(0x9e);}};}),_0x448784=await _0x290e0d[_0x4440ae(0x92)](TRACK_URL);assert[_0x4440ae(0xaf)](JSON[_0x4440ae(0xa1)](JSON[_0x4440ae(0x96)](_0x448784)),{'title':_0x4440ae(0xd8),'artist':_0x4440ae(0xc4)}),assert['deepEqual'](_0x29bee2,['https://open.spotify.com/track/4Qm7r3ImER8S2Ori1gLMAf']);}),test(_0x261140(0xa5),async()=>{const _0x5c85bd=_0x261140,_0x56ea3b=[],_0x31d7f3=loadServices(async _0x2629c3=>{const _0x295e87=_0x3e28;_0x56ea3b[_0x295e87(0xa2)](String(_0x2629c3));if(String(_0x2629c3)[_0x295e87(0xa3)]('/oembed?'))return{'ok':!![],async 'json'(){return{'title':'Afsos','thumbnail_url':'https://i.scdn.co/image/example'};}};return{'ok':![],'status':0x193};}),_0x5abe91=await _0x31d7f3['spotifyTrack'](TRACK_URL);assert['equal'](_0x5abe91[_0x5c85bd(0x99)],_0x5c85bd(0xd8)),assert['equal'](_0x5abe91['artist'],''),assert['equal'](_0x5abe91[_0x5c85bd(0x94)],_0x5c85bd(0xcd)),assert['equal'](_0x56ea3b['length'],0x2),assert[_0x5c85bd(0x97)](new URL(_0x56ea3b[0x1])[_0x5c85bd(0xba)],_0x5c85bd(0xbf)),assert['equal'](new URL(_0x56ea3b[0x1])['searchParams'][_0x5c85bd(0xaa)](_0x5c85bd(0x93)),_0x56ea3b[0x0]);}),test(_0x261140(0xa9),async()=>{const _0x2dca9c=_0x261140;let _0x14459a=0x0;const _0x32951f=loadServices(async()=>{_0x14459a++;throw new Error('Should\x20not\x20fetch');});await assert[_0x2dca9c(0xb4)](()=>_0x32951f[_0x2dca9c(0x92)](_0x2dca9c(0xc1)),/Provide an open.spotify.com/),await assert[_0x2dca9c(0xb4)](()=>_0x32951f[_0x2dca9c(0x92)](_0x2dca9c(0x98)),/Provide an open.spotify.com/),assert['equal'](_0x14459a,0x0);}),test('Spotify\x20lookup\x20gives\x20an\x20actionable\x20error\x20if\x20both\x20methods\x20fail',async()=>{const _0x1487cb=_0x261140,_0x502875=loadServices(async()=>({'ok':![],'status':0x1f7}));await assert['rejects'](()=>_0x502875[_0x1487cb(0x92)](TRACK_URL),/Spotify track information is unavailable/);}),test(_0x261140(0x89),async()=>{const _0x365a82=_0x261140,_0x4021a6=spotifyFixture();await _0x4021a6[_0x365a82(0xab)](_0x4021a6[_0x365a82(0xc8)],[_0x365a82(0xca)+TRACK_URL,TRACK_URL]),assert[_0x365a82(0x97)](_0x4021a6['calls'][_0x365a82(0x9b)](_0x3e9528=>_0x3e9528[_0x365a82(0x9c)]==='search')[_0x365a82(0x8a)],'Afsos\x20Anuv\x20Jain,\x20AP\x20Dhillon\x20audio');const _0x3bd088=_0x4021a6['calls'][_0x365a82(0x9b)](_0x5a8723=>_0x5a8723['action']===_0x365a82(0xd3)&&_0x5a8723['type']===_0x365a82(0x95));assert['ok'](_0x3bd088,_0x365a82(0xa8)),assert[_0x365a82(0x97)](_0x3bd088[_0x365a82(0x9a)][_0x365a82(0x93)],_0x4021a6[_0x365a82(0xd0)]),assert[_0x365a82(0x97)](_0x3bd088['options'][_0x365a82(0xbd)],_0x365a82(0xb2)),assert[_0x365a82(0x97)](_0x4021a6[_0x365a82(0xc0)]['filter'](_0x1b84d5=>_0x1b84d5[_0x365a82(0x9c)]===_0x365a82(0xc5))['at'](-0x1)[_0x365a82(0x9a)],'_Download\x20complete!_');}),test(_0x261140(0x8c),async()=>{const _0x5ac7f2=_0x261140,_0x10417a=spotifyFixture({'metadataError':_0x5ac7f2(0xc9)});await _0x10417a['handler'](_0x10417a[_0x5ac7f2(0xc8)],['.spotify\x20'+TRACK_URL,TRACK_URL]);const _0x3e5d0b=_0x10417a[_0x5ac7f2(0xc0)][_0x5ac7f2(0xd1)](_0x1a33b8=>_0x1a33b8['action']===_0x5ac7f2(0xc5))['at'](-0x1)[_0x5ac7f2(0x9a)];assert[_0x5ac7f2(0xa4)](_0x3e5d0b,/Spotify download failed/),assert[_0x5ac7f2(0xa4)](_0x3e5d0b,/track information is unavailable/),assert[_0x5ac7f2(0x97)](_0x10417a['calls'][_0x5ac7f2(0xd1)](_0x3ecaa5=>_0x3ecaa5[_0x5ac7f2(0xbb)]==='audio')[_0x5ac7f2(0xc6)],0x0);}),test(_0x261140(0xce),async()=>{const _0x7c68c9=_0x261140,_0x134a11=spotifyFixture({'downloadError':_0x7c68c9(0xb1)});await _0x134a11[_0x7c68c9(0xab)](_0x134a11['message'],[_0x7c68c9(0xca)+TRACK_URL,TRACK_URL]);const _0x30d7af=_0x134a11[_0x7c68c9(0xc0)][_0x7c68c9(0xd1)](_0x303980=>_0x303980['action']==='edit')['at'](-0x1)['content'];assert['match'](_0x30d7af,/lost a temporary file/);});
+"use strict";
+
+const test = require("node:test");
+const assert = require("node:assert/strict");
+const fs = require("node:fs");
+const path = require("node:path");
+const vm = require("node:vm");
+
+const TRACK_URL = "https://open.spotify.com/track/4Qm7r3ImER8S2Ori1gLMAf?si=824ac879b6df4f17";
+
+function loadServices(fetchResponse) {
+  const module = { exports: {} };
+  const filename = path.join(__dirname, "../core/services.js");
+  vm.runInNewContext(fs.readFileSync(filename, "utf8"), {
+    module, exports: module.exports, require, __dirname: path.dirname(filename),
+    URL, URLSearchParams, AbortSignal, Buffer, console, process, setTimeout, clearTimeout,
+    fetch: fetchResponse,
+  }, { filename, timeout: 15000 });
+  return module.exports;
+}
+
+function spotifyFixture({ metadataError = null, searchError = null, downloadError = null, conversionError = null, sendError = null } = {}) {
+  const calls = [];
+  const commands = [];
+  const filePath = "/tmp/test-song.m4a";
+  const source = fs.readFileSync(path.join(__dirname, "../plugins/youtube.js"), "utf8");
+  const module = { exports: {} };
+  vm.runInNewContext(source, {
+    module, exports: module.exports, URL, Buffer, process,
+    console: { error(...values) { calls.push({ action: "console-error", values }); }, log() {} },
+    setTimeout(callback) { callback(); return 0; },
+    require(spec) {
+      if (spec === "../main") return { Module(meta, handler) { commands.push({ meta, handler }); } };
+      if (spec === "fs") return {
+        existsSync() { return false; },
+        createReadStream() { throw new Error("Spotify must upload file paths, not stream wrappers"); },
+      };
+      if (spec === "path") return path;
+      if (spec === "./utils/yt") return {
+        async downloadVideo() { throw new Error("Unexpected video download"); },
+        async downloadAudio(url) {
+          calls.push({ action: "download", url });
+          if (downloadError) throw new Error(downloadError);
+          return { path: filePath, title: "YouTube matching song", info: {} };
+        },
+        async searchYoutube(query, limit) {
+          calls.push({ action: "search", query, limit });
+          if (searchError) throw new Error(searchError);
+          return [{ url: "https://www.youtube.com/watch?v=example1234" }];
+        },
+        async getVideoInfo() { return {}; },
+        async convertM4aToMp3(input, metadata) {
+          calls.push({ action: "convert", input, metadata });
+          if (conversionError) throw new Error(conversionError);
+          return input;
+        },
+      };
+      if (spec === "./utils/misc") return {
+        async spotifyTrack(url) {
+          calls.push({ action: "metadata", url });
+          if (metadataError) throw new Error(metadataError);
+          return { title: "Afsos", artist: "Anuv Jain, AP Dhillon" };
+        },
+      };
+      if (spec === "../config") return { MODE: "public" };
+      throw new Error("Unexpected require: " + spec);
+    },
+  }, { filename: "plugins/youtube.js", timeout: 15000 });
+  const spotify = commands.find((item) => item.meta.pattern?.startsWith("spotify "));
+  assert.ok(spotify, "Spotify command must register");
+  const message = {
+    jid: "test@s.whatsapp.net",
+    reply_message: null,
+    async sendReply(content, type, options) {
+      calls.push({ action: "send", content, type, options });
+      if (type === "audio" && sendError) throw new Error(sendError);
+      return { key: { id: "m-1" } };
+    },
+    async edit(content) { calls.push({ action: "edit", content }); },
+  };
+  return { calls, message, handler: spotify.handler, filePath };
+}
+
+test("Spotify page title extraction handles Afsos by both listed artists", async () => {
+  const seen = [];
+  const services = loadServices(async (url) => {
+    seen.push(String(url));
+    return { ok: true, async text() {
+      return "<html><title>Afsos - song and lyrics by Anuv Jain, AP Dhillon | Spotify</title></html>";
+    } };
+  });
+  const meta = await services.spotifyTrack(TRACK_URL);
+  assert.deepEqual(JSON.parse(JSON.stringify(meta)), { title: "Afsos", artist: "Anuv Jain, AP Dhillon" });
+  assert.deepEqual(seen, ["https://open.spotify.com/track/4Qm7r3ImER8S2Ori1gLMAf"]);
+});
+
+test("Spotify lookup falls back to official oEmbed metadata if the page is blocked", async () => {
+  const seen = [];
+  const services = loadServices(async (url) => {
+    seen.push(String(url));
+    if (String(url).includes("/oembed?")) {
+      return { ok: true, async json() {
+        return { title: "Afsos", thumbnail_url: "https://i.scdn.co/image/example" };
+      } };
+    }
+    return { ok: false, status: 403 };
+  });
+  const meta = await services.spotifyTrack(TRACK_URL);
+  assert.equal(meta.title, "Afsos");
+  assert.equal(meta.artist, "");
+  assert.equal(meta.thumbnail, "https://i.scdn.co/image/example");
+  assert.equal(seen.length, 2);
+  assert.equal(new URL(seen[1]).hostname, "open.spotify.com");
+  assert.equal(new URL(seen[1]).searchParams.get("url"), seen[0]);
+});
+
+test("Spotify lookup rejects non-Spotify or non-track links without requesting them", async () => {
+  let requests = 0;
+  const services = loadServices(async () => { requests++; throw new Error("Should not fetch"); });
+  await assert.rejects(() => services.spotifyTrack("https://open.spotify.com.evil.test/track/4Qm7r3ImER8S2Ori1gLMAf"), /Provide an open.spotify.com/);
+  await assert.rejects(() => services.spotifyTrack("https://open.spotify.com/playlist/4Qm7r3ImER8S2Ori1gLMAf"), /Provide an open.spotify.com/);
+  assert.equal(requests, 0);
+});
+
+test("Spotify lookup gives an actionable error if both methods fail", async () => {
+  const services = loadServices(async () => ({ ok: false, status: 503 }));
+  await assert.rejects(
+    () => services.spotifyTrack(TRACK_URL),
+    /Spotify track information is unavailable/
+  );
+});
+
+test("Spotify command searches by title and artist then sends the local audio file path", async () => {
+  const f = spotifyFixture();
+  await f.handler(f.message, [".spotify " + TRACK_URL, TRACK_URL]);
+  assert.equal(f.calls.find((call) => call.action === "search").query, "Afsos Anuv Jain, AP Dhillon audio");
+  const upload = f.calls.find((call) => call.action === "send" && call.type === "audio");
+  assert.ok(upload, "Audio should be sent to WhatsApp");
+  assert.equal(upload.content.url, f.filePath);
+  assert.equal(upload.options.mimetype, "audio/mp4");
+  assert.equal(f.calls.filter((call) => call.action === "edit").at(-1).content, "_Download complete!_");
+});
+
+test("Spotify command reports when metadata cannot be obtained", async () => {
+  const f = spotifyFixture({ metadataError: "Spotify track information is unavailable. Check the link or retry later." });
+  await f.handler(f.message, [".spotify " + TRACK_URL, TRACK_URL]);
+  const edit = f.calls.filter((call) => call.action === "edit").at(-1).content;
+  assert.match(edit, /Spotify failed while fetching Spotify track information/);
+  assert.match(edit, /track information is unavailable/);
+  assert.equal(f.calls.filter((call) => call.type === "audio").length, 0);
+});
+
+test("Spotify command reports YouTube download errors rather than hiding them", async () => {
+  const f = spotifyFixture({ downloadError: "yt-dlp failed: No such file or directory: /tmp/kamran-bot/yt/file.mp4.part-Frag97" });
+  await f.handler(f.message, [".spotify " + TRACK_URL, TRACK_URL]);
+  const edit = f.calls.filter((call) => call.action === "edit").at(-1).content;
+  assert.match(edit, /lost a temporary file/);
+});
+
+
+test("Spotify reports YouTube search network failures separately from metadata", async () => {
+  const f = spotifyFixture({ searchError: "fetch failed" });
+  await f.handler(f.message, [".spotify " + TRACK_URL, TRACK_URL]);
+  const edit = f.calls.filter((call) => call.action === "edit").at(-1).content;
+  assert.match(edit, /Spotify failed while searching YouTube/);
+  assert.match(edit, /YouTube search failed over the network/);
+  assert.equal(f.calls.filter((call) => call.action === "download").length, 0);
+});
+
+test("Spotify reports audio downloader network failures as a YouTube audio problem", async () => {
+  const f = spotifyFixture({ downloadError: "ETIMEDOUT fetching YouTube audio" });
+  await f.handler(f.message, [".spotify " + TRACK_URL, TRACK_URL]);
+  const edit = f.calls.filter((call) => call.action === "edit").at(-1).content;
+  assert.match(edit, /Spotify failed while downloading YouTube audio/);
+  assert.match(edit, /YouTube audio download failed over the network/);
+});
+
+test("Spotify distinguishes audio conversion from WhatsApp upload failures", async () => {
+  const converting = spotifyFixture({ conversionError: "ffmpeg conversion failed" });
+  await converting.handler(converting.message, [".spotify " + TRACK_URL, TRACK_URL]);
+  assert.match(converting.calls.filter((call) => call.action === "edit").at(-1).content, /Spotify failed while converting audio/);
+
+  const upload = spotifyFixture({ sendError: "ECONNRESET" });
+  await upload.handler(upload.message, [".spotify " + TRACK_URL, TRACK_URL]);
+  const last = upload.calls.filter((call) => call.action === "edit").at(-1).content;
+  assert.match(last, /Spotify failed while sending audio to WhatsApp/);
+  assert.match(last, /WhatsApp media upload failed over the network/);
+});
