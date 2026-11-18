@@ -25,12 +25,18 @@ const { filter, groupAdminGuard } = require("./utils");
 const config = require("../config");
 const { settingsMenu } = config;
 const fs = require("fs");
-const configStore = require("../core/config/store");
-const context = require("../core/context");
-const identity = require("../core/identity");
-const { needsRestart } = require("../core/config/schema");
+const { BotVariable } = require("../core/database");
 
-const { helpPrefix, commandName } = require("../core/plugins/registry");
+// The current BotVariable model stores global settings, not per-session values.
+const needsRestart = (key) =>
+  ["LANGUAGE", "HANDLERS", "MULTI_HANDLERS", "WA_BROWSER"].includes(String(key).toUpperCase());
+const helpPrefix = () =>
+  config.HANDLERS === "false" ? "" : String(config.HANDLERS || ".")[0];
+const commandName = (command) => {
+  const source = command.pattern?.source || "";
+  const name = source.replace(/^\^\(\?:[^)]*\)\??/, "").replace(/^\^/, "");
+  return (name.match(/^[a-z][a-z0-9-]*/i) || [""])[0].toLowerCase();
+};
 
 // only keys the schema marks restart: true (LANGUAGE) are not live
 function restartNote(key) {
@@ -46,19 +52,25 @@ const isSecretKey = (key) => {
 
 // the only chat that is safe for a secret: the owner's chat with themselves
 function inOwnChat(message) {
-  const ids = identity.botIds(message.client);
-  return message.jid === ids.lid || message.jid === ids.pn;
+  const ids = [
+    message.client.user?.id,
+    message.client.user?.jid,
+    message.client.user?.lid,
+  ].filter(Boolean).map((jid) => jid.replace(/:\d+@/, "@"));
+  return ids.includes(message.jid);
 }
 
 const showValue = (key, value, message) =>
   isSecretKey(key) && !inOwnChat(message) ? "[hidden, ask in your own chat]" : value;
 
 async function setVar(key, value, message = false) {
-  // saves to the database, then applies live and emits config:changed
-  await configStore.set(key.trim(), value, { persist: true });
+  const name = key.trim();
+  const stored = String(value);
+  await BotVariable.upsert({ key: name, value: stored });
+  config.loadFromDB({ [name]: stored });
   if (message) {
     await message.sendReply(
-      `_${key.trim()} set to '${value}' successfully!_${restartNote(key.trim())}`
+      `_${name} set to '${value}' successfully!_${restartNote(name)}`
     );
   }
   return true;
@@ -66,12 +78,8 @@ async function setVar(key, value, message = false) {
 
 async function delVar(key, message = false) {
   const name = key.trim();
-  // inside a session this removes the session's own value first; when it has none,
-  // the global value is the one the owner means, so delete that instead
-  let removed = await configStore.unset(name, { persist: true });
-  if (!removed && context.accountId()) {
-    removed = await context.runUnscoped(() => configStore.unset(name, { persist: true }));
-  }
+  const removed = await BotVariable.destroy({ where: { key: name } });
+  if (removed) delete config[name];
   if (message) {
     await message.sendReply(
       removed
