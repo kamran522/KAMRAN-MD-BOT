@@ -2,6 +2,9 @@ const { Module } = require('../main');
 const { loadBaileys } = require('../core/helpers');
 
 const MAX_MEDIA_BYTES = 50 * 1024 * 1024;
+const MISSING_MEDIA_MESSAGE =
+  'WhatsApp did not provide a downloadable file for this view-once message. ' +
+  'Linked devices may receive only a placeholder. Ask the sender to resend it as regular media.';
 const MEDIA_TYPES = {
   imageMessage: 'image',
   videoMessage: 'video',
@@ -64,6 +67,12 @@ Module(
     if (!item) {
       return fail('The quoted reply does not contain accessible view-once media. WhatsApp may have sent only a placeholder.');
     }
+    // A quoted view-once message may contain metadata without any downloadable file.
+    // Do not attempt a media download unless WhatsApp supplied an actual location.
+    if (!item.media?.url && !item.media?.directPath) {
+      return fail(MISSING_MEDIA_MESSAGE);
+    }
+
     const dest = directJid(m);
     if (!dest) return fail('Could not determine the sender DM destination.');
 
@@ -92,6 +101,9 @@ Module(
       if (dest !== m.jid) await fail('Media sent to your DM. Delivery to the device is not yet confirmed.');
     } catch (error) {
       console.error('[vv2] media download/send failed:', error?.message || error);
+      if (/No valid media URL or directPath/i.test(error?.message || '')) {
+        return fail(MISSING_MEDIA_MESSAGE);
+      }
       return fail('Could not download or send this view-once media: ' + (error?.message || 'Unknown error'));
     }
   }
