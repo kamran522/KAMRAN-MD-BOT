@@ -355,7 +355,7 @@ Module(
 ┃${star}╭──────────────
 ┃${star}│
 ┃${star}│ _*\`Owner\`*_ : ${botOwner}
-┃${star}│ _*\`User\`*_ : ${message.senderName.replace(/[\r\n]+/gm, "")}
+┃${star}│ _*\`User\`*_ : ${String(message.senderName || "Unknown").replace(/[\r\n]+/gm, "")}
 ┃${star}│ _*\`Mode\`*_ : ${MODE}
 ┃${star}│ _*\`Server\`*_ : ${os.platform() === "linux" ? "Linux" : "Unknown OS"}
 ┃${star}│ _*\`Available RAM\`*_ : ${used} of ${total}

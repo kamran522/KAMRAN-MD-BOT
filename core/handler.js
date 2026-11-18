@@ -383,7 +383,7 @@ const handler = async (message, client) => {
       (cmd.on !== undefined &&
         (cmd.on === "image" || cmd.on === "photo") &&
         msg.message &&
-        msg.message.imageMessage !== null &&
+        Boolean(msg.message.imageMessage) &&
         (cmd.pattern === undefined ||
           (cmd.pattern !== undefined &&
             cmd.pattern.test(parsedText)))) ||
@@ -402,7 +402,7 @@ const handler = async (message, client) => {
       (cmd.on !== undefined &&
         cmd.on === "video" &&
         msg.message &&
-        msg.message.videoMessage !== null &&
+        Boolean(msg.message.videoMessage) &&
         (cmd.pattern === undefined ||
           (cmd.pattern !== undefined && cmd.pattern.test(parsedText))))
     ) {

@@ -1,4 +1,5 @@
 let makeWASocket,
+  Browsers,
   DisconnectReason,
   generateForwardMessageContent,
   getContentType,
@@ -14,6 +15,7 @@ const baileysPromise = loadBaileys()
   .then((baileys) => {
     ({
       default: makeWASocket,
+      Browsers,
       DisconnectReason,
       generateForwardMessageContent,
       getContentType,
@@ -436,6 +438,9 @@ class WhatsAppBot {
         await this.authState.saveCredentials(initAuthCreds());
       }
       const version = await resolveWaVersion();
+      const useAndroidBrowser =
+        String(config.WA_BROWSER || "chrome").toLowerCase() === "android" &&
+        typeof Browsers?.android === "function";
       this._teardownSocket();
       this.sock = makeWASocket({
         auth: {
@@ -444,7 +449,9 @@ class WhatsAppBot {
         },
         ...(version ? { version } : {}),
         logger: logger.child({ session: this.sessionId }),
-        browser: ["Kamran Hasil", "Chrome", "1.0.0"],
+        browser: useAndroidBrowser
+          ? Browsers.android("Chrome")
+          : ["Kamran Hasil", "Chrome", "1.0.0"],
         cachedGroupMetadata: (jid) => {
           const cached = this.groupCache.get(jid);
           if (cached) {
@@ -490,6 +497,7 @@ class WhatsAppBot {
           };
         },
       });
+      this.sock.__kamranBrowserAndroid = useAndroidBrowser;
       this.setupEventHandlers();
 
       // Optional pairing-code login (no QR): PAIR_NUMBER=923XXXXXXXXX

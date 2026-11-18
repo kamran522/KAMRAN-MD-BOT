@@ -1,26 +1,5 @@
 const { Module } = require("../main");
 const { isAdmin } = require("./utils");
-const { ownerTarget } = require("../core/identity");
-
-// newer WhatsApp versions quote a view once message as a stub ({ mimetype, viewOnce }),
-// without the key and link the media needs. there is nothing to download from that
-const hasMediaDetails = (node) => Boolean(node && (node.mediaKey || node.url || node.directPath));
-
-// .vv failures go to the bot's own number (where the start message goes), not the chat
-// the command was typed in, which may be a group
-async function reportVVFailure(m, reason) {
-  const where = m.isGroup ? `group ${m.jid.split("@")[0]}` : m.jid.split("@")[0];
-  try {
-    await m.client.sendMessage(ownerTarget(m.client, { map: false, self: "pn" }), {
-      text: `*_.vv could not save a view once message_*\n\n_Chat:_ ${where}\n_Reason:_ ${reason}`,
-    });
-  } catch (_) {
-    // nowhere left to report to
-  }
-}
-
-const STUB_REASON =
-  "WhatsApp quoted the message without its media details, so there is nothing to download. Replies to view once messages cannot be saved this way any more. Set the browser to android (`.autovv here` offers to do it), and the message is saved as soon as it arrives.";
 Module(
   {
     pattern: "react ?(.*)",
@@ -103,64 +82,6 @@ Module(
       messages: [original],
       type: "notify",
     });
-  }
-);
-Module(
-  {
-    pattern: "vv ?(.*)",
-    fromMe: true,
-    desc: "Anti view once",
-    use: "utility",
-  },
-  async (m, match) => {
-    const quoted = m.quoted?.message,
-      realQuoted = m.quoted;
-
-    if (!m.reply_message || !quoted) {
-      return await m.sendReply("_Not a view once msg!_");
-    }
-
-    if (match[1] && match[1].includes("@")) m.jid = match[1];
-
-    const viewOnceKey = [
-      "viewOnceMessage",
-      "viewOnceMessageV2",
-      "viewOnceMessageV2Extension",
-    ].find((key) => quoted.hasOwnProperty(key));
-
-    const forward = async (node) => {
-      if (!hasMediaDetails(node)) return await reportVVFailure(m, STUB_REASON);
-      try {
-        return await m.forwardMessage(m.jid, m.quoted, {
-          contextInfo: { isForwarded: false },
-        });
-      } catch (error) {
-        return await reportVVFailure(m, String(error?.message || error));
-      }
-    };
-
-    if (viewOnceKey) {
-      const realMessage = quoted[viewOnceKey].message;
-      const msgType = Object.keys(realMessage)[0];
-      if (realMessage[msgType]?.viewOnce) realMessage[msgType].viewOnce = false;
-      m.quoted.message = realMessage;
-      return await forward(realMessage[msgType]);
-    }
-
-    const directType = quoted.imageMessage
-      ? "imageMessage"
-      : quoted.audioMessage
-      ? "audioMessage"
-      : quoted.videoMessage
-      ? "videoMessage"
-      : null;
-
-    if (directType && quoted[directType]?.viewOnce) {
-      quoted[directType].viewOnce = false;
-      return await forward(quoted[directType]);
-    }
-
-    await m.sendReply("_Not a view once msg!_");
   }
 );
 Module(
