@@ -1,0 +1,83 @@
+name: Verify and obfuscate anti-link notice
+
+on:
+  push:
+    branches:
+      - fix/antilink-warning-format-20261118
+
+permissions:
+  contents: write
+
+jobs:
+  verify-and-obfuscate:
+    if: "!contains(github.event.head_commit.message, 'obfuscate anti-link notices')"
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          persist-credentials: true
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Check JavaScript syntax before obfuscating
+        run: npm run check
+      - name: Test anti-link message format before obfuscating
+        run: node --test tests/group-moderation.test.js
+      - name: Install isolated obfuscator
+        run: npm install --prefix "$RUNNER_TEMP/kamran-obfuscator" --no-audit --no-fund javascript-obfuscator@4.1.1
+      - name: Obfuscate changed JavaScript, except config.js
+        run: |
+          git fetch origin main:refs/remotes/origin/main
+          node <<'NODE'
+          const fs = require('fs');
+          const path = require('path');
+          const { execFileSync } = require('child_process');
+          const obfuscator = require(path.join(process.env.RUNNER_TEMP, 'kamran-obfuscator/node_modules/javascript-obfuscator'));
+          const files = execFileSync('git', ['diff', '--name-only', 'origin/main...HEAD'], { encoding: 'utf8' })
+            .trim().split('\n').filter((name) => name.endsWith('.js') && name !== 'config.js');
+          const expected = ['plugins/antilink.js', 'tests/group-moderation.test.js'];
+          if (files.length !== expected.length || !expected.every((name) => files.includes(name))) {
+            throw new Error('Unexpected JavaScript changes: ' + files.join(', '));
+          }
+          for (const name of files) {
+            const source = fs.readFileSync(name, 'utf8');
+            fs.writeFileSync(name, obfuscator.obfuscate(source, {
+              target: 'node',
+              compact: true,
+              identifierNamesGenerator: 'hexadecimal',
+              renameGlobals: false,
+              renameProperties: false,
+              controlFlowFlattening: false,
+              deadCodeInjection: false,
+              stringArray: true,
+              stringArrayEncoding: ['base64'],
+              stringArrayThreshold: 0.65,
+              simplify: true,
+              selfDefending: false,
+              debugProtection: false,
+              disableConsoleOutput: false,
+              sourceMap: false
+            }).getObfuscatedCode() + '\n');
+          }
+          console.log('Obfuscated', files);
+          NODE
+      - name: Verify config.js remains unchanged
+        run: git diff origin/main --exit-code -- config.js
+      - name: Check JavaScript syntax after obfuscating
+        run: npm run check
+      - name: Test anti-link message format after obfuscating
+        run: node --test tests/group-moderation.test.js
+      - name: Run existing AI tests
+        run: npm run test:ai
+      - name: Run existing downloader tests
+        run: node --test tests/media-downloads.test.js
+      - name: Commit obfuscated changes
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -u
+          git diff --cached --quiet && exit 1
+          git commit -m "build: obfuscate anti-link notices"
+          git push origin HEAD
