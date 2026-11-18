@@ -1,16 +1,13 @@
 const { Module } = require("../main");
 const config = require("../config");
 const { setVar, delVar } = require("./manage");
-const context = require("../core/context");
-const { isAndroidBrowser } = require("../core/session/socket-options");
 
 /**
  * Auto anti view-once.
  *
- * Every view once message the bot's number receives is forwarded, as a normal message,
- * to the chat set in VV_AUTO_JID the moment it arrives. This needs the android browser
- * (the default; not WA_BROWSER=chrome): a browser companion is never sent view once media. Messages the
- * bot's own number sends are not forwarded.
+ * When WhatsApp delivers accessible view-once media, the bot forwards it to VV_AUTO_JID.
+ * Set WA_BROWSER=android and restart to request an Android companion profile.
+ * WhatsApp may still withhold view-once media from linked devices.
  */
 
 const VV_WRAPPERS = [
@@ -20,8 +17,8 @@ const VV_WRAPPERS = [
 ];
 const MEDIA_TYPES = ["imageMessage", "videoMessage", "audioMessage"];
 
-// android is the default; only WA_BROWSER=chrome turns it off
-const isAndroid = isAndroidBrowser;
+// Report the mode used when the socket was created, not an un-applied setting.
+const isAndroid = (client) => Boolean(client?.__kamranBrowserAndroid);
 // the reply listener below finds the prompt by this phrase
 const ANDROID_PROMPT_MARK = "reply *yes* to this message";
 const ANDROID_NOTICE =
@@ -83,7 +80,7 @@ Module(
       return await m.sendReply(
         `_*Auto view once*_\n\n_Every view once message you receive is sent to a chosen chat the moment it arrives. This needs the android browser._\n\n_Status: ${
           current ? `on ✅ → ${current}` : "off ❌"
-        }_\n_Browser: ${isAndroid() ? "android ✅" : "not android ⚠️ (nothing is saved)"}_\n\n_Usage:_\n\`.autovv here\` - _use this chat_\n\`.autovv <jid/number>\` - _use a custom chat_\n\`.autovv off\` - _disable_`
+        }_\n_Browser: ${isAndroid(m.client) ? "android ✅" : "not android ⚠️ (nothing is saved)"}_\n\n_Usage:_\n\`.autovv here\` - _use this chat_\n\`.autovv <jid/number>\` - _use a custom chat_\n\`.autovv off\` - _disable_`
       );
     }
 
@@ -101,7 +98,7 @@ Module(
     await setVar("VV_AUTO_JID", target);
     return await m.sendReply(
       `_Auto view once activated ✅_\n\n_View once media will be sent to:_ ${target}${
-        isAndroid() ? "" : `\n\n⚠️ ${ANDROID_NOTICE}`
+        isAndroid(m.client) ? "" : `\n\n⚠️ ${ANDROID_NOTICE}`
       }`
     );
   }
@@ -112,7 +109,7 @@ Module({ on: "text", fromMe: true }, async (m) => {
   if (!m.fromOwner || !/^(yes|y)$/i.test((m.text || "").trim())) return;
   if (!m.quoted?.key?.fromMe) return;
   if (!String(m.reply_message?.text || "").toLowerCase().includes(ANDROID_PROMPT_MARK)) return;
-  if (isAndroid()) return await m.sendReply("_The browser is already set to android ✅_");
+  if (isAndroid(m.client)) return await m.sendReply("_The browser is already set to android ✅_");
   await setVar("WA_BROWSER", "android");
   return await m.sendReply(
     "_Browser set to android ✅_\n_Restart the bot to apply it (_`.restart`_). No need to link the number again._"
@@ -150,7 +147,7 @@ Module({ on: "message", fromMe: false }, async (m) => {
   if (!vv) return;
 
   // two sessions in the same chat each forward to their own target
-  const sentKey = `${context.accountId() || "_"}:${key.id}`;
+  const sentKey = `${m.client.user?.lid || m.client.user?.id || "_"}:${key.id}`;
   if (!firstTime(sentKey)) return;
   try {
     await forward(m, target, vv, key.id, key.participant || m.sender || m.jid);
