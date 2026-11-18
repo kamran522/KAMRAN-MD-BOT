@@ -22,5 +22,7 @@ jobs:
         run: node --test tests/spotify-command.test.js
       - name: Test YouTube quality replies and temporary download cleanup
         run: node --test tests/youtube-choices.test.js tests/temp-sweeper.test.js
+      - name: Test 144p YouTube fragment recovery
+        run: node --test tests/youtube-fragments.test.js
       - name: Test group moderation without WhatsApp network access
         run: node --test tests/group-moderation.test.js
