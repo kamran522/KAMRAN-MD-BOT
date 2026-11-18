@@ -1,0 +1,81 @@
+name: Test and obfuscate group fixes
+
+on:
+  push:
+    branches:
+      - fix/group-antilink-20261118
+
+permissions:
+  contents: write
+
+jobs:
+  verify-and-obfuscate:
+    if: "!contains(github.event.head_commit.message, 'obfuscate group fixes')"
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          persist-credentials: true
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Syntax check before obfuscating
+        run: npm run check
+      - name: Group moderation regression tests before obfuscating
+        run: node --test tests/group-moderation.test.js
+      - name: Install isolated obfuscator
+        run: npm install --prefix "$RUNNER_TEMP/kamran-obfuscator" --no-audit --no-fund javascript-obfuscator@4.1.1
+      - name: Obfuscate only changed JavaScript files, excluding config.js
+        run: |
+          git fetch origin main:refs/remotes/origin/main
+          node <<'NODE'
+          const fs = require('fs');
+          const path = require('path');
+          const { execFileSync } = require('child_process');
+          const obfuscator = require(path.join(process.env.RUNNER_TEMP, 'kamran-obfuscator/node_modules/javascript-obfuscator'));
+          const files = execFileSync('git', ['diff', '--name-only', 'origin/main...HEAD'], { encoding: 'utf8' })
+            .trim().split('\n').filter((name) => name.endsWith('.js') && name !== 'config.js');
+          if (files.length < 6) throw new Error('Expected multiple changed JavaScript files, got ' + files.length);
+          for (const name of files) {
+            const src = fs.readFileSync(name, 'utf8');
+            const result = obfuscator.obfuscate(src, {
+              target: 'node',
+              compact: true,
+              identifierNamesGenerator: 'hexadecimal',
+              renameGlobals: false,
+              renameProperties: false,
+              controlFlowFlattening: false,
+              deadCodeInjection: false,
+              stringArray: true,
+              stringArrayEncoding: ['base64'],
+              stringArrayThreshold: 0.65,
+              simplify: true,
+              selfDefending: false,
+              debugProtection: false,
+              disableConsoleOutput: false,
+              sourceMap: false
+            }).getObfuscatedCode();
+            fs.writeFileSync(name, result + '\n');
+          }
+          console.log('Obfuscated affected JavaScript files:', files.join(', '));
+          NODE
+      - name: Verify config.js unchanged
+        run: git diff origin/main --exit-code -- config.js
+      - name: Syntax check after obfuscating
+        run: npm run check
+      - name: Group moderation tests after obfuscating
+        run: node --test tests/group-moderation.test.js
+      - name: Existing AI tests
+        run: npm run test:ai
+      - name: Existing download tests
+        run: node --test tests/media-downloads.test.js
+      - name: Commit obfuscated fixes on review branch
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -u
+          git diff --cached --quiet && exit 1
+          git commit -m "build: obfuscate group fixes"
+          git push origin HEAD
