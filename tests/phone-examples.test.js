@@ -50,7 +50,7 @@ test(".info add displays the requested example phone number", () => {
   assert.ok(add, "add command must be registered");
   assert.equal(add.meta.usage, ".add " + desired);
   assert.equal(add.meta.usage.includes("919876543210"), false);
-  const tag = modules.find((entry) => entry.meta.pattern?.startsWith("tag "));
+  const tag = modules.find((entry) => entry.meta.pattern?.startsWith("tag("));
   assert.match(tag.meta.usage, /<group-id>@g\.us/);
 });
 
