@@ -143,12 +143,104 @@ test(".settings ignores other users and unrelated numeric replies such as YouTub
   assert.equal(sent.length, 0);
 });
 
-test("the message handler routes settings replies before dispatching text listeners", () => {
-  const source = fs.readFileSync(path.join(repoRoot, "core/handler.js"), "utf8");
-  const dispatch = source.indexOf("commands.map(async (cmd)");
-  const menu = source.indexOf("handleSettingsReply(new Message(client, msg))");
-  assert.ok(menu >= 0, "the main handler must call the settings reply processor");
-  assert.ok(dispatch > menu, "numeric replies should reach settings before generic text commands");
+test("the real message handler routes settings replies before generic text listeners", async () => {
+  const registered = [];
+  const main = { commands: [{
+    on: "text", fromMe: false, function() { registered.push("ordinary text watcher"); },
+  }] };
+  const saved = [];
+  const syncModel = () => ({ async sync() {} });
+  const settings = [];
+  const config = {
+    READ_MESSAGES: false,
+    READ_COMMAND: false,
+    AUTO_READ_STATUS: false,
+    BLOCK_CHAT: "",
+    RG: "",
+    PM_ANTISPAM: false,
+    PMB_VAR: false,
+    DIS_PM: false,
+    ANTISPAM_COUNT: "5/60",
+    sequelize: syncModel(),
+    async loadFromDB() {},
+  };
+  const store = {
+    storeMessage: async (msg) => { saved.push(msg); },
+    trackSpamMessage: async () => {},
+    getRecentMessageCount: async () => 0,
+    ensureFullContentColumnExists: async () => {},
+    Chat: syncModel(), User: syncModel(), UserStats: syncModel(),
+    SpamTracker: syncModel(), AntiDeleteCache: syncModel(),
+  };
+  const schedulers = {
+    stickcmd: { get: async () => [] },
+    AutoMuteDB: syncModel(), AutoUnMuteDB: syncModel(),
+    StickyCmdDB: syncModel(), ScheduledMessageDB: syncModel(),
+  };
+  const senderMessage = class Message {
+    constructor(client, data) {
+      this.message = data.message.extendedTextMessage.text;
+      this.fromOwner = data.key.fromMe;
+    }
+  };
+  const fakeRequire = (name) => {
+    if (name === "../config") return config;
+    if (name === "fs") return { readdirSync() { return []; } };
+    if (name === "path") return path;
+    if (name === "../core/database") return {
+      BotVariable: {
+        async sync() {}, async findAll() { return []; },
+      },
+    };
+    if (name === "./constructors") return {
+      Message: senderMessage, Image: senderMessage, Video: senderMessage,
+      GroupUpdate: class {},
+    };
+    if (name === "../plugins/utils") return {
+      antibot: { get: async () => [] }, antispam: { get: async () => [] },
+    };
+    if (name === "../plugins/utils/db/schedulers") return schedulers;
+    if (name === "../core/store") return store;
+    if (name === "../plugins/utils/db/functions") return {
+      filter: { async checkMatch() { return null; } },
+    };
+    if (name === "./sudo") return {
+      getSudoMap() { return []; }, getSudoList() { return []; },
+      isSudo() { return false; },
+    };
+    if (name === "../main") return main;
+    if (name === "../plugins/manage") return {
+      async handleSettingsReply(message) {
+        settings.push(message.message);
+        return true;
+      },
+    };
+    throw new Error("Unexpected handler import " + name);
+  };
+  const module = { exports: {} };
+  const filename = path.join(repoRoot, "core/handler.js");
+  vm.runInNewContext(fs.readFileSync(filename, "utf8"), {
+    module, exports: module.exports, require: fakeRequire,
+    console, process, setTimeout, clearTimeout, Buffer,
+  }, { filename, timeout: 15000 });
+
+  const message = {
+    key: { remoteJid: "owner@s.whatsapp.net", id: "message-1", fromMe: true },
+    message: {
+      extendedTextMessage: {
+        text: "1",
+        contextInfo: {
+          quotedMessage: { conversation: "*_Settings configuration menu_*" },
+          stanzaId: "settings-menu-1",
+        },
+      },
+    },
+  };
+  const client = { user: { lid: "12345:1@lid" } };
+  await module.exports.handler({ type: "notify", messages: [message] }, client);
+  assert.deepEqual(settings, ["1"]);
+  assert.equal(registered.length, 0, "settings replies must not reach generic text watchers");
+  assert.equal(saved.length, 1);
 });
 
 const { readIncomingStatuses } = require("../core/status-reader");
