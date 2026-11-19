@@ -55,7 +55,7 @@ function isAlreadyCommand(text) {
   const rest = handlerChars
     ? (handlerChars.includes(input[0]) ? input.slice(1).trimStart() : "")
     : input;
-  return /^(?:insta|instah|story|storyh|tiktok|tiktokh|pinterest|pinteresth|twitter|twitterh|fb|fbh|play|playh|ytv|ytvh|yta|ytah|spotify|spotifyh)(?:\s|$)/i.test(rest);
+  return /^(?:insta|instah|story|storyh|tiktok|tiktokh|pinterest|pinteresth|twitter|twitterh|x|xh|fb|fbh|play|playh|ytv|ytvh|yta|ytah|spotify|spotifyh)(?:\s|$)/i.test(rest);
 }
 
 function mediaKind(file) {
