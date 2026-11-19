@@ -30,5 +30,7 @@ jobs:
         run: node --test tests/phone-examples.test.js
       - name: Test repaired command handlers
         run: node --test tests/command-audit.test.js
+      - name: Test uptime, status reads and settings replies
+        run: node --test tests/uptime-settings-status.test.js
       - name: Test group moderation without WhatsApp network access
         run: node --test tests/group-moderation.test.js
