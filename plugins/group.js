@@ -725,7 +725,7 @@ Module(
     desc: Lang.TAGALL_DESC,
     use: "group",
     usage:
-      ".tag text\n.tag (reply to message)\n.tagall (tag everyone)\n.tagadmin (tag admins only)\n.tag 120363355307899193@g.us (tag in specific group)",
+      ".tag text\n.tag (reply to message)\n.tagall (tag everyone)\n.tagadmin (tag admins only)\n.tag <group-id>@g.us (tag in specific group)",
   },
   async (message, match) => {
     const groupJidMatch = match[2]?.match(/(\d+@g\.us)/);
@@ -755,7 +755,7 @@ Module(
     
     if (!isReply && !isTagAdmin && !isTagAll && !hasCustomText) {
       return await message.sendReply(
-        `_Tag what?_\n\n${handler}tag \`<text here>\`\n${handler}tag \`admin\`\n${handler}tag \`all\`\n${handler}tag \`(reply)\`\n${handler}tag \`120363355307899193@g.us\``
+        `_Tag what?_\n\n${handler}tag \`<text here>\`\n${handler}tag \`admin\`\n${handler}tag \`all\`\n${handler}tag \`(reply)\`\n${handler}tag \`<group-id>@g.us\``
       );
     }
     const targets = [];
