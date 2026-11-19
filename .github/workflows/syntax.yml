@@ -34,5 +34,7 @@ jobs:
         run: node --test tests/uptime-settings-status.test.js
       - name: Test Baileys status stanza compatibility
         run: node --test tests/baileys-status-compat.test.js
+      - name: Test X/Twitter downloads and command handlers
+        run: node --test tests/twitter-download.test.js tests/twitter-commands.test.js
       - name: Test group moderation without WhatsApp network access
         run: node --test tests/group-moderation.test.js
