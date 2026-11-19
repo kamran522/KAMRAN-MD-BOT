@@ -1,0 +1,92 @@
+name: Verify and obfuscate X Twitter downloader
+
+on:
+  push:
+    branches:
+      - feat/twitter-x-download-20261120
+
+permissions:
+  contents: write
+
+jobs:
+  verify-and-obfuscate:
+    if: "!contains(github.event.head_commit.message, 'obfuscate Twitter fixes')"
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          persist-credentials: true
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Verify syntax before obfuscation
+        run: npm run check
+      - name: Test Twitter downloader and all existing commands before obfuscation
+        run: |
+          node --test tests/twitter-download.test.js tests/twitter-commands.test.js tests/autodl.test.js
+      - name: Install isolated JavaScript obfuscator
+        run: npm install --prefix "$RUNNER_TEMP/kamran-obfuscator" --no-audit --no-fund javascript-obfuscator@4.1.1
+      - name: Obfuscate only modified JavaScript, excluding config.js
+        run: |
+          git fetch origin main:refs/remotes/origin/main
+          node <<'NODE'
+          const fs = require('fs');
+          const path = require('path');
+          const { execFileSync } = require('child_process');
+          const obfuscator = require(path.join(process.env.RUNNER_TEMP, 'kamran-obfuscator/node_modules/javascript-obfuscator'));
+          const files = execFileSync('git', ['diff', '--name-only', 'origin/main...HEAD'], { encoding: 'utf8' })
+            .trim().split('\n').filter((filename) => filename.endsWith('.js') && filename !== 'config.js').sort();
+          const expected = [
+            'plugins/autodl.js',
+            'plugins/social.js',
+            'plugins/utils/twitter.js',
+            'tests/autodl.test.js',
+            'tests/twitter-commands.test.js',
+            'tests/twitter-download.test.js',
+          ].sort();
+          if (JSON.stringify(files) !== JSON.stringify(expected)) {
+            throw new Error('Unexpected JavaScript changes: ' + JSON.stringify(files));
+          }
+          for (const filename of files) {
+            const code = fs.readFileSync(filename, 'utf8');
+            const output = obfuscator.obfuscate(code, {
+              target: 'node',
+              compact: true,
+              identifierNamesGenerator: 'hexadecimal',
+              renameGlobals: false,
+              renameProperties: false,
+              controlFlowFlattening: false,
+              deadCodeInjection: false,
+              stringArray: true,
+              stringArrayEncoding: ['base64'],
+              stringArrayThreshold: 0.65,
+              simplify: true,
+              selfDefending: false,
+              debugProtection: false,
+              disableConsoleOutput: false,
+              sourceMap: false,
+            }).getObfuscatedCode();
+            fs.writeFileSync(filename, output + '\n');
+          }
+          console.log('Obfuscated', files.join(', '));
+          NODE
+      - name: Verify config.js unchanged
+        run: git diff origin/main --exit-code -- config.js
+      - name: Verify syntax after obfuscation
+        run: npm run check
+      - name: Test Twitter and AutoDL after obfuscation
+        run: node --test tests/twitter-download.test.js tests/twitter-commands.test.js tests/autodl.test.js
+      - name: Run existing regression tests after obfuscation
+        run: |
+          npm run test:ai
+          node --test tests/spotify-command.test.js tests/youtube-choices.test.js tests/youtube-fragments.test.js tests/temp-sweeper.test.js tests/media-downloads.test.js tests/group-moderation.test.js tests/phone-examples.test.js tests/command-audit.test.js tests/uptime-settings-status.test.js tests/baileys-status-compat.test.js
+      - name: Commit obfuscated code on review branch
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -u
+          git diff --cached --quiet && exit 1
+          git commit -m "build: obfuscate Twitter fixes"
+          git push origin HEAD
