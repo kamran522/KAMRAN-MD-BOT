@@ -398,7 +398,7 @@ Module(
           : `${target}@s.whatsapp.net`;
       if (!jid.match(/^[\w.-]+@(s\.whatsapp\.net|g\.us|lid)$/)) {
         return await message.sendReply(
-          `_Invalid JID format!_\n\n_Accepted formats:_\n- \`923111008401@s.whatsapp.net\` (personal)\n- \`123020340234@g.us\` (group)_`
+          `_Invalid JID format!_\n\n_Accepted formats:_\n- \`923111008401@s.whatsapp.net\` (personal)\n- \`<group-id>@g.us\` (group)_`
         );
       }
       await setVar("ANTI_DELETE", "custom");
