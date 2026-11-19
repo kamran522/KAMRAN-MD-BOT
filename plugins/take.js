@@ -1,1 +1,152 @@
-function _0x22b7(_0x50cc4,_0x42e1de){const _0x578f5a=_0x578f();return _0x22b7=function(_0x22b790,_0x545991){_0x22b790=_0x22b790-0xa4;let _0x4b56da=_0x578f5a[_0x22b790];if(_0x22b7['ItkKBo']===undefined){var _0x2b428d=function(_0x4256e9){const _0x11eb1d='abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789+/=';let _0x55e49a='',_0x34f039='';for(let _0x11a676=0x0,_0x29c4fd,_0x1f9d9e,_0xbfd7d8=0x0;_0x1f9d9e=_0x4256e9['charAt'](_0xbfd7d8++);~_0x1f9d9e&&(_0x29c4fd=_0x11a676%0x4?_0x29c4fd*0x40+_0x1f9d9e:_0x1f9d9e,_0x11a676++%0x4)?_0x55e49a+=String['fromCharCode'](0xff&_0x29c4fd>>(-0x2*_0x11a676&0x6)):0x0){_0x1f9d9e=_0x11eb1d['indexOf'](_0x1f9d9e);}for(let _0x2e9d2f=0x0,_0xec3aa3=_0x55e49a['length'];_0x2e9d2f<_0xec3aa3;_0x2e9d2f++){_0x34f039+='%'+('00'+_0x55e49a['charCodeAt'](_0x2e9d2f)['toString'](0x10))['slice'](-0x2);}return decodeURIComponent(_0x34f039);};_0x22b7['TwPHyp']=_0x2b428d,_0x50cc4=arguments,_0x22b7['ItkKBo']=!![];}const _0x5bddb3=_0x578f5a[0x0],_0xeb2e50=_0x22b790+_0x5bddb3,_0x4f5ea2=_0x50cc4[_0xeb2e50];return!_0x4f5ea2?(_0x4b56da=_0x22b7['TwPHyp'](_0x4b56da),_0x50cc4[_0xeb2e50]=_0x4b56da):_0x4b56da=_0x4f5ea2,_0x4b56da;},_0x22b7(_0x50cc4,_0x42e1de);}const _0x5aae40=_0x22b7;(function(_0x1891f5,_0x403371){const _0x9cdfbe=_0x22b7,_0xc42785=_0x1891f5();while(!![]){try{const _0x1668cd=parseInt(_0x9cdfbe(0xd3))/0x1+-parseInt(_0x9cdfbe(0xad))/0x2*(-parseInt(_0x9cdfbe(0xbd))/0x3)+-parseInt(_0x9cdfbe(0xc5))/0x4*(-parseInt(_0x9cdfbe(0xaa))/0x5)+parseInt(_0x9cdfbe(0xd1))/0x6+-parseInt(_0x9cdfbe(0xc3))/0x7*(-parseInt(_0x9cdfbe(0xce))/0x8)+-parseInt(_0x9cdfbe(0xac))/0x9*(-parseInt(_0x9cdfbe(0xab))/0xa)+-parseInt(_0x9cdfbe(0xd0))/0xb;if(_0x1668cd===_0x403371)break;else _0xc42785['push'](_0xc42785['shift']());}catch(_0x36d70f){_0xc42785['push'](_0xc42785['shift']());}}}(_0x578f,0xeac33));const {addExif,webp2mp4,addID3,getBuffer,uploadToImgbb,uploadToCatbox}=require('./utils'),{Module}=require(_0x5aae40(0xcc));let config=require(_0x5aae40(0xbf)),fs=require('fs');const {getTempPath}=require('../core/helpers');Module({'pattern':'take\x20?(.*)','use':'edit','desc':_0x5aae40(0xc2)},async(_0x4256e9,_0x11eb1d)=>{const _0x4e87b2=_0x5aae40;if(!_0x4256e9[_0x4e87b2(0xbe)])return await _0x4256e9[_0x4e87b2(0xcd)]('_Reply\x20to\x20an\x20audio\x20or\x20a\x20sticker_');var _0x55e49a=_0x4256e9[_0x4e87b2(0xbe)][_0x4e87b2(0xcf)],_0x34f039=_0x4256e9[_0x4e87b2(0xbe)][_0x4e87b2(0xa9)],_0x11a676=await _0x4256e9[_0x4e87b2(0xbe)]['download']();if(_0x34f039){if(_0x11eb1d[0x1]!=='')var _0x29c4fd={'author':_0x11eb1d[0x1][_0x4e87b2(0xca)](';')?_0x11eb1d[0x1][_0x4e87b2(0xc9)](';')[0x1]:'','packname':_0x11eb1d[0x1]['includes'](';')?_0x11eb1d[0x1][_0x4e87b2(0xc9)](';')[0x0]:_0x11eb1d[0x1],'categories':config[_0x4e87b2(0xb2)][_0x4e87b2(0xc9)](';')[0x2]||'😂','android':'','ios':''};else var _0x29c4fd={'author':config['STICKER_DATA']['split'](';')[0x1]||'','packname':config[_0x4e87b2(0xb2)][_0x4e87b2(0xc9)](';')[0x0]||'','categories':config[_0x4e87b2(0xb2)]['split'](';')[0x2]||'😂','android':'','ios':''};return await _0x4256e9[_0x4e87b2(0xae)][_0x4e87b2(0xcd)](_0x4256e9['jid'],{'sticker':fs['readFileSync'](await addExif(_0x11a676,_0x29c4fd))},{'quoted':_0x4256e9[_0x4e87b2(0xa8)]});}if(!_0x34f039&&_0x55e49a){let _0x1f9d9e=_0x11eb1d[0x1]!==''?_0x11eb1d[0x1]:config['AUDIO_DATA']===_0x4e87b2(0xc8)?_0x4e87b2(0xb7):config[_0x4e87b2(0xb8)];config[_0x4e87b2(0xb8)]==_0x4e87b2(0xc8)&&await _0x4256e9['sendReply'](_0x4e87b2(0xc1));let _0xbfd7d8=_0x1f9d9e[_0x4e87b2(0xc9)](';'),_0x2e9d2f=_0xbfd7d8[0x2]?await getBuffer(_0xbfd7d8[0x2]):await getBuffer(config['BOT_INFO'][_0x4e87b2(0xc9)](';')?.[0x3]===_0x4e87b2(0xc8)?_0x4e87b2(0xbc):config[_0x4e87b2(0xd2)]['split'](';')[0x3]),_0xec3aa3=await addID3(_0x11a676,_0xbfd7d8[0x0],_0xbfd7d8[0x1]?_0xbfd7d8[0x1]:config[_0x4e87b2(0xb8)][_0x4e87b2(0xc9)](';')[0x1],_0x4e87b2(0xba),_0x2e9d2f);await _0x4256e9[_0x4e87b2(0xae)][_0x4e87b2(0xcd)](_0x4256e9['jid'],{'audio':_0xec3aa3,'mimetype':_0x4e87b2(0xa6)},{'quoted':_0x4256e9['quoted'],'ptt':![]});}if(!_0x55e49a&&!_0x34f039)return await _0x4256e9[_0x4e87b2(0xae)][_0x4e87b2(0xcd)](_0x4256e9[_0x4e87b2(0xc6)],{'text':'_Reply\x20to\x20an\x20audio\x20or\x20a\x20sticker_'},{'quoted':_0x4256e9[_0x4e87b2(0xb3)]});}),Module({'pattern':_0x5aae40(0xb1),'use':_0x5aae40(0xc7),'desc':_0x5aae40(0xc0)},async(_0x5c4e96,_0x1fb955)=>{const _0x22e9ff=_0x5aae40;if(_0x5c4e96['reply_message'][_0x22e9ff(0xa9)]){var _0x33be1d=await _0x5c4e96[_0x22e9ff(0xbe)][_0x22e9ff(0xa7)]();const _0x56d43e=getTempPath('mp4_'+Date['now']()+'_'+Math[_0x22e9ff(0xb5)]()[_0x22e9ff(0xa4)](0x24)[_0x22e9ff(0xb9)](0x2,0x8)+'.mp4');try{await webp2mp4(_0x33be1d,_0x56d43e),await _0x5c4e96[_0x22e9ff(0xae)]['sendMessage'](_0x5c4e96[_0x22e9ff(0xc6)],{'video':{'url':_0x56d43e}},{'quoted':_0x5c4e96[_0x22e9ff(0xa8)]});}catch(_0x2acfb1){return console[_0x22e9ff(0xa5)](_0x2acfb1),await _0x5c4e96[_0x22e9ff(0xb4)](_0x22e9ff(0xcb));}finally{fs[_0x22e9ff(0xc4)](_0x56d43e,()=>{});}}else return await _0x5c4e96[_0x22e9ff(0xb4)](_0x22e9ff(0xb0));}),Module({'pattern':_0x5aae40(0xbb),'desc':_0x5aae40(0xaf),'use':'edit'},async(_0x1df3fe,_0x136bb3)=>{const _0x489134=_0x5aae40;let _0x5320ce;if(_0x1df3fe[_0x489134(0xbe)]?.['image']||_0x1df3fe['reply_message']?.[_0x489134(0xa9)]){let _0x7ea82f=await _0x1df3fe[_0x489134(0xbe)][_0x489134(0xa7)]();return _0x5320ce=await uploadToImgbb(_0x7ea82f),await _0x1df3fe[_0x489134(0xb4)](_0x5320ce[_0x489134(0xb6)]);}else{if(_0x1df3fe['reply_message']?.['video']||_0x1df3fe['reply_message']?.['document']||_0x1df3fe[_0x489134(0xbe)]?.[_0x489134(0xcf)]){let _0x32633b=await _0x1df3fe[_0x489134(0xbe)][_0x489134(0xa7)]();return _0x5320ce=await uploadToCatbox(_0x32633b),await _0x1df3fe[_0x489134(0xb4)](_0x5320ce[_0x489134(0xb6)]);}}});function _0x578f(){const _0x5ab463=['AMLK','zwrPDa','zgvMyxvSDa','C3bSAxq','Aw5JBhvKzxm','kKzHAwXLzcO','lI4VBwfPBG','C2vUze1LC3nHz2u','nJuXmtKYmef0DLnHva','yxvKAw8','nZmWotC2mdDLvhzJD00','mZC3mtK5meTzuvfxyW','qK9ux0LorK8','mtyYntGZmKjmr1PYDG','Dg9tDhjPBMC','Bg9N','yxvKAw8VBxa0','zg93BMXVywq','CxvVDgvK','C3rPy2TLCG','mZq3nvjmuwD0qW','mtiWtgLlDLfH','mtaWmtGWognNBvHpuG','odyZmtm0uMvlCMTM','y2XPzw50','vxbSB2fKCYbPBwfNzsb0BYbPBwDIyIbHBMqGC2vUzhmGysb1CMW','x1jLCgX5ihrVigfUigfUAw1HDgvKihn0AwnRzxiHxW','Bxa0id8OlIOP','u1rjq0TfuL9eqvrb','zgf0yq','C2vUzfjLCgX5','CMfUzg9T','DxjS','qxvKAw8GDgL0BguGAgvYztTlyw1Yyw4GsgfZAwWGlsbbCNrPC3q7Ahr0Chm6lY9PlMLIyI5JBY9ZotHeEu1nCs9otc0XlNbUzW','qvvesu9Frefuqq','C2XPy2u','s2fTCMfUieHHC2LS','DxjSid8OlIOP','Ahr0Chm6lY9PlMLIyI5JBY9ZotHeEu1nCs9otc0XlNbUzW','mtjkBw5Lufa','CMvWBhLFBwvZC2fNzq','lI4Vy29UzMLN','q29UDMvYDhmGyw5PBwf0zwqGC3rPy2TLCIb0BYb2AwrLBW','x1vZAw5NigrLzMf1BhqGyxvKAw8GBwv0ywrHDgeSihvZzsaUC2v0DMfYiefvreLpx0LorK89DgL0Bgu7yxj0Axn0o2LTywDLDxjSihrVignOyw5Nzv8','q2HHBMDLCYbZDgLJA2vYl2f1zgLVihbHy2SGjIbHDxrOB3iGBMfTzs4GvgL0BguSigfYDgLZDcWGDgH1BwjUywLSigv0yY4','mtrKCwPwCgu','Dw5SAw5R','mZGXmNbsCMrSqG'];_0x578f=function(){return _0x5ab463;};return _0x578f();}
+const {
+  addExif,
+  webp2mp4,
+  addID3,
+  getBuffer,
+  uploadToImgbb,
+  uploadToCatbox,
+} = require("./utils");
+const { Module } = require("../main");
+let config = require("../config");
+let fs = require("fs");
+const { getTempPath } = require("../core/helpers");
+Module(
+  {
+    pattern: "take ?(.*)",
+    use: "edit",
+    desc: "Changes sticker/audio pack & author name. Title, artist, thumbnail etc.",
+  },
+  async (m, match) => {
+    if (!m.reply_message)
+      return await m.sendMessage("_Reply to an audio or a sticker_");
+    var audiomsg = m.reply_message.audio;
+    var stickermsg = m.reply_message.sticker;
+    var q = await m.reply_message.download();
+    if (stickermsg) {
+      if (match[1] !== "") {
+        var exif = {
+          author: match[1].includes(";") ? match[1].split(";")[1] : "",
+          packname: match[1].includes(";") ? match[1].split(";")[0] : match[1],
+          categories: config.STICKER_DATA.split(";")[2] || "😂",
+          android: "",
+          ios: "",
+        };
+      } else {
+        var exif = {
+          author: config.STICKER_DATA.split(";")[1] || "",
+          packname: config.STICKER_DATA.split(";")[0] || "",
+          categories: config.STICKER_DATA.split(";")[2] || "😂",
+          android: "",
+          ios: "",
+        };
+      }
+      return await m.client.sendMessage(
+        m.jid,
+        { sticker: fs.readFileSync(await addExif(q, exif)) },
+        { quoted: m.quoted }
+      );
+    }
+    if (!stickermsg && audiomsg) {
+      let inf =
+        match[1] !== ""
+          ? match[1]
+          : config.AUDIO_DATA === "default"
+          ? "Audio title here;Kamran Hasil - Artist;https://i.ibb.co/s98DyMMq/NL-1.png"
+          : config.AUDIO_DATA;
+      if (config.AUDIO_DATA == "default") {
+        await m.sendReply(
+          `_Using default audio metadata, use .setvar AUDIO_INFO=title;artist;imageurl to change_`
+        );
+      }
+      let spl = inf.split(";"),
+        image = spl[2]
+          ? await getBuffer(spl[2])
+          : await getBuffer(
+              config.BOT_INFO.split(";")?.[3] === "default"
+                ? "https://i.ibb.co/s98DyMMq/NL-1.png"
+                : config.BOT_INFO.split(";")[3]
+            ),
+        res = await addID3(
+          q,
+          spl[0],
+          spl[1] ? spl[1] : config.AUDIO_DATA.split(";")[1],
+          "Kamran Hasil",
+          image
+        );
+      await m.client.sendMessage(
+        m.jid,
+        {
+          audio: res,
+          mimetype: "audio/mp4",
+        },
+        {
+          quoted: m.quoted,
+          ptt: false,
+        }
+      );
+    }
+    if (!audiomsg && !stickermsg)
+      return await m.client.sendMessage(
+        m.jid,
+        {
+          text: "_Reply to an audio or a sticker_",
+        },
+        {
+          quoted: m.data,
+        }
+      );
+  }
+);
+Module(
+  {
+    pattern: "mp4 ?(.*)",
+    use: "edit",
+    desc: "Converts animated sticker to video",
+  },
+  async (m, t) => {
+    if (!m.reply_message) return await m.sendReply("_Reply to an animated sticker!_");
+    if (m.reply_message.sticker) {
+      var q = await m.reply_message.download();
+      const out = getTempPath(`mp4_${Date.now()}_${Math.random().toString(36).slice(2, 8)}.mp4`);
+      try {
+        await webp2mp4(q, out);
+        await m.client.sendMessage(
+          m.jid,
+          { video: { url: out } },
+          { quoted: m.quoted }
+        );
+      } catch (e) {
+        console.log(e);
+        return await m.sendReply("*Failed*");
+      } finally {
+        fs.unlink(out, () => {});
+      }
+    } else return await m.sendReply("_Reply to an animated sticker!_");
+  }
+);
+
+Module(
+  {
+    pattern: "url ?(.*)",
+    desc: "Uploads image to imgbb and sends a url",
+    use: "edit",
+  },
+  async (m, match) => {
+    if (!m.reply_message) return await m.sendReply("_Reply to an image, sticker, video, audio, or document._");
+    let result;
+    if (m.reply_message?.image || m.reply_message?.sticker) {
+      let q = await m.reply_message.download();
+      result = await uploadToImgbb(q);
+      return await m.sendReply(result.url);
+    } else if (
+      m.reply_message?.video ||
+      m.reply_message?.document ||
+      m.reply_message?.audio
+    ) {
+      let q = await m.reply_message.download();
+      result = await uploadToCatbox(q);
+      return await m.sendReply(result.url);
+    }
+    return await m.sendReply("_Reply to an image, sticker, video, audio, or document._");
+  }
+);
