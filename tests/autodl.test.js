@@ -1,1 +1,277 @@
-'use strict';const _0x12c0d8=_0x6894;(function(_0x4e277d,_0x4f9913){const _0x5deac2=_0x6894,_0x4ab98d=_0x4e277d();while(!![]){try{const _0x54f228=parseInt(_0x5deac2(0x1e9))/0x1*(parseInt(_0x5deac2(0x224))/0x2)+parseInt(_0x5deac2(0x210))/0x3+-parseInt(_0x5deac2(0x22e))/0x4*(parseInt(_0x5deac2(0x1c9))/0x5)+parseInt(_0x5deac2(0x203))/0x6+parseInt(_0x5deac2(0x226))/0x7*(parseInt(_0x5deac2(0x21d))/0x8)+parseInt(_0x5deac2(0x1fb))/0x9+-parseInt(_0x5deac2(0x220))/0xa*(parseInt(_0x5deac2(0x1c7))/0xb);if(_0x54f228===_0x4f9913)break;else _0x4ab98d['push'](_0x4ab98d['shift']());}catch(_0x55e63b){_0x4ab98d['push'](_0x4ab98d['shift']());}}}(_0x4e63,0x831e2));function _0x6894(_0x5124d3,_0x5ee9e0){const _0x4e6399=_0x4e63();return _0x6894=function(_0x44f470,_0x4b7d3f){_0x44f470=_0x44f470-0x1c5;let _0x1fcf86=_0x4e6399[_0x44f470];if(_0x6894['GUNjld']===undefined){var _0xde0c4d=function(_0x422d19){const _0x3e4d27='abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789+/=';let _0x23dbfc='',_0x2ea80b='';for(let _0x4721f5=0x0,_0x1c8fb1,_0x4373e4,_0x14dfc3=0x0;_0x4373e4=_0x422d19['charAt'](_0x14dfc3++);~_0x4373e4&&(_0x1c8fb1=_0x4721f5%0x4?_0x1c8fb1*0x40+_0x4373e4:_0x4373e4,_0x4721f5++%0x4)?_0x23dbfc+=String['fromCharCode'](0xff&_0x1c8fb1>>(-0x2*_0x4721f5&0x6)):0x0){_0x4373e4=_0x3e4d27['indexOf'](_0x4373e4);}for(let _0xcf279c=0x0,_0x2091cf=_0x23dbfc['length'];_0xcf279c<_0x2091cf;_0xcf279c++){_0x2ea80b+='%'+('00'+_0x23dbfc['charCodeAt'](_0xcf279c)['toString'](0x10))['slice'](-0x2);}return decodeURIComponent(_0x2ea80b);};_0x6894['omFrMJ']=_0xde0c4d,_0x5124d3=arguments,_0x6894['GUNjld']=!![];}const _0x332615=_0x4e6399[0x0],_0x34f4d2=_0x44f470+_0x332615,_0xab394f=_0x5124d3[_0x34f4d2];return!_0xab394f?(_0x1fcf86=_0x6894['omFrMJ'](_0x1fcf86),_0x5124d3[_0x34f4d2]=_0x1fcf86):_0x1fcf86=_0xab394f,_0x1fcf86;},_0x6894(_0x5124d3,_0x5ee9e0);}function _0x4e63(){const _0x3b91d3=['BgvUz3rO','C3rHCNrZv2L0Aa','l3rTCc90zxn0lwf1zgLVlM00yq','l3rTCc90zxn0lxbOB3rVlMPWzW','mtyWmtiWAg9zvvjt','C3rHDhvZlte','BwvZC2fNzq','zgf0yq','zMLSDgvY','z2v0vMLKzw9jBMzV','mtfyv3r5rwC','D2fYBG','nxrbrxrmEq','zg9JDw1LBNq','y29UzMLN','DhLWzq','mtaGtui','ChvZAa','l3rTCc90zxn0lxzPzgvVlM1Wna','Aw1Hz2u','zxzLBNrZ','AgfUzgXLCG','C2vUze1LC3nHz2u','zMLUza','CNvUsw5ozxDdB250zxH0','C2vYDMLJzxm','Dgv4Da','lNL0DIbODhrWCZOVl3LVDxr1lMjLlZDsBw5ZEv83AefZ','qxv0B0rmihrLEhqGD2f0y2HLCIbTDxn0igXVywq','y29UDhjVBa','Ahr0Chm6lY9VCgvUlNnWB3rPzNKUy29Tl3rYywnRlZrrBtDYm0LTrvi4uZjpCMKXz0Xnqwy','C2vUzfjLCgX5','ug9ZDcb1BMf2ywLSywjSzq','DgLRDg9R','lI4Vy29Yzs9Zzxj2AwnLCW','lI9Tyw5Hz2u','tg9NAw4GCMvXDwLYzwq','C2vHCMnOww91DhvIzq','l3rTCc90zxn0lxr3Axr0zxiUBxa0','zMfSC2u','Bwf0y2G','DMLKzw8','qxv0B0rmigf2B2LKCYbLEhbSAwnPDcbKB3DUBg9HzcbJB21Tyw5KCYbIDxqGBM90ig5VCM1HBcbZzw50zw5JzxmGBwvUDgLVBMLUzYbHihbSyxrMB3jT','Aw5JBhvKzxm','otC0mJq5rxL1zLjx','BwfW','zxf1ywW','ug9ZDcb1BMf2ywLSywjSztOG','ChjPDMf0zq','Cgf0DgvYBG','l3rTCc90zxn0lxrPA3rVAY5TCdq','lI4Vy29UzMLN','CxvVDgvK','qvvut0rm','lI91DgLSCY90D2L0DgvY','twvKAweGBxvZDcbIzsb1CgXVywrLzcbIEsbMAwXLihbHDgG','BwLTzxr5Cgu','zgvLCevXDwfS','qxv0B0rmihbYAxzHDguTBw9Kzsb3yxrJAgvYihjLz2LZDgvYCYbMB3iGB3jKAw5HCNKGz3jVDxaGBwvTyMvYCW','l3rTCc90zxn0lwf1zgLVlM1WmW','u2vSzwn0ifzPzgvV','q2HLy2SGAhr0Chm6lY94lMnVBs9YzxnLyxjJAgvYl3n0yxr1CY8XotKWmtiZndu2nZG5mdeYmZq1','mZiYnZeZvw95C25t','lMf1Dg9KBcbVBG','DhDPDhrLCLnLBMq','CMvHzezPBgvtEw5J','C3rYAw5N','zwrPDa','lMf1Dg9KBcbVzMy','n1jTBNn5xZDOqxm','mJq4nJu4nLLsCKftuG','zw1VAMK','B2zM','qxvKAw8','yxvKAw8','C29Tzq','C2v0DgLUz3m','zgvSzxrLza','z3jVDxbazY51CW','yxv0B2rSia','qxv0B0rmignVBNrYB2WGy29TBwfUzcbTDxn0igXVywq','y29UDMvYDe00yvrVtxaZ','l3rTCc90zxn0lxbPBI5QCgC','mJq4nJKZn0HxvMrSDq','CgLUDgvYzxn0rgW','yxvKAw8GAhr0Chm6lY95B3v0Ds5Izs83uM1UC3LFn2HbCW','qwzZB3m','DhDPDhrLCG','DMLKzw8VBxa0','BwvKAwe','BM9KztPHC3nLCNqVC3rYAwn0','qxv0B0rmigvUywjSzwqTBgLZDcbHBMqGlMf1Dg9KBcb0B2DNBguGy29TBwfUzhmGC3rPBgWGD29YAW','CMvHy3q','vhDPDhrLCIbbDxrVreWGCMvWB3j0CYbHigjSB2nRzwqGCg9ZDcb3AxrOB3v0igLUDgvYCNvWDgLUzYbVDgHLCIbJB21Tyw5KCW','AM9PBG','C3rVCMvZ','mtK1odGWCwz2qxvK','DxjS','vhDPDhrLCI9yief1Dg9etcbKB3DUBg9HzhmGysb0D2vLDcbPBNn0zwfKig9MihnHEwLUzYb0AguGCgXHDgzVCM0GAxmGDw5ZDxbWB3j0zwq','mJe5mdyXmZbTB2jIs2G','Bwv0yq','D2f0y2HLCG','A2LUza','mLjTsevrBa','zg93BMXVywrhCMfT','mtq3y0jRqvP3','l3rTCc8','BM9KztPWyxrO','CgX1z2LUCY9HDxrVzgWUANm'];_0x4e63=function(){return _0x3b91d3;};return _0x4e63();}const test=require('node:test'),assert=require(_0x12c0d8(0x217)),fs=require('node:fs'),path=require(_0x12c0d8(0x228)),vm=require('node:vm');function fixture(_0xab394f={}){const _0x149701=_0x12c0d8,_0x422d19=[],_0x3e4d27=[],_0x23dbfc=[],_0x2ea80b={'MODE':_0x149701(0x1ed),'HANDLERS':'.,','AUTODL':_0x149701(0x20b),'AUTODL_ALL_GROUPS':'false','AUTODL_ALL_DMS':_0x149701(0x1e4),..._0xab394f[_0x149701(0x1cb)]},_0x4721f5={'downloadGram':async()=>['/tmp/test-photo.jpg',_0x149701(0x1cf)],'pinterestDl':async()=>({'status':!![],'result':_0x149701(0x20f)}),'tiktok':async()=>({'url':_0x149701(0x1ef)}),'fb':async()=>({'url':'/tmp/test-fb.mp4'}),'getVideoInfo':async()=>({'title':'Test\x20video','videoId':_0x149701(0x202),'formats':[{'type':'video','quality':'144p','size':_0x149701(0x1cd)},{'type':'audio','quality':_0x149701(0x207),'size':'2\x20MB'}]}),'downloadAudio':async()=>({'path':_0x149701(0x22c),'title':_0x149701(0x206)}),'convertM4aToMp3':async()=>_0x149701(0x1f8),'searchYoutube':async()=>[{'url':'https://www.youtube.com/watch?v=7Rmnsy_7hAs'}],'spotifyTrack':async()=>({'title':_0x149701(0x213),'artist':'Anuv\x20Jain'}),'twitterSend':async(_0x26780a,_0x99e59d)=>{const _0xecd402=_0x149701;return _0x3e4d27[_0xecd402(0x1ce)]({'type':_0xecd402(0x214),'url':_0x99e59d}),await _0x26780a['sendMessage']({'url':'/tmp/test-twitter.mp4'},'video',{'quoted':_0x26780a[_0xecd402(0x231)],'mimetype':_0xecd402(0x215)}),0x1;},..._0xab394f[_0x149701(0x1d6)]},_0x1c8fb1={},_0x4373e4={'module':{'exports':{}},'exports':{},'Buffer':Buffer,'URL':URL,'setTimeout'(_0x107a82){return _0x107a82(),0x0;},'console':{'error'(..._0x2a8378){const _0xd67b5a=_0x149701;_0x3e4d27[_0xd67b5a(0x1ce)]({'type':'error','args':_0x2a8378});},'warn'(..._0x4a889f){const _0x507fe9=_0x149701;_0x3e4d27[_0x507fe9(0x1ce)]({'type':_0x507fe9(0x1c8),'args':_0x4a889f});}},'require'(_0x2400c8){const _0x532757=_0x149701;if(_0x2400c8==='../main')return{'Module'(_0x492c1d,_0x156eb2){const _0x476ae7=_0x6894;_0x422d19[_0x476ae7(0x1ce)]({'meta':_0x492c1d,'handler':_0x156eb2});}};if(_0x2400c8===_0x532757(0x1f0))return _0x2ea80b;if(_0x2400c8===_0x532757(0x1e0))return{async 'setVar'(_0xf703d6,_0x1dfe58){_0x1c8fb1[_0xf703d6]=_0x1dfe58,_0x2ea80b[_0xf703d6]=_0x1dfe58;}};if(_0x2400c8==='./utils')return{'downloadGram':_0x4721f5[_0x532757(0x225)],'pinterestDl':_0x4721f5[_0x532757(0x211)],'tiktok':_0x4721f5[_0x532757(0x1de)],'fb':_0x4721f5['fb']};if(_0x2400c8===_0x532757(0x1df))return{'spotifyTrack':_0x4721f5['spotifyTrack']};if(_0x2400c8===_0x532757(0x1f3))return{'sendTwitterMedia':_0x4721f5[_0x532757(0x1fd)],'twitterFailureReason':_0x2b0bc5=>_0x532757(0x1ec)+_0x2b0bc5['message']};if(_0x2400c8==='./utils/yt')return{'getVideoInfo':_0x4721f5[_0x532757(0x1c6)],'downloadAudio':_0x4721f5['downloadAudio'],'convertM4aToMp3':_0x4721f5[_0x532757(0x20e)],'searchYoutube':_0x4721f5[_0x532757(0x1e2)]};if(_0x2400c8==='fs')return{'existsSync'(_0x122d3f){const _0x525da5=_0x532757;return typeof _0x122d3f===_0x525da5(0x1ff)&&_0x122d3f[_0x525da5(0x22b)](_0x525da5(0x227));},'unlinkSync'(_0x45354a){_0x23dbfc['push'](_0x45354a);},'createReadStream'(){const _0x55f14a=_0x532757;throw new Error(_0x55f14a(0x1f4));}};throw new Error('Unexpected\x20import:\x20'+_0x2400c8);}},_0x14dfc3=fs[_0x149701(0x1fe)](path[_0x149701(0x21b)](__dirname,'../plugins/autodl.js'),'utf8');vm[_0x149701(0x1d5)](_0x14dfc3,_0x4373e4,{'filename':_0x149701(0x229),'timeout':0x2ee0});const _0xcf279c=_0x422d19['find'](({meta:_0xe640a5})=>_0xe640a5['on']===_0x149701(0x1d7)),_0x2091cf=_0x422d19['find'](({meta:_0x3e57d7})=>_0x3e57d7[_0x149701(0x1ee)]?.['startsWith'](_0x149701(0x20c)));assert['ok'](_0xcf279c,_0x149701(0x1d9)),assert['ok'](_0x2091cf,_0x149701(0x20d));function _0x215756(_0x37ce99,_0x217f85=_0x149701(0x20b)){return{'jid':_0x217f85,'text':_0x37ce99,'fromMe':![],'fromBot':![],'data':{'key':{'remoteJid':_0x217f85,'id':'q1'}},async 'react'(_0x248993){const _0x5392c9=_0x6894;_0x3e4d27[_0x5392c9(0x1ce)]({'type':'react','emoji':_0x248993});},async 'sendMessage'(_0x2de020,_0xc6a8c8,_0x3752af){const _0x5f47bd=_0x6894;_0x3e4d27['push']({'type':_0x5f47bd(0x1d3),'media':_0x2de020,'kind':_0xc6a8c8,'settings':_0x3752af});},async 'sendReply'(_0x22997f,_0x5b37ed,_0xbdf225){const _0x467708=_0x6894;return _0x3e4d27['push']({'type':'sendReply','media':_0x22997f,'kind':_0x5b37ed,'settings':_0xbdf225}),{'key':{'id':_0x467708(0x22f)}};},async 'edit'(_0x4b8ade){const _0xd0c3e2=_0x6894;_0x3e4d27[_0xd0c3e2(0x1ce)]({'type':_0xd0c3e2(0x200),'value':_0x4b8ade});}};}return{'events':_0x3e4d27,'deleted':_0x23dbfc,'watcher':_0xcf279c,'control':_0x2091cf,'message':_0x215756,'stores':_0x1c8fb1,'config':_0x2ea80b};}test(_0x12c0d8(0x1f7),async()=>{const _0xf2d81a=_0x12c0d8,_0x44f4fd=fixture();assert['equal'](_0x44f4fd[_0xf2d81a(0x222)][_0xf2d81a(0x221)]['fromMe'],![]);const _0x392ea7=_0x44f4fd['message']('https://youtu.be/7Rmnsy_7hAs');await _0x44f4fd['watcher'][_0xf2d81a(0x1d2)](_0x392ea7);const _0x19bf60=_0x44f4fd['events']['find'](_0x1fdc4c=>_0x1fdc4c[_0xf2d81a(0x1cc)]==='sendReply'&&typeof _0x1fdc4c[_0xf2d81a(0x216)]==='string');assert['match'](_0x19bf60['media'],/Select Video Quality/),assert[_0xf2d81a(0x1e5)](_0x19bf60[_0xf2d81a(0x216)],/144p/),assert[_0xf2d81a(0x1e5)](_0x19bf60[_0xf2d81a(0x216)],/Reply with a number to download/);}),test(_0x12c0d8(0x1e7),async()=>{const _0x374060=_0x12c0d8,_0x2f3d40=fixture();await _0x2f3d40[_0x374060(0x222)][_0x374060(0x1d2)](_0x2f3d40[_0x374060(0x230)](_0x374060(0x1d8))),assert['equal'](_0x2f3d40[_0x374060(0x1d1)]['filter'](_0x3e6fc5=>_0x3e6fc5[_0x374060(0x1cc)]===_0x374060(0x1dc))[_0x374060(0x22a)],0x0),await _0x2f3d40['watcher'][_0x374060(0x1d2)](_0x2f3d40['message']('A\x20tiktok\x20clip:\x20https://vt.tiktok.com/ABCD12345/')),assert['ok'](_0x2f3d40['events'][_0x374060(0x208)](_0x223370=>_0x223370[_0x374060(0x1cc)]==='sendReply'&&_0x223370['kind']===_0x374060(0x1e6)));}),test('YouTube\x20AutoDL\x20audio\x20uploads\x20the\x20converted\x20file\x20path\x20and\x20removes\x20both\x20audio\x20files',async()=>{const _0x219a89=_0x12c0d8,_0x2de77c=fixture();await _0x2de77c[_0x219a89(0x222)][_0x219a89(0x1d2)](_0x2de77c[_0x219a89(0x230)](_0x219a89(0x212)));const _0x57cbce=_0x2de77c[_0x219a89(0x1d1)][_0x219a89(0x1d4)](_0x53f39d=>_0x53f39d[_0x219a89(0x1cc)]===_0x219a89(0x1d3)&&_0x53f39d[_0x219a89(0x223)]===_0x219a89(0x1ca));assert['ok'](_0x57cbce),assert['equal'](_0x57cbce[_0x219a89(0x216)][_0x219a89(0x21e)],_0x219a89(0x1f8)),assert['equal'](_0x57cbce[_0x219a89(0x209)][_0x219a89(0x1f5)],'audio/mpeg'),assert['ok'](_0x2de77c[_0x219a89(0x20a)][_0x219a89(0x1e8)](_0x219a89(0x1f8))),assert['ok'](_0x2de77c[_0x219a89(0x20a)][_0x219a89(0x1e8)](_0x219a89(0x22c)));}),test('Instagram\x20AutoDL\x20sends\x20mixed\x20carousel\x20media\x20as\x20sequential\x20image/video\x20messages',async()=>{const _0x4c2d86=_0x12c0d8,_0x1c448f=fixture(),_0x4fdcd=_0x1c448f[_0x4c2d86(0x230)]('https://www.instagram.com/p/C123ABc/');await _0x1c448f[_0x4c2d86(0x222)][_0x4c2d86(0x1d2)](_0x4fdcd);const _0x2874b0=_0x1c448f[_0x4c2d86(0x1d1)]['filter'](_0x5dd09e=>_0x5dd09e['type']==='sendMessage');assert['deepEqual'](_0x2874b0[_0x4c2d86(0x1ea)](_0x54ffc0=>_0x54ffc0['kind']),[_0x4c2d86(0x1d0),_0x4c2d86(0x1e6)]),assert['deepEqual'](_0x2874b0['map'](_0x5d66e2=>_0x5d66e2[_0x4c2d86(0x216)][_0x4c2d86(0x21e)]),[_0x4c2d86(0x22d),_0x4c2d86(0x1cf)]),assert[_0x4c2d86(0x1eb)](_0x2874b0[0x0]['settings'][_0x4c2d86(0x1f1)],_0x4fdcd['data']),assert['ok'](_0x1c448f['deleted'][_0x4c2d86(0x1e8)]('/tmp/test-photo.jpg')),assert['ok'](_0x1c448f['deleted']['includes']('/tmp/test-video.mp4'));}),test('Pinterest\x20AutoDL\x20sends\x20images\x20as\x20images,\x20not\x20unsupported\x20video\x20messages',async()=>{const _0x44db6b=_0x12c0d8,_0x5531cb=fixture();await _0x5531cb['watcher'][_0x44db6b(0x1d2)](_0x5531cb[_0x44db6b(0x230)]('https://pin.it/ABC1234'));const _0x56dd9b=_0x5531cb[_0x44db6b(0x1d1)][_0x44db6b(0x1d4)](_0x17f8fe=>_0x17f8fe['type']==='sendMessage');assert['ok'](_0x56dd9b),assert[_0x44db6b(0x1eb)](_0x56dd9b[_0x44db6b(0x223)],_0x44db6b(0x1d0)),assert['equal'](_0x56dd9b[_0x44db6b(0x216)][_0x44db6b(0x21e)],_0x44db6b(0x20f)),assert['ok'](_0x5531cb[_0x44db6b(0x20a)][_0x44db6b(0x1e8)](_0x44db6b(0x20f)));}),test('TikTok\x20and\x20Facebook\x20send\x20local\x20video\x20paths\x20and\x20clean\x20temporary\x20files',async()=>{const _0x2a041f=_0x12c0d8,_0x3f6db2=fixture();await _0x3f6db2[_0x2a041f(0x222)]['handler'](_0x3f6db2[_0x2a041f(0x230)]('https://vt.tiktok.com/ABCD12345/')),await _0x3f6db2[_0x2a041f(0x222)][_0x2a041f(0x1d2)](_0x3f6db2[_0x2a041f(0x230)]('https://www.facebook.com/watch?v=1234567'));const _0x53e9c5=_0x3f6db2['events']['filter'](_0x66964c=>_0x66964c[_0x2a041f(0x1cc)]==='sendReply'&&_0x66964c['kind']===_0x2a041f(0x1e6));assert[_0x2a041f(0x1eb)](_0x53e9c5[_0x2a041f(0x22a)],0x2),assert[_0x2a041f(0x1f6)](_0x53e9c5[_0x2a041f(0x1ea)](_0x513039=>_0x513039[_0x2a041f(0x216)]['url']),['/tmp/test-tiktok.mp4','/tmp/test-fb.mp4']),assert['ok'](_0x3f6db2['deleted'][_0x2a041f(0x1e8)](_0x2a041f(0x1ef))),assert['ok'](_0x3f6db2[_0x2a041f(0x20a)][_0x2a041f(0x1e8)]('/tmp/test-fb.mp4'));}),test('Spotify\x20AutoDL\x20resolves\x20the\x20existing\x20Spotify\x20helper\x20and\x20uploads\x20a\x20file\x20URL',async()=>{const _0x17a383=_0x12c0d8,_0x781b2a=fixture();await _0x781b2a[_0x17a383(0x222)][_0x17a383(0x1d2)](_0x781b2a[_0x17a383(0x230)](_0x17a383(0x1db)));const _0x478b2d=_0x781b2a['events']['find'](_0x10112d=>_0x10112d['type']===_0x17a383(0x1dc)&&_0x10112d[_0x17a383(0x223)]===_0x17a383(0x207));assert['ok'](_0x478b2d),assert[_0x17a383(0x1eb)](_0x478b2d['media'][_0x17a383(0x21e)],_0x17a383(0x1f8)),assert[_0x17a383(0x1eb)](_0x478b2d[_0x17a383(0x209)][_0x17a383(0x1f5)],'audio/mpeg');}),test(_0x12c0d8(0x218),async()=>{const _0x4028a6=_0x12c0d8,_0x34fdb0=fixture(),_0x2a281e=_0x34fdb0[_0x4028a6(0x230)](_0x4028a6(0x201));await _0x34fdb0['control'][_0x4028a6(0x1d2)](_0x2a281e,[_0x4028a6(0x201),_0x4028a6(0x205)]),assert['equal'](_0x34fdb0['stores'][_0x4028a6(0x1f2)],''),await _0x34fdb0['watcher'][_0x4028a6(0x1d2)](_0x34fdb0[_0x4028a6(0x230)]('https://youtu.be/7Rmnsy_7hAs')),assert[_0x4028a6(0x1eb)](_0x34fdb0[_0x4028a6(0x1d1)][_0x4028a6(0x1c5)](_0x1eed31=>_0x1eed31['type']===_0x4028a6(0x1dc)&&typeof _0x1eed31['media']===_0x4028a6(0x1ff)&&_0x1eed31['media']['includes'](_0x4028a6(0x1f9)))[_0x4028a6(0x22a)],0x0),await _0x34fdb0[_0x4028a6(0x1da)][_0x4028a6(0x1d2)](_0x2a281e,[_0x4028a6(0x1fc),'on']),assert['equal'](_0x34fdb0[_0x4028a6(0x21c)][_0x4028a6(0x1f2)],_0x4028a6(0x20b)),await _0x34fdb0[_0x4028a6(0x222)][_0x4028a6(0x1d2)](_0x34fdb0[_0x4028a6(0x230)]('https://youtu.be/7Rmnsy_7hAs')),assert[_0x4028a6(0x1eb)](_0x34fdb0[_0x4028a6(0x1d1)][_0x4028a6(0x1c5)](_0x24241f=>_0x24241f[_0x4028a6(0x1cc)]==='sendReply'&&typeof _0x24241f[_0x4028a6(0x216)]===_0x4028a6(0x1ff)&&_0x24241f[_0x4028a6(0x216)][_0x4028a6(0x1e8)](_0x4028a6(0x1f9)))['length'],0x1);}),test(_0x12c0d8(0x21f),async()=>{const _0x39d5fb=_0x12c0d8,_0x42c4ff=fixture();await _0x42c4ff[_0x39d5fb(0x222)][_0x39d5fb(0x1d2)](_0x42c4ff['message'](_0x39d5fb(0x1fa)));const _0x5ce4c2=_0x42c4ff[_0x39d5fb(0x1d1)][_0x39d5fb(0x1d4)](_0x46c30d=>_0x46c30d[_0x39d5fb(0x1cc)]===_0x39d5fb(0x214));assert[_0x39d5fb(0x1eb)](_0x5ce4c2['url'],'https://x.com/researcher/status/1990123456789012345');const _0x4bc4e1=_0x42c4ff['events']['find'](_0x34e043=>_0x34e043[_0x39d5fb(0x1cc)]===_0x39d5fb(0x1d3)&&_0x34e043[_0x39d5fb(0x223)]===_0x39d5fb(0x1e6));assert['equal'](_0x4bc4e1[_0x39d5fb(0x216)][_0x39d5fb(0x21e)],_0x39d5fb(0x1e3)),assert['ok'](_0x42c4ff[_0x39d5fb(0x1d1)]['some'](_0x42537e=>_0x42537e[_0x39d5fb(0x1cc)]===_0x39d5fb(0x219)&&_0x42537e[_0x39d5fb(0x204)]==='✅')),assert[_0x39d5fb(0x1eb)](_0x42c4ff[_0x39d5fb(0x1d1)][_0x39d5fb(0x208)](_0x53bc92=>_0x53bc92['type']==='sendReply'&&String(_0x53bc92[_0x39d5fb(0x216)])['includes']('not\x20available\x20in\x20this\x20build')),![]);}),test('Twitter\x20AutoDL\x20ignores\x20explicit\x20.twitter\x20commands\x20to\x20avoid\x20downloading\x20twice',async()=>{const _0x2b9a54=_0x12c0d8,_0x15b50c=fixture();await _0x15b50c[_0x2b9a54(0x222)]['handler'](_0x15b50c['message']('.twitter\x20https://x.com/researcher/status/1990123456789012345')),await _0x15b50c[_0x2b9a54(0x222)]['handler'](_0x15b50c[_0x2b9a54(0x230)]('.x\x20https://x.com/researcher/status/1990123456789012345')),assert['equal'](_0x15b50c[_0x2b9a54(0x1d1)][_0x2b9a54(0x208)](_0xbc1d06=>_0xbc1d06[_0x2b9a54(0x1cc)]==='twitter'),![]);}),test(_0x12c0d8(0x21a),async()=>{const _0x9ad9b3=_0x12c0d8,_0x4bb5da=fixture({'services':{async 'twitterSend'(){const _0xb3d63e=_0x6894;throw new Error(_0xb3d63e(0x1e1));}}});await _0x4bb5da['watcher'][_0x9ad9b3(0x1d2)](_0x4bb5da['message']('https://twitter.com/researcher/status/1990123456789012345')),assert['ok'](_0x4bb5da['events'][_0x9ad9b3(0x208)](_0x577d50=>_0x577d50['type']==='sendReply'&&String(_0x577d50[_0x9ad9b3(0x216)])['includes'](_0x9ad9b3(0x1dd)))),assert['ok'](_0x4bb5da[_0x9ad9b3(0x1d1)][_0x9ad9b3(0x208)](_0x141194=>_0x141194[_0x9ad9b3(0x1cc)]==='react'&&_0x141194['emoji']==='❌'));});
+"use strict";
+
+const test = require("node:test");
+const assert = require("node:assert/strict");
+const fs = require("node:fs");
+const path = require("node:path");
+const vm = require("node:vm");
+const twitterUrls = require("../plugins/utils/twitter");
+
+function fixture(options = {}) {
+  const modules = [];
+  const events = [];
+  const deleted = [];
+  const config = {
+    MODE: "private",
+    HANDLERS: ".,",
+    AUTODL: "group@g.us",
+    AUTODL_ALL_GROUPS: "false",
+    AUTODL_ALL_DMS: "false",
+    ...options.config,
+  };
+  const results = {
+    downloadGram: async () => ["/tmp/test-photo.jpg", "/tmp/test-video.mp4"],
+    pinterestDl: async () => ({ status: true, result: "/tmp/test-pin.jpg" }),
+    tiktok: async () => ({ url: "/tmp/test-tiktok.mp4" }),
+    fb: async () => ({ url: "/tmp/test-fb.mp4" }),
+    getVideoInfo: async () => ({
+      title: "Test video",
+      videoId: "7Rmnsy_7hAs",
+      formats: [
+        { type: "video", quality: "144p", size: "10 MB" },
+        { type: "audio", quality: "audio", size: "2 MB" },
+      ],
+    }),
+    downloadAudio: async () => ({ path: "/tmp/test-audio.m4a", title: "Audio" }),
+    convertM4aToMp3: async () => "/tmp/test-audio.mp3",
+    searchYoutube: async () => [{ url: "https://www.youtube.com/watch?v=7Rmnsy_7hAs" }],
+    spotifyTrack: async () => ({ title: "Afsos", artist: "Anuv Jain" }),
+    twitterSend: async (message, url) => {
+      events.push({ type: "twitter", url });
+      await message.sendMessage({ url: "/tmp/test-twitter.mp4" }, "video", { quoted: message.data, mimetype: "video/mp4" });
+      return 1;
+    },
+    ...options.services,
+  };
+  const stores = {};
+  const sandbox = {
+    module: { exports: {} }, exports: {}, Buffer, URL, setTimeout(callback) { callback(); return 0; },
+    console: { error(...args) { events.push({ type: "error", args }); }, warn(...args) { events.push({ type: "warn", args }); } },
+    require(name) {
+      if (name === "../main") return { Module(meta, handler) { modules.push({ meta, handler }); } };
+      if (name === "../config") return config;
+      if (name === "./manage") return { async setVar(key, value) { stores[key] = value; config[key] = value; } };
+      if (name === "./utils") return {
+        downloadGram: results.downloadGram,
+        pinterestDl: results.pinterestDl,
+        tiktok: results.tiktok,
+        fb: results.fb,
+      };
+      if (name === "../core/services") return { spotifyTrack: results.spotifyTrack };
+      if (name === "./utils/twitter") return {
+        normalizeTwitterUrl: twitterUrls.normalizeTwitterUrl,
+        findTwitterUrl: twitterUrls.findTwitterUrl,
+        sendTwitterMedia: results.twitterSend,
+        twitterFailureReason: (error) => "Post unavailable: " + error.message,
+      };
+      if (name === "./utils/yt") return {
+        getVideoInfo: results.getVideoInfo,
+        downloadAudio: results.downloadAudio,
+        convertM4aToMp3: results.convertM4aToMp3,
+        searchYoutube: results.searchYoutube,
+      };
+      if (name === "fs") return {
+        existsSync(file) { return typeof file === "string" && file.startsWith("/tmp/"); },
+        unlinkSync(file) { deleted.push(file); },
+        createReadStream() { throw new Error("Media must be uploaded by file path"); },
+      };
+      throw new Error("Unexpected import: " + name);
+    },
+  };
+  const source = fs.readFileSync(path.join(__dirname, "../plugins/autodl.js"), "utf8");
+  vm.runInNewContext(source, sandbox, { filename: "plugins/autodl.js", timeout: 12000 });
+  const watcher = modules.find(({ meta }) => meta.on === "text");
+  const control = modules.find(({ meta }) => meta.pattern?.startsWith("autodl "));
+  assert.ok(watcher, "AutoDL text watcher must load");
+  assert.ok(control, "AutoDL control command must load");
+  function message(text, jid = "group@g.us") {
+    return {
+      jid, text, fromMe: false, fromBot: false, data: { key: { remoteJid: jid, id: "q1" } },
+      async react(emoji) { events.push({ type: "react", emoji }); },
+      async sendMessage(media, kind, settings) {
+        events.push({ type: "sendMessage", media, kind, settings });
+      },
+      async sendReply(media, kind, settings) {
+        events.push({ type: "sendReply", media, kind, settings });
+        return { key: { id: "status-1" } };
+      },
+      async edit(value) { events.push({ type: "edit", value }); },
+    };
+  }
+  return { events, deleted, watcher, control, message, stores, config };
+}
+
+test("AutoDL private-mode watcher registers for ordinary group members", async () => {
+  const f = fixture();
+  assert.equal(f.watcher.meta.fromMe, false);
+  const msg = f.message("https://youtu.be/7Rmnsy_7hAs");
+  await f.watcher.handler(msg);
+  const menu = f.events.find((e) => e.type === "sendReply" && typeof e.media === "string");
+  assert.match(menu.media, /Select Video Quality/);
+  assert.match(menu.media, /144p/);
+  assert.match(menu.media, /Reply with a number to download/);
+});
+
+test("AutoDL avoids explicit download commands but not normal sentences mentioning a platform", async () => {
+  const f = fixture();
+  await f.watcher.handler(f.message(".ytv https://youtu.be/7Rmnsy_7hAs"));
+  assert.equal(f.events.filter((e) => e.type === "sendReply").length, 0);
+  await f.watcher.handler(f.message("A tiktok clip: https://vt.tiktok.com/ABCD12345/"));
+  assert.ok(f.events.some((e) => e.type === "sendReply" && e.kind === "video"));
+});
+
+test("YouTube AutoDL audio uploads the converted file path and removes both audio files", async () => {
+  const f = fixture();
+  await f.watcher.handler(f.message("audio https://youtu.be/7Rmnsy_7hAs"));
+  const audio = f.events.find((e) => e.type === "sendMessage" && e.kind === "document");
+  assert.ok(audio);
+  assert.equal(audio.media.url, "/tmp/test-audio.mp3");
+  assert.equal(audio.settings.mimetype, "audio/mpeg");
+  assert.ok(f.deleted.includes("/tmp/test-audio.mp3"));
+  assert.ok(f.deleted.includes("/tmp/test-audio.m4a"));
+});
+
+test("Instagram AutoDL sends mixed carousel media as sequential image/video messages", async () => {
+  const f = fixture();
+  const msg = f.message("https://www.instagram.com/p/C123ABc/");
+  await f.watcher.handler(msg);
+  const media = f.events.filter((e) => e.type === "sendMessage");
+  assert.deepEqual(media.map((e) => e.kind), ["image", "video"]);
+  assert.deepEqual(media.map((e) => e.media.url), ["/tmp/test-photo.jpg", "/tmp/test-video.mp4"]);
+  assert.equal(media[0].settings.quoted, msg.data);
+  assert.ok(f.deleted.includes("/tmp/test-photo.jpg"));
+  assert.ok(f.deleted.includes("/tmp/test-video.mp4"));
+});
+
+test("Pinterest AutoDL sends images as images, not unsupported video messages", async () => {
+  const f = fixture();
+  await f.watcher.handler(f.message("https://pin.it/ABC1234"));
+  const picture = f.events.find((e) => e.type === "sendMessage");
+  assert.ok(picture);
+  assert.equal(picture.kind, "image");
+  assert.equal(picture.media.url, "/tmp/test-pin.jpg");
+  assert.ok(f.deleted.includes("/tmp/test-pin.jpg"));
+});
+
+test("TikTok and Facebook send local video paths and clean temporary files", async () => {
+  const f = fixture();
+  await f.watcher.handler(f.message("https://vt.tiktok.com/ABCD12345/"));
+  await f.watcher.handler(f.message("https://www.facebook.com/watch?v=1234567"));
+  const vids = f.events.filter((e) => e.type === "sendReply" && e.kind === "video");
+  assert.equal(vids.length, 2);
+  assert.deepEqual(vids.map((e) => e.media.url), ["/tmp/test-tiktok.mp4", "/tmp/test-fb.mp4"]);
+  assert.ok(f.deleted.includes("/tmp/test-tiktok.mp4"));
+  assert.ok(f.deleted.includes("/tmp/test-fb.mp4"));
+});
+
+test("Spotify AutoDL resolves the existing Spotify helper and uploads a file URL", async () => {
+  const f = fixture();
+  await f.watcher.handler(f.message("https://open.spotify.com/track/4Qm7r3ImER8S2Ori1gLMAf"));
+  const audio = f.events.find((e) => e.type === "sendReply" && e.kind === "audio");
+  assert.ok(audio);
+  assert.equal(audio.media.url, "/tmp/test-audio.mp3");
+  assert.equal(audio.settings.mimetype, "audio/mpeg");
+});
+
+test("AutoDL enabled-list and .autodl toggle commands still work", async () => {
+  const f = fixture();
+  const cmd = f.message(".autodl off");
+  await f.control.handler(cmd, [".autodl off", "off"]);
+  assert.equal(f.stores.AUTODL, "");
+  await f.watcher.handler(f.message("https://youtu.be/7Rmnsy_7hAs"));
+  assert.equal(f.events.filter((e) => e.type === "sendReply" && typeof e.media === "string" && e.media.includes("Select Video")).length, 0);
+  await f.control.handler(cmd, [".autodl on", "on"]);
+  assert.equal(f.stores.AUTODL, "group@g.us");
+  await f.watcher.handler(f.message("https://youtu.be/7Rmnsy_7hAs"));
+  assert.equal(f.events.filter((e) => e.type === "sendReply" && typeof e.media === "string" && e.media.includes("Select Video")).length, 1);
+});
+
+
+test("Twitter/X AutoDL downloads a tweet instead of saying the platform is unsupported", async () => {
+  const f = fixture();
+  await f.watcher.handler(f.message("Check https://x.com/researcher/status/1990123456789012345"));
+  const dispatched = f.events.find(e => e.type === "twitter");
+  assert.equal(dispatched.url, "https://x.com/researcher/status/1990123456789012345");
+  const video = f.events.find(e => e.type === "sendMessage" && e.kind === "video");
+  assert.equal(video.media.url, "/tmp/test-twitter.mp4");
+  assert.ok(f.events.some(e => e.type === "react" && e.emoji === "✅"));
+  assert.equal(f.events.some(e => e.type === "sendReply" && String(e.media).includes("not available in this build")), false);
+});
+
+test("Twitter AutoDL ignores explicit .twitter commands to avoid downloading twice", async () => {
+  const f = fixture();
+  await f.watcher.handler(f.message(".twitter https://x.com/researcher/status/1990123456789012345"));
+  await f.watcher.handler(f.message(".x https://x.com/researcher/status/1990123456789012345"));
+  assert.equal(f.events.some(e => e.type === "twitter"), false);
+});
+
+test("Twitter AutoDL reports a blocked post without interrupting other commands", async () => {
+  const f = fixture({ services: {
+    async twitterSend() { throw new Error("Login required"); },
+  } });
+  await f.watcher.handler(f.message("https://twitter.com/researcher/status/1990123456789012345"));
+  assert.ok(f.events.some(e => e.type === "sendReply" && String(e.media).includes("Post unavailable")));
+  assert.ok(f.events.some(e => e.type === "react" && e.emoji === "❌"));
+});
+
+
+test("AutoDL recognizes mobile.x.com photo links and canonicalizes to the post", async () => {
+  const f = fixture();
+  await f.watcher.handler(f.message(
+    "https://mobile.x.com/researcher/status/1990123456789012345/photo/1?utm_source=share"
+  ));
+  const dispatched = f.events.find(e => e.type === "twitter");
+  assert.ok(dispatched, "mobile X photo post must dispatch to Twitter AutoDL");
+  assert.equal(dispatched.url, "https://x.com/researcher/status/1990123456789012345");
+});
+
+test("AutoDL recognizes bare x.com links without a URL scheme", async () => {
+  const f = fixture();
+  await f.watcher.handler(f.message("Look: x.com/researcher/status/1990123456789012345"));
+  assert.equal(f.events.find(e => e.type === "twitter").url,
+    "https://x.com/researcher/status/1990123456789012345");
+});
+
+test("AutoDL recognizes X video and old Twitter variants including trailing slash", async () => {
+  const f = fixture();
+  await f.watcher.handler(f.message(
+    "https://twitter.com/researcher/status/1990123456789012345/video/1"
+  ));
+  await f.watcher.handler(f.message(
+    "https://x.com/researcher/status/1990123456789012345/"
+  ));
+  assert.equal(f.events.filter(e => e.type === "twitter").length, 2);
+  assert.ok(f.events.filter(e => e.type === "twitter").every(e =>
+    e.url === "https://x.com/researcher/status/1990123456789012345"
+  ));
+});
+
+test("AutoDL extracts a post URL from a WhatsApp link preview", async () => {
+  const f = fixture();
+  const msg = f.message("Shared an X post");
+  msg.data.message = {
+    extendedTextMessage: {
+      text: "Shared an X post",
+      canonicalUrl: "https://mobile.x.com/researcher/status/1990123456789012345/photo/1",
+    },
+  };
+  await f.watcher.handler(msg);
+  assert.equal(f.events.find(e => e.type === "twitter").url,
+    "https://x.com/researcher/status/1990123456789012345");
+});
+
+test("AutoDL does not download unrecognized X profiles or lookalike domains", async () => {
+  const f = fixture();
+  await f.watcher.handler(f.message("https://x.com/researcher"));
+  await f.watcher.handler(f.message("https://x.com.attacker.example/researcher/status/1990123456789012345"));
+  assert.equal(f.events.filter(e => e.type === "twitter").length, 0);
+});
+
+test("X AutoDL honors per-chat enablement", async () => {
+  const f = fixture({ config: { AUTODL: "", AUTODL_ALL_GROUPS: "false" } });
+  await f.watcher.handler(f.message("https://x.com/researcher/status/1990123456789012345"));
+  assert.equal(f.events.filter(e => e.type === "twitter").length, 0);
+  const enabled = fixture({ config: { AUTODL: "", AUTODL_ALL_GROUPS: "true" } });
+  await enabled.watcher.handler(enabled.message("https://x.com/researcher/status/1990123456789012345"));
+  assert.equal(enabled.events.filter(e => e.type === "twitter").length, 1);
+});
