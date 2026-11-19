@@ -26,5 +26,7 @@ jobs:
         run: node --test tests/youtube-fragments.test.js
       - name: Test AutoDL link detection and media uploads
         run: node --test tests/autodl.test.js
+      - name: Test example phone numbers in command help
+        run: node --test tests/phone-examples.test.js
       - name: Test group moderation without WhatsApp network access
         run: node --test tests/group-moderation.test.js

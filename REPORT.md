@@ -30,7 +30,7 @@ Instagram, Pinterest and lrclib.net (the re-added features), Google Translate, G
 Instagram profile, Instagram stories (needs your cookies file), Pinterest search, lyrics, plus yt-dlp retry/timeout hardening. All open or local; none use the authors' servers.
 
 ## 5b. Rebrand
-Name/owner: Kamran Hasil. Default SUDO/owner: 9231118401. Author's GitHub/Telegram links removed. NOTICE.md and LICENSE keep the GPL-3.0 attribution to the original author.
+Name/owner: Kamran Hasil. Default SUDO/owner: 923111008401. Author's GitHub/Telegram links removed. NOTICE.md and LICENSE keep the GPL-3.0 attribution to the original author.
 
 ## 6. Not done / caveats
 - Not run against a real WhatsApp login or with yt-dlp installed; the install and login path needs a live test.
