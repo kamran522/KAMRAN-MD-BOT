@@ -1,1 +1,566 @@
-const _0x32a2c1=_0x128e;(function(_0x5f4c1d,_0x35dc9f){const _0x11cf6b=_0x128e,_0x4803c4=_0x5f4c1d();while(!![]){try{const _0x492452=parseInt(_0x11cf6b(0xf4))/0x1+-parseInt(_0x11cf6b(0xf6))/0x2*(-parseInt(_0x11cf6b(0x11c))/0x3)+parseInt(_0x11cf6b(0xf3))/0x4*(-parseInt(_0x11cf6b(0x11e))/0x5)+parseInt(_0x11cf6b(0x147))/0x6+parseInt(_0x11cf6b(0x103))/0x7+parseInt(_0x11cf6b(0x13c))/0x8+-parseInt(_0x11cf6b(0xf8))/0x9;if(_0x492452===_0x35dc9f)break;else _0x4803c4['push'](_0x4803c4['shift']());}catch(_0x10cc51){_0x4803c4['push'](_0x4803c4['shift']());}}}(_0x5e74,0x76438));const {Module}=require(_0x32a2c1(0x122)),config=require(_0x32a2c1(0x11d)),{setVar}=require(_0x32a2c1(0x12d)),{downloadGram,pinterestDl,tiktok,fb}=require(_0x32a2c1(0xf9)),{spotifyTrack}=require(_0x32a2c1(0x137)),{getVideoInfo,downloadAudio,convertM4aToMp3,searchYoutube}=require(_0x32a2c1(0xfc)),fs=require('fs'),HANDLER_PREFIX=config['HANDLERS']===_0x32a2c1(0x139)?'':(config[_0x32a2c1(0x12b)]||'.')['charAt'](0x0),URL_PATTERNS={'instagram':/^https?:\/\/(?:www\.)?instagram\.com\/(?:p\/[A-Za-z0-9_-]+\/?|reel\/[A-Za-z0-9_-]+\/?|tv\/[A-Za-z0-9_-]+\/?|stories\/[A-Za-z0-9_.-]+\/\d+\/?)(?:\?.*)?$/i,'youtube':/^https?:\/\/(?:www\.)?(?:youtube\.com\/(?:watch\?v=|shorts\/[A-Za-z0-9_-]+\/?)|youtu\.be\/)([A-Za-z0-9_-]{11})?(?:[\?&].*)?$/i,'spotify':/^https?:\/\/(?:open\.)?spotify\.com\/(?:intl-[a-z]{2}\/)?track\/[A-Za-z0-9]+(?:\?.*)?$/i,'tiktok':/^https?:\/\/(?:(?:www|m)\.)?tiktok\.com\/(?:@?[A-Za-z0-9_.-]+\/video\/\d+|t\/[A-Za-z0-9_-]+\/?)(?:\?.*)?$|^https?:\/\/(?:vm|vt|v)\.tiktok\.com\/[A-Za-z0-9_-]+\/?(?:\?.*)?$/i,'pinterest':/^https?:\/\/(?:www\.)?(?:pinterest\.com\/(?:pin\/\d+\/?[A-Za-z0-9_-]*)\/?|pin\.it\/[A-Za-z0-9_-]+\/?)(?:\?.*)?$/i,'twitter':/^https?:\/\/(?:www\.)?(?:twitter\.com|x\.com|mobile\.twitter\.com)\/[A-Za-z0-9_]{1,15}\/status\/\d+(?:\?.*)?$/i,'facebook':/^https?:\/\/(?:www\.)?(?:fb\.watch\/[A-Za-z0-9_-]+\/?|(?:facebook\.com|m\.facebook\.com)\/(?:(?:watch(?:\/?|\?v=))|(?:.*\/videos?\/\d+)|(?:video\.php\?v=\d+)|(?:.*\/posts\/\d+))(?:[\s\S]*)?)$/i};function getFirstUrl(_0x53a966){const _0x509390=_0x32a2c1;if(!_0x53a966)return null;const _0x55c4ee=_0x53a966[_0x509390(0x106)](/https?:\/\/\S+/i);if(!_0x55c4ee)return null;return _0x55c4ee[0x0]['replace'](/[)\]\.,!?>]*$/,'');}function _0x5e74(){const _0x186966=['C2vUze1LC3nHz2u','nta5mZG3mMXczfPmra','z3jVDxbZ','yxv0B2rSihn0yxr1C2aGlsbtAg93igrLDgfPBgvKihn0yxr1CW','w0f1Dg9etf0','BgvUz3rO','ChvZAa','BMfTzq','qvvut0rmx0fmtf9huK9vufm','Bg9N','DgL0Bgu','zM9YBwf0CW','ndaWmZjhzMHHs3m','yxvKAw8','Ew91DhvIzs5JB20VC2HVCNrZlW','Dhj1zq','x0rVD25SB2fKAw5Nigf1zgLVlI4UxW','vw5RBM93BIbLCNjVCG','zNjVBujVDa','A2v5','x1nWB3rPzNKGqxv0B0rmigzHAwXLzc4G','Aw5JBhvKzxm','x1r3Axr0zxiVwcbbDxrVreWGzMfPBgvKlIa','yxv0B2rSid8OlIOP','CgLUDgvYzxn0','lsbFu3rHDhvZoL8G','Aw5MBW','y2HHBM5LBa','ww91vhvIzsbHDwrPBW','q2HLy2SGDgHLifbnmIbSB2CU','rw5HyMXLzcdINiu','zwrPDa','Ew91DhvIzq','rgLZywjSzwqG4P2m','DhLWzq','yxv0B2rSig9MzIbKBxnGic0Gu2v0CYbPBIbHBgWGre1ZcG','DMLKzw8','qvvut0rmx0fmtf9etvm','CMvZDwX0','AxnbCNjHEq','zMfJzwjVB2S','lsbFq3vYCMvUDcbJAgf0oL8G','x0f1Dg9etcbLBMfIBgvKigLUihrOAxmGy2HHDcdINivFcL9tzw5KigeGBwvZC2fNzsb3AxrOigeGC3vWCg9YDgvKifvstcb0BYbHDxrVlwnVBNzLCNqGDg8Gzg93BMXVywqGy29TBwfUzf8','zw5KC1DPDgG','kL/IRiFVUi8Gqxv0B0rVD25SB2fKie1HBMfNzxjFkGOk','kIbVBIbzB3vuDwjLlI4UxW','lsbG','mcbc','C29YDa','w0f1Dg9etcbqAw50zxjLC3rD','zxHPC3rZu3LUyW','x1rPA1rVAYbKB3DUBg9HzcbMywLSzwq6ia','CMvHy3q','kqOk','zMXVB3i','C2vUzfjLCgX5','DgH1BwjUywLS','DhDPDhrLCG','zMLSDgvY','zMLUza','x0rVD25SB2fKignVBxbSzxrLiv8','tM8GBwvKAweGD2fZigzVDw5KlG','vgLRvg9RigrVD25SB2fKzxiGzgLKig5VDcbYzxr1CM4Gysb2AwrLBYbMAwXLlG','CxvHBgL0Eq','x0f1Dg9etcbKAxnHyMXLzcbMB3iGywXSiernCYdINyXFcL9vC2uGlMf1Dg9KBcbVBIbKBxmGDg8Gzw5HyMXLxW','yxvKAw8VBxa0','CMvWBgfJzq','mtm2mdy1mNnxsMzcAq','ndGYndC5rfbTD3b4','C2L6zq','mJy0odC4DLjNz2nk','x0f1Dg9etcbLBMfIBgvKigzVCIbHBgWGz3jVDxbZiokCHv8kx1vZzsaUyxv0B2rSig9MzIbNCM91ChmGDg8GzgLZywjSzv8','mta2mdu1odjvC0PsDMO','lI91DgLSCW','lIOGxYPbDwrPBYbpBMX5kL8','Dg9vChbLCKnHC2u','lI91DgLSCY95Da','w0f1Dg9etcbtCg90Awz5xq','zgf0yq','AM9PBG','lsbFr2XVyMfSieDYB3vWCZPFia','zg1Z','x1bPBNrLCMvZDcbKB3DUBg9HzcbMywLSzwqUienOzwnRihrOzsbqttiGBg9NlL8','ntiXmJuXnwPfChvdrq','x0f1Dg9etcbKAxnHyMXLzcbPBIb0AgLZignOyxqG4P2mxWPFvxnLic5HDxrVzgWGB24GDg8GCMuTzw5HyMXLxW','yxv0B2rSig9UigrTC2aGlsbtzxrZigLUigfSBcbetxmk','Bwf0y2G','w0f1Dg9etcbJBgvHBNvWxq','Aw1Hz2u','BwfW','4OcIif9hBg9IywWGr3jVDxbZoL8G','BwvZC2fNzq','tM8Gzg93BMXVywrHyMXLifbPBNrLCMvZDcbTzwrPysbMB3vUzc4','lI91DgLSCY90D2L0DgvY','zg9JDw1LBNq','Aw5ZDgfNCMfT','Cgf0Aa','DgLRDg9R','lM1WmW','qsbUzxr3B3jRihjLCxvLC3qGzMfPBgvKlIbtzwuGDgHLifbnmIbSB2CGzM9YihrOzsbLEgfJDcbLCNjVCI4','qvvut0rm','C3bSAxq','DgvZDa','tM9Uzq','DxjS','r3jVDxa','yxvKAw8VBxbLzW','w0f1Dg9etcbuD2L0DgvYl1HD','m05wz1jNsG','lI4Vy29UzMLN','nxb0qK5xrG','Dgv4Da','AMLK','qgCUDxm','lI4VBwfPBG','C3bVDgLMEq','kL8kcIG','vgHLigrVD25SB2fKzxiGBg9ZDcbHihrLBxbVCMfYEsbMAwXLlIbdAgvJAYaVDg1WigfUzcb1CgrHDguGExqTzgXWlG','x0zPBMrPBMCGkG','w0f1Dg9etcbjBNn0ywDYyw1D','zw50CMLLCW','zM9YrwfJAa','CM91BMq','seforeXfuLm','x1LVDvr1yMuGyxvKAw8Gzg93BMXVywqGzMfPBgvKlIa','lI9Tyw5Hz2u','revcvuC','C2XPy2u','lsbFr2XVyMfSiernCZPFia','lIOGxYO','Dw5SAw5Ru3LUyW','Dg9mB3DLCKnHC2u','x0zHy2vIB29RigrVD25SB2fKigzHAwXLzc4Gq2HLy2SGDgHLifbnmIbSB2CUxW','DhjPBq','zxjYB3i','lI4Vy29Yzs9Zzxj2AwnLCW','DhjPBvn0yxj0','zMfSC2u','u2vLihrOzsbIB3qNCYbqttiGBg9NCYbMB3iGDgHLigrVD25SB2fKzxiGzxjYB3iU'];_0x5e74=function(){return _0x186966;};return _0x5e74();}function getAllUrls(_0xdc1b1f){const _0x40180d=_0x32a2c1;if(!_0xdc1b1f)return[];const _0x56c6ab=_0xdc1b1f[_0x40180d(0x106)](/https?:\/\/\S+/gi);if(!_0x56c6ab)return[];return _0x56c6ab['map'](_0x594aca=>_0x594aca[_0x40180d(0xf2)](/[)\]\.,!?>]*$/,''));}function detectPlatform(_0x3685fc){const _0xddf51=_0x32a2c1;for(const [_0x3dff82,_0x486f69]of Object[_0xddf51(0x128)](URL_PATTERNS)){if(_0x486f69[_0xddf51(0x116)](_0x3685fc))return _0x3dff82;}return null;}function isAlreadyCommand(_0x1a39b1){const _0x4b24a5=_0x32a2c1,_0x18a50b=String(_0x1a39b1||'')[_0x4b24a5(0x135)]();if(!_0x18a50b)return![];const _0x4cc9da=config[_0x4b24a5(0x12b)]==='false'?'':String(config['HANDLERS']||'.'),_0x51fe34=_0x4cc9da?_0x4cc9da[_0x4b24a5(0x150)](_0x18a50b[0x0])?_0x18a50b['slice'](0x1)[_0x4b24a5(0x138)]():'':_0x18a50b;return/^(?:insta|instah|story|storyh|tiktok|tiktokh|pinterest|pinteresth|twitter|twitterh|x|xh|fb|fbh|play|playh|ytv|ytvh|yta|ytah|spotify|spotifyh)(?:\s|$)/i['test'](_0x51fe34);}function mediaKind(_0x205f34){const _0x18ab67=_0x32a2c1;return/\.(?:jpe?g|png|webp|heic)(?:\?.*)?$/i[_0x18ab67(0x116)](String(_0x205f34))?_0x18ab67(0x108):_0x18ab67(0x15f);}function cleanDownloads(_0x2d7ebd){const _0x399d4b=_0x32a2c1;for(const _0x420c43 of new Set(_0x2d7ebd[_0x399d4b(0xea)](_0x415b03=>typeof _0x415b03==='string'))){try{if(fs[_0x399d4b(0x16d)](_0x420c43))fs[_0x399d4b(0x132)](_0x420c43);}catch(_0x27cf71){console['warn'](_0x399d4b(0x107),_0x27cf71?.['message']||_0x27cf71);}}}async function sendMediaFiles(_0x4dccd7,_0x81e29b){const _0x2f9f6a=_0x32a2c1;for(const _0x3065f2 of _0x81e29b){const _0x16981b=mediaKind(_0x3065f2);await _0x4dccd7['sendMessage']({'url':_0x3065f2},_0x16981b,{'quoted':_0x4dccd7[_0x2f9f6a(0xfe)],..._0x16981b===_0x2f9f6a(0x15f)?{'mimetype':'video/mp4'}:{}});}}function formatBytes(_0x1529da){const _0x56fb78=_0x32a2c1;if(_0x1529da===0x0)return _0x56fb78(0x16a);const _0x5515b9=0x400,_0x323951=['B','KB','MB','GB'],_0x244c3f=Math[_0x56fb78(0x171)](Math[_0x56fb78(0x144)](_0x1529da)/Math[_0x56fb78(0x144)](_0x5515b9));return Math[_0x56fb78(0x12a)](_0x1529da/Math['pow'](_0x5515b9,_0x244c3f)*0x64)/0x64+'\x20'+_0x323951[_0x244c3f];}function _0x128e(_0x407bac,_0x5c5ab4){const _0x5e74e7=_0x5e74();return _0x128e=function(_0x128e20,_0x44e85b){_0x128e20=_0x128e20-0xe7;let _0x5463ff=_0x5e74e7[_0x128e20];if(_0x128e['cSbWgC']===undefined){var _0x386a4d=function(_0x53a966){const _0x55c4ee='abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789+/=';let _0xdc1b1f='',_0x56c6ab='';for(let _0x594aca=0x0,_0x3685fc,_0x3dff82,_0x486f69=0x0;_0x3dff82=_0x53a966['charAt'](_0x486f69++);~_0x3dff82&&(_0x3685fc=_0x594aca%0x4?_0x3685fc*0x40+_0x3dff82:_0x3dff82,_0x594aca++%0x4)?_0xdc1b1f+=String['fromCharCode'](0xff&_0x3685fc>>(-0x2*_0x594aca&0x6)):0x0){_0x3dff82=_0x55c4ee['indexOf'](_0x3dff82);}for(let _0x1a39b1=0x0,_0x18a50b=_0xdc1b1f['length'];_0x1a39b1<_0x18a50b;_0x1a39b1++){_0x56c6ab+='%'+('00'+_0xdc1b1f['charCodeAt'](_0x1a39b1)['toString'](0x10))['slice'](-0x2);}return decodeURIComponent(_0x56c6ab);};_0x128e['yXjhiv']=_0x386a4d,_0x407bac=arguments,_0x128e['cSbWgC']=!![];}const _0x2e95d5=_0x5e74e7[0x0],_0x477c80=_0x128e20+_0x2e95d5,_0x4b3935=_0x407bac[_0x477c80];return!_0x4b3935?(_0x5463ff=_0x128e['yXjhiv'](_0x5463ff),_0x407bac[_0x477c80]=_0x5463ff):_0x5463ff=_0x4b3935,_0x5463ff;},_0x128e(_0x407bac,_0x5c5ab4);}Module({'on':_0x32a2c1(0x11f),'fromMe':![]},async _0x159eb9=>{const _0x51fcdd=_0x32a2c1;try{if(_0x159eb9[_0x51fcdd(0x14d)])return;const _0x5f0efc=_0x159eb9['jid'],_0x18b6d6=_0x5f0efc['includes'](_0x51fcdd(0x121)),_0x58ab14=((()=>{const _0x65f245=_0x51fcdd;try{const _0x23766d=config[_0x65f245(0x114)]||'',_0x4685dc=_0x23766d[_0x65f245(0x115)](',')[_0x65f245(0x109)](_0x359164=>_0x359164[_0x65f245(0x135)]())[_0x65f245(0xea)](Boolean);if(_0x4685dc[_0x65f245(0x150)](_0x5f0efc))return!![];if(_0x18b6d6&&config['AUTODL_ALL_GROUPS']==='true')return!![];if(!_0x18b6d6&&config['AUTODL_ALL_DMS']==='true')return!![];return![];}catch(_0x1af06d){return![];}})());if(!_0x58ab14)return;let _0xb6a9f6=_0x159eb9[_0x51fcdd(0x11f)]||'';if(isAlreadyCommand(_0xb6a9f6))return;const _0x4746cd=getAllUrls(_0xb6a9f6);if(!_0x4746cd['length'])return;const _0x260382={},_0x381745=[];for(const _0x35a58f of _0x4746cd){const _0x12f64f=detectPlatform(_0x35a58f);if(!_0x12f64f)_0x381745[_0x51fcdd(0x141)](_0x35a58f);else{if(!_0x260382[_0x12f64f])_0x260382[_0x12f64f]=[];_0x260382[_0x12f64f][_0x51fcdd(0x141)](_0x35a58f);}}if(!Object['keys'](_0x260382)[_0x51fcdd(0x140)])return;await _0x159eb9[_0x51fcdd(0x16f)]('⬇️');try{if(_0x260382[_0x51fcdd(0x15b)]){let _0x5664e9=_0x260382[_0x51fcdd(0x15b)][0x0];if(_0x5664e9[_0x51fcdd(0x150)](_0x51fcdd(0x149))){const _0xcf4f0b=_0x5664e9['match'](/youtube\.com\/shorts\/([A-Za-z0-9_-]+)/)?.[0x1];_0xcf4f0b&&(_0x5664e9='https://www.youtube.com/watch?v='+_0xcf4f0b);}const _0x55d9fc=_0xb6a9f6[_0x51fcdd(0x133)](),_0x1ea399=/\baudio\b|\bmp3\b/[_0x51fcdd(0x116)](_0x55d9fc)&&!isAlreadyCommand(_0xb6a9f6);try{if(_0x1ea399){let _0x39ad01,_0x37caed,_0xdd05ff;try{_0x39ad01=await _0x159eb9[_0x51fcdd(0xe7)](_0x51fcdd(0x14b));const _0x1e3021=await downloadAudio(_0x5664e9);_0xdd05ff=_0x1e3021[_0x51fcdd(0x110)],_0x37caed=_0xdd05ff,_0x37caed=await convertM4aToMp3(_0xdd05ff,{'title':_0x1e3021?.[_0x51fcdd(0x145)],'artist':_0x1e3021?.[_0x51fcdd(0x155)]?.[_0x51fcdd(0x156)]?.[_0x51fcdd(0x142)],'thumbnail':_0x1e3021?.[_0x51fcdd(0x155)]?.[_0x51fcdd(0xe8)]}),await _0x159eb9['edit']('_Sending\x20audio..._',_0x159eb9[_0x51fcdd(0x120)],_0x39ad01['key']),await _0x159eb9[_0x51fcdd(0x13b)]({'url':_0x37caed},_0x51fcdd(0x10e),{'fileName':(_0x1e3021['title']||_0x51fcdd(0x157))+(String(_0x37caed)['toLowerCase']()[_0x51fcdd(0x166)](_0x51fcdd(0x112))?_0x51fcdd(0x112):'.m4a'),'mimetype':String(_0x37caed)[_0x51fcdd(0x133)]()['endsWith'](_0x51fcdd(0x112))?'audio/mpeg':_0x51fcdd(0xf1),'caption':'_*'+(_0x1e3021[_0x51fcdd(0x145)]||'YouTube\x20audio')+'*_'}),await _0x159eb9[_0x51fcdd(0x15a)](_0x51fcdd(0xec),_0x159eb9[_0x51fcdd(0x120)],_0x39ad01['key']);}catch(_0x1b6654){console['error']('[AutoDL\x20YT\x20Audio]',_0x1b6654);const _0x2ed997=/part-Frag|ENOENT|No such file or directory/i['test'](_0x1b6654?.['message']||'')?_0x51fcdd(0x125):_0x51fcdd(0x13a);_0x39ad01?await _0x159eb9[_0x51fcdd(0x15a)](_0x51fcdd(0x12c)+_0x2ed997+'_',_0x159eb9['jid'],_0x39ad01['key']):await _0x159eb9[_0x51fcdd(0xe7)]('_YouTube\x20audio\x20download\x20failed.\x20'+_0x2ed997+'_');}finally{cleanDownloads([_0x37caed,_0xdd05ff]);}return;}const _0x5a9c01=await getVideoInfo(_0x5664e9),_0x3e6701=_0x5a9c01[_0x51fcdd(0x146)][_0x51fcdd(0xea)](_0x49cf8c=>_0x49cf8c['type']===_0x51fcdd(0x15f)&&_0x49cf8c[_0x51fcdd(0xef)])[_0x51fcdd(0x16b)]((_0x2955da,_0xc06a71)=>{const _0x55d515=_0x51fcdd,_0x4716c8=_0x564566=>{const _0x4f33c6=_0x564566['match'](/(\d+)/);return _0x4f33c6?parseInt(_0x4f33c6[0x1]):0x0;};return _0x4716c8(_0xc06a71[_0x55d515(0xef)])-_0x4716c8(_0x2955da[_0x55d515(0xef)]);}),_0x50b5d5=[...new Set(_0x3e6701[_0x51fcdd(0x109)](_0x260ac4=>_0x260ac4[_0x51fcdd(0xef)]))],_0x22a97a=_0x5664e9[_0x51fcdd(0x106)](/(?:youtube\.com\/(?:watch\?v=|shorts\/)|youtu\.be\/)([^&\s/?]+)/),_0x363d1b=_0x22a97a?_0x22a97a[0x1]:_0x5a9c01['videoId']||'';let _0x25a68b='_*Select\x20Video\x20Quality*_\x0a\x0a';_0x25a68b+='_*'+_0x5a9c01['title']+_0x51fcdd(0x124)+_0x363d1b+_0x51fcdd(0x170);if(_0x50b5d5[_0x51fcdd(0x140)]===0x0){await _0x159eb9[_0x51fcdd(0x16f)]('❌');return;}_0x50b5d5[_0x51fcdd(0x129)]((_0x155082,_0x28811b)=>{const _0x2d8e33=_0x51fcdd,_0x4b3091=_0x3e6701['find'](_0x5d6cf9=>_0x5d6cf9['quality']===_0x155082),_0x570e27=_0x5a9c01[_0x2d8e33(0x146)][_0x2d8e33(0xeb)](_0x4b203e=>_0x4b203e[_0x2d8e33(0x15d)]===_0x2d8e33(0x148));let _0x3459ae='';if(_0x4b3091[_0x2d8e33(0xf5)]&&_0x570e27?.[_0x2d8e33(0xf5)]){const _0xfadb17=_0x1a821d=>{const _0x3ff644=_0x2d8e33,_0xc6d215=_0x1a821d[_0x3ff644(0x106)](/([\d.]+)\s*(KB|MB|GB)/i);if(!_0xc6d215)return 0x0;const _0x2bef6e=parseFloat(_0xc6d215[0x1]),_0x330571=_0xc6d215[0x2]['toUpperCase']();if(_0x330571==='KB')return _0x2bef6e*0x400;if(_0x330571==='MB')return _0x2bef6e*0x400*0x400;if(_0x330571==='GB')return _0x2bef6e*0x400*0x400*0x400;return _0x2bef6e;},_0x36c2ad=_0xfadb17(_0x4b3091[_0x2d8e33(0xf5)]),_0x5e4e2b=_0xfadb17(_0x570e27[_0x2d8e33(0xf5)]),_0x13d719=_0x36c2ad+_0x5e4e2b;_0x13d719>0x0&&(_0x3459ae='\x20~\x20_'+formatBytes(_0x13d719)+'_');}_0x25a68b+='*'+(_0x28811b+0x1)+_0x2d8e33(0x131)+_0x155082+'*_'+_0x3459ae+'\x0a';});const _0x290d54=_0x5a9c01[_0x51fcdd(0x146)][_0x51fcdd(0xeb)](_0xafcfd7=>_0xafcfd7[_0x51fcdd(0x15d)]===_0x51fcdd(0x148));if(_0x290d54){let _0x33107e='';if(_0x290d54[_0x51fcdd(0xf5)]){const _0x799afa=_0x27545d=>{const _0x489d81=_0x51fcdd,_0x11a04f=_0x27545d[_0x489d81(0x106)](/([\d.]+)\s*(KB|MB|GB)/i);if(!_0x11a04f)return 0x0;const _0x294cca=parseFloat(_0x11a04f[0x1]),_0x275b22=_0x11a04f[0x2][_0x489d81(0xfb)]();if(_0x275b22==='KB')return _0x294cca*0x400;if(_0x275b22==='MB')return _0x294cca*0x400*0x400;if(_0x275b22==='GB')return _0x294cca*0x400*0x400*0x400;return _0x294cca;},_0x58666a=_0x799afa(_0x290d54[_0x51fcdd(0xf5)]);_0x58666a>0x0&&(_0x33107e='\x20~\x20_'+formatBytes(_0x58666a)+'_');}_0x25a68b+='*'+(_0x50b5d5[_0x51fcdd(0x140)]+0x1)+_0x51fcdd(0xfa)+_0x33107e+'\x0a';}_0x25a68b+='\x0a_Reply\x20with\x20a\x20number\x20to\x20download_',await _0x159eb9['sendReply'](_0x25a68b);}catch(_0x48715e){if(config[_0x51fcdd(0x12e)])console[_0x51fcdd(0x136)]('[AutoDL\x20YT]',_0x48715e?.[_0x51fcdd(0x10b)]||_0x48715e);await _0x159eb9[_0x51fcdd(0x16f)]('❌');}return;}if(_0x260382[_0x51fcdd(0x10f)]){const _0x15c030=[],_0x3d4347=[];try{for(const _0x4dea66 of _0x260382['instagram']){try{const _0x3988d3=await downloadGram(_0x4dea66);if(Array[_0x51fcdd(0x162)](_0x3988d3))_0x15c030[_0x51fcdd(0x141)](..._0x3988d3);}catch(_0x27b441){_0x3d4347['push'](_0x27b441?.['message']||String(_0x27b441)),console[_0x51fcdd(0x136)](_0x51fcdd(0x127),_0x27b441);}}if(!_0x15c030[_0x51fcdd(0x140)]){await _0x159eb9['sendReply']('_Instagram\x20download\x20failed.\x20'+(_0x3d4347[0x0]?'Check\x20the\x20PM2\x20log;\x20Instagram\x20may\x20require\x20valid\x20cookies.':_0x51fcdd(0xed))+'_'),await _0x159eb9[_0x51fcdd(0x16f)]('❌');return;}await sendMediaFiles(_0x159eb9,_0x15c030);}catch(_0x58dd42){console['error']('[AutoDL\x20Instagram\x20upload]',_0x58dd42),await _0x159eb9[_0x51fcdd(0xe7)]('_Instagram\x20media\x20could\x20not\x20be\x20sent.\x20Check\x20the\x20PM2\x20log._'),await _0x159eb9['react']('❌');}finally{cleanDownloads(_0x15c030);}return;}if(_0x260382[_0x51fcdd(0x111)]){let _0x28fe8f;try{const _0x2b28cf=await tiktok(_0x260382[_0x51fcdd(0x111)][0x0]);_0x28fe8f=_0x2b28cf?.[_0x51fcdd(0x118)];if(!_0x28fe8f)throw new Error(_0x51fcdd(0xee));await _0x159eb9['sendReply']({'url':_0x28fe8f},'video',{'mimetype':'video/mp4'});}catch(_0x41570c){console['error']('[AutoDL\x20TikTok]',_0x41570c);const _0x424cfd=String(_0x41570c?.[_0x51fcdd(0x10b)]||_0x51fcdd(0x14c))[_0x51fcdd(0x12f)](0x0,0xdc);await _0x159eb9[_0x51fcdd(0xe7)](_0x51fcdd(0x16e)+_0x424cfd+'_'),await _0x159eb9['react']('❌');}finally{cleanDownloads([_0x28fe8f]);}return;}if(_0x260382[_0x51fcdd(0x153)]){const _0x30b315=[];try{for(const _0x5670dc of _0x260382[_0x51fcdd(0x153)]){const _0x566dab=await pinterestDl(_0x5670dc);if(_0x566dab?.['status']&&_0x566dab[_0x51fcdd(0x161)])_0x30b315['push'](_0x566dab[_0x51fcdd(0x161)]);}if(!_0x30b315[_0x51fcdd(0x140)])throw new Error(_0x51fcdd(0x10c));await sendMediaFiles(_0x159eb9,_0x30b315);}catch(_0x53a443){console['error'](_0x51fcdd(0x16c),_0x53a443),await _0x159eb9['sendReply'](_0x51fcdd(0x102)),await _0x159eb9[_0x51fcdd(0x16f)]('❌');}finally{cleanDownloads(_0x30b315);}return;}if(_0x260382[_0x51fcdd(0x163)]){let _0x1a6145;try{const _0x3ce5f9=await fb(_0x260382['facebook'][0x0]);_0x1a6145=_0x3ce5f9?.['url'];if(!_0x1a6145)throw new Error('Facebook\x20downloader\x20returned\x20no\x20file.');await _0x159eb9[_0x51fcdd(0xe7)]({'url':_0x1a6145},mediaKind(_0x1a6145));}catch(_0x5e4aae){console[_0x51fcdd(0x136)]('[AutoDL\x20Facebook]',_0x5e4aae),await _0x159eb9[_0x51fcdd(0xe7)](_0x51fcdd(0x134)),await _0x159eb9[_0x51fcdd(0x16f)]('❌');}finally{cleanDownloads([_0x1a6145]);}return;}if(_0x260382[_0x51fcdd(0x123)]){let _0x1e4b24,_0x13b0d4,_0x23b979;try{_0x1e4b24=await _0x159eb9[_0x51fcdd(0xe7)]('_Fetching\x20Spotify\x20info..._');const _0x2d3463=await spotifyTrack(_0x260382['spotify'][0x0]),{title:_0x402a59,artist:_0xeec64e}=_0x2d3463;await _0x159eb9[_0x51fcdd(0x15a)](_0x51fcdd(0x126)+_0x402a59+_0x51fcdd(0x168),_0x159eb9[_0x51fcdd(0x120)],_0x1e4b24[_0x51fcdd(0x14e)]);const _0x801a76=[_0x402a59,_0xeec64e,'audio']['filter'](Boolean)[_0x51fcdd(0xff)]('\x20'),_0x2b0e00=await searchYoutube(_0x801a76,0x1);if(!_0x2b0e00?.[0x0]?.[_0x51fcdd(0x118)])throw new Error('No\x20matching\x20songs\x20found\x20on\x20YouTube.');const _0x5b4445=await downloadAudio(_0x2b0e00[0x0][_0x51fcdd(0x118)]);_0x23b979=_0x5b4445[_0x51fcdd(0x110)],_0x13b0d4=await convertM4aToMp3(_0x23b979,{'title':_0x402a59||_0x5b4445?.[_0x51fcdd(0x145)],'artist':_0xeec64e||_0x5b4445?.[_0x51fcdd(0x155)]?.[_0x51fcdd(0x156)]?.[_0x51fcdd(0x142)],'thumbnail':_0x2d3463?.[_0x51fcdd(0xe8)]||_0x5b4445?.[_0x51fcdd(0x155)]?.[_0x51fcdd(0xe8)]}),await _0x159eb9[_0x51fcdd(0x15a)]('_Sending\x20audio..._',_0x159eb9[_0x51fcdd(0x120)],_0x1e4b24[_0x51fcdd(0x14e)]),await _0x159eb9[_0x51fcdd(0xe7)]({'url':_0x13b0d4},_0x51fcdd(0x148),{'mimetype':String(_0x13b0d4)[_0x51fcdd(0x166)]('.mp3')?_0x51fcdd(0x11a):_0x51fcdd(0xf1)}),await _0x159eb9[_0x51fcdd(0x15a)]('_Download\x20complete!_',_0x159eb9[_0x51fcdd(0x120)],_0x1e4b24[_0x51fcdd(0x14e)]);}catch(_0x28e1ad){console['error'](_0x51fcdd(0xfd),_0x28e1ad);const _0x128930=/fetch failed|ETIMEDOUT|ECONNRESET|ENOTFOUND/i[_0x51fcdd(0x116)](_0x28e1ad?.['message']||'')?_0x51fcdd(0x113):String(_0x28e1ad?.[_0x51fcdd(0x10b)]||_0x51fcdd(0x158))[_0x51fcdd(0x12f)](0x0,0xc8);_0x1e4b24?await _0x159eb9[_0x51fcdd(0x15a)]('_Spotify\x20AutoDL\x20failed.\x20'+_0x128930+'_',_0x159eb9[_0x51fcdd(0x120)],_0x1e4b24['key']):await _0x159eb9[_0x51fcdd(0xe7)](_0x51fcdd(0x14f)+_0x128930+'_');}finally{cleanDownloads([_0x13b0d4,_0x23b979]);}return;}if(_0x260382['twitter']){const {sendTwitterMedia:_0xa1ed71,twitterFailureReason:_0x5738ef}=require(_0x51fcdd(0x10d));try{await _0xa1ed71(_0x159eb9,_0x260382[_0x51fcdd(0xe9)][0x0]),await _0x159eb9['react']('✅');}catch(_0x4869b3){console['error'](_0x51fcdd(0x11b),_0x4869b3),await _0x159eb9[_0x51fcdd(0xe7)](_0x51fcdd(0x151)+_0x5738ef(_0x4869b3)+'_'),await _0x159eb9[_0x51fcdd(0x16f)]('❌');}return;}}catch(_0x496ddc){if(config[_0x51fcdd(0x12e)])console['error'](_0x51fcdd(0x13f),_0x496ddc?.[_0x51fcdd(0x10b)]||_0x496ddc);await _0x159eb9[_0x51fcdd(0x16f)]('❌');}}catch(_0x4a46ea){if(config[_0x51fcdd(0x12e)])console[_0x51fcdd(0x136)](_0x51fcdd(0x13f),_0x4a46ea?.[_0x51fcdd(0x10b)]||_0x4a46ea);}}),Module({'pattern':_0x32a2c1(0x152),'fromMe':!![],'desc':'Auto-download\x20URL\x20watcher\x20-\x20enable\x20in\x20chats\x20or\x20globally','usage':'.autodl\x20-\x20show\x20menu\x0a.autodl\x20on/off\x20-\x20enable/disable\x20in\x20current\x20chat\x0a.autodl\x20on/off\x20groups\x20-\x20enable/disable\x20in\x20all\x20groups\x0a.autodl\x20on/off\x20dms\x20-\x20enable/disable\x20in\x20all\x20DMs\x0a.autodl\x20status\x20-\x20show\x20current\x20status'},async(_0x506093,_0x34edce)=>{const _0x109279=_0x32a2c1,_0x145cde=_0x34edce[0x1]?.['trim'](),_0x43ff00=_0x506093['jid'],_0x211fc8=()=>{const _0x31e039=_0x128e;try{const _0x4e4c2e=config['AUTODL']||'';return _0x4e4c2e[_0x31e039(0x115)](',')[_0x31e039(0x109)](_0xd3fb79=>_0xd3fb79['trim']())['filter'](Boolean);}catch(_0x5dff67){return[];}};if(!_0x145cde){const _0x1fb533=_0x211fc8(),_0x5ad35c=_0x1fb533[_0x109279(0x150)](_0x43ff00),_0x4f09bb=config[_0x109279(0x143)]===_0x109279(0x14a),_0x6ac8dd=config['AUTODL_ALL_DMS']==='true';return await _0x506093[_0x109279(0xe7)](_0x109279(0x167)+(_0x109279(0x164)+(_0x43ff00['includes'](_0x109279(0x121))?_0x109279(0x119):'DM')+'\x0a')+(_0x109279(0x154)+(_0x5ad35c?_0x109279(0x159):'Disabled\x20❌')+'\x0a')+(_0x109279(0x100)+(_0x4f09bb?_0x109279(0x159):_0x109279(0x15c))+'\x0a')+(_0x109279(0x130)+(_0x6ac8dd?_0x109279(0x159):'Disabled\x20❌')+'\x0a\x0a')+'_Commands:_\x0a'+(_0x109279(0x169)+HANDLER_PREFIX+'autodl\x20on/off`\x20-\x20Sets\x20in\x20current\x20chat\x0a')+(_0x109279(0x169)+HANDLER_PREFIX+'autodl\x20on/off\x20groups`\x20-\x20Sets\x20in\x20all\x20groups\x0a')+(_0x109279(0x169)+HANDLER_PREFIX+_0x109279(0x105))+(_0x109279(0x169)+HANDLER_PREFIX+_0x109279(0x15e))+(_0x109279(0x169)+HANDLER_PREFIX+_0x109279(0x13e)));}const _0x4d7081=_0x145cde['split']('\x20'),_0x4c47ae=_0x4d7081[0x0][_0x109279(0x133)](),_0x15fd80=_0x4d7081[0x1]?.['toLowerCase']();if(_0x4c47ae==='on'){if(_0x15fd80===_0x109279(0x13d))return await setVar(_0x109279(0x143),_0x109279(0x14a)),await _0x506093['sendReply'](_0x109279(0xf7));else{if(_0x15fd80==='dms')return await setVar('AUTODL_ALL_DMS','true'),await _0x506093[_0x109279(0xe7)]('_AutoDL\x20enabled\x20for\x20all\x20DMs\x20✅_\x0a_Use\x20.autodl\x20off\x20dms\x20to\x20disable_');else{const _0x43ad7f=_0x211fc8();if(!_0x43ad7f['includes'](_0x43ff00))_0x43ad7f[_0x109279(0x141)](_0x43ff00);return await setVar(_0x109279(0x114),_0x43ad7f[_0x109279(0xff)](',')),await _0x506093[_0x109279(0xe7)](_0x109279(0x165));}}}if(_0x4c47ae==='off'){if(_0x15fd80===_0x109279(0x13d))return await setVar(_0x109279(0x143),'false'),await _0x506093[_0x109279(0xe7)]('_AutoDL\x20disabled\x20for\x20all\x20groups\x20❌_\x0a_Use\x20.autodl\x20on\x20groups\x20to\x20enable_');else{if(_0x15fd80===_0x109279(0x101))return await setVar(_0x109279(0x160),_0x109279(0x139)),await _0x506093[_0x109279(0xe7)](_0x109279(0xf0));else{const _0x611626=_0x211fc8()[_0x109279(0xea)](_0x32d2bf=>_0x32d2bf!==_0x43ff00);return await setVar(_0x109279(0x114),_0x611626[_0x109279(0xff)](',')),await _0x506093['sendReply'](_0x109279(0x104));}}}if(_0x4c47ae==='status'){const _0x104987=_0x211fc8(),_0x53470f=config['AUTODL_ALL_GROUPS']===_0x109279(0x14a),_0x17acbd=config[_0x109279(0x160)]===_0x109279(0x14a);return await _0x506093[_0x109279(0xe7)]('*_AutoDL\x20Status_*\x0a\x0a'+('•\x20_Enabled\x20chats:_\x20'+(_0x104987[_0x109279(0x140)]>0x0?_0x104987['join'](',\x20'):_0x109279(0x117))+'\x0a')+(_0x109279(0x10a)+(_0x53470f?_0x109279(0x159):_0x109279(0x15c))+'\x0a')+('•\x20_Global\x20DMs:_\x20'+(_0x17acbd?'Enabled\x20✅':_0x109279(0x15c))));}return await _0x506093['sendReply']('_Unknown\x20option:\x20'+_0x4c47ae+'_');});
+const { Module } = require("../main");
+const config = require("../config");
+const { setVar } = require("./manage");
+const { downloadGram, pinterestDl, tiktok, fb } = require("./utils");
+const { spotifyTrack } = require("../core/services");
+const { getVideoInfo, downloadAudio, convertM4aToMp3, searchYoutube } = require("./utils/yt");
+const fs = require("fs");
+const { normalizeTwitterUrl, findTwitterUrl, sendTwitterMedia, twitterFailureReason } =
+  require("./utils/twitter");
+// Explicitly enabled chats should process links sent by ordinary group members too.
+
+const HANDLER_PREFIX =
+  config.HANDLERS === "false" ? "" : (config.HANDLERS || ".").charAt(0);
+
+const URL_PATTERNS = {
+  instagram:
+    /^https?:\/\/(?:www\.)?instagram\.com\/(?:p\/[A-Za-z0-9_-]+\/?|reel\/[A-Za-z0-9_-]+\/?|tv\/[A-Za-z0-9_-]+\/?|stories\/[A-Za-z0-9_.-]+\/\d+\/?)(?:\?.*)?$/i,
+  youtube:
+    /^https?:\/\/(?:www\.)?(?:youtube\.com\/(?:watch\?v=|shorts\/[A-Za-z0-9_-]+\/?)|youtu\.be\/)([A-Za-z0-9_-]{11})?(?:[\?&].*)?$/i,
+  spotify:
+    /^https?:\/\/(?:open\.)?spotify\.com\/(?:intl-[a-z]{2}\/)?track\/[A-Za-z0-9]+(?:\?.*)?$/i,
+  tiktok:
+    /^https?:\/\/(?:(?:www|m)\.)?tiktok\.com\/(?:@?[A-Za-z0-9_.-]+\/video\/\d+|t\/[A-Za-z0-9_-]+\/?)(?:\?.*)?$|^https?:\/\/(?:vm|vt|v)\.tiktok\.com\/[A-Za-z0-9_-]+\/?(?:\?.*)?$/i,
+  pinterest:
+    /^https?:\/\/(?:www\.)?(?:pinterest\.com\/(?:pin\/\d+\/?[A-Za-z0-9_-]*)\/?|pin\.it\/[A-Za-z0-9_-]+\/?)(?:\?.*)?$/i,
+  twitter:
+    /^https?:\/\/(?:www\.)?(?:twitter\.com|x\.com|mobile\.twitter\.com)\/[A-Za-z0-9_]{1,15}\/status\/\d+(?:\?.*)?$/i,
+  facebook:
+    /^https?:\/\/(?:www\.)?(?:fb\.watch\/[A-Za-z0-9_-]+\/?|(?:facebook\.com|m\.facebook\.com)\/(?:(?:watch(?:\/?|\?v=))|(?:.*\/videos?\/\d+)|(?:video\.php\?v=\d+)|(?:.*\/posts\/\d+))(?:[\s\S]*)?)$/i,
+};
+
+function getFirstUrl(text) {
+  if (!text) return null;
+  const urlMatch = text.match(/https?:\/\/\S+/i);
+  if (!urlMatch) return null;
+  return urlMatch[0].replace(/[)\]\.,!?>]*$/, "");
+}
+
+function getAllUrls(text) {
+  const input = String(text || "");
+  const matches = (input.match(/https?:\/\/\S+/gi) || [])
+    .map((url) => url.replace(/[)\]\.,!?>]*$/, ""));
+  // Include a bare x.com status link when WhatsApp does not prepend https://.
+  const post = findTwitterUrl(input);
+  if (post && !matches.some((url) => {
+    try { return normalizeTwitterUrl(url) === post; } catch (_) { return false; }
+  })) matches.push(post);
+  return matches;
+}
+
+function detectPlatform(url) {
+  // Match the same X variants accepted by the explicit .twitter command.
+  // Avoid a second, stricter regex that silently drops mobile / photo URLs.
+  try { normalizeTwitterUrl(url); return "twitter"; } catch (_) {}
+  for (const [platform, re] of Object.entries(URL_PATTERNS)) {
+    if (re.test(url)) return platform;
+  }
+  return null;
+}
+
+function isAlreadyCommand(text) {
+  const input = String(text || "").trim();
+  if (!input) return false;
+  const handlerChars = config.HANDLERS === "false" ? "" : String(config.HANDLERS || ".");
+  const rest = handlerChars
+    ? (handlerChars.includes(input[0]) ? input.slice(1).trimStart() : "")
+    : input;
+  return /^(?:insta|instah|story|storyh|tiktok|tiktokh|pinterest|pinteresth|twitter|twitterh|x|xh|fb|fbh|play|playh|ytv|ytvh|yta|ytah|spotify|spotifyh)(?:\s|$)/i.test(rest);
+}
+
+function mediaKind(file) {
+  return /\.(?:jpe?g|png|webp|heic)(?:\?.*)?$/i.test(String(file)) ? "image" : "video";
+}
+
+function cleanDownloads(paths) {
+  for (const file of new Set(paths.filter((item) => typeof item === "string"))) {
+    try {
+      if (fs.existsSync(file)) fs.unlinkSync(file);
+    } catch (error) {
+      console.warn("[AutoDL cleanup]", error?.message || error);
+    }
+  }
+}
+
+async function sendMediaFiles(message, files) {
+  for (const file of files) {
+    const kind = mediaKind(file);
+    await message.sendMessage({ url: file }, kind, {
+      quoted: message.data,
+      ...(kind === "video" ? { mimetype: "video/mp4" } : {}),
+    });
+  }
+}
+
+function formatBytes(bytes) {
+  if (bytes === 0) return "0 B";
+  const k = 1024;
+  const sizes = ["B", "KB", "MB", "GB"];
+  const i = Math.floor(Math.log(bytes) / Math.log(k));
+  return Math.round((bytes / Math.pow(k, i)) * 100) / 100 + " " + sizes[i];
+}
+
+Module({ on: "text", fromMe: false }, async (message) => {
+  try {
+    if (message.fromBot) return;
+    const chatJid = message.jid;
+    const isGroup = chatJid.includes("@g.us");
+    const autodlEnabledForChat = (() => {
+      try {
+        const enabledList = config.AUTODL || "";
+        const enabled = enabledList
+          .split(",")
+          .map((s) => s.trim())
+          .filter(Boolean);
+        if (enabled.includes(chatJid)) return true;
+        if (isGroup && config.AUTODL_ALL_GROUPS === "true") return true;
+        if (!isGroup && config.AUTODL_ALL_DMS === "true") return true;
+        return false;
+      } catch (e) {
+        return false;
+      }
+    })();
+    if (!autodlEnabledForChat) return;
+    let text = message.text || "";
+    if (isAlreadyCommand(text)) return;
+
+    // Some WhatsApp link previews expose the URL separately from the caption.
+    const preview = message.data?.message?.extendedTextMessage;
+    const input = [text, preview?.canonicalUrl, preview?.matchedText]
+      .filter((item) => typeof item === "string" && item.trim()).join(" ");
+    const urls = getAllUrls(input);
+    if (!urls.length) return;
+
+    // group urls by platform
+    const platformGroups = {};
+    const unsupportedUrls = [];
+
+    for (const url of urls) {
+      const platform = detectPlatform(url);
+      if (!platform) {
+        unsupportedUrls.push(url);
+      } else {
+        if (!platformGroups[platform]) platformGroups[platform] = [];
+        platformGroups[platform].push(platform === "twitter" ? normalizeTwitterUrl(url) : url);
+      }
+    }
+
+    if (!Object.keys(platformGroups).length) return;
+
+    await message.react("⬇️");
+
+    try {
+      // handle youtube separately (only process first url for yt)
+      if (platformGroups["youtube"]) {
+        let url = platformGroups["youtube"][0];
+
+        // Convert YouTube Shorts URL to regular watch URL if needed
+        if (url.includes("youtube.com/shorts/")) {
+          const shortId = url.match(
+            /youtube\.com\/shorts\/([A-Za-z0-9_-]+)/
+          )?.[1];
+          if (shortId) {
+            url = `https://www.youtube.com/watch?v=${shortId}`;
+          }
+        }
+
+        const lowerText = text.toLowerCase();
+        const isAudioMode =
+          /\baudio\b|\bmp3\b/.test(lowerText) && !isAlreadyCommand(text);
+
+        try {
+          // if message contains "audio" or "mp3", download as audio
+          if (isAudioMode) {
+            let downloadMsg;
+            let audioPath;
+            let originalPath;
+
+            try {
+              downloadMsg = await message.sendReply("_Downloading audio..._");
+              const result = await downloadAudio(url);
+              originalPath = result.path;
+              audioPath = originalPath;
+
+              audioPath = await convertM4aToMp3(originalPath, {
+                title: result?.title,
+                artist: result?.info?.channel?.name,
+                thumbnail: result?.info?.thumbnail,
+              });
+
+              await message.edit("_Sending audio..._", message.jid, downloadMsg.key);
+              await message.sendMessage({ url: audioPath }, "document", {
+                fileName: (result.title || "YouTube audio") + (String(audioPath).toLowerCase().endsWith(".mp3") ? ".mp3" : ".m4a"),
+                mimetype: String(audioPath).toLowerCase().endsWith(".mp3") ? "audio/mpeg" : "audio/mp4",
+                caption: "_*" + (result.title || "YouTube audio") + "*_",
+              });
+              await message.edit("_Download complete!_", message.jid, downloadMsg.key);
+            } catch (error) {
+              console.error("[AutoDL YT Audio]", error);
+              const hint = /part-Frag|ENOENT|No such file or directory/i.test(error?.message || "")
+                ? "The downloader lost a temporary file. Check /tmp and update yt-dlp."
+                : "See the bot's PM2 logs for the downloader error.";
+              if (downloadMsg) {
+                await message.edit("_YouTube audio download failed. " + hint + "_", message.jid, downloadMsg.key);
+              } else {
+                await message.sendReply("_YouTube audio download failed. " + hint + "_");
+              }
+            } finally {
+              cleanDownloads([audioPath, originalPath]);
+            }
+            return;
+          }
+
+          // else download video with quality selection
+          const info = await getVideoInfo(url);
+          const videoFormats = info.formats
+            .filter((f) => f.type === "video" && f.quality)
+            .sort((a, b) => {
+              const getRes = (q) => {
+                const match = q.match(/(\d+)/);
+                return match ? parseInt(match[1]) : 0;
+              };
+              return getRes(b.quality) - getRes(a.quality);
+            });
+
+          const uniqueQualities = [
+            ...new Set(videoFormats.map((f) => f.quality)),
+          ];
+
+          const videoIdMatch = url.match(
+            /(?:youtube\.com\/(?:watch\?v=|shorts\/)|youtu\.be\/)([^&\s/?]+)/
+          );
+          const videoId = videoIdMatch ? videoIdMatch[1] : info.videoId || "";
+
+          let qualityText = "_*Select Video Quality*_\n\n";
+          qualityText += `_*${info.title}*_\n\n(${videoId})\n\n`;
+
+          if (uniqueQualities.length === 0) {
+            await message.react("❌");
+            return;
+          }
+
+          uniqueQualities.forEach((quality, index) => {
+            const format = videoFormats.find((f) => f.quality === quality);
+            const audioFormat = info.formats.find((f) => f.type === "audio");
+
+            let sizeInfo = "";
+            if (format.size && audioFormat?.size) {
+              const parseSize = (sizeStr) => {
+                const match = sizeStr.match(/([\d.]+)\s*(KB|MB|GB)/i);
+                if (!match) return 0;
+                const value = parseFloat(match[1]);
+                const unit = match[2].toUpperCase();
+                if (unit === "KB") return value * 1024;
+                if (unit === "MB") return value * 1024 * 1024;
+                if (unit === "GB") return value * 1024 * 1024 * 1024;
+                return value;
+              };
+
+              const videoSize = parseSize(format.size);
+              const audioSize = parseSize(audioFormat.size);
+              const totalSize = videoSize + audioSize;
+
+              if (totalSize > 0) {
+                sizeInfo = ` ~ _${formatBytes(totalSize)}_`;
+              }
+            }
+
+            qualityText += `*${index + 1}.* _*${quality}*_${sizeInfo}\n`;
+          });
+
+          const audioFormat = info.formats.find((f) => f.type === "audio");
+          if (audioFormat) {
+            let audioSizeInfo = "";
+            if (audioFormat.size) {
+              const parseSize = (sizeStr) => {
+                const match = sizeStr.match(/([\d.]+)\s*(KB|MB|GB)/i);
+                if (!match) return 0;
+                const value = parseFloat(match[1]);
+                const unit = match[2].toUpperCase();
+                if (unit === "KB") return value * 1024;
+                if (unit === "MB") return value * 1024 * 1024;
+                if (unit === "GB") return value * 1024 * 1024 * 1024;
+                return value;
+              };
+              const audioSize = parseSize(audioFormat.size);
+              if (audioSize > 0) {
+                audioSizeInfo = ` ~ _${formatBytes(audioSize)}_`;
+              }
+            }
+            qualityText += `*${uniqueQualities.length + 1}.* _*Audio Only*_${audioSizeInfo}\n`;
+          }
+
+          qualityText += "\n_Reply with a number to download_";
+          await message.sendReply(qualityText);
+        } catch (err) {
+          if (config.DEBUG) console.error("[AutoDL YT]", err?.message || err);
+          await message.react("❌");
+        }
+        return;
+      }
+
+      // Instagram photos, Reels and carousels are returned as local files.
+      if (platformGroups.instagram) {
+        const files = [];
+        const failures = [];
+        try {
+          for (const url of platformGroups.instagram) {
+            try {
+              const downloaded = await downloadGram(url);
+              if (Array.isArray(downloaded)) files.push(...downloaded);
+            } catch (error) {
+              failures.push(error?.message || String(error));
+              console.error("[AutoDL Instagram]", error);
+            }
+          }
+          if (!files.length) {
+            await message.sendReply("_Instagram download failed. " +
+              (failures[0] ? "Check the PM2 log; Instagram may require valid cookies." : "No media was found.") + "_");
+            await message.react("❌");
+            return;
+          }
+          // Sequential uploads work even when the socket has no albumMessage method.
+          await sendMediaFiles(message, files);
+        } catch (error) {
+          console.error("[AutoDL Instagram upload]", error);
+          await message.sendReply("_Instagram media could not be sent. Check the PM2 log._");
+          await message.react("❌");
+        } finally {
+          cleanDownloads(files);
+        }
+        return;
+      }
+
+      // TikTok returns a local video path inside {url}.
+      if (platformGroups.tiktok) {
+        let file;
+        try {
+          const result = await tiktok(platformGroups.tiktok[0]);
+          file = result?.url;
+          if (!file) throw new Error("TikTok downloader did not return a video file.");
+          await message.sendReply({ url: file }, "video", { mimetype: "video/mp4" });
+        } catch (error) {
+          console.error("[AutoDL TikTok]", error);
+          const reason = String(error?.message || "Unknown error").slice(0, 220);
+          await message.sendReply("_TikTok download failed: " + reason + "_");
+          await message.react("❌");
+        } finally {
+          cleanDownloads([file]);
+        }
+        return;
+      }
+
+      // Pinterest can contain images as well as video.
+      if (platformGroups.pinterest) {
+        const files = [];
+        try {
+          for (const url of platformGroups.pinterest) {
+            const result = await pinterestDl(url);
+            if (result?.status && result.result) files.push(result.result);
+          }
+          if (!files.length) throw new Error("No downloadable Pinterest media found.");
+          await sendMediaFiles(message, files);
+        } catch (error) {
+          console.error("[AutoDL Pinterest]", error);
+          await message.sendReply("_Pinterest download failed. Check the PM2 log._");
+          await message.react("❌");
+        } finally {
+          cleanDownloads(files);
+        }
+        return;
+      }
+
+      // Facebook uses the local yt-dlp media file.
+      if (platformGroups.facebook) {
+        let file;
+        try {
+          const result = await fb(platformGroups.facebook[0]);
+          file = result?.url;
+          if (!file) throw new Error("Facebook downloader returned no file.");
+          await message.sendReply({ url: file }, mediaKind(file));
+        } catch (error) {
+          console.error("[AutoDL Facebook]", error);
+          await message.sendReply("_Facebook download failed. Check the PM2 log._");
+          await message.react("❌");
+        } finally {
+          cleanDownloads([file]);
+        }
+        return;
+      }
+
+      // Spotify metadata is resolved locally; the matched audio is from YouTube.
+      if (platformGroups.spotify) {
+        let downloadMsg;
+        let audioPath;
+        let originalPath;
+        try {
+          downloadMsg = await message.sendReply("_Fetching Spotify info..._");
+          const spotifyInfo = await spotifyTrack(platformGroups.spotify[0]);
+          const { title, artist } = spotifyInfo;
+          await message.edit("_Finding *" + title + "* on YouTube..._", message.jid, downloadMsg.key);
+          const query = [title, artist, "audio"].filter(Boolean).join(" ");
+          const results = await searchYoutube(query, 1);
+          if (!results?.[0]?.url) throw new Error("No matching songs found on YouTube.");
+          const result = await downloadAudio(results[0].url);
+          originalPath = result.path;
+          audioPath = await convertM4aToMp3(originalPath, {
+            title: title || result?.title,
+            artist: artist || result?.info?.channel?.name,
+            thumbnail: spotifyInfo?.thumbnail || result?.info?.thumbnail,
+          });
+          await message.edit("_Sending audio..._", message.jid, downloadMsg.key);
+          await message.sendReply({ url: audioPath }, "audio", {
+            mimetype: String(audioPath).endsWith(".mp3") ? "audio/mpeg" : "audio/mp4",
+          });
+          await message.edit("_Download complete!_", message.jid, downloadMsg.key);
+        } catch (error) {
+          console.error("[AutoDL Spotify]", error);
+          const hint = /fetch failed|ETIMEDOUT|ECONNRESET|ENOTFOUND/i.test(error?.message || "")
+            ? "A network request failed. See the PM2 log for the exact error."
+            : String(error?.message || "Check the PM2 log.").slice(0, 200);
+          if (downloadMsg) {
+            await message.edit("_Spotify AutoDL failed. " + hint + "_", message.jid, downloadMsg.key);
+          } else {
+            await message.sendReply("_Spotify AutoDL failed. " + hint + "_");
+          }
+        } finally {
+          cleanDownloads([audioPath, originalPath]);
+        }
+        return;
+      }
+
+      // Twitter/X videos and photo galleries use the same local downloader
+      // as the .twitter / .x commands; temporary files are cleaned after upload.
+      if (platformGroups.twitter) {
+        try {
+          await sendTwitterMedia(message, platformGroups.twitter[0]);
+          await message.react("✅");
+        } catch (error) {
+          console.error("[AutoDL Twitter/X]", error);
+          await message.sendReply(
+            "_Twitter/X AutoDL failed. " + twitterFailureReason(error) + "_"
+          );
+          await message.react("❌");
+        }
+        return;
+      }
+    } catch (err) {
+      if (config.DEBUG) console.error("[AutoDL]", err?.message || err);
+      await message.react("❌");
+    }
+  } catch (err) {
+    if (config.DEBUG) console.error("[AutoDL]", err?.message || err);
+  }
+});
+
+Module(
+  {
+    pattern: "autodl ?(.*)",
+    fromMe: true,
+    desc: "Auto-download URL watcher - enable in chats or globally",
+    usage:
+      ".autodl - show menu\n.autodl on/off - enable/disable in current chat\n.autodl on/off groups - enable/disable in all groups\n.autodl on/off dms - enable/disable in all DMs\n.autodl status - show current status",
+  },
+  async (message, match) => {
+    const input = match[1]?.trim();
+    const chatJid = message.jid;
+
+    const readList = () => {
+      try {
+        const list = config.AUTODL || "";
+        return list
+          .split(",")
+          .map((s) => s.trim())
+          .filter(Boolean);
+      } catch (e) {
+        return [];
+      }
+    };
+
+    if (!input) {
+      const enabledList = readList();
+      const enabled = enabledList.includes(chatJid);
+      const globalGroups = config.AUTODL_ALL_GROUPS === "true";
+      const globalDMs = config.AUTODL_ALL_DMS === "true";
+
+      return await message.sendReply(
+        `*_⬇️ AutoDownload Manager_*\n\n` +
+          `- _Current chat:_ ${chatJid.includes("@g.us") ? "Group" : "DM"}\n` +
+          `- _Status:_ ${enabled ? "Enabled ✅" : "Disabled ❌"}\n` +
+          `- _Global Groups:_ ${
+            globalGroups ? "Enabled ✅" : "Disabled ❌"
+          }\n` +
+          `- _Global DMs:_ ${globalDMs ? "Enabled ✅" : "Disabled ❌"}\n\n` +
+          `_Commands:_\n` +
+          `- \`${HANDLER_PREFIX}autodl on/off\` - Sets in current chat\n` +
+          `- \`${HANDLER_PREFIX}autodl on/off groups\` - Sets in all groups\n` +
+          `- \`${HANDLER_PREFIX}autodl on dms\` - Sets in all DMs\n` +
+          `- \`${HANDLER_PREFIX}autodl off dms\` - Sets in all DMs\n` +
+          `- \`${HANDLER_PREFIX}autodl status\` - Show detailed status`
+      );
+    }
+
+    const parts = input.split(" ");
+    const cmd = parts[0].toLowerCase();
+    const target = parts[1]?.toLowerCase();
+
+    if (cmd === "on") {
+      if (target === "groups") {
+        await setVar("AUTODL_ALL_GROUPS", "true");
+        return await message.sendReply(
+          "_AutoDL enabled for all groups ✅_\n_Use .autodl off groups to disable_"
+        );
+      } else if (target === "dms") {
+        await setVar("AUTODL_ALL_DMS", "true");
+        return await message.sendReply(
+          "_AutoDL enabled for all DMs ✅_\n_Use .autodl off dms to disable_"
+        );
+      } else {
+        const enabledList = readList();
+        if (!enabledList.includes(chatJid)) enabledList.push(chatJid);
+        await setVar("AUTODL", enabledList.join(","));
+        return await message.sendReply(
+          "_AutoDL enabled in this chat ✅_\n_Send a message with a supported URL to auto-convert to download command_"
+        );
+      }
+    }
+
+    if (cmd === "off") {
+      if (target === "groups") {
+        await setVar("AUTODL_ALL_GROUPS", "false");
+        return await message.sendReply(
+          "_AutoDL disabled for all groups ❌_\n_Use .autodl on groups to enable_"
+        );
+      } else if (target === "dms") {
+        await setVar("AUTODL_ALL_DMS", "false");
+        return await message.sendReply(
+          "_AutoDL disabled for all DMs ❌_\n_Use .autodl on dms to enable_"
+        );
+      } else {
+        const enabledList = readList().filter((x) => x !== chatJid);
+        await setVar("AUTODL", enabledList.join(","));
+        return await message.sendReply(
+          "_AutoDL disabled in this chat ❌_\n_Use .autodl on to re-enable_"
+        );
+      }
+    }
+
+    if (cmd === "status") {
+      const enabledList = readList();
+      const globalGroups = config.AUTODL_ALL_GROUPS === "true";
+      const globalDMs = config.AUTODL_ALL_DMS === "true";
+      return await message.sendReply(
+        `*_AutoDL Status_*\n\n` +
+          `• _Enabled chats:_ ${
+            enabledList.length > 0 ? enabledList.join(", ") : "None"
+          }\n` +
+          `• _Global Groups:_ ${
+            globalGroups ? "Enabled ✅" : "Disabled ❌"
+          }\n` +
+          `• _Global DMs:_ ${globalDMs ? "Enabled ✅" : "Disabled ❌"}`
+      );
+    }
+
+    return await message.sendReply(`_Unknown option: ${cmd}_`);
+  }
+);
