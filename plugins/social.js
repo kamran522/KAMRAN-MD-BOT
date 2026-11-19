@@ -1,1 +1,375 @@
-const _0xc8b277=_0x37ae;(function(_0xe80bdc,_0x502ceb){const _0x34faa0=_0x37ae,_0x1e887a=_0xe80bdc();while(!![]){try{const _0x2df83a=parseInt(_0x34faa0(0xe8))/0x1*(-parseInt(_0x34faa0(0xe0))/0x2)+parseInt(_0x34faa0(0xd3))/0x3*(parseInt(_0x34faa0(0xf9))/0x4)+parseInt(_0x34faa0(0xff))/0x5+parseInt(_0x34faa0(0xcf))/0x6*(-parseInt(_0x34faa0(0xd4))/0x7)+-parseInt(_0x34faa0(0x116))/0x8*(parseInt(_0x34faa0(0x108))/0x9)+-parseInt(_0x34faa0(0xb6))/0xa*(parseInt(_0x34faa0(0x100))/0xb)+parseInt(_0x34faa0(0xbf))/0xc;if(_0x2df83a===_0x502ceb)break;else _0x1e887a['push'](_0x1e887a['shift']());}catch(_0x34563f){_0x1e887a['push'](_0x1e887a['shift']());}}}(_0x1c9e,0x34306));function _0x1c9e(){const _0xf799a8=['Ahr0Chm6lY9PBNn0ywDYyw0Uy29Tl3n0B3jPzxmV','yxHPB3m','mtq0mZi0nwHVDeDrta','mZKXmJDbuwXLsg8','x05LzwqGDMfSAwqGsw5ZDgfNCMfTigXPBMSOCYLF','x05LzwqGzMfJzwjVB2SGBgLUA18','AhjLzG','zg93BMXVywq','y2fWDgLVBG','zgf0yq','Aw5ZDgfNCI5HBq','mJqWmZLXCvnRuge','x05LzwqGC2vHCMnOihrLCM0GB3iGCgLUihzPzgvVigXPBMTF','C2vUze1LC3nHz2u','C3rHCNrZv2L0Aa','Aw1Hz2u','CxvVDgvK','C2vUzfjLCgX5','ywXIDw1nzxnZywDL','rxjYB3iGzg93BMXVywrPBMCGzNjVBtO','C2vHCMnO','CgLUDgvYzxn0id8OlIOP','yMLV','zxjYB3i','Dgv4Da','oti4t25suxrw','D3D3lMLUC3rHz3jHBs5JB20','BwLU','x1bPBNrLCMvZDcbYzxn1BhrZigzVCIa','rMfJzwjVB2SGDMLKzw8Gzg93BMXVywrLCG','lNbPBNrLCMvZDcbXDwvYEsbVCIbSAw5R','x05LzwqGsw5ZDgfNCMfTihvZzxjUyw1Liv8','cL8QrM9SBg93Aw5NoIPFia','vgLRvg9RihjLDhvYBMvKig5VihzPzgvVigzPBguU','mZeWEg92thvv','x05LzwqGysb2ywXPzcbuAwTuB2SGvvjmxW','C3rHDhvZ','CgLUDgvYzxn0rgWGzxjYB3i6','Ag9ZDg5HBwu','qwXIDw0GC2vUzcbMywLSzwqSigzHBgXPBMCGyMfJAYb0BYbPBMrPDMLKDwfSihnLBMrZoG','C3bSAxq','Aw5ZDgeGBgLUAYHZksbVCIbYzxbSEsb0BYbSAw5RkhmP','igzYB20GugLUDgvYzxn0xW','otyWoduZmMnfreT6sG','x0rVD25SB2fKignVBxbSzxrLisaO','l3r2lW','Ew91Dhu','lNrPA3rVAYbYzxbSEsbVCIbSAw5R','D3D3lMLUC3rHz3iUyw0','vw5RBM93BIbLCNjVCG','zMiGBgLUAYbVCIbYzxbSEsb0BYbHigXPBMS','DMLKzw8','AxnbCNjHEq','CgLUDgvYzxn0u2vHCMnOigvYCM9YoG','CMvWBgfJzq','x1n0B3jPzxmGzNjVBsa','x05LzwqGyw4Gsw5ZDgfNCMfTihvZzxjUyw1Lig9YigXPBMSHxW','rxjYB3iGzg93BMXVywrPBMCGCgLUDgvYzxn0igL0zw06','x0LUC3rHz3jHBsbKB3DUBg9HzcbMywLSzwqUienOzwnRihrOyxqGDgHLigXPBMSGAxmGChvIBgLJlcbVCIbJB25MAwD1CMuGwvretfbFq09ps0LfuYbMB3iGBg9NAw4TCMvXDwLYzwqGBwvKAweUxW','nLPJDe1JDq','DxjS','Aw5JBhvKzxm','x05LzwqGysbuAwTuB2SGvvjmxW','odeXndC5uLziz1jl','mJyYmJC2n0HJB2DzBW','AMLK','BwvZC2fNzq','y2XPzw50','zNvSBf9Uyw1L','r2v0CYbHy2nVDw50igLUzM8GzNjVBsbPBNn0ywDYyw0','x0rVD25SB2fKAw5Nia','ChvZAa','sw5ZDgfNCMfTihn0B3j5igrVD25SB2fKigvYCM9YoG','x1nLCNzLCIbLCNjVCL8','DhjPBq','DgLRDg9Rid8OlIOP','mJm0mJaYD2DJyLfq','x05VigrVD25SB2fKywjSzsbTzwrPysbMB3vUzcbMB3iGDgHPCYbSAw5RxW','sw5ZDgfNCMfTihbVC3qVCMvLBc90DI9OAwDOBgLNAhrZigrVD25SB2fKzxiGlsbZDxbWB3j0CYbTDwX0AxbSzsbSAw5RCW','x1nLCNzLCIbIDxn5iv8','xYPozwvKieLUC3rHz3jHBsbSAw5RkhmPkL8','AxnFChjPDMf0zq','CMvWBhLFBwvZC2fNzq','DMLKzw8VBxa0','m25OELruwq','lI4Vy29UzMLN','Cg9ZDhm','cL8QuhjPDMf0zsbHy2nVDw50oIPFia','sw5ZDgeGy29TBwfUzcbLCNjVCJO','BwfW','CMvZDwX0','C2XPy2u','zMiGpYGUkIK','lI4VBwfPBG','sw5ZDgfNCMfTihn0B3jPzxmGzg93BMXVywrLCG','Aw5ZDgeGpYGUkIK','l3jLzwWV','Bwf0y2G','tu9erq','Aw5ZDgfNCMfT','x1nVBwv0AgLUzYb3zw50ihDYB25NlcbqBgvHC2uGDhj5igfNywLUiv8','ngfVBLDzEq','x1nLCNzLCIbLCNjVCIb3AgLSzsbZzwfYy2HPBMCGugLUDgvYzxn0xW','BgvUz3rO','DgvZDa'];_0x1c9e=function(){return _0xf799a8;};return _0x1c9e();}function _0x37ae(_0x4fda90,_0x4e59d2){const _0x1c9e6d=_0x1c9e();return _0x37ae=function(_0x37ae50,_0x2f6681){_0x37ae50=_0x37ae50-0xb0;let _0x46f4c3=_0x1c9e6d[_0x37ae50];if(_0x37ae['EOqOIN']===undefined){var _0x266376=function(_0x58e7e6){const _0x500904='abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789+/=';let _0x58f8b8='',_0x29a237='';for(let _0x1a39f1=0x0,_0x21c2e7,_0x51c0da,_0x35f5f7=0x0;_0x51c0da=_0x58e7e6['charAt'](_0x35f5f7++);~_0x51c0da&&(_0x21c2e7=_0x1a39f1%0x4?_0x21c2e7*0x40+_0x51c0da:_0x51c0da,_0x1a39f1++%0x4)?_0x58f8b8+=String['fromCharCode'](0xff&_0x21c2e7>>(-0x2*_0x1a39f1&0x6)):0x0){_0x51c0da=_0x500904['indexOf'](_0x51c0da);}for(let _0x29a901=0x0,_0x49023d=_0x58f8b8['length'];_0x29a901<_0x49023d;_0x29a901++){_0x29a237+='%'+('00'+_0x58f8b8['charCodeAt'](_0x29a901)['toString'](0x10))['slice'](-0x2);}return decodeURIComponent(_0x29a237);};_0x37ae['HQQpla']=_0x266376,_0x4fda90=arguments,_0x37ae['EOqOIN']=!![];}const _0x2974b8=_0x1c9e6d[0x0],_0x4dc5f3=_0x37ae50+_0x2974b8,_0x36fd86=_0x4fda90[_0x4dc5f3];return!_0x36fd86?(_0x46f4c3=_0x37ae['HQQpla'](_0x46f4c3),_0x4fda90[_0x4dc5f3]=_0x46f4c3):_0x46f4c3=_0x36fd86,_0x46f4c3;},_0x37ae(_0x4fda90,_0x4e59d2);}const {Module}=require(_0xc8b277(0xf1)),{pinterestSearch,downloadGram,pinterestDl,tiktok,igStalk,fb,story}=require('./utils'),botConfig=require(_0xc8b277(0xe9)),axios=require(_0xc8b277(0xfe)),isFromMe=botConfig[_0xc8b277(0xf6)]==='public'?![]:!![];async function checkRedirect(_0x58e7e6){const _0x504140=_0xc8b277;let _0x500904;try{_0x500904=new URL(_0x58e7e6);}catch(_0x58f8b8){return null;}if(!['instagram.com',_0x504140(0x117),_0x504140(0x107),_0x504140(0xc4)]['includes'](_0x500904[_0x504140(0xba)]))return null;if(!_0x500904['pathname'][_0x504140(0x10b)]('/share/'))return _0x500904['href'];try{const _0x29a237=await axios['get'](_0x500904[_0x504140(0x103)],{'timeout':0x2710,'maxRedirects':0x5}),_0x1a39f1=_0x29a237['request']?.['res']?.['responseUrl'],_0x21c2e7=new URL(_0x1a39f1||_0x500904[_0x504140(0x103)]);return['instagram.com',_0x504140(0x117)]['includes'](_0x21c2e7[_0x504140(0xba)])?_0x21c2e7[_0x504140(0x103)]:null;}catch(_0x51c0da){return null;}}Module({'pattern':_0xc8b277(0xf3),'fromMe':isFromMe,'desc':_0xc8b277(0xe2),'usage':_0xc8b277(0xbd),'use':_0xc8b277(0x104)},async(_0x35f5f7,_0x29a901)=>{const _0x6d4dad=_0xc8b277;let _0x49023d=(_0x29a901?.[0x1]||_0x35f5f7[_0x6d4dad(0xe6)]?.[_0x6d4dad(0x115)]||'')[_0x6d4dad(0xde)]();if(_0x49023d?.['startsWith']('ll'))return;if(!_0x49023d)return await _0x35f5f7[_0x6d4dad(0x10e)](_0x6d4dad(0xe4));const _0x20ff28=_0x49023d[_0x6d4dad(0xf5)](/\bhttps?:\/\/\S+/gi)||[];if(!_0x20ff28[_0x6d4dad(0xfb)])return await _0x35f5f7['sendReply'](_0x6d4dad(0xe4));const _0x1b597b=[],_0x29b470=/^https?:\/\/(?:www\.)?instagram\.com\/(?:p|reel|tv)\/[\w-]+/i;for(let _0x17d513 of _0x20ff28){if(_0x17d513[_0x6d4dad(0xd1)]('gist')||_0x17d513[_0x6d4dad(0xd1)](_0x6d4dad(0xc2))||_0x17d513[_0x6d4dad(0x10b)]('ll'))continue;_0x17d513=await checkRedirect(_0x17d513[_0x6d4dad(0xca)](/[)\].,!?>]*$/,'')),_0x17d513&&_0x29b470[_0x6d4dad(0xfc)](_0x17d513)&&_0x1b597b[_0x6d4dad(0xdb)](_0x17d513);}if(!_0x1b597b['length'])return await _0x35f5f7[_0x6d4dad(0x10e)](_0x6d4dad(0x101));try{const _0x1d55b4=[],_0x16aab0=_0x35f5f7[_0x6d4dad(0xe6)]?_0x35f5f7[_0x6d4dad(0x10d)]:_0x35f5f7['data'];for(const _0x1ec9b5 of _0x1b597b){try{const _0x107c31=await downloadGram(_0x1ec9b5);_0x107c31&&_0x107c31[_0x6d4dad(0xfb)]&&_0x1d55b4['push'](..._0x107c31);}catch(_0x1ba660){console[_0x6d4dad(0x114)](_0x6d4dad(0x110),_0x1ec9b5,_0x1ba660?.['message']);}}if(!_0x1d55b4[_0x6d4dad(0xfb)])return await _0x35f5f7[_0x6d4dad(0x10e)](_0x6d4dad(0xce));if(_0x1d55b4[_0x6d4dad(0xfb)]===0x1)return await _0x35f5f7['sendMessage']({'url':_0x1d55b4[0x0]},/\.(jpg|jpeg|png|webp|heic)(\?|$)/i[_0x6d4dad(0xfc)](_0x1d55b4[0x0])?_0x6d4dad(0x10c):'video',{'quoted':_0x16aab0,.../\.mp4$/i['test'](_0x1d55b4[0x0])?{'mimetype':'video/mp4'}:{}});const _0x262352=_0x1d55b4[_0x6d4dad(0xed)](_0x4ac0dd=>{const _0x57ad90=_0x6d4dad;return/\.(jpg|jpeg|png|webp|heic)(\?|$)/i['test'](_0x4ac0dd)?{'image':_0x4ac0dd}:{'video':_0x4ac0dd,'mimetype':_0x57ad90(0xe7)};});return _0x262352[0x0]['caption']=_0x6d4dad(0xc0)+_0x1d55b4['length']+'\x20items)_',await _0x35f5f7[_0x6d4dad(0xd7)][_0x6d4dad(0x10f)](_0x35f5f7[_0x6d4dad(0xd5)],_0x262352,_0x35f5f7[_0x6d4dad(0x106)]);}catch(_0x7e524){return console[_0x6d4dad(0x114)](_0x6d4dad(0xec),_0x7e524?.['message']||_0x7e524),await _0x35f5f7[_0x6d4dad(0x10e)](_0x6d4dad(0xf8));}}),Module({'pattern':_0xc8b277(0xf0),'fromMe':isFromMe,'desc':_0xc8b277(0xb1),'usage':_0xc8b277(0xc6),'use':_0xc8b277(0x104)},async(_0x5eb609,_0x38ceb3)=>{const _0x507c7e=_0xc8b277;let _0x21937c=!_0x5eb609[_0x507c7e(0xe6)]?.['message']?_0x38ceb3[0x1]:_0x5eb609['reply_message'][_0x507c7e(0xd6)];/\bhttps?:\/\/\S+/gi['test'](_0x21937c)&&(_0x21937c=_0x21937c['match'](/\bhttps?:\/\/\S+/gi)[0x0]);if(!_0x21937c)return await _0x5eb609['sendReply'](_0x507c7e(0x102));try{const {url:_0x1f25dd}=await fb(_0x21937c);return await _0x5eb609['sendReply']({'url':_0x1f25dd},'video');}catch(_0x17987a){return console[_0x507c7e(0x114)]('Facebook\x20download\x20error:',_0x17987a[_0x507c7e(0xd6)]),await _0x5eb609['sendReply']('_Something\x20went\x20wrong,\x20Please\x20try\x20again!_');}}),Module({'pattern':'ig\x20?(.*)','fromMe':isFromMe,'desc':_0xc8b277(0xd9),'usage':'ig\x20username','excludeFromCommands':!![],'use':_0xc8b277(0x111)},async(_0x297934,_0x45082d)=>{const _0x540511=_0xc8b277;if(!_0x45082d[0x1])return await _0x297934[_0x540511(0x10e)](_0x540511(0xb3));if(_0x45082d[0x1]['startsWith']('https')&&_0x45082d[0x1][_0x540511(0xd1)](_0x540511(0xf7))){const _0x357a49=/instagram\.com\/([^/?]+)/i,_0x3c80b4=_0x45082d[0x1]['match'](_0x357a49);_0x45082d[0x1]=_0x3c80b4&&_0x3c80b4[0x1];}try{var _0x3360de=await igStalk(encodeURIComponent(_0x45082d[0x1]));}catch{return await _0x297934['sendReply'](_0x540511(0xe3));}await _0x297934['sendMessage']({'url':_0x3360de['profile_pic']},'image',{'caption':'_*Name:*_\x20'+_0x3360de[_0x540511(0xd8)]+'\x0a_*Followers:*_\x20'+_0x3360de['followers']+_0x540511(0xb4)+_0x3360de['following']+'\x0a_*Bio:*_\x20'+_0x3360de[_0x540511(0x113)]+_0x540511(0xeb)+(_0x3360de[_0x540511(0xe5)]?'Yes':'No')+'\x20\x0a_*Posts:*_\x20'+_0x3360de[_0x540511(0xea)],'quoted':_0x297934['data']});}),Module({'pattern':'story\x20?(.*)','fromMe':isFromMe,'desc':_0xc8b277(0xf2),'usage':'.story\x20username\x20or\x20link','use':_0xc8b277(0x104)},async(_0x3fa9ef,_0x297704)=>{const _0x4fe9f7=_0xc8b277;let _0x5e9ddc=(_0x297704?.[0x1]||_0x3fa9ef[_0x4fe9f7(0xe6)]?.[_0x4fe9f7(0x115)]||'')[_0x4fe9f7(0xde)]();if(_0x5e9ddc&&(_0x5e9ddc[_0x4fe9f7(0xd1)](_0x4fe9f7(0xf4))||_0x5e9ddc[_0x4fe9f7(0xd1)](_0x4fe9f7(0xc1))||_0x5e9ddc['includes']('/p/')))return;if(!_0x5e9ddc)return await _0x3fa9ef['sendReply'](_0x4fe9f7(0xcc));_0x5e9ddc=!/\bhttps?:\/\/\S+/gi[_0x4fe9f7(0xfc)](_0x5e9ddc)?_0x4fe9f7(0xfd)+_0x5e9ddc+'/':_0x5e9ddc[_0x4fe9f7(0xf5)](/\bhttps?:\/\/\S+/gi)[0x0];try{var _0x4dad48=await story(_0x5e9ddc);}catch(_0x215e0b){return console[_0x4fe9f7(0x114)](_0x4fe9f7(0xdc),_0x215e0b?.[_0x4fe9f7(0xd6)]||_0x215e0b),await _0x3fa9ef['sendReply']('_Story\x20download\x20or\x20video\x20conversion\x20failed.\x20Check\x20logs,\x20cookies\x20and\x20FFmpeg\x20installation._');}if(!_0x4dad48||!_0x4dad48[_0x4fe9f7(0xfb)])return await _0x3fa9ef[_0x4fe9f7(0x10e)]('*_Not\x20found!_*');if(_0x4dad48[_0x4fe9f7(0xfb)]===0x1)return await _0x3fa9ef['sendReply']({'url':_0x4dad48[0x0]},/\.(jpg|jpeg|png|webp)(\?|$)/i[_0x4fe9f7(0xfc)](_0x4dad48[0x0])?'image':_0x4fe9f7(0xc7),/\.(jpg|jpeg|png|webp)(\?|$)/i['test'](_0x4dad48[0x0])?{}:{'mimetype':_0x4fe9f7(0xe7)});_0x5e9ddc=_0x5e9ddc[_0x4fe9f7(0xca)]('https://instagram.com/stories/','')['split']('/')[0x0];let _0xbaca16=_0x4dad48['map'](_0x248df1=>{const _0x3f29ba=_0x4fe9f7;return/\.(jpg|jpeg|png|webp)(\?|$)/i[_0x3f29ba(0xfc)](_0x248df1)?{'image':_0x248df1}:{'video':_0x248df1,'mimetype':_0x3f29ba(0xe7)};});return _0xbaca16[0x0]['caption']=_0x4fe9f7(0xcb)+_0x5e9ddc+'_',await _0x3fa9ef[_0x4fe9f7(0xd7)][_0x4fe9f7(0x10f)](_0x3fa9ef['jid'],_0xbaca16,_0x3fa9ef[_0x4fe9f7(0x106)]);}),Module({'pattern':_0xc8b277(0x112),'fromMe':isFromMe,'desc':'Pinterest\x20downloader','usage':_0xc8b277(0xb2),'use':'download'},async(_0x41083e,_0x2ca3a3)=>{const _0x20da14=_0xc8b277;let _0x5b9772=(_0x2ca3a3?.[0x1]||_0x41083e['reply_message']?.[_0x20da14(0x115)]||'')[_0x20da14(0xde)]();if(_0x5b9772==='g')return;if(!_0x5b9772)return await _0x41083e['sendReply'](_0x20da14(0x109));if(/\bhttps?:\/\/\S+/gi[_0x20da14(0xfc)](_0x5b9772)){_0x5b9772=_0x5b9772['match'](/\bhttps?:\/\/\S+/gi)[0x0];let _0x1a297a;try{_0x1a297a=await pinterestDl(_0x5b9772);}catch(_0x505165){return console['error'](_0x20da14(0xb9),_0x505165?.['message']||_0x505165),await _0x41083e['sendReply'](_0x20da14(0xdd));}if(!_0x1a297a||!_0x1a297a[_0x20da14(0xb8)]||!_0x1a297a['result'])return await _0x41083e[_0x20da14(0x10e)](_0x20da14(0xe1));const _0x1f67a5=_0x1a297a[_0x20da14(0xee)],_0x4b5fe1=_0x41083e[_0x20da14(0xe6)]?_0x41083e[_0x20da14(0x10d)]:_0x41083e[_0x20da14(0x106)];await _0x41083e['sendMessage']({'url':_0x1f67a5},_0x20da14(0xc7),{'quoted':_0x4b5fe1});}else{let _0x57f934=parseInt(_0x5b9772[_0x20da14(0xbc)](',')[0x1])||0x5,_0xd3ee08=_0x5b9772[_0x20da14(0xbc)](',')[0x0]||_0x5b9772,_0x3ee72b;try{const _0x381d4c=await pinterestSearch(_0xd3ee08,_0x57f934);if(!_0x381d4c||!_0x381d4c['status']||!Array[_0x20da14(0xc8)](_0x381d4c[_0x20da14(0xee)]))return await _0x41083e[_0x20da14(0x10e)]('_No\x20results\x20found\x20for\x20this\x20query_');_0x3ee72b=_0x381d4c['result'];}catch(_0x29a450){return console[_0x20da14(0x114)](_0x20da14(0xc9),_0x29a450?.[_0x20da14(0xd6)]||_0x29a450),await _0x41083e[_0x20da14(0x10e)](_0x20da14(0xfa));}const _0x2c62e6=Math[_0x20da14(0x118)](_0x57f934,_0x3ee72b[_0x20da14(0xfb)]);await _0x41083e[_0x20da14(0x10e)](_0x20da14(0xda)+_0x2c62e6+'\x20results\x20for\x20'+_0xd3ee08+_0x20da14(0xbe));const _0x943e54=_0x3ee72b[_0x20da14(0xef)](0x0,_0x2c62e6)[_0x20da14(0xed)](_0x23a65b=>({'image':_0x23a65b}));_0x943e54[0x0][_0x20da14(0x105)]=_0x20da14(0xb0)+_0xd3ee08+'_';try{await _0x41083e[_0x20da14(0xd7)][_0x20da14(0x10f)](_0x41083e[_0x20da14(0xd5)],_0x943e54,_0x41083e['data']);}catch(_0x46512d){console['log'](_0x20da14(0xbb),_0x46512d);for(const _0x46c5c4 of _0x3ee72b){try{await _0x41083e[_0x20da14(0x10a)]({'url':_0x46c5c4},_0x20da14(0x10c));}catch(_0x220476){console['error'](_0x20da14(0xcd),_0x220476?.[_0x20da14(0xd6)]||_0x220476);}}}}}),Module({'pattern':_0xc8b277(0xdf),'fromMe':isFromMe,'desc':'TikTok\x20video\x20downloader','usage':_0xc8b277(0xc3),'use':_0xc8b277(0x104)},async(_0xe6c6f5,_0x5ec228)=>{const _0x425bc9=_0xc8b277;let _0xb2ea78=(_0x5ec228?.[0x1]||_0xe6c6f5[_0x425bc9(0xe6)]?.[_0x425bc9(0x115)]||'')[_0x425bc9(0xde)]();if(!_0xb2ea78)return await _0xe6c6f5['sendReply'](_0x425bc9(0xd2));_0xb2ea78=_0xb2ea78[_0x425bc9(0xf5)](/\bhttps?:\/\/\S+/i)?.[0x0]?.[_0x425bc9(0xca)](/[)\].,!?>]*$/,'');if(!_0xb2ea78)return await _0xe6c6f5[_0x425bc9(0x10e)](_0x425bc9(0xb7));let _0x356561;try{_0x356561=await tiktok(_0xb2ea78);if(!_0x356561?.[_0x425bc9(0xd0)])throw new Error(_0x425bc9(0xb5));return await _0xe6c6f5[_0x425bc9(0x10e)](_0x356561,'video');}catch(_0x2d12d6){console[_0x425bc9(0x114)]('TikTok\x20download\x20error:',_0x2d12d6?.['message']||_0x2d12d6);const _0x28a69d=String(_0x2d12d6?.[_0x425bc9(0xd6)]||_0x425bc9(0xc5))[_0x425bc9(0xef)](0x0,0x12c);return await _0xe6c6f5[_0x425bc9(0x10e)]('_TikTok\x20download\x20failed:\x20'+_0x28a69d+'_');}});
+const { Module } = require("../main");
+const {
+  pinterestSearch,
+  downloadGram,
+  pinterestDl,
+  tiktok,
+  igStalk,
+  fb,
+  story,
+} = require("./utils");
+const botConfig = require("../config");
+const axios = require("axios");
+const isFromMe = botConfig.MODE === "public" ? false : true;
+
+async function checkRedirect(url) {
+  // Only follow Instagram share links. Do not request unrelated URLs.
+  let parsed;
+  try {
+    parsed = new URL(url);
+  } catch (_) {
+    return null;
+  }
+  if (!["instagram.com", "www.instagram.com", "instagr.am", "www.instagr.am"].includes(parsed.hostname)) {
+    return null;
+  }
+  if (!parsed.pathname.startsWith("/share/")) return parsed.href;
+  try {
+    const res = await axios.get(parsed.href, { timeout: 10000, maxRedirects: 5 });
+    const redirected = res.request?.res?.responseUrl;
+    const target = new URL(redirected || parsed.href);
+    return ["instagram.com", "www.instagram.com"].includes(target.hostname) ? target.href : null;
+  } catch (_) {
+    return null;
+  }
+}
+Module(
+  {
+    pattern: "insta ?(.*)",
+    fromMe: isFromMe,
+    desc: "Instagram post/reel/tv/highlights downloader - supports multiple links",
+    usage: "insta link(s) or reply to link(s)",
+    use: "download",
+  },
+  async (message, match) => {
+    let mediaLinks = (match?.[1] || message.reply_message?.text || "").trim();
+    if (mediaLinks?.startsWith("ll")) return;
+    if (!mediaLinks)
+      return await message.sendReply("_*Need Instagram link(s)*_");
+
+    // extract all urls from the text
+    const allUrls = mediaLinks.match(/\bhttps?:\/\/\S+/gi) || [];
+    if (!allUrls.length)
+      return await message.sendReply("_*Need Instagram link(s)*_");
+
+    // filter and validate instagram urls
+    const instagramUrls = [];
+    const instagramRegex =
+      /^https?:\/\/(?:www\.)?instagram\.com\/(?:p|reel|tv)\/[\w-]+/i;
+
+    for (let url of allUrls) {
+      if (url.includes("gist") || url.includes("youtu") || url.startsWith("ll"))
+        continue;
+
+      url = await checkRedirect(url.replace(/[)\].,!?>]*$/, ""));
+      if (url && instagramRegex.test(url)) {
+        instagramUrls.push(url);
+      }
+    }
+
+    if (!instagramUrls.length)
+      return await message.sendReply("_Need valid Instagram link(s)_");
+
+    try {
+      const allMediaUrls = [];
+      const quotedMessage = message.reply_message
+        ? message.quoted
+        : message.data;
+
+      // download from all urls
+      for (const url of instagramUrls) {
+        try {
+          const downloadResult = await downloadGram(url);
+          if (downloadResult && downloadResult.length) {
+            allMediaUrls.push(...downloadResult);
+          }
+        } catch (err) {
+          console.error("Error downloading from:", url, err?.message);
+        }
+      }
+
+      if (!allMediaUrls.length)
+        return await message.sendReply(
+          "_Instagram download failed. Check that the link is public, or configure YTDLP_COOKIES for login-required media._"
+        );
+
+      // send as single media or album
+      if (allMediaUrls.length === 1) {
+        return await message.sendMessage(
+          { url: allMediaUrls[0] },
+          /\.(jpg|jpeg|png|webp|heic)(\?|$)/i.test(allMediaUrls[0])
+            ? "image"
+            : "video",
+          {
+            quoted: quotedMessage,
+            ...(/\.mp4$/i.test(allMediaUrls[0]) ? { mimetype: "video/mp4" } : {}),
+          }
+        );
+      }
+
+      // send as album
+      const albumObject = allMediaUrls.map((mediaUrl) => {
+        return /\.(jpg|jpeg|png|webp|heic)(\?|$)/i.test(mediaUrl)
+          ? { image: mediaUrl }
+          : { video: mediaUrl, mimetype: "video/mp4" };
+      });
+      albumObject[0].caption = `_Download complete! (${allMediaUrls.length} items)_`;
+      return await message.client.albumMessage(
+        message.jid,
+        albumObject,
+        message.data
+      );
+    } catch (err) {
+      console.error("Insta command error:", err?.message || err);
+      return await message.sendReply(
+        "_Something went wrong, Please try again!_"
+      );
+    }
+  }
+);
+
+Module(
+  {
+    pattern: "fb ?(.*)",
+    fromMe: isFromMe,
+    desc: "Facebook video downloader",
+    usage: "fb link or reply to a link",
+    use: "download",
+  },
+  async (message, match) => {
+    let videoLink = !message.reply_message?.message
+      ? match[1]
+      : message.reply_message.message;
+
+    if (/\bhttps?:\/\/\S+/gi.test(videoLink)) {
+      videoLink = videoLink.match(/\bhttps?:\/\/\S+/gi)[0];
+    }
+    if (!videoLink) return await message.sendReply("_Need facebook link_");
+    try {
+      const { url } = await fb(videoLink);
+      return await message.sendReply({ url }, "video");
+    } catch (e) {
+      console.error("Facebook download error:", e.message);
+      return await message.sendReply(
+        "_Something went wrong, Please try again!_"
+      );
+    }
+  }
+);
+
+Module(
+  {
+    pattern: "ig ?(.*)",
+    fromMe: isFromMe,
+    desc: "Gets account info from instagram",
+    usage: "ig username",
+    excludeFromCommands: true,
+    use: "search",
+  },
+  async (message, match) => {
+    if (!match[1]) return await message.sendReply("_Need Instagram username!_");
+
+    if (match[1].startsWith("https") && match[1].includes("instagram")) {
+      const usernameRegex = /instagram\.com\/([^/?]+)/i;
+      const usernameMatch = match[1].match(usernameRegex);
+      match[1] = usernameMatch && usernameMatch[1];
+    }
+
+    try {
+      var accountInfo = await igStalk(encodeURIComponent(match[1]));
+    } catch {
+      return await message.sendReply("_Server busy!_");
+    }
+
+    await message.sendMessage({ url: accountInfo.profile_pic }, "image", {
+      caption: `_*Name:*_ ${accountInfo.full_name}\n_*Followers:*_ ${
+        accountInfo.followers
+      }\n_*Following:*_ ${accountInfo.following}\n_*Bio:*_ ${
+        accountInfo.bio
+      }\n_*Private account:*_ ${
+        accountInfo.is_private ? "Yes" : "No"
+      } \n_*Posts:*_ ${accountInfo.posts}`,
+      quoted: message.data,
+    });
+  }
+);
+
+Module(
+  {
+    pattern: "story ?(.*)",
+    fromMe: isFromMe,
+    desc: "Instagram stories downloader",
+    usage: ".story username or link",
+    use: "download",
+  },
+  async (message, match) => {
+    let userIdentifier =
+      (match?.[1] || message.reply_message?.text || "").trim();
+
+    if (
+      userIdentifier &&
+      (userIdentifier.includes("/reel/") ||
+        userIdentifier.includes("/tv/") ||
+        userIdentifier.includes("/p/"))
+    )
+      return;
+    if (!userIdentifier)
+      return await message.sendReply("_Need an Instagram username or link!_");
+
+    userIdentifier = !/\bhttps?:\/\/\S+/gi.test(userIdentifier)
+      ? `https://instagram.com/stories/${userIdentifier}/`
+      : userIdentifier.match(/\bhttps?:\/\/\S+/gi)[0];
+
+    try {
+      var storyData = await story(userIdentifier);
+    } catch (err) {
+      console.error("Instagram story download error:", err?.message || err);
+      return await message.sendReply(
+        "_Story download or video conversion failed. Check logs, cookies and FFmpeg installation._"
+      );
+    }
+    if (!storyData || !storyData.length)
+      return await message.sendReply("*_Not found!_*");
+    if (storyData.length === 1)
+      return await message.sendReply(
+        { url: storyData[0] },
+        /\.(jpg|jpeg|png|webp)(\?|$)/i.test(storyData[0]) ? "image" : "video",
+        /\.(jpg|jpeg|png|webp)(\?|$)/i.test(storyData[0]) ? {} : { mimetype: "video/mp4" }
+      );
+    userIdentifier = userIdentifier
+      .replace("https://instagram.com/stories/", "")
+      .split("/")[0];
+    let albumObject = storyData.map((storyMediaUrl) => {
+      return /\.(jpg|jpeg|png|webp)(\?|$)/i.test(storyMediaUrl)
+        ? { image: storyMediaUrl }
+        : { video: storyMediaUrl, mimetype: "video/mp4" };
+    });
+    albumObject[0].caption = `_Stories from ${userIdentifier}_`;
+    return await message.client.albumMessage(
+      message.jid,
+      albumObject,
+      message.data
+    );
+  }
+);
+
+Module(
+  {
+    pattern: "pinterest ?(.*)",
+    fromMe: isFromMe,
+    desc: "Pinterest downloader",
+    usage: ".pinterest query or link",
+    use: "download",
+  },
+  async (message, match) => {
+    let userQuery = (match?.[1] || message.reply_message?.text || "").trim();
+    if (userQuery === "g") return;
+    if (!userQuery)
+      return await message.sendReply("_Need search term or pin video link_");
+
+    if (/\bhttps?:\/\/\S+/gi.test(userQuery)) {
+      userQuery = userQuery.match(/\bhttps?:\/\/\S+/gi)[0];
+      let pinterestResult;
+      try {
+        pinterestResult = await pinterestDl(userQuery);
+      } catch (err) {
+        console.error("pinterestDl error:", err?.message || err);
+        return await message.sendReply("_Server error_");
+      }
+
+      if (
+        !pinterestResult ||
+        !pinterestResult.status ||
+        !pinterestResult.result
+      )
+        return await message.sendReply(
+          "_No downloadable media found for this link_"
+        );
+
+      const url = pinterestResult.result;
+      const quotedMessage = message.reply_message
+        ? message.quoted
+        : message.data;
+      await message.sendMessage(
+        { url },
+        /\.(?:jpe?g|png|webp|heic)(?:\?|$)/i.test(url) ? "image" : "video",
+        { quoted: quotedMessage }
+      );
+    } else {
+      let desiredCount = parseInt(userQuery.split(",")[1]) || 5;
+      let searchQuery = userQuery.split(",")[0] || userQuery;
+      let searchResults;
+      try {
+        const res = await pinterestSearch(searchQuery, desiredCount);
+        if (!res || !res.status || !Array.isArray(res.result)) {
+          return await message.sendReply("_No results found for this query_");
+        }
+        searchResults = res.result;
+      } catch (err) {
+        console.error("pinterestSearch error:", err?.message || err);
+        return await message.sendReply(
+          "_Server error while searching Pinterest_"
+        );
+      }
+
+      const toDownload = Math.min(Math.max(desiredCount, 1), searchResults.length, 10);
+      if (toDownload === 0) return await message.sendReply("_No Pinterest results found._");
+      await message.sendReply(
+        `_Downloading ${toDownload} results for ${searchQuery} from Pinterest_`
+      );
+
+      const imagesToSend = searchResults
+        .slice(0, toDownload)
+        .map((url) => ({ image: url }));
+      imagesToSend[0].caption = `_Pinterest results for ${searchQuery}_`;
+      try {
+        await message.client.albumMessage(
+          message.jid,
+          imagesToSend,
+          message.data
+        );
+      } catch (error) {
+        console.log(
+          "Album send failed, falling back to individual sends:",
+          error
+        );
+        for (const url of searchResults.slice(0, toDownload)) {
+          try {
+            await message.sendMessage({ url }, "image");
+          } catch (error) {
+            console.error(
+              "Error downloading pinterest item:",
+              error?.message || error
+            );
+          }
+        }
+      }
+    }
+  }
+);
+
+Module(
+  {
+    pattern: "tiktok ?(.*)",
+    fromMe: isFromMe,
+    desc: "TikTok video downloader",
+    usage: ".tiktok reply or link",
+    use: "download",
+  },
+  async (message, match) => {
+    let videoLink = (match?.[1] || message.reply_message?.text || "").trim();
+    if (!videoLink) return await message.sendReply("_Need a TikTok URL_");
+    videoLink = videoLink.match(/\bhttps?:\/\/\S+/i)?.[0]?.replace(/[)\].,!?>]*$/, "");
+    if (!videoLink) return await message.sendReply("_Need a valid TikTok URL_");
+    let downloadResult;
+    try {
+      downloadResult = await tiktok(videoLink);
+      if (!downloadResult?.url) throw new Error("TikTok returned no video file.");
+      return await message.sendReply(downloadResult, "video");
+    } catch (error) {
+      console.error("TikTok download error:", error?.message || error);
+      const reason = String(error?.message || "Unknown error").slice(0, 300);
+      return await message.sendReply(`_TikTok download failed: ${reason}_`);
+    }
+  }
+);
