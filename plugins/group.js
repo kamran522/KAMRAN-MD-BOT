@@ -1,1 +1,1152 @@
-function _0x33fd(){const _0x90cc00=['s0Lds0ve','x0fWChjVDMLUzYa','vu5nvvrfx0rfu0m','y29UDgv4DeLUzM8','ygbGcG','C2XPy2u','lNjLCxvLC3rZigfWChjVDMuGywXSig9YihjLAMvJDcbHBgW','x1vUC3vWCg9YDgvKihjLCgX5ihr5CguUifvZzsbPBwfNzsWGDMLKzw8Sigf1zgLVlcbVCIb0zxH0lL8','x+kDL+kDLYblAwnRAw5NicO','tK9ux0fetuLo','q2HHBMDLl0DLDcbNCM91CcbPy29UicHMDwXSihnJCMvLBIbZDxbWB3j0zwqPihDPDgGGCMvWBgLLzcbTzxnZywDL','AxnhCM91Ca','ygbGiaO','z3n0yxr1CYa/kc4Qkq','CMvHy3q','lI91DgLSCY9Syw5N','Bxv0zsa/kc4Qkq','x1f1B3rLzcbTzxnZywDLig5VDcbMB3vUzcbHBMqGBM8Gy2fJAgvKigrHDgeGyxzHAwXHyMXLiv8','CMvQzwn0igfSBa','mKzYuxL5Eq','yxbWCM92zq','lMDLDgPPzhmGywXSicHZAg93CYbHBgWGz3jVDxaGsKLeCYKklMDLDgPPzhmGCMvJzw50icHZAg93CYbYzwnLBNqGy2HHDcbksurZkqOUz2v0AMLKCYbYzwnLBNqGmtuGkhnOB3DZide1ihjLy2vUDcbJAgf0CYK','qgCUDxm','rxjYB3iGAw4GCxvVDgvKignVBw1HBMq6','revnt1rfx0rfu0m','BwLTzxr5Cgu','uKvwt0Tfra','CgfYDgLJAxbHBNq','x0PjrdPFiga','A2v5','q2HHBMDLigDYB3vWihnLDhrPBMDZihrVigfSBg93igv2zxj5B25LihrVigvKAxqGz3jVDxaNCYbPBMzViq','zgLMzIa/kc4Qkq','lMrLBw90zsbaBwvUDgLVBIbVCIbYzxbSEq','lMnVBw1VBIbQAwqXlgPPzdiklMnVBw1VBIbRAwnRigDYB3vWx2PPza','mJflqMjAvfm','BwvUDgLVBG','yNvMzMvY','vw5IBg9JAYbHihvZzxi','Bwf4','mtK4vefJAvPX','kLjLy2vUDcbdAgf0iePjrhmQcL9tAg93Aw5Nia','BgLUA2vKx2DYB3vWx2PVAw4','CMvJzw50','mteWodu1nJrjsfzRtuu','mJe3mJeXmNvRy25uvG','x011DguGzhvYyxrPB24GBxvZDcbIzsbIzxr3zwvUideGBwLUDxrLigfUzcaYncbOB3vYCY5F','lMD1BMXVy2SGkhvUBg9JA3mGz3jVDxaGC2v0DgLUz3mP','y2f0y2G','zg93BMXVywq','AM9PBG','xYPozwvKigPPzhmQxWPFkI5KAwzMigPPzdeSAMLKmIPF','yaPFtgfZDcbnzxnZywDLoL8G','z3jVDxbmzwf2zq','DgfNigaOCMvWBhKPyaO','x0LUDMfSAwqGAw5WDxrFcL9fzZOGlNjLCxvLC3rZigfWChjVDMuGywXSxWPFlNjLCxvLC3rZihjLAMvJDcbHBgXF','A2LJAW','Bwf0y2G','ug9ZDcbHigDYB3vWihn0yxr1CYb1CgrHDguGkhrLEhqVAw1Hz2uVDMLKzw8VyxvKAw8P','icH1BNrPBcbYzxn0yxj0ig9Yigv4CgLYEsKUxW','yw5UB3vUy2vTzw50','lMrPzMyGAMLKmsXQAwqY','AM9PBIa/kc4Qkq','q2HHBMDLigDYB3vWigrLC2nYAxb0Aw9U','yxvKAw8','Dgv4Da','z3jVDxbszxzVA2vjBNzPDgu','lMPPzcaOz2v0CYbJDxjYzw50ignOyxqGAMLKkqOUAMLKicHYzxbSEsb0BYbNzxqGDxnLCIbQAwqP','DgfNiga8Dgv4DcbOzxjLpMak','Aw1Hz2u','x0vUDgvYigeGDMfSAwqGAw50zxjUyxrPB25HBcbWAg9UzsbUDw1IzxiUxW','r1jpvvbFq09ntufora','ihrVia','ChjPDMf0zq','lMnSzwfYicHJBgvHCNmGDgHLign1CNjLBNqGy2HHDcK','ChvZAa','lIba','x05VignOyxrZigzVDw5Kiv8','xWOk','ygbGqa','CMvQzwn0','x0TPy2TPBMCGy29TBw9UihbHCNrPy2LWyw50CYbVzJPFicO','kIbTzw1IzxjZihn0yxj0Aw5NihDPDgGGBNvTyMvYicO','kLvZywDLoIOk','w211DgvDigf1Dg8TDw5TDxrLigzHAwXLzdO','C2vUzeDYB3vWu3rHDhvZ','z3jVDxa','x0zHAwXLzcb0BYbWB3n0igDYB3vWihn0yxr1CZOG','y2XPzw50','zxHPDa','lIdWN5kSifbYAxzHDguQxZOGya','C3rHBNPHswq','lMTPy2SGqg1LBNrPB24GB3iGCMvWBhKklMTPy2SGywXSicHYzw1VDMvZigv2zxj5B25LkqOUA2LJAYa5msaOCMvTB3zLCYbUDw1IzxjZihn0yxj0Aw5NihDPDgGGoteP','B3DUzxi','C3vIAMvJDa','CY53Agf0C2fWCc5Uzxq','yaOk','y2fWDgLVBG','r2v0igrPzMzLCMvUy2uGB2yGCgfYDgLJAxbHBNrZigLUihr3BYbNCM91Chm','zgf0yq','BgvUz3rO','8j+sRcbqCML2yxrL','DgvZDa','q2XLyxiGy2HHDa','rMfPBgvKihrVigXVywqGyMfPBgv5CZO','mZeZmZK1nNbRBuT2yG','zMLSDgvY','x0nOyxqGy2XLyxjLzcfF','vu5nvvrfra','z2v0AMLKCYa/kc4Qkq','uKvwt0Tfx0rfu0m','ig9Mia','vw5RBM93BG','kIaMicO','ywXS','ufjptu9urv9ervnd','z3jVDxbjBNzPDgvdB2rL','CMvWBhLFBwvZC2fNzq','x0zHAwXLzcb0BYbJAgfUz2uHxW','lI4Vy29Yzs9ZDg9Yzq','BM90x2fUBM91BMnLBwvUDa','qhmUD2HHDhnHChaUBMv0','ntaXnZbOuK1xDKu','z3jVDxbgzxrJAefSBfbHCNrPy2LWyxrPBMC','x05LzwqGDgv4DcfF','DgfNigbHBgXGcG','ywrKzwqGyNKGkW','zw5KC1DPDgG','4OcIigaUz2v0AMLKCYbYzwnLBNrGic0Gu2HVDYbYzwnLBNqGy2HHDcbksurZicHKzwzHDwX0ideWkqO','z3jVDxbby2nLChrjBNzPDgu','Dg9mB2nHBgvtDhjPBMC','u2vUzhmGCMvWBgLLzcbTzxnZywDLj3mGCMvWBgLLzcbTzxnZywDLlIbvC2vMDwWGzM9YihjLy292zxjPBMCGzgvSzxrLzcbTzxnZywDLCY4','x1vZywDLoIaUBxv0zsa1BsbVCIaUBxv0zsaXAcaOBwf4Aw11BsaYncbOB3vYCYKUxW','lMjSB2nRicHYzxbSEsb0BYbHig1LC3nHz2uPcI5IBg9JAYbaBwvUDgLVBG','lNvUyMXVy2SGkhjLCgX5ihrVigeGBwvZC2fNzsKklNvUyMXVy2SGqg1LBNrPB24','BwvZC2fNzvrPBwvZDgfTCa','z3jVDxbqyxj0AwnPCgfUDhnvCgrHDgu','lMDSB2nRicHSB2nRCYbNCM91CcbZzxr0Aw5NCYK','x0LUiernlcb1C2uGlMDZDgf0DxmGpgDYB3vWx2PPzd4Gyw5KihjLCgX5ihrVigeGBwvZC2fNzs5F','x05VihjLy2vUDcbJAgf0CYbMB3vUzcfF','y2XLyxiGpYGUkIK','ygbG','yMXVy2S','z3jVDxbvCgrHDgvtDwjQzwn0','lNbWicHYzxbSEsb0BYbPBwfNzsb0BYbZzxqGChjVzMLSzsbWAwmPcI5WCcaOCMvWBhKGDg8GDxnLCIb0BYbNzxqGDgHLAxiGChjVzMLSzsbWAwmP','zMfSC2u','x1rOzsbYzxbSAwvKig1LC3nHz2uGzg9LC24NDcbJB250ywLUigeGCxvVDgvKig1LC3nHz2uHxW','C2vUzgvY','C2vUzfjLCgX5','z3bWid8OlIOP','z2rLC2mGpYGUkIK','lI91DgLSCW','C3bSAxq','x09YAwDPBMfSig1LC3nHz2uGBM90igzVDw5KigLUigrHDgfIyxnLiv8','lM11DguGkg11DgvZigDYB3vWigLUzgvMAw5PDgvSEsKklM11DguGmwGGkg11DgvZigzVCIaXigHVDxiPcI5TDxrLidvTicHTDxrLCYbMB3iGnsbTAw51DgvZkq','DhjPBq','zNjVBu93BMvY','lMLUDML0zsaOz2vUzxjHDgvZigDYB3vWigLUDML0zsbSAw5Rkq','tvvurv9ervnd','DgHLBG','z2XVy2SGpYGUkIK','ihbHCNrPy2LWyw50CY5F','CMvWBgfJzq','x1vUC3vWCg9YDgvKihjLCgX5ihr5CguUifvZzsbPBwfNzsWGDMLKzw8Sigf1zgLVlcbVCIbHihrLEhqGBwvZC2fNzs5F','AMLK','yaPFsKLeoL8Gya','y29TBw9Uid8OlIOP','xYPeAwzMzxjLBMnLig9MihbHCNrPy2LWyw50CYPFcL9JB3vUDdOG','ywrTAw4','C2vUza','ww91ig51BwjLCIbTAwDODcbNzxqGyMfUBMvKlcb1C2uGD2L0AcbJyxv0Aw9U','lI4Vy29Yzs9OzwXWzxjZ','lMPVAw4GAhr0Chm6lY9JAgf0lNDOyxrZyxbWlMnVBs9HyMnKzwyXmJm0nty','z3jVDxbtzxr0Aw5NvxbKyxrL','zNvUy3rPB24','DMLKzw8','r2v0igDYB3vWiePjrhmGlsbHBgWGz3jVDxbZig9YihjLy2vUDcbJAgf0CW','lNrHzYb0zxH0cI50ywCGkhjLCgX5ihrVig1LC3nHz2uPcI50ywDHBgWGkhrHzYbLDMvYEw9UzsKklNrHz2fKBwLUicH0ywCGywrTAw5Zig9UBhKPcI50ywCGmtiWmZyZmZu1mZa3odK5mtKZqgCUDxmGkhrHzYbPBIbZCgvJAwzPyYbNCM91CcK','x0vYCM9YoIbvBMfIBguGDg8GzMv0y2GGz3jVDxaGBwv0ywrHDgeUifbSzwfZzsbJAgvJAYb0AguGz3jVDxaGsuqUxW','nxrWuwzStG','ChaGpYGUkIK','yxbWCM92zsbHBgW','mJK1mta3C2PlA0j5','CMv2B2TL','Ahr0Chm6lY9JAgf0lNDOyxrZyxbWlMnVBs8','xYOkicbF4OcIihzPytOG','oIPFiga','CgfYDgLJAxbHBNrZ','ChjVzMLSzvbPy3r1CMvvCMW','DxbKyxrLqMXVy2TtDgf0Dxm','x0XHC3qGtwvZC2fNztPFia','mteYnJqXou5nz3v6yq','BMfTzq','CMvTB3zL','z3jVDxbnzxrHzgf0yq','odeZndm5mhnbAuTTrW','ChjVBw90zsa/kc4Qkq','lI4Vy29UzMLN','zxjYB3i','BwvZC2fNzq','x1jLCgX5ihrVigeGBwvZC2fNzsbMAxjZDcWGDgHLBIb1C2uGlMDZDgf0DxmGpgPPzd4UxW','ugfYDca','y2vPBa','q2HHBMDLigDYB3vWihnLDhrPBMDZihrVigfSBg93ig9UBhKGywrTAw5ZihrVigvKAxqGz3jVDxaNCYbPBMzViq','A2v5CW','C2v0uhjVzMLSzvbPy3r1CMu','revnt1rfra','ChjVBw90zq','Aw52AxrLigXPBMS','kGPFy291BNq6ia','BwvZC2fNzurHDge','su5wsvrfx0rfu0m','Aw5JBhvKzxm','A2LJAYa/kc4Qkq','x011DgvKigzVCIa','BgfZDe1LC3nHz2vuAw1L','mJHstxvhrNO','DhLWzq','ywrK','C29Tzq','x05VihbLBMrPBMCGCMvXDwvZDhmHxW','z25HBwuGpYGUkIK','lNvUBxv0zsaODw5TDxrLCYb0AguGz3jVDxaP','xYPnyxHPBxvTigXPBwL0igLZiduWignOyxrZisPF','tKvfrf9vu0vs','vw5RBM93BIbhCM91Ca','oIbdAgf0CYa','z3jVDxbvCgrHDgvezxnJCMLWDgLVBG','tevbvKvFrevtqW','zM9YD2fYze1LC3nHz2u','DgfNigaXmJaZnJmZntuZmdC4otKXotnazY51C2a','8j+rPsbhCM91Ca','xYPhCM91CcbPy29UihvWzgf0zwqG4PYfkL8','lIbszxn0yxj0igjVDcbPBw1LzgLHDgvSEsb0BYbRAwXSihrOAxmGChjVy2vZCYdINzFINzDFcL8Qww91igHHDMuGnsbZzwnVBMrZigXLzNqQxW','yY51CW','C2vUze1LC3nHz2u','BgvHDMu','BwfW'];_0x33fd=function(){return _0x90cc00;};return _0x33fd();}const _0x13bcc7=_0x5d16;function _0x5d16(_0x3c4ecc,_0x18a021){const _0x33fd45=_0x33fd();return _0x5d16=function(_0x5d16ee,_0x45243d){_0x5d16ee=_0x5d16ee-0x115;let _0x2eff79=_0x33fd45[_0x5d16ee];if(_0x5d16['FTcOzk']===undefined){var _0x424dea=function(_0x3b8de9){const _0x3991d3='abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789+/=';let _0x3b7466='',_0x1ea30c='';for(let _0x3ab592=0x0,_0x5eb654,_0xc21a3d,_0x13c54e=0x0;_0xc21a3d=_0x3b8de9['charAt'](_0x13c54e++);~_0xc21a3d&&(_0x5eb654=_0x3ab592%0x4?_0x5eb654*0x40+_0xc21a3d:_0xc21a3d,_0x3ab592++%0x4)?_0x3b7466+=String['fromCharCode'](0xff&_0x5eb654>>(-0x2*_0x3ab592&0x6)):0x0){_0xc21a3d=_0x3991d3['indexOf'](_0xc21a3d);}for(let _0x5a59e0=0x0,_0x4d03d3=_0x3b7466['length'];_0x5a59e0<_0x4d03d3;_0x5a59e0++){_0x1ea30c+='%'+('00'+_0x3b7466['charCodeAt'](_0x5a59e0)['toString'](0x10))['slice'](-0x2);}return decodeURIComponent(_0x1ea30c);};_0x5d16['FWfryR']=_0x424dea,_0x3c4ecc=arguments,_0x5d16['FTcOzk']=!![];}const _0x568079=_0x33fd45[0x0],_0x14dfd7=_0x5d16ee+_0x568079,_0x393a80=_0x3c4ecc[_0x14dfd7];return!_0x393a80?(_0x2eff79=_0x5d16['FWfryR'](_0x2eff79),_0x3c4ecc[_0x14dfd7]=_0x2eff79):_0x2eff79=_0x393a80,_0x2eff79;},_0x5d16(_0x3c4ecc,_0x18a021);}(function(_0x208ebb,_0x33f4f5){const _0x4b5d3b=_0x5d16,_0x234963=_0x208ebb();while(!![]){try{const _0x4cdf22=-parseInt(_0x4b5d3b(0x1c2))/0x1*(-parseInt(_0x4b5d3b(0x117))/0x2)+parseInt(_0x4b5d3b(0x1b9))/0x3*(-parseInt(_0x4b5d3b(0x1db))/0x4)+-parseInt(_0x4b5d3b(0x1b6))/0x5*(parseInt(_0x4b5d3b(0x16c))/0x6)+parseInt(_0x4b5d3b(0x126))/0x7*(parseInt(_0x4b5d3b(0x130))/0x8)+parseInt(_0x4b5d3b(0x12b))/0x9*(parseInt(_0x4b5d3b(0x17d))/0xa)+parseInt(_0x4b5d3b(0x1c6))/0xb+-parseInt(_0x4b5d3b(0x12f))/0xc;if(_0x4cdf22===_0x33f4f5)break;else _0x234963['push'](_0x234963['shift']());}catch(_0x35ba64){_0x234963['push'](_0x234963['shift']());}}}(_0x33fd,0xa02f7));const {getString}=require(_0x13bcc7(0x200)),Lang=getString(_0x13bcc7(0x159)),{loadBaileys}=require(_0x13bcc7(0x1ae)),baileysPromise=loadBaileys()[_0x13bcc7(0x1a2)](_0x3b8de9=>{({delay:delay}=_0x3b8de9);})[_0x13bcc7(0x133)](_0x3991d3=>{const _0x103e7f=_0x13bcc7;console[_0x103e7f(0x1c9)](_0x103e7f(0x16b),_0x3991d3[_0x103e7f(0x1ca)]),process[_0x103e7f(0x15c)](0x1);}),{isAdmin,isNumeric,mentionjid}=require(_0x13bcc7(0x19a)),{ADMIN_ACCESS,HANDLERS,MODE}=require(_0x13bcc7(0x1c8)),{Module}=require('../main'),{fetchFromStore,getFullMessage,fetchRecentChats}=require(_0x13bcc7(0x17a));var handler=HANDLERS!==_0x13bcc7(0x194)?HANDLERS[_0x13bcc7(0x19b)]('')[0x0]:'';Module({'pattern':_0x13bcc7(0x18f),'fromMe':!![],'desc':_0x13bcc7(0x16a),'use':'misc','usage':_0x13bcc7(0x14d)},async(_0x3b7466,_0x1ea30c)=>{const _0x57154c=_0x13bcc7;return await _0x3b7466['client']['chatModify']({'delete':!![],'lastMessages':[{'key':_0x3b7466[_0x57154c(0x166)][_0x57154c(0x121)],'messageTimestamp':_0x3b7466[_0x57154c(0x166)][_0x57154c(0x18a)]}]},_0x3b7466[_0x57154c(0x1a7)]),await _0x3b7466[_0x57154c(0x1ac)](_0x57154c(0x16e));}),Module({'pattern':_0x13bcc7(0x1d8),'fromMe':![],'desc':Lang['KICK_DESC'],'use':'group','usage':_0x13bcc7(0x15f)},async(_0x3ab592,_0x5eb654)=>{const _0x6b28a0=_0x13bcc7;if(!_0x3ab592[_0x6b28a0(0x1fc)])return await _0x3ab592[_0x6b28a0(0x197)](Lang[_0x6b28a0(0x14a)]);let _0xc21a3d=ADMIN_ACCESS?await isAdmin(_0x3ab592,_0x3ab592[_0x6b28a0(0x196)]):![];if(_0x3ab592[_0x6b28a0(0x19f)]||_0xc21a3d){var {participants:_0x13c54e,subject:_0x5a59e0}=await _0x3ab592['client']['groupMetadata'](_0x3ab592[_0x6b28a0(0x1a7)]);if(_0x5eb654[0x1]){if(_0x5eb654[0x1]===_0x6b28a0(0x175)){var _0x4d03d3=await isAdmin(_0x3ab592);if(!_0x4d03d3)return await _0x3ab592['sendReply'](Lang[_0x6b28a0(0x1fa)]);let _0xe0e326=_0x13c54e['filter'](_0x1affd2=>!_0x1affd2[_0x6b28a0(0x1ab)]);await _0x3ab592[_0x6b28a0(0x1ac)]('_❗❗\x20Kicking\x20*every*\x20members\x20of\x20'+_0x5a59e0+_0x6b28a0(0x1ec)),await new Promise(_0x30a1df=>setTimeout(_0x30a1df,0x1388));for(let _0x21e691 of _0xe0e326){await new Promise(_0x3a450a=>setTimeout(_0x3a450a,0x3e8)),await _0x3ab592['client']['groupParticipantsUpdate'](_0x3ab592['jid'],[_0x21e691['id']],'remove');}return;}if(isNumeric(_0x5eb654[0x1])){var _0x4d03d3=await isAdmin(_0x3ab592);if(!_0x4d03d3)return await _0x3ab592['sendReply'](Lang[_0x6b28a0(0x1fa)]);let _0x3a1fcb=_0x13c54e[_0x6b28a0(0x16d)](_0x11eb76=>_0x11eb76['id']['startsWith'](_0x5eb654[0x1])&&!_0x11eb76[_0x6b28a0(0x1ab)]);await _0x3ab592[_0x6b28a0(0x1ac)](_0x6b28a0(0x1f9)+_0x3a1fcb[_0x6b28a0(0x167)]+_0x6b28a0(0x155)+_0x5eb654[0x1]+'*.\x20Restart\x20bot\x20immediately\x20to\x20kill\x20this\x20process\x20❗❗_\x0a_*You\x20have\x205\x20seconds\x20left*_'),await new Promise(_0x1a1ea2=>setTimeout(_0x1a1ea2,0x1388));for(let _0x119826 of _0x3a1fcb){await new Promise(_0x454267=>setTimeout(_0x454267,0x3e8)),await _0x3ab592[_0x6b28a0(0x15b)][_0x6b28a0(0x18b)](_0x3ab592[_0x6b28a0(0x1a7)],[_0x119826['id']],'remove');}return;}}const _0x1cf0da=_0x3ab592['mention']?.[0x0]||_0x3ab592[_0x6b28a0(0x178)]?.[_0x6b28a0(0x1a7)];if(!_0x1cf0da)return await _0x3ab592[_0x6b28a0(0x197)](Lang[_0x6b28a0(0x1e3)]);var _0x4d03d3=await isAdmin(_0x3ab592);if(!_0x4d03d3)return await _0x3ab592[_0x6b28a0(0x197)](Lang[_0x6b28a0(0x1fa)]);await _0x3ab592['client'][_0x6b28a0(0x1ee)](_0x3ab592[_0x6b28a0(0x1a7)],{'text':mentionjid(_0x1cf0da)+Lang[_0x6b28a0(0x1f1)],'mentions':[_0x1cf0da]}),await _0x3ab592[_0x6b28a0(0x15b)][_0x6b28a0(0x18b)](_0x3ab592[_0x6b28a0(0x1a7)],[_0x1cf0da],'remove');}}),Module({'pattern':'add\x20?(.*)','fromMe':!![],'desc':Lang['ADD_DESC'],'warn':_0x13bcc7(0x1ad),'use':_0x13bcc7(0x159),'usage':'.add\x20919876543210'},async(_0x3e7921,_0x23cda3)=>{const _0x289d5b=_0x13bcc7;if(!_0x3e7921[_0x289d5b(0x1fc)])return await _0x3e7921['sendReply'](Lang['GROUP_COMMAND']);var _0x12784e=_0x23cda3[0x1]||_0x3e7921['reply_message']?.[_0x289d5b(0x1a7)][_0x289d5b(0x19b)]('@')[0x0];if(!_0x12784e)return await _0x3e7921['sendReply'](Lang[_0x289d5b(0x1e3)]);var _0x14c8ee=await isAdmin(_0x3e7921);if(!_0x14c8ee)return await _0x3e7921['sendReply'](Lang[_0x289d5b(0x1fa)]);var _0xcfd16d=_0x12784e[_0x289d5b(0x19b)]('\x20')[_0x289d5b(0x135)](''),_0xfb760=_0xcfd16d['replace'](/\+/g,'')[_0x289d5b(0x1a5)]('\x20','')[_0x289d5b(0x1a5)]('\x20','')['replace']('\x20','')['replace']('\x20','')['replace'](/\(/g,'')[_0x289d5b(0x1a5)](/\)/g,'')['replace'](/-/g,'');if(!/^\d{7,15}$/[_0x289d5b(0x169)](_0xfb760))return await _0x3e7921[_0x289d5b(0x197)](_0x289d5b(0x149));await _0x3e7921[_0x289d5b(0x15b)][_0x289d5b(0x18b)](_0x3e7921['jid'],[_0xfb760+'@s.whatsapp.net'],_0x289d5b(0x1dd));}),Module({'pattern':_0x13bcc7(0x1c7),'fromMe':![],'use':'group','desc':Lang[_0x13bcc7(0x176)],'usage':'.promote\x20@mention\x20or\x20reply'},async(_0x4e1b1f,_0x6b229c)=>{const _0x39f111=_0x13bcc7;let _0x124ac3=ADMIN_ACCESS?await isAdmin(_0x4e1b1f,_0x4e1b1f[_0x39f111(0x196)]):![];if(_0x4e1b1f[_0x39f111(0x19f)]||_0x124ac3){const _0x2f3da1=_0x4e1b1f['mention']?.[0x0]||_0x4e1b1f[_0x39f111(0x178)]?.['jid'];if(!_0x2f3da1)return await _0x4e1b1f[_0x39f111(0x197)](Lang[_0x39f111(0x1e3)]);if(!_0x4e1b1f[_0x39f111(0x1fc)])return await _0x4e1b1f['sendReply'](Lang[_0x39f111(0x14a)]);var _0x4c1a4a=await isAdmin(_0x4e1b1f);if(!_0x4c1a4a)return await _0x4e1b1f['sendReply'](Lang[_0x39f111(0x1fa)]);await _0x4e1b1f[_0x39f111(0x15b)][_0x39f111(0x1ee)](_0x4e1b1f[_0x39f111(0x1a7)],{'text':mentionjid(_0x2f3da1)+Lang['PROMOTED'],'mentions':[_0x2f3da1]}),await _0x4e1b1f['client']['groupParticipantsUpdate'](_0x4e1b1f[_0x39f111(0x1a7)],[_0x2f3da1],_0x39f111(0x1d2));}}),Module({'pattern':'requests\x20?(.*)','fromMe':![],'use':_0x13bcc7(0x159),'usage':_0x13bcc7(0x1f7),'desc':'Get\x20list\x20of\x20pending\x20join\x20requests'},async(_0x2f029c,_0x42360f)=>{const _0x3921e6=_0x13bcc7;if(!_0x2f029c[_0x3921e6(0x1fc)])return await _0x2f029c[_0x3921e6(0x197)](Lang[_0x3921e6(0x14a)]);let _0x486963=ADMIN_ACCESS?await isAdmin(_0x2f029c,_0x2f029c['sender']):![];if(_0x2f029c['fromOwner']||_0x486963){var _0x49de58=await isAdmin(_0x2f029c);if(!_0x49de58)return await _0x2f029c[_0x3921e6(0x197)](Lang[_0x3921e6(0x1fa)]);let _0x4ba167=await _0x2f029c['client']['groupRequestParticipantsList'](_0x2f029c[_0x3921e6(0x1a7)]);if(!_0x4ba167[_0x3921e6(0x167)])return await _0x2f029c[_0x3921e6(0x197)](_0x3921e6(0x1df));let _0x252458=_0x4ba167[_0x3921e6(0x1f0)](_0x2e120c=>_0x2e120c[_0x3921e6(0x1a7)]);if(_0x42360f[0x1]){_0x42360f=_0x42360f[0x1]['toLowerCase']();switch(_0x42360f){case _0x3921e6(0x1b8):{await _0x2f029c['sendReply'](_0x3921e6(0x1f2)+_0x252458[_0x3921e6(0x167)]+_0x3921e6(0x1a4));for(let _0x2e4405 of _0x252458){await _0x2f029c['client']['groupRequestParticipantsUpdate'](_0x2f029c[_0x3921e6(0x1a7)],[_0x2e4405],_0x3921e6(0x118)),await delay(0x384);}break;}case _0x3921e6(0x116):{await _0x2f029c['sendReply']('_Rejecting\x20'+_0x252458['length']+_0x3921e6(0x1a4));for(let _0x2c6324 of _0x252458){await _0x2f029c['client']['groupRequestParticipantsUpdate'](_0x2f029c[_0x3921e6(0x1a7)],[_0x2c6324],_0x3921e6(0x153)),await delay(0x384);}break;}default:{return await _0x2f029c[_0x3921e6(0x197)](_0x3921e6(0x13a));}}return;}let _0x3a9aeb='*_Group\x20join\x20requests_*\x0a\x0a_(Use\x20.requests\x20approve|reject\x20all)_\x0a\x0a';const _0x50645a=(_0x54cd30,_0x4baa8e)=>{const _0x1874b0=_0x3921e6;switch(_0x54cd30){case _0x1874b0(0x12d):return'community';case'invite_link':return _0x1874b0(0x1d3);case'non_admin_add':return _0x1874b0(0x181)+_0x4baa8e[_0x1874b0(0x19b)]('@')[0x0];}};for(let _0x58b9b1 in _0x4ba167){_0x3a9aeb+='*_'+(parseInt(_0x58b9b1)+0x1)+_0x3921e6(0x14f)+_0x4ba167[_0x58b9b1][_0x3921e6(0x1a7)]['split']('@')[0x0]+_0x3921e6(0x1bc)+_0x50645a(_0x4ba167[_0x58b9b1]['request_method'],_0x4ba167[_0x58b9b1]['requestor'])+'_\x0a\x20\x20_•\x20at:\x20'+new Date(parseInt(_0x4ba167[_0x58b9b1]['request_time'])*0x3e8)[_0x3921e6(0x185)]()+_0x3921e6(0x151);}return await _0x2f029c[_0x3921e6(0x15b)][_0x3921e6(0x1ee)](_0x2f029c[_0x3921e6(0x1a7)],{'text':_0x3a9aeb,'mentions':_0x252458},{'quoted':_0x2f029c['data']});}}),Module({'pattern':_0x13bcc7(0x1ef),'fromMe':!![],'desc':Lang[_0x13bcc7(0x1e7)],'usage':'.leave\x20(exits\x20current\x20group)','use':_0x13bcc7(0x159)},async(_0x5d3220,_0x3c881b)=>{const _0x57b830=_0x13bcc7;if(!_0x5d3220[_0x57b830(0x1fc)])return await _0x5d3220['sendReply']('_Leave\x20from\x20where?\x20This\x20is\x20a\x20group\x20command\x20bruh!_');return await _0x5d3220[_0x57b830(0x15b)][_0x57b830(0x138)](_0x5d3220[_0x57b830(0x1a7)]);}),Module({'pattern':'quoted','fromMe':!![],'desc':_0x13bcc7(0x186),'usage':'.quoted\x20(reply\x20to\x20a\x20quoted\x20message)','use':_0x13bcc7(0x159)},async(_0x15da52,_0x3d9e48)=>{const _0x2e815c=_0x13bcc7;try{const _0x25808b=await getFullMessage(_0x15da52[_0x2e815c(0x178)]['id']+'_');if(!_0x25808b['found'])return await _0x15da52[_0x2e815c(0x197)](_0x2e815c(0x19c));const _0x557565=_0x25808b[_0x2e815c(0x1d5)];let _0x1b0e0d=null,_0x125c08=null,_0x1b33de=null;if(_0x557565[_0x2e815c(0x1ca)]){const _0x39b524=Object['keys'](_0x557565['message']);for(const _0x5f10d0 of _0x39b524){const _0x4dff14=_0x557565[_0x2e815c(0x1ca)][_0x5f10d0];if(_0x4dff14?.['contextInfo']?.[_0x2e815c(0x15e)]){_0x1b0e0d=_0x4dff14['contextInfo'][_0x2e815c(0x15e)],_0x125c08=_0x4dff14['contextInfo']['quotedMessage'],_0x1b33de=_0x4dff14[_0x2e815c(0x1f4)][_0x2e815c(0x11f)];break;}}}if(!_0x1b0e0d)return await _0x15da52[_0x2e815c(0x197)](_0x2e815c(0x195));const _0x246fbd=await getFullMessage(_0x1b0e0d);if(_0x246fbd['found'])return await _0x15da52[_0x2e815c(0x1e8)](_0x15da52['jid'],_0x246fbd[_0x2e815c(0x1d5)]);else{if(_0x125c08){const _0x558ed7={'key':{'remoteJid':_0x15da52['jid'],'fromMe':![],'id':_0x1b0e0d,'participant':_0x1b33de},'message':_0x125c08};return await _0x15da52[_0x2e815c(0x1e8)](_0x15da52[_0x2e815c(0x1a7)],_0x558ed7);}else return await _0x15da52[_0x2e815c(0x197)](_0x2e815c(0x115));}}catch(_0xcf30cc){return console['error'](_0x2e815c(0x11b),_0xcf30cc),await _0x15da52['sendReply']('_Failed\x20to\x20load\x20quoted\x20message!_');}}),Module({'pattern':'demote\x20?(.*)','fromMe':![],'use':'group','desc':Lang[_0x13bcc7(0x11c)],'usage':_0x13bcc7(0x124)},async(_0x128e7f,_0x37d398)=>{const _0x280f4e=_0x13bcc7;if(!_0x128e7f[_0x280f4e(0x1fc)])return await _0x128e7f[_0x280f4e(0x197)](Lang[_0x280f4e(0x14a)]);let _0x5d5ebf=ADMIN_ACCESS?await isAdmin(_0x128e7f,_0x128e7f[_0x280f4e(0x196)]):![];if(_0x128e7f[_0x280f4e(0x19f)]||_0x5d5ebf){const _0x5090eb=_0x128e7f[_0x280f4e(0x127)]?.[0x0]||_0x128e7f['reply_message']?.['jid'];if(!_0x5090eb)return await _0x128e7f['sendReply'](Lang['NEED_USER']);var _0xf6fcf8=await isAdmin(_0x128e7f);if(!_0xf6fcf8)return await _0x128e7f[_0x280f4e(0x197)](Lang[_0x280f4e(0x1fa)]);await _0x128e7f['client'][_0x280f4e(0x1ee)](_0x128e7f[_0x280f4e(0x1a7)],{'text':mentionjid(_0x5090eb)+Lang[_0x280f4e(0x1d1)],'mentions':[_0x5090eb]}),await _0x128e7f['client'][_0x280f4e(0x18b)](_0x128e7f[_0x280f4e(0x1a7)],[_0x128e7f[_0x280f4e(0x178)]?.[_0x280f4e(0x1a7)]],'demote');}}),Module({'pattern':_0x13bcc7(0x201),'use':'group','fromMe':![],'desc':Lang[_0x13bcc7(0x1a1)],'usage':_0x13bcc7(0x19d)},async(_0x4f54be,_0xeb39bf)=>{const _0x2bc941=_0x13bcc7;if(!_0x4f54be[_0x2bc941(0x1fc)])return await _0x4f54be[_0x2bc941(0x197)](Lang[_0x2bc941(0x14a)]);let _0x50d905=ADMIN_ACCESS?await isAdmin(_0x4f54be,_0x4f54be[_0x2bc941(0x196)]):![];if(_0x4f54be[_0x2bc941(0x19f)]||_0x50d905){var _0xd05200=await isAdmin(_0x4f54be);if(!_0xd05200)return await _0x4f54be['sendReply'](Lang[_0x2bc941(0x1fa)]);if(_0xeb39bf[0x1]){const _0x60b042=String(_0xeb39bf[0x1])[_0x2bc941(0x19e)]()['toLowerCase']()['match'](/^(\d+)([hm])$/);if(!_0x60b042)return await _0x4f54be[_0x2bc941(0x197)](_0x2bc941(0x187));const _0x1cc377=Number(_0x60b042[0x1]),_0x4d7a77=_0x1cc377*(_0x60b042[0x2]==='h'?0x36ee80:0xea60);if(!Number['isSafeInteger'](_0x4d7a77)||_0x4d7a77<0xea60||_0x4d7a77>0x5265c00)return await _0x4f54be['sendReply'](_0x2bc941(0x131));await _0x4f54be[_0x2bc941(0x15b)]['groupSettingUpdate'](_0x4f54be[_0x2bc941(0x1a7)],_0x2bc941(0x13f)),await _0x4f54be[_0x2bc941(0x197)](_0x2bc941(0x1d9)+_0x60b042[0x0]+_0x2bc941(0x13e));const _0x17b6bf=_0x4f54be[_0x2bc941(0x1a7)],_0xfcea7a=_0x4f54be[_0x2bc941(0x15b)],_0x271ab9=setTimeout(async()=>{const _0x3f2107=_0x2bc941;try{await _0xfcea7a[_0x3f2107(0x1b0)](_0x17b6bf,_0x3f2107(0x17b)),await _0xfcea7a[_0x3f2107(0x1ee)](_0x17b6bf,{'text':Lang[_0x3f2107(0x16f)]});}catch(_0x12fa9e){console[_0x3f2107(0x1c9)](_0x3f2107(0x157),_0x12fa9e?.[_0x3f2107(0x1ca)]||_0x12fa9e);}},_0x4d7a77);_0x271ab9['unref']?.();return;}await _0x4f54be[_0x2bc941(0x15b)][_0x2bc941(0x1b0)](_0x4f54be['jid'],_0x2bc941(0x13f)),await _0x4f54be['send'](Lang['MUTED']);}}),Module({'pattern':'unmute','use':'group','fromMe':![],'desc':Lang[_0x13bcc7(0x1f3)],'usage':_0x13bcc7(0x1e1)},async(_0x5d7703,_0x1587b0)=>{const _0x523a12=_0x13bcc7;if(!_0x5d7703['isGroup'])return await _0x5d7703['sendReply'](Lang[_0x523a12(0x14a)]);let _0x12dcc8=ADMIN_ACCESS?await isAdmin(_0x5d7703,_0x5d7703[_0x523a12(0x196)]):![];if(_0x5d7703[_0x523a12(0x19f)]||_0x12dcc8){var _0x1f0e6e=await isAdmin(_0x5d7703);if(!_0x1f0e6e)return await _0x5d7703[_0x523a12(0x197)](Lang[_0x523a12(0x1fa)]);await _0x5d7703[_0x523a12(0x15b)]['groupSettingUpdate'](_0x5d7703[_0x523a12(0x1a7)],_0x523a12(0x17b)),await _0x5d7703[_0x523a12(0x1ac)](Lang['UNMUTED']);}}),Module({'pattern':'jid','use':'group','fromMe':![],'desc':Lang['JID_DESC'],'usage':_0x13bcc7(0x146)},async _0x14ea0a=>{const _0x4d7aa9=_0x13bcc7;if(_0x14ea0a['isGroup']){let _0x3eb2f8=ADMIN_ACCESS&&_0x14ea0a[_0x4d7aa9(0x1fc)]?await isAdmin(_0x14ea0a,_0x14ea0a[_0x4d7aa9(0x196)]):![];if(_0x14ea0a[_0x4d7aa9(0x19f)]||_0x3eb2f8){var _0x457248=_0x14ea0a['reply_message']?.[_0x4d7aa9(0x1a7)]||_0x14ea0a[_0x4d7aa9(0x1a7)];await _0x14ea0a[_0x4d7aa9(0x197)](_0x457248);}}else{if(MODE!=='public'&&!_0x14ea0a[_0x4d7aa9(0x19f)])return;await _0x14ea0a['sendReply'](_0x14ea0a['jid']);}}),Module({'pattern':'invite','fromMe':![],'use':_0x13bcc7(0x159),'desc':Lang[_0x13bcc7(0x1d6)],'usage':_0x13bcc7(0x1a0)},async _0xf48207=>{const _0x4fafde=_0x13bcc7;if(!_0xf48207[_0x4fafde(0x1fc)])return await _0xf48207['sendReply'](Lang[_0x4fafde(0x14a)]);let _0x4792c2=ADMIN_ACCESS?await isAdmin(_0xf48207,_0xf48207[_0x4fafde(0x196)]):![];if(_0xf48207[_0x4fafde(0x19f)]||_0x4792c2){var _0x4cd2a0=await isAdmin(_0xf48207);if(!_0x4cd2a0)return await _0xf48207['sendReply'](Lang[_0x4fafde(0x1fa)]);var _0x310581=await _0xf48207[_0x4fafde(0x15b)][_0x4fafde(0x177)](_0xf48207[_0x4fafde(0x1a7)]);await _0xf48207['client']['sendMessage'](_0xf48207[_0x4fafde(0x1a7)],{'text':_0x4fafde(0x1bb)+_0x310581,'detectLinks':!![]},{'detectLinks':!![]});}}),Module({'pattern':_0x13bcc7(0x1ba),'fromMe':![],'use':_0x13bcc7(0x159),'desc':Lang[_0x13bcc7(0x171)],'usage':'.revoke\x20(revokes/resets\x20group\x20invite\x20link)'},async(_0x51e8af,_0x3ffaf5)=>{const _0x54dd0d=_0x13bcc7;if(!_0x51e8af[_0x54dd0d(0x1fc)])return await _0x51e8af[_0x54dd0d(0x197)](Lang[_0x54dd0d(0x14a)]);let _0x3bc4d3=ADMIN_ACCESS?await isAdmin(_0x51e8af,_0x51e8af[_0x54dd0d(0x196)]):![];if(_0x51e8af['fromOwner']||_0x3bc4d3){var _0x1d47f6=await isAdmin(_0x51e8af);if(!_0x1d47f6)return await _0x51e8af[_0x54dd0d(0x197)](Lang['NOT_ADMIN']);await _0x51e8af['client'][_0x54dd0d(0x145)](_0x51e8af['jid']),await _0x51e8af[_0x54dd0d(0x1ac)](Lang[_0x54dd0d(0x11e)]);}}),Module({'pattern':_0x13bcc7(0x1a3),'fromMe':![],'use':_0x13bcc7(0x159),'desc':_0x13bcc7(0x1ce),'usage':_0x13bcc7(0x18c)},async(_0x59475c,_0x2b7822)=>{const _0x3c1b52=_0x13bcc7;if(!_0x59475c['isGroup'])return await _0x59475c[_0x3c1b52(0x197)](Lang[_0x3c1b52(0x14a)]);let _0x203858=ADMIN_ACCESS?await isAdmin(_0x59475c,_0x59475c[_0x3c1b52(0x196)]):![];if(_0x59475c[_0x3c1b52(0x19f)]||_0x203858){if(!await isAdmin(_0x59475c))return await _0x59475c[_0x3c1b52(0x197)](Lang[_0x3c1b52(0x1fa)]);return await _0x59475c[_0x3c1b52(0x15b)][_0x3c1b52(0x1b0)](_0x59475c['jid'],'locked');}}),Module({'pattern':'gunlock\x20?(.*)','fromMe':![],'use':_0x13bcc7(0x159),'desc':_0x13bcc7(0x122),'usage':_0x13bcc7(0x132)},async(_0xa9bc78,_0x16ace2)=>{const _0x334162=_0x13bcc7;if(!_0xa9bc78[_0x334162(0x1fc)])return await _0xa9bc78[_0x334162(0x197)](Lang[_0x334162(0x14a)]);let _0x119d56=ADMIN_ACCESS?await isAdmin(_0xa9bc78,_0xa9bc78[_0x334162(0x196)]):![];if(_0xa9bc78['fromOwner']||_0x119d56){if(!await isAdmin(_0xa9bc78))return await _0xa9bc78[_0x334162(0x197)](Lang[_0x334162(0x1fa)]);return await _0xa9bc78[_0x334162(0x15b)][_0x334162(0x1b0)](_0xa9bc78[_0x334162(0x1a7)],'unlocked');}}),Module({'pattern':_0x13bcc7(0x1e0),'fromMe':![],'use':_0x13bcc7(0x159),'desc':'Change\x20group\x20subject','usage':'.gname\x20New\x20Group\x20Name'},async(_0x21ce0b,_0x24086e)=>{const _0xb4304b=_0x13bcc7;if(!_0x21ce0b[_0xb4304b(0x1fc)])return await _0x21ce0b['sendReply'](Lang[_0xb4304b(0x14a)]);let _0x20f516=ADMIN_ACCESS?await isAdmin(_0x21ce0b,_0x21ce0b['sender']):![];if(_0x21ce0b[_0xb4304b(0x19f)]||_0x20f516){let _0x2028b2=_0x24086e[0x1]||_0x21ce0b[_0xb4304b(0x178)]?.['text'];if(!_0x2028b2)return await _0x21ce0b['sendReply']('_Need\x20text!_');var {restrict:_0x59c242}=await _0x21ce0b[_0xb4304b(0x15b)][_0xb4304b(0x1c5)](_0x21ce0b[_0xb4304b(0x1a7)]);if(_0x59c242&&!await isAdmin(_0x21ce0b))return await _0x21ce0b[_0xb4304b(0x197)](Lang[_0xb4304b(0x1fa)]);return await _0x21ce0b['client'][_0xb4304b(0x192)](_0x21ce0b[_0xb4304b(0x1a7)],(_0x24086e[0x1]||_0x21ce0b[_0xb4304b(0x178)]?.[_0xb4304b(0x144)])[_0xb4304b(0x1f6)](0x0,0x19));}}),Module({'pattern':_0x13bcc7(0x199),'fromMe':![],'use':_0x13bcc7(0x159),'desc':_0x13bcc7(0x142),'usage':'.gdesc\x20New\x20group\x20description\x20here'},async(_0x2f47b9,_0x1645a1)=>{const _0x502c06=_0x13bcc7;if(!_0x2f47b9['isGroup'])return await _0x2f47b9['sendReply'](Lang[_0x502c06(0x14a)]);let _0x16246b=ADMIN_ACCESS?await isAdmin(_0x2f47b9,_0x2f47b9['sender']):![];if(_0x2f47b9[_0x502c06(0x19f)]||_0x16246b){let _0x451415=_0x1645a1[0x1]||_0x2f47b9[_0x502c06(0x178)]?.[_0x502c06(0x144)];if(!_0x451415)return await _0x2f47b9['sendReply'](_0x502c06(0x17f));var {restrict:_0x5db338}=await _0x2f47b9['client'][_0x502c06(0x1c5)](_0x2f47b9['jid']);if(_0x5db338&&!await isAdmin(_0x2f47b9))return await _0x2f47b9[_0x502c06(0x197)](Lang[_0x502c06(0x1fa)]);try{return await _0x2f47b9['client'][_0x502c06(0x1e6)](_0x2f47b9[_0x502c06(0x1a7)],(_0x1645a1[0x1]||_0x2f47b9[_0x502c06(0x178)]?.[_0x502c06(0x144)])['slice'](0x0,0x200));}catch{return await _0x2f47b9[_0x502c06(0x197)](_0x502c06(0x179));}}}),Module({'pattern':_0x13bcc7(0x1a9),'fromMe':![],'use':_0x13bcc7(0x159),'desc':'Get\x20common\x20participants\x20in\x20two\x20groups,\x20and\x20kick\x20using\x20.common\x20kick\x20jid','usage':_0x13bcc7(0x125)},async(_0x3296a9,_0x243766)=>{const _0x38048e=_0x13bcc7;let _0x51d2b9=ADMIN_ACCESS?await isAdmin(_0x3296a9,_0x3296a9['sender']):![];if(_0x3296a9[_0x38048e(0x19f)]||_0x51d2b9){if(!_0x243766[0x1])return await _0x3296a9['sendReply']('_*Need\x20jids*_\x0a_*.common\x20jid1,jid2*_\x0a\x20_OR_\x20\x0a_*.common\x20kick\x20group_jid*_');if(_0x243766[0x1]['includes'](_0x38048e(0x13b))){var _0x31fbb2=_0x243766[0x1][_0x38048e(0x19b)]('\x20')[0x1],_0x1d4a69=await _0x3296a9[_0x38048e(0x15b)][_0x38048e(0x1c5)](_0x31fbb2),_0x26118f=await _0x3296a9[_0x38048e(0x15b)][_0x38048e(0x1c5)](_0x3296a9[_0x38048e(0x1a7)]),_0x3f6ffd=_0x1d4a69[_0x38048e(0x1be)][_0x38048e(0x16d)](({id:_0x23b00d})=>_0x26118f[_0x38048e(0x1be)][_0x38048e(0x1de)](({id:_0x3968e})=>_0x3968e===_0x23b00d)),_0x4ab686=[],_0x4dc89f=_0x38048e(0x154)+_0x1d4a69['subject']+'*\x20&\x20*'+_0x26118f['subject']+_0x38048e(0x1d4)+_0x3f6ffd[_0x38048e(0x167)]+'_\x0a';_0x3f6ffd[_0x38048e(0x1f0)](_0x889245=>_0x889245['id'])[_0x38048e(0x16d)](_0x18cc56=>!_0x18cc56[_0x38048e(0x1d7)](_0x3296a9[_0x38048e(0x15b)]['user']?.['id']?.['split'](':')[0x0]))['map'](async _0x5e7291=>{const _0x5a9173=_0x38048e;_0x4dc89f+='```@'+_0x5e7291[_0x5a9173(0x19b)]('@')[0x0]+'```\x0a',_0x4ab686[_0x5a9173(0x14e)](_0x5e7291);}),await _0x3296a9['client'][_0x38048e(0x1ee)](_0x3296a9[_0x38048e(0x1a7)],{'text':_0x4dc89f,'mentions':_0x4ab686});for(let _0x3b0cad of _0x4ab686){await new Promise(_0x317215=>setTimeout(_0x317215,0x3e8)),await _0x3296a9['client'][_0x38048e(0x18b)](_0x3296a9[_0x38048e(0x1a7)],[_0x3b0cad],_0x38048e(0x1c4));}return;}var _0x31fbb2=_0x243766[0x1][_0x38048e(0x19b)](','),_0x1d4a69=await _0x3296a9[_0x38048e(0x15b)]['groupMetadata'](_0x31fbb2[0x0]),_0x26118f=await _0x3296a9[_0x38048e(0x15b)]['groupMetadata'](_0x31fbb2[0x1]),_0x3f6ffd=_0x1d4a69[_0x38048e(0x1be)][_0x38048e(0x16d)](({id:_0x30e6a3})=>_0x26118f[_0x38048e(0x1be)]['some'](({id:_0xf7b14a})=>_0xf7b14a===_0x30e6a3)),_0x4dc89f='_*Common\x20participants\x20of:*_\x20*'+_0x1d4a69[_0x38048e(0x161)]+_0x38048e(0x174)+_0x26118f['subject']+_0x38048e(0x1d4)+_0x3f6ffd['length']+'_\x0a',_0x4ab686=[];_0x3f6ffd['map'](async _0x1a0d4a=>{const _0x1af00b=_0x38048e;_0x4dc89f+=_0x1af00b(0x152)+_0x1a0d4a['id'][_0x1af00b(0x19b)]('@')[0x0]+_0x1af00b(0x1f5),_0x4ab686[_0x1af00b(0x14e)](_0x1a0d4a['id']);}),await _0x3296a9['client']['sendMessage'](_0x3296a9[_0x38048e(0x1a7)],{'text':_0x4dc89f,'mentions':_0x4ab686});}}),Module({'pattern':_0x13bcc7(0x123),'fromMe':![],'use':'utility','desc':_0x13bcc7(0x165),'usage':_0x13bcc7(0x140)},async(_0x2c4370,_0x3af308)=>{const _0x3f8b1f=_0x13bcc7;let _0x559c9b=ADMIN_ACCESS?await isAdmin(_0x2c4370,_0x2c4370[_0x3f8b1f(0x196)]):![];if(_0x2c4370['fromOwner']||_0x559c9b){if(!_0x3af308[0x1])return await _0x2c4370[_0x3f8b1f(0x197)](_0x3f8b1f(0x136));var _0x40fda1=_0x3af308[0x1]['split'](','),_0x381888=(await _0x2c4370[_0x3f8b1f(0x15b)][_0x3f8b1f(0x1c5)](_0x40fda1[0x0]))[_0x3f8b1f(0x1be)],_0x4fac14=(await _0x2c4370[_0x3f8b1f(0x15b)]['groupMetadata'](_0x40fda1[0x1]))[_0x3f8b1f(0x1be)],_0x476a4d=_0x381888[_0x3f8b1f(0x16d)](({id:_0xf0f9e8})=>!_0x4fac14['some'](({id:_0x2c5222})=>_0x2c5222===_0xf0f9e8)),_0x3375db=_0x3f8b1f(0x1aa)+_0x476a4d[_0x3f8b1f(0x167)]+'_\x0a';return _0x476a4d['map'](async _0x47a639=>{const _0x230d3e=_0x3f8b1f;_0x3375db+=_0x230d3e(0x190)+_0x47a639['id'][_0x230d3e(0x19b)]('@')[0x0]+_0x230d3e(0x1fd);}),await _0x2c4370['sendReply'](_0x3375db);}}),Module({'pattern':'tag(all|admin)?\x20?(.*)?','fromMe':![],'desc':Lang['TAGALL_DESC'],'use':_0x13bcc7(0x159),'usage':_0x13bcc7(0x1b4)},async(_0x514011,_0x405db4)=>{const _0x368373=_0x13bcc7,_0x25ce3c=_0x405db4[0x2]?.[_0x368373(0x13c)](/(\d+@g\.us)/);if(_0x25ce3c)_0x514011[_0x368373(0x1a7)]=_0x25ce3c[0x1];else{if(!_0x514011['isGroup'])return await _0x514011[_0x368373(0x197)](Lang[_0x368373(0x14a)]);}const _0x97351c=ADMIN_ACCESS?await isAdmin(_0x514011,_0x514011['sender']):![];if(!(_0x514011['fromOwner']||_0x97351c))return;let _0x2903f0;try{const _0x3253f9=await _0x514011[_0x368373(0x15b)][_0x368373(0x1c5)](_0x514011[_0x368373(0x1a7)]);_0x2903f0=_0x3253f9[_0x368373(0x1be)];}catch(_0x5ee089){return await _0x514011[_0x368373(0x197)](_0x368373(0x1b5));}const _0x52c737=_0x405db4[0x1]?.[_0x368373(0x1d7)]('admin'),_0x38bac4=_0x405db4[0x1]?.[_0x368373(0x1d7)](_0x368373(0x175)),_0x10e2ec=!!_0x514011['reply_message'],_0x37d45f=_0x405db4[0x2]?.[_0x368373(0x19e)](),_0x47e326=_0x37d45f&&!_0x37d45f[_0x368373(0x13c)](/(\d+@g\.us)/);if(!_0x10e2ec&&!_0x52c737&&!_0x38bac4&&!_0x47e326)return await _0x514011[_0x368373(0x197)]('_Tag\x20what?_\x0a\x0a'+handler+_0x368373(0x147)+handler+'tag\x20`admin`\x0a'+handler+_0x368373(0x180)+handler+_0x368373(0x139)+handler+_0x368373(0x1e9));const _0x53fc1c=[];let _0x1e359a='';for(let _0x3b1edc=0x0;_0x3b1edc<_0x2903f0[_0x368373(0x167)];_0x3b1edc++){const _0x304f0a=_0x2903f0[_0x3b1edc];if(_0x52c737&&!_0x304f0a[_0x368373(0x1ab)])continue;_0x53fc1c[_0x368373(0x14e)](_0x304f0a['id'][_0x368373(0x1a5)](_0x368373(0x1ed),_0x368373(0x162))),_0x1e359a+=_0x53fc1c[_0x368373(0x167)]+_0x368373(0x14f)+_0x304f0a['id']['split']('@')[0x0]+'\x0a';}if(_0x10e2ec)await _0x514011[_0x368373(0x1e8)](_0x514011[_0x368373(0x1a7)],_0x514011['quoted'],{'detectLinks':!![],'contextInfo':{'mentionedJid':_0x53fc1c,'isForwarded':![]}});else _0x47e326?await _0x514011[_0x368373(0x15b)][_0x368373(0x1ee)](_0x514011[_0x368373(0x1a7)],{'text':_0x37d45f,'mentions':_0x53fc1c}):await _0x514011[_0x368373(0x15b)]['sendMessage'](_0x514011['jid'],{'text':'```'+_0x1e359a+_0x368373(0x190),'mentions':_0x53fc1c});}),Module({'pattern':'block\x20?(.*)','fromMe':!![],'use':'owner','desc':'Block\x20a\x20user','usage':_0x13bcc7(0x188)},async(_0x5a7d89,_0x1006ac)=>{const _0x559a73=_0x13bcc7;var _0x4f4550=_0x5a7d89['jid'][_0x559a73(0x182)](_0x559a73(0x11a)),_0x4bb814=_0x5a7d89[_0x559a73(0x1a7)];if(_0x4f4550)_0x4bb814=_0x5a7d89[_0x559a73(0x127)]?.[0x0]||_0x5a7d89[_0x559a73(0x178)]?.[_0x559a73(0x1a7)];await _0x5a7d89['client'][_0x559a73(0x1c0)](_0x4bb814,_0x559a73(0x191));}),Module({'pattern':_0x13bcc7(0x141),'fromMe':!![],'use':'owner','desc':'Join\x20a\x20WhatsApp\x20group\x20using\x20invite\x20link','usage':_0x13bcc7(0x1af)},async(_0x49a2e8,_0x45f81a)=>{const _0x443adf=_0x13bcc7;let _0x511b64=/^(?:https?:\/\/)?chat\.whatsapp\.com\/(?:invite\/)?([a-zA-Z0-9_-]{22})(?:\?.*)?$/,_0x3e8b1d=_0x45f81a[0x1]&&_0x45f81a[0x1][_0x443adf(0x13c)](_0x511b64);if(!_0x3e8b1d)return await _0x49a2e8[_0x443adf(0x197)]('_*Need\x20group\x20link*_');let _0x6bf5a0=_0x3e8b1d[0x1];await _0x49a2e8[_0x443adf(0x15b)][_0x443adf(0x184)](_0x6bf5a0);}),Module({'pattern':'unblock\x20?(.*)','fromMe':!![],'use':_0x13bcc7(0x160),'desc':_0x13bcc7(0x129),'usage':_0x13bcc7(0x189)},async _0x337f9d=>{const _0x9895f3=_0x13bcc7;var _0x2dbbdf=_0x337f9d['jid'][_0x9895f3(0x182)](_0x9895f3(0x11a));if(!_0x2dbbdf)return;var _0xc3455f=_0x337f9d[_0x9895f3(0x127)]?.[0x0]||_0x337f9d['reply_message']?.[_0x9895f3(0x1a7)];await _0x337f9d[_0x9895f3(0x15b)]['updateBlockStatus'](_0xc3455f,'unblock');}),Module({'pattern':_0x13bcc7(0x170),'desc':_0x13bcc7(0x1b3),'use':'utility','usage':_0x13bcc7(0x119),'fromMe':!![]},async(_0x53adeb,_0x5f5cfc)=>{const _0x57f852=_0x13bcc7,_0x4e482e=_0x5f5cfc[0x1]?.['trim']()[_0x57f852(0x19b)]('\x20')||[],_0x80c2af=_0x4e482e[0x0]?.['toLowerCase']();if(!_0x80c2af||_0x80c2af!==_0x57f852(0x175)&&_0x80c2af!==_0x57f852(0x12e))return await _0x53adeb[_0x57f852(0x197)](_0x57f852(0x156)+'•\x20`.getjids\x20all`\x20-\x20Show\x20all\x20group\x20JIDs\x0a'+_0x57f852(0x183)+'•\x20`.getjids\x20recent\x2015`\x20-\x20Show\x2015\x20recent\x20chat\x20JIDs');if(_0x80c2af===_0x57f852(0x175)){var _0x4b487c=await _0x53adeb['client'][_0x57f852(0x17e)](),_0x2980d8=Object[_0x57f852(0x1cf)](_0x4b487c);const _0x51c793=await fetchRecentChats(0x64),_0x331175=_0x51c793[_0x57f852(0x16d)](_0x59e9e0=>_0x59e9e0[_0x57f852(0x1dc)]===_0x57f852(0x14c)),_0x3ecf1b=_0x2980d8['length']+_0x331175['length'];if(!_0x3ecf1b)return await _0x53adeb['sendReply'](_0x57f852(0x150));const _0x4a60d3=0x64;let _0x3042d9=Math[_0x57f852(0x1cd)](_0x3ecf1b/_0x4a60d3),_0x14812f=0x0;for(let _0x3663cf=0x0;_0x3663cf<_0x3042d9;_0x3663cf++){const _0xf1e3d3=_0x3663cf*_0x4a60d3,_0x5d344c=Math['min'](_0xf1e3d3+_0x4a60d3,_0x3ecf1b);let _0x44b292='*All\x20Chat\x20JIDs*\x0a';_0x3042d9>0x1&&(_0x44b292+=_0x57f852(0x1cc)+(_0x3663cf+0x1)+'/'+_0x3042d9+_0x57f852(0x1e5)+(_0xf1e3d3+0x1)+'-'+_0x5d344c+_0x57f852(0x172)+_0x3ecf1b+'\x0a\x0a');while(_0x14812f<_0x2980d8['length']&&_0x14812f-_0x3663cf*_0x4a60d3<_0x4a60d3){const _0x399ab9=_0x2980d8[_0x14812f-_0x3663cf*_0x4a60d3];if(!_0x399ab9)break;const _0x26dcc9=_0x14812f+0x1,_0x4a118d=_0x4b487c[_0x399ab9],_0xfb2286=_0x4a118d?_0x4a118d[_0x57f852(0x161)]:'Unknown\x20Group';_0x44b292+='_*'+_0x26dcc9+'.\x20👥\x20Group:*_\x20`'+_0xfb2286+_0x57f852(0x1a8)+_0x399ab9+_0x57f852(0x163),_0x14812f++;if(_0x14812f>=_0xf1e3d3+_0x4a60d3)break;}const _0x46505b=Math[_0x57f852(0x12a)](0x0,_0xf1e3d3-_0x2980d8[_0x57f852(0x167)]),_0x3313db=Math['min'](_0x331175[_0x57f852(0x167)],_0x5d344c-_0x2980d8['length']);for(let _0x52e5ef=_0x46505b;_0x52e5ef<_0x3313db&&_0x14812f<_0x5d344c;_0x52e5ef++){const _0x1ab876=_0x331175[_0x52e5ef],_0x5cea93=_0x14812f+0x1,_0x4aecbd=_0x1ab876[_0x57f852(0x1c3)]||_0x57f852(0x173);_0x44b292+='_*'+_0x5cea93+_0x57f852(0x15d)+_0x4aecbd+_0x57f852(0x1a8)+_0x1ab876[_0x57f852(0x1a7)]+_0x57f852(0x163),_0x14812f++;}await _0x53adeb[_0x57f852(0x197)](_0x44b292),_0x3663cf<_0x3042d9-0x1&&await new Promise(_0xeec39f=>setTimeout(_0xeec39f,0x3e8));}}else{if(_0x80c2af===_0x57f852(0x12e)){const _0x3faf3d=parseInt(_0x4e482e[0x1])||0xa;if(_0x3faf3d>0x32)return await _0x53adeb[_0x57f852(0x197)](_0x57f852(0x1e2));const _0x42d2bf=await fetchRecentChats(_0x3faf3d);if(!_0x42d2bf['length'])return await _0x53adeb[_0x57f852(0x197)](_0x57f852(0x18e));let _0x194342={};try{_0x194342=await _0x53adeb[_0x57f852(0x15b)][_0x57f852(0x17e)]();}catch(_0x497561){console[_0x57f852(0x1c9)]('Error\x20fetching\x20group\x20data:',_0x497561);}let _0x8b7e91=_0x57f852(0x12c)+_0x42d2bf[_0x57f852(0x167)]+'\x20most\x20recent\x20chats_\x0a\x0a';for(let _0x2ca274=0x0;_0x2ca274<_0x42d2bf[_0x57f852(0x167)];_0x2ca274++){const _0x3b3ad4=_0x42d2bf[_0x2ca274],_0x4d86c9=_0x2ca274+0x1,_0x24df88=_0x3b3ad4[_0x57f852(0x1dc)]===_0x57f852(0x159)?_0x57f852(0x1ea):_0x57f852(0x168);let _0x4cdc47=_0x3b3ad4[_0x57f852(0x1c3)]||_0x57f852(0x173);_0x3b3ad4[_0x57f852(0x1dc)]===_0x57f852(0x159)&&_0x194342[_0x3b3ad4['jid']]&&(_0x4cdc47=_0x194342[_0x3b3ad4['jid']][_0x57f852(0x161)]||_0x3b3ad4[_0x57f852(0x1c3)]||_0x57f852(0x1e4));const _0x5457fd=new Date(_0x3b3ad4[_0x57f852(0x1da)])['toLocaleString']();_0x8b7e91+='_*'+_0x4d86c9+'.\x20'+_0x24df88+_0x57f852(0x1bd)+_0x4cdc47+'`\x0a',_0x8b7e91+=_0x57f852(0x120)+_0x3b3ad4['jid']+'`\x0a',_0x8b7e91+=_0x57f852(0x1c1)+_0x5457fd+'\x0a\x0a';}const _0x36b53e=0xfa0;if(_0x8b7e91[_0x57f852(0x167)]>_0x36b53e){const _0xa707a3=[];let _0x118a4c=_0x57f852(0x12c)+_0x42d2bf['length']+'\x20most\x20recent\x20chats_\x0a\x0a';for(let _0x5b1091=0x0;_0x5b1091<_0x42d2bf['length'];_0x5b1091++){const _0x1e96c3=_0x42d2bf[_0x5b1091],_0x493860=_0x5b1091+0x1,_0x3b4dde=_0x1e96c3[_0x57f852(0x1dc)]===_0x57f852(0x159)?'👥\x20Group':'💬\x20Private';let _0x1287fe=_0x1e96c3[_0x57f852(0x1c3)]||'Unknown';_0x1e96c3['type']===_0x57f852(0x159)&&_0x194342[_0x1e96c3[_0x57f852(0x1a7)]]&&(_0x1287fe=_0x194342[_0x1e96c3['jid']][_0x57f852(0x161)]||_0x1e96c3['name']||_0x57f852(0x1e4));const _0x430cf5=new Date(_0x1e96c3[_0x57f852(0x1da)])[_0x57f852(0x185)](),_0x1d0a80='_*'+_0x493860+'.\x20'+_0x3b4dde+_0x57f852(0x1bd)+_0x1287fe+_0x57f852(0x1a8)+_0x1e96c3[_0x57f852(0x1a7)]+_0x57f852(0x137)+_0x430cf5+'\x0a\x0a';_0x118a4c['length']+_0x1d0a80['length']>_0x36b53e?(_0xa707a3[_0x57f852(0x14e)](_0x118a4c),_0x118a4c=_0x1d0a80):_0x118a4c+=_0x1d0a80;}_0x118a4c[_0x57f852(0x19e)]()&&_0xa707a3['push'](_0x118a4c);for(let _0x4be9d1=0x0;_0x4be9d1<_0xa707a3[_0x57f852(0x167)];_0x4be9d1++){await _0x53adeb[_0x57f852(0x197)](_0xa707a3[_0x4be9d1]),_0x4be9d1<_0xa707a3[_0x57f852(0x167)]-0x1&&await new Promise(_0x2c2ba6=>setTimeout(_0x2c2ba6,0x3e8));}}else await _0x53adeb[_0x57f852(0x197)](_0x8b7e91);}}}),Module({'pattern':_0x13bcc7(0x1b7),'fromMe':!![],'use':_0x13bcc7(0x160),'desc':'Change/Get\x20profile\x20picture\x20(full\x20screen\x20supported)\x20with\x20replied\x20message','usage':_0x13bcc7(0x193)},async(_0x39b25e,_0x3be80f)=>{const _0x5e82be=_0x13bcc7;if(_0x39b25e[_0x5e82be(0x178)]&&_0x39b25e['reply_message'][_0x5e82be(0x148)]){var _0xb7b243=await _0x39b25e[_0x5e82be(0x178)][_0x5e82be(0x134)]();const _0xd5ec07=_0x39b25e[_0x5e82be(0x15b)]['user']?.['id']?.['split'](':')[0x0]+_0x5e82be(0x17c);return await _0x39b25e[_0x5e82be(0x15b)][_0x5e82be(0x1d0)](_0xd5ec07,{'url':_0xb7b243}),await _0x39b25e[_0x5e82be(0x197)]('_*Updated\x20profile\x20pic\x20✅*_');}if(_0x39b25e[_0x5e82be(0x178)]&&!_0x39b25e['reply_message']['image']){try{var _0xb7b243=await _0x39b25e[_0x5e82be(0x15b)][_0x5e82be(0x1bf)](_0x39b25e[_0x5e82be(0x178)]?.[_0x5e82be(0x1a7)],'image');}catch{return await _0x39b25e[_0x5e82be(0x197)]('_Profile\x20pic\x20not\x20found!_');}return await _0x39b25e[_0x5e82be(0x197)]({'url':_0xb7b243},_0x5e82be(0x148));}}),Module({'pattern':_0x13bcc7(0x198),'fromMe':![],'use':_0x13bcc7(0x160),'desc':_0x13bcc7(0x1fb),'usage':'.gpp\x20(reply\x20to\x20image\x20to\x20set\x20group\x20icon)'},async(_0xb5c70f,_0x55b17d)=>{const _0x3dd823=_0x13bcc7;let _0x65277=ADMIN_ACCESS?await isAdmin(_0xb5c70f,_0xb5c70f[_0x3dd823(0x196)]):![];if(_0xb5c70f[_0x3dd823(0x19f)]||_0x65277){if(_0xb5c70f[_0x3dd823(0x178)]&&_0xb5c70f[_0x3dd823(0x178)][_0x3dd823(0x148)]){var _0x36f30d=await _0xb5c70f['reply_message']['download']();return await _0xb5c70f['client'][_0x3dd823(0x1d0)](_0xb5c70f[_0x3dd823(0x1a7)],{'url':_0x36f30d}),await _0xb5c70f[_0x3dd823(0x197)](_0x3dd823(0x1eb));}if(!_0xb5c70f['reply_message']?.['image']){try{var _0x36f30d=await _0xb5c70f['client']['profilePictureUrl'](_0xb5c70f[_0x3dd823(0x1a7)],_0x3dd823(0x148));}catch{return await _0xb5c70f[_0x3dd823(0x197)]('_Profile\x20pic\x20not\x20found!_');}return await _0xb5c70f[_0x3dd823(0x197)]({'url':_0x36f30d},_0x3dd823(0x148));}}}),Module({'pattern':_0x13bcc7(0x1fe),'fromMe':![],'use':'group','desc':_0x13bcc7(0x13d),'usage':'.gstatus\x20your\x20text\x0a.gstatus\x20(reply\x20to\x20image/video/audio)\x0a.gstatus\x20your\x20caption\x20(reply\x20to\x20image/video)\x0a.gstatus\x20120363xxxx@g.us\x20(reply\x20to\x20a\x20message\x20in\x20DM\x20or\x20group)'},async(_0x562d6b,_0x26e7fa)=>{const _0x5567eb=_0x13bcc7,_0x596d40=(_0x26e7fa[0x1]||'')[_0x5567eb(0x19e)](),_0x2962d0=_0x562d6b['reply_message'],_0x2e07a0=_0x596d40[_0x5567eb(0x13c)](/(\d+(?:-\d+)?@g\.us|\d+@s\.whatsapp\.net|\d+@lid)/i),_0x11c233=!!_0x2e07a0;if(!_0x562d6b[_0x5567eb(0x1fc)]&&!_0x11c233)return await _0x562d6b[_0x5567eb(0x197)](_0x5567eb(0x18d));let _0x2e7535=![];_0x562d6b[_0x5567eb(0x1fc)]&&ADMIN_ACCESS&&(_0x2e7535=await isAdmin(_0x562d6b,_0x562d6b['sender']));if(!(_0x562d6b[_0x5567eb(0x19f)]||_0x2e7535))return;if(typeof _0x562d6b[_0x5567eb(0x158)]!==_0x5567eb(0x1b1))return await _0x562d6b[_0x5567eb(0x197)]('_Group\x20status\x20is\x20not\x20supported\x20in\x20this\x20build._');const _0x4025b5=_0x11c233?_0x2e07a0[0x1]:_0x562d6b['jid'],_0x3cf1b9=_0x11c233?_0x596d40[_0x5567eb(0x1a5)](_0x2e07a0[0x0],'')['trim']():_0x596d40;if(!_0x4025b5['endsWith'](_0x5567eb(0x11a)))return await _0x562d6b[_0x5567eb(0x197)]('_Target\x20must\x20be\x20a\x20valid\x20group\x20JID\x20(..@g.us)._\x0a_Example:\x20.gstatus\x20120363xxxx@g.us\x20(reply\x20to\x20a\x20message)_');if(_0x11c233&&!_0x2962d0)return await _0x562d6b[_0x5567eb(0x197)](_0x5567eb(0x1cb));if(!_0x2962d0&&!_0x3cf1b9)return await _0x562d6b[_0x5567eb(0x197)]('_Reply\x20to\x20an\x20image/video/audio\x20or\x20provide\x20text\x20to\x20post\x20group\x20status._');const _0x26da29=async _0x3db928=>{const _0x1f9b9c=_0x5567eb,_0x59d3fe=_0x562d6b[_0x1f9b9c(0x1a7)];_0x562d6b['jid']=_0x4025b5;try{await _0x562d6b[_0x1f9b9c(0x158)](_0x3db928);}finally{_0x562d6b['jid']=_0x59d3fe;}},_0x3eba24=_0x11c233?_0x5567eb(0x14b)+_0x4025b5:'';try{if(_0x2962d0?.[_0x5567eb(0x148)]){const _0x136563=await _0x2962d0[_0x5567eb(0x134)](_0x5567eb(0x128));return await _0x26da29({'image':_0x136563,..._0x3cf1b9||_0x2962d0['caption']?{'caption':_0x3cf1b9||_0x2962d0['caption']}:{}}),await _0x562d6b[_0x5567eb(0x1ff)]('✅');}if(_0x2962d0?.[_0x5567eb(0x1b2)]){const _0x1c8512=await _0x2962d0[_0x5567eb(0x134)]('buffer');return await _0x26da29({'video':_0x1c8512,..._0x3cf1b9||_0x2962d0[_0x5567eb(0x164)]?{'caption':_0x3cf1b9||_0x2962d0[_0x5567eb(0x164)]}:{}}),await _0x562d6b[_0x5567eb(0x1ff)]('✅');}if(_0x2962d0?.[_0x5567eb(0x143)]){const _0x3e50e6=await _0x2962d0[_0x5567eb(0x134)]('buffer');return await _0x26da29({'audio':_0x3e50e6,'mimetype':_0x2962d0[_0x5567eb(0x11d)]||'audio/mp4'}),await _0x562d6b[_0x5567eb(0x1ff)]('✅');}if(_0x2962d0?.[_0x5567eb(0x144)]||_0x2962d0?.[_0x5567eb(0x1ca)]){const _0x40f389=(_0x2962d0[_0x5567eb(0x144)]||_0x2962d0['message']||'')[_0x5567eb(0x19e)](),_0x3052c9=(_0x3cf1b9||_0x40f389||'')[_0x5567eb(0x19e)]();if(!_0x3052c9)return await _0x562d6b[_0x5567eb(0x197)](_0x5567eb(0x1a6));return await _0x26da29({'text':_0x3052c9}),await _0x562d6b['react']('✅');}if(_0x3cf1b9)return await _0x26da29({'text':_0x3cf1b9}),await _0x562d6b['react']('✅');return await _0x562d6b['sendReply'](_0x5567eb(0x1f8));}catch(_0x553410){return await _0x562d6b['sendReply'](_0x5567eb(0x15a)+_0x553410[_0x5567eb(0x1ca)]+'_');}});
+const { getString } = require("./utils/lang");
+const Lang = getString("group");
+const { loadBaileys } = require("../core/helpers");
+const baileysPromise = loadBaileys()
+  .then((baileys) => {
+    ({ delay } = baileys);
+  })
+  .catch((err) => {
+    console.error("Failed to load baileys:", err.message);
+    process.exit(1);
+  });
+const { isAdmin, isNumeric, mentionjid } = require("./utils");
+const { ADMIN_ACCESS, HANDLERS, MODE } = require("../config");
+const { Module } = require("../main");
+const {
+  fetchFromStore,
+  getFullMessage,
+  fetchRecentChats,
+} = require("../core/store");
+var handler = HANDLERS !== "false" ? HANDLERS.split("")[0] : "";
+
+Module(
+  {
+    pattern: "clear ?(.*)",
+    fromMe: true,
+    desc: "Clear chat",
+    use: "misc",
+    usage: ".clear (clears the current chat)",
+  },
+  async (message, match) => {
+    await message.client.chatModify(
+      {
+        delete: true,
+        lastMessages: [
+          {
+            key: message.data.key,
+            messageTimestamp: message.data.messageTimestamp,
+          },
+        ],
+      },
+      message.jid
+    );
+    return await message.send("_Chat cleared!_");
+  }
+);
+
+Module(
+  {
+    pattern: "kick ?(.*)",
+    fromMe: false,
+    desc: Lang.KICK_DESC,
+    use: "group",
+    usage:
+      ".kick @mention or reply\n.kick all (removes everyone)\n.kick 91 (removes numbers starting with 91)",
+  },
+  async (message, match) => {
+    if (!message.isGroup) return await message.sendReply(Lang.GROUP_COMMAND);
+    let adminAccesValidated = ADMIN_ACCESS
+      ? await isAdmin(message, message.sender)
+      : false;
+    if (message.fromOwner || adminAccesValidated) {
+      var { participants, subject } = await message.client.groupMetadata(
+        message.jid
+      );
+      if (match[1]) {
+        if (match[1] === "all") {
+          var admin = await isAdmin(message);
+          if (!admin) return await message.sendReply(Lang.NOT_ADMIN);
+          let users = participants.filter((member) => !member.admin);
+          await message.send(
+            `_❗❗ Kicking *every* members of ${subject}. Restart bot immediately to kill this process ❗❗_\n_*You have 5 seconds left*_`
+          );
+          await new Promise((r) => setTimeout(r, 5000));
+          for (let member of users) {
+            await new Promise((r) => setTimeout(r, 1000));
+            await message.client.groupParticipantsUpdate(
+              message.jid,
+              [member.id],
+              "remove"
+            );
+          }
+          return;
+        }
+        if (isNumeric(match[1])) {
+          var admin = await isAdmin(message);
+          if (!admin) return await message.sendReply(Lang.NOT_ADMIN);
+          let users = participants.filter(
+            (member) => member.id.startsWith(match[1]) && !member.admin
+          );
+          await message.send(
+            `_❗❗ Kicking *${users.length}* members starting with number *${match[1]}*. Restart bot immediately to kill this process ❗❗_\n_*You have 5 seconds left*_`
+          );
+          await new Promise((r) => setTimeout(r, 5000));
+          for (let member of users) {
+            await new Promise((r) => setTimeout(r, 1000));
+            await message.client.groupParticipantsUpdate(
+              message.jid,
+              [member.id],
+              "remove"
+            );
+          }
+          return;
+        }
+      }
+      const user = message.mention?.[0] || message.reply_message?.jid;
+      if (!user) return await message.sendReply(Lang.NEED_USER);
+      var admin = await isAdmin(message);
+      if (!admin) return await message.sendReply(Lang.NOT_ADMIN);
+      await message.client.sendMessage(message.jid, {
+        text: mentionjid(user) + Lang.KICKED,
+        mentions: [user],
+      });
+      await message.client.groupParticipantsUpdate(
+        message.jid,
+        [user],
+        "remove"
+      );
+    }
+  }
+);
+Module(
+  {
+    pattern: "add ?(.*)",
+    fromMe: true,
+    desc: Lang.ADD_DESC,
+    warn: "You number might get banned, use with caution",
+    use: "group",
+    usage: ".add 923111008401",
+  },
+  async (message, match) => {
+    if (!message.isGroup) return await message.sendReply(Lang.GROUP_COMMAND);
+    var init = match[1] || message.reply_message?.jid.split("@")[0];
+    if (!init) return await message.sendReply(Lang.NEED_USER);
+    var admin = await isAdmin(message);
+    if (!admin) return await message.sendReply(Lang.NOT_ADMIN);
+    var initt = init.split(" ").join("");
+    var user = initt
+      .replace(/\+/g, "")
+      .replace(" ", "")
+      .replace(" ", "")
+      .replace(" ", "")
+      .replace(" ", "")
+      .replace(/\(/g, "")
+      .replace(/\)/g, "")
+      .replace(/-/g, "");
+    if (!/^\d{7,15}$/.test(user))
+      return await message.sendReply("_Enter a valid international phone number._");
+    await message.client.groupParticipantsUpdate(
+      message.jid,
+      [user + "@s.whatsapp.net"],
+      "add"
+    );
+  }
+);
+Module(
+  {
+    pattern: "promote ?(.*)",
+    fromMe: false,
+    use: "group",
+    desc: Lang.PROMOTE_DESC,
+    usage: ".promote @mention or reply",
+  },
+  async (message, match) => {
+    let adminAccesValidated = ADMIN_ACCESS
+      ? await isAdmin(message, message.sender)
+      : false;
+    if (message.fromOwner || adminAccesValidated) {
+      const user = message.mention?.[0] || message.reply_message?.jid;
+      if (!user) return await message.sendReply(Lang.NEED_USER);
+      if (!message.isGroup) return await message.sendReply(Lang.GROUP_COMMAND);
+      var admin = await isAdmin(message);
+      if (!admin) return await message.sendReply(Lang.NOT_ADMIN);
+      await message.client.sendMessage(message.jid, {
+        text: mentionjid(user) + Lang.PROMOTED,
+        mentions: [user],
+      });
+      await message.client.groupParticipantsUpdate(
+        message.jid,
+        [user],
+        "promote"
+      );
+    }
+  }
+);
+Module(
+  {
+    pattern: "requests ?(.*)",
+    fromMe: false,
+    use: "group",
+    usage: ".requests approve all or reject all",
+    desc: "Get list of pending join requests",
+  },
+  async (message, match) => {
+    if (!message.isGroup) return await message.sendReply(Lang.GROUP_COMMAND);
+    let adminAccesValidated = ADMIN_ACCESS
+      ? await isAdmin(message, message.sender)
+      : false;
+    if (message.fromOwner || adminAccesValidated) {
+      var admin = await isAdmin(message);
+      if (!admin) return await message.sendReply(Lang.NOT_ADMIN);
+      let approvalList = await message.client.groupRequestParticipantsList(
+        message.jid
+      );
+      if (!approvalList.length)
+        return await message.sendReply("_No pending requests!_");
+      let approvalJids = approvalList.map((x) => x.jid);
+      if (match[1]) {
+        match = match[1].toLowerCase();
+        switch (match) {
+          case "approve all": {
+            await message.sendReply(
+              `_Approving ${approvalJids.length} participants._`
+            );
+            for (let x of approvalJids) {
+              await message.client.groupRequestParticipantsUpdate(
+                message.jid,
+                [x],
+                "approve"
+              );
+              await delay(900);
+            }
+            break;
+          }
+          case "reject all": {
+            await message.sendReply(
+              `_Rejecting ${approvalJids.length} participants._`
+            );
+            for (let x of approvalJids) {
+              await message.client.groupRequestParticipantsUpdate(
+                message.jid,
+                [x],
+                "reject"
+              );
+              await delay(900);
+            }
+            break;
+          }
+          default: {
+            return await message.sendReply(
+              "_Invalid input_\n_Eg: .requests approve all_\n_.requests reject all_"
+            );
+          }
+        }
+        return;
+      }
+      let msg =
+        "*_Group join requests_*\n\n_(Use .requests approve|reject all)_\n\n";
+      const requestType = (type_, requestor) => {
+        switch (type_) {
+          case "linked_group_join":
+            return "community";
+          case "invite_link":
+            return "invite link";
+          case "non_admin_add":
+            return `added by +${requestor.split("@")[0]}`;
+        }
+      };
+      for (let x in approvalList) {
+        msg += `*_${parseInt(x) + 1}. @${
+          approvalList[x].jid.split("@")[0]
+        }_*\n  _• via: ${requestType(
+          approvalList[x].request_method,
+          approvalList[x].requestor
+        )}_\n  _• at: ${new Date(
+          parseInt(approvalList[x].request_time) * 1000
+        ).toLocaleString()}_\n\n`;
+      }
+      return await message.client.sendMessage(
+        message.jid,
+        { text: msg, mentions: approvalJids },
+        { quoted: message.data }
+      );
+    }
+  }
+);
+Module(
+  {
+    pattern: "leave",
+    fromMe: true,
+    desc: Lang.LEAVE_DESC,
+    usage: ".leave (exits current group)",
+    use: "group",
+  },
+  async (message, match) => {
+    if (!message.isGroup)
+      return await message.sendReply(
+        "_Leave from where? This is a group command bruh!_"
+      );
+    return await message.client.groupLeave(message.jid);
+  }
+);
+Module(
+  {
+    pattern: "quoted",
+    fromMe: true,
+    desc: "Sends replied message's replied message. Useful for recovering deleted messages.",
+    usage: ".quoted (reply to a quoted message)",
+    use: "group",
+  },
+  async (message, match) => {
+    try {
+      const repliedMessage = await getFullMessage(
+        message.reply_message.id + "_"
+      );
+      if (!repliedMessage.found) {
+        return await message.sendReply(
+          "_Original message not found in database!_"
+        );
+      }
+      const messageData = repliedMessage.messageData;
+      let quotedMessageId = null;
+      let quotedMessage = null;
+      let participant = null;
+      if (messageData.message) {
+        const msgKeys = Object.keys(messageData.message);
+        for (const key of msgKeys) {
+          const msgContent = messageData.message[key];
+          if (msgContent?.contextInfo?.stanzaId) {
+            quotedMessageId = msgContent.contextInfo.stanzaId;
+            quotedMessage = msgContent.contextInfo.quotedMessage;
+            participant = msgContent.contextInfo.participant;
+            break;
+          }
+        }
+      }
+      if (!quotedMessageId) {
+        return await message.sendReply(
+          "_The replied message doesn't contain a quoted message!_"
+        );
+      }
+      const originalQuoted = await getFullMessage(quotedMessageId);
+      if (originalQuoted.found) {
+        return await message.forwardMessage(
+          message.jid,
+          originalQuoted.messageData
+        );
+      } else if (quotedMessage) {
+        const reconstructedMsg = {
+          key: {
+            remoteJid: message.jid,
+            fromMe: false,
+            id: quotedMessageId,
+            participant: participant,
+          },
+          message: quotedMessage,
+        };
+        return await message.forwardMessage(message.jid, reconstructedMsg);
+      } else {
+        return await message.sendReply(
+          "_Quoted message not found and no cached data available!_"
+        );
+      }
+    } catch (error) {
+      console.error("Error in quoted command:", error);
+      return await message.sendReply("_Failed to load quoted message!_");
+    }
+  }
+);
+
+Module(
+  {
+    pattern: "demote ?(.*)",
+    fromMe: false,
+    use: "group",
+    desc: Lang.DEMOTE_DESC,
+    usage: ".demote @mention or reply",
+  },
+  async (message, match) => {
+    if (!message.isGroup) return await message.sendReply(Lang.GROUP_COMMAND);
+    let adminAccesValidated = ADMIN_ACCESS
+      ? await isAdmin(message, message.sender)
+      : false;
+    if (message.fromOwner || adminAccesValidated) {
+      const user = message.mention?.[0] || message.reply_message?.jid;
+      if (!user) return await message.sendReply(Lang.NEED_USER);
+      var admin = await isAdmin(message);
+      if (!admin) return await message.sendReply(Lang.NOT_ADMIN);
+      await message.client.sendMessage(message.jid, {
+        text: mentionjid(user) + Lang.DEMOTED,
+        mentions: [user],
+      });
+      await message.client.groupParticipantsUpdate(
+        message.jid,
+        [message.reply_message?.jid],
+        "demote"
+      );
+    }
+  }
+);
+Module(
+  {
+    pattern: "mute ?(.*)",
+    use: "group",
+    fromMe: false,
+    desc: Lang.MUTE_DESC,
+    usage:
+      ".mute (mutes group indefinitely)\n.mute 1h (mutes for 1 hour)\n.mute 5m (mutes for 5 minutes)",
+  },
+  async (message, match) => {
+    if (!message.isGroup) return await message.sendReply(Lang.GROUP_COMMAND);
+    let adminAccesValidated = ADMIN_ACCESS
+      ? await isAdmin(message, message.sender)
+      : false;
+    if (message.fromOwner || adminAccesValidated) {
+      var admin = await isAdmin(message);
+      if (!admin) return await message.sendReply(Lang.NOT_ADMIN);
+      if (match[1]) {
+        const durationMatch = String(match[1]).trim().toLowerCase().match(/^(\d+)([hm])$/);
+        if (!durationMatch)
+          return await message.sendReply("_Usage: .mute 5m or .mute 1h (maximum 24 hours)._");
+        const count = Number(durationMatch[1]);
+        const duration = count * (durationMatch[2] === "h" ? 3600000 : 60000);
+        if (!Number.isSafeInteger(duration) || duration < 60000 || duration > 86400000)
+          return await message.sendReply("_Mute duration must be between 1 minute and 24 hours._");
+        await message.client.groupSettingUpdate(message.jid, "announcement");
+        await message.sendReply("_Muted for " + durationMatch[0] + " (until restart or expiry)._");
+        const jid = message.jid;
+        const client = message.client;
+        const timer = setTimeout(async () => {
+          try {
+            await client.groupSettingUpdate(jid, "not_announcement");
+            await client.sendMessage(jid, { text: Lang.UNMUTED });
+          } catch (error) {
+            console.error("[mute] auto-unmute failed:", error?.message || error);
+          }
+        }, duration);
+        timer.unref?.();
+        return;
+      }
+      await message.client.groupSettingUpdate(message.jid, "announcement");
+      await message.send(Lang.MUTED);
+    }
+  }
+);
+Module(
+  {
+    pattern: "unmute",
+    use: "group",
+    fromMe: false,
+    desc: Lang.UNMUTE_DESC,
+    usage: ".unmute (unmutes the group)",
+  },
+  async (message, match) => {
+    if (!message.isGroup) return await message.sendReply(Lang.GROUP_COMMAND);
+    let adminAccesValidated = ADMIN_ACCESS
+      ? await isAdmin(message, message.sender)
+      : false;
+    if (message.fromOwner || adminAccesValidated) {
+      var admin = await isAdmin(message);
+      if (!admin) return await message.sendReply(Lang.NOT_ADMIN);
+      await message.client.groupSettingUpdate(message.jid, "not_announcement");
+      await message.send(Lang.UNMUTED);
+    }
+  }
+);
+Module(
+  {
+    pattern: "jid",
+    use: "group",
+    fromMe: false,
+    desc: Lang.JID_DESC,
+    usage: ".jid (gets current chat jid)\n.jid (reply to get user jid)",
+  },
+  async (message) => {
+    if (message.isGroup) {
+      let adminAccesValidated =
+        ADMIN_ACCESS && message.isGroup
+          ? await isAdmin(message, message.sender)
+          : false;
+      if (message.fromOwner || adminAccesValidated) {
+        var jid = message.reply_message?.jid || message.jid;
+        await message.sendReply(jid);
+      }
+    } else {
+      if (MODE !== "public" && !message.fromOwner) return;
+      await message.sendReply(message.jid);
+    }
+  }
+);
+Module(
+  {
+    pattern: "invite",
+    fromMe: false,
+    use: "group",
+    desc: Lang.INVITE_DESC,
+    usage: ".invite (generates group invite link)",
+  },
+  async (message) => {
+    if (!message.isGroup) return await message.sendReply(Lang.GROUP_COMMAND);
+    let adminAccesValidated = ADMIN_ACCESS
+      ? await isAdmin(message, message.sender)
+      : false;
+    if (message.fromOwner || adminAccesValidated) {
+      var admin = await isAdmin(message);
+      if (!admin) return await message.sendReply(Lang.NOT_ADMIN);
+      var code = await message.client.groupInviteCode(message.jid);
+      await message.client.sendMessage(
+        message.jid,
+        {
+          text: "https://chat.whatsapp.com/" + code,
+          detectLinks: true,
+        },
+        { detectLinks: true }
+      );
+    }
+  }
+);
+Module(
+  {
+    pattern: "revoke",
+    fromMe: false,
+    use: "group",
+    desc: Lang.REVOKE_DESC,
+    usage: ".revoke (revokes/resets group invite link)",
+  },
+  async (message, match) => {
+    if (!message.isGroup) return await message.sendReply(Lang.GROUP_COMMAND);
+    let adminAccesValidated = ADMIN_ACCESS
+      ? await isAdmin(message, message.sender)
+      : false;
+    if (message.fromOwner || adminAccesValidated) {
+      var admin = await isAdmin(message);
+      if (!admin) return await message.sendReply(Lang.NOT_ADMIN);
+      await message.client.groupRevokeInvite(message.jid);
+      await message.send(Lang.REVOKED);
+    }
+  }
+);
+Module(
+  {
+    pattern: "glock ?(.*)",
+    fromMe: false,
+    use: "group",
+    desc: "Change group settings to allow only admins to edit group's info!",
+    usage: ".glock (locks group settings)",
+  },
+  async (message, match) => {
+    if (!message.isGroup) return await message.sendReply(Lang.GROUP_COMMAND);
+    let adminAccesValidated = ADMIN_ACCESS
+      ? await isAdmin(message, message.sender)
+      : false;
+    if (message.fromOwner || adminAccesValidated) {
+      if (!(await isAdmin(message)))
+        return await message.sendReply(Lang.NOT_ADMIN);
+      return await message.client.groupSettingUpdate(message.jid, "locked");
+    }
+  }
+);
+Module(
+  {
+    pattern: "gunlock ?(.*)",
+    fromMe: false,
+    use: "group",
+    desc: "Change group settings to allow everyone to edit group's info!",
+    usage: ".gunlock (unlocks group settings)",
+  },
+  async (message, match) => {
+    if (!message.isGroup) return await message.sendReply(Lang.GROUP_COMMAND);
+    let adminAccesValidated = ADMIN_ACCESS
+      ? await isAdmin(message, message.sender)
+      : false;
+    if (message.fromOwner || adminAccesValidated) {
+      if (!(await isAdmin(message)))
+        return await message.sendReply(Lang.NOT_ADMIN);
+      return await message.client.groupSettingUpdate(message.jid, "unlocked");
+    }
+  }
+);
+Module(
+  {
+    pattern: "gname ?(.*)",
+    fromMe: false,
+    use: "group",
+    desc: "Change group subject",
+    usage: ".gname New Group Name",
+  },
+  async (message, match) => {
+    if (!message.isGroup) return await message.sendReply(Lang.GROUP_COMMAND);
+    let adminAccesValidated = ADMIN_ACCESS
+      ? await isAdmin(message, message.sender)
+      : false;
+    if (message.fromOwner || adminAccesValidated) {
+      let newName = match[1] || message.reply_message?.text;
+      if (!newName) return await message.sendReply("_Need text!_");
+      var { restrict } = await message.client.groupMetadata(message.jid);
+      if (restrict && !(await isAdmin(message)))
+        return await message.sendReply(Lang.NOT_ADMIN);
+      return await message.client.groupUpdateSubject(
+        message.jid,
+        (match[1] || message.reply_message?.text).slice(0, 25)
+      );
+    }
+  }
+);
+Module(
+  {
+    pattern: "gdesc ?(.*)",
+    fromMe: false,
+    use: "group",
+    desc: "Change group description",
+    usage: ".gdesc New group description here",
+  },
+  async (message, match) => {
+    if (!message.isGroup) return await message.sendReply(Lang.GROUP_COMMAND);
+    let adminAccesValidated = ADMIN_ACCESS
+      ? await isAdmin(message, message.sender)
+      : false;
+    if (message.fromOwner || adminAccesValidated) {
+      let newName = match[1] || message.reply_message?.text;
+      if (!newName) return await message.sendReply("_Need text!_");
+      var { restrict } = await message.client.groupMetadata(message.jid);
+      if (restrict && !(await isAdmin(message)))
+        return await message.sendReply(Lang.NOT_ADMIN);
+      try {
+        return await message.client.groupUpdateDescription(
+          message.jid,
+          (match[1] || message.reply_message?.text).slice(0, 512)
+        );
+      } catch {
+        return await message.sendReply("_Failed to change!_");
+      }
+    }
+  }
+);
+Module(
+  {
+    pattern: "common ?(.*)",
+    fromMe: false,
+    use: "group",
+    desc: "Get common participants in two groups, and kick using .common kick jid",
+    usage: ".common jid1,jid2\n.common kick group_jid",
+  },
+  async (message, match) => {
+    let adminAccesValidated = ADMIN_ACCESS
+      ? await isAdmin(message, message.sender)
+      : false;
+    if (message.fromOwner || adminAccesValidated) {
+      if (!match[1])
+        return await message.sendReply(
+          "_*Need jids*_\n_*.common jid1,jid2*_\n _OR_ \n_*.common kick group_jid*_"
+        );
+      if (match[1].includes("kick")) {
+        var co = match[1].split(" ")[1];
+        var g1 = await message.client.groupMetadata(co);
+        var g2 = await message.client.groupMetadata(message.jid);
+        var common = g1.participants.filter(({ id: id1 }) =>
+          g2.participants.some(({ id: id2 }) => id2 === id1)
+        );
+        var jids = [];
+        var msg = `_Kicking common participants of:_ *${g1.subject}* & *${g2.subject}*\n_count: ${common.length}_\n`;
+        common
+          .map((e) => e.id)
+          .filter((e) => !e.includes(message.client.user?.id?.split(":")[0]))
+          .map(async (s) => {
+            msg += "```@" + s.split("@")[0] + "```\n";
+            jids.push(s);
+          });
+        await message.client.sendMessage(message.jid, {
+          text: msg,
+          mentions: jids,
+        });
+        for (let user of jids) {
+          await new Promise((r) => setTimeout(r, 1000));
+          await message.client.groupParticipantsUpdate(
+            message.jid,
+            [user],
+            "remove"
+          );
+        }
+        return;
+      }
+      var co = match[1].split(",");
+      var g1 = await message.client.groupMetadata(co[0]);
+      var g2 = await message.client.groupMetadata(co[1]);
+      var common = g1.participants.filter(({ id: id1 }) =>
+        g2.participants.some(({ id: id2 }) => id2 === id1)
+      );
+      var msg = `_*Common participants of:*_ *${g1.subject}* & *${g2.subject}*\n_count: ${common.length}_\n`;
+      var jids = [];
+      common.map(async (s) => {
+        msg += "```@" + s.id.split("@")[0] + "```\n";
+        jids.push(s.id);
+      });
+      await message.client.sendMessage(message.jid, {
+        text: msg,
+        mentions: jids,
+      });
+    }
+  }
+);
+Module(
+  {
+    pattern: "diff ?(.*)",
+    fromMe: false,
+    use: "utility",
+    desc: "Get difference of participants in two groups",
+    usage: ".diff jid1,jid2",
+  },
+  async (message, match) => {
+    let adminAccesValidated = ADMIN_ACCESS
+      ? await isAdmin(message, message.sender)
+      : false;
+    if (message.fromOwner || adminAccesValidated) {
+      if (!match[1])
+        return await message.sendReply("_*Need jids*_\n_*.diff jid1,jid2*_");
+      var co = match[1].split(",");
+      var g1 = (await message.client.groupMetadata(co[0])).participants;
+      var g2 = (await message.client.groupMetadata(co[1])).participants;
+      var common = g1.filter(
+        ({ id: jid1 }) => !g2.some(({ id: jid2 }) => jid2 === jid1)
+      );
+      var msg =
+        "_*Difference of participants*_\n_count: " + common.length + "_\n";
+      common.map(async (s) => {
+        msg += "```" + s.id.split("@")[0] + "``` \n";
+      });
+      return await message.sendReply(msg);
+    }
+  }
+);
+Module(
+  {
+    pattern: "tag(all|admin)? ?(.*)?",
+    fromMe: false,
+    desc: Lang.TAGALL_DESC,
+    use: "group",
+    usage:
+      ".tag text\n.tag (reply to message)\n.tagall (tag everyone)\n.tagadmin (tag admins only)\n.tag 120363355307899193@g.us (tag in specific group)",
+  },
+  async (message, match) => {
+    const groupJidMatch = match[2]?.match(/(\d+@g\.us)/);
+    if (groupJidMatch) {
+      message.jid = groupJidMatch[1];
+    } else if (!message.isGroup) {
+      return await message.sendReply(Lang.GROUP_COMMAND);
+    }
+    const adminAccessValidated = ADMIN_ACCESS
+      ? await isAdmin(message, message.sender)
+      : false;
+    if (!(message.fromOwner || adminAccessValidated)) return;
+    let participants;
+    try {
+      const groupMetadata = await message.client.groupMetadata(message.jid);
+      participants = groupMetadata.participants;
+    } catch (error) {
+      return await message.sendReply(
+        "_Error: Unable to fetch group metadata. Please check the group ID._"
+      );
+    }
+    const isTagAdmin = match[1]?.includes("admin");
+    const isTagAll = match[1]?.includes("all");
+    const isReply = !!message.reply_message;
+    const customText = match[2]?.trim();
+    const hasCustomText = customText && !customText.match(/(\d+@g\.us)/);
+    
+    if (!isReply && !isTagAdmin && !isTagAll && !hasCustomText) {
+      return await message.sendReply(
+        `_Tag what?_\n\n${handler}tag \`<text here>\`\n${handler}tag \`admin\`\n${handler}tag \`all\`\n${handler}tag \`(reply)\`\n${handler}tag \`120363355307899193@g.us\``
+      );
+    }
+    const targets = [];
+    let msgText = "";
+    for (let i = 0; i < participants.length; i++) {
+      const p = participants[i];
+      if (isTagAdmin && !p.admin) continue;
+      targets.push(p.id.replace("c.us", "s.whatsapp.net"));
+      msgText += `${targets.length}. @${p.id.split("@")[0]}\n`;
+    }
+    if (isReply) {
+      await message.forwardMessage(message.jid, message.quoted,{detectLinks: true,contextInfo: {mentionedJid: targets, isForwarded: false}});
+    } else if (hasCustomText) {
+      await message.client.sendMessage(message.jid, {
+        text: customText,
+        mentions: targets,
+      });
+    } else {
+      await message.client.sendMessage(message.jid, {
+        text: "```" + msgText + "```",
+        mentions: targets,
+      });
+    }
+  }
+);
+Module(
+  {
+    pattern: "block ?(.*)",
+    fromMe: true,
+    use: "owner",
+    desc: "Block a user",
+    usage: ".block (reply to a message)\n.block @mention",
+  },
+  async (message, match) => {
+    var isGroup = message.jid.endsWith("@g.us");
+    var user = message.jid;
+    if (isGroup) user = message.mention?.[0] || message.reply_message?.jid;
+    await message.client.updateBlockStatus(user, "block");
+  }
+);
+Module(
+  {
+    pattern: "join ?(.*)",
+    fromMe: true,
+    use: "owner",
+    desc: "Join a WhatsApp group using invite link",
+    usage: ".join https://chat.whatsapp.com/abcdef123456",
+  },
+  async (message, match) => {
+    let rgx =
+      /^(?:https?:\/\/)?chat\.whatsapp\.com\/(?:invite\/)?([a-zA-Z0-9_-]{22})(?:\?.*)?$/;
+    let matchResult = match[1] && match[1].match(rgx);
+    if (!matchResult) return await message.sendReply("_*Need group link*_");
+    let inviteCode = matchResult[1];
+    await message.client.groupAcceptInvite(inviteCode);
+  }
+);
+Module(
+  {
+    pattern: "unblock ?(.*)",
+    fromMe: true,
+    use: "owner",
+    desc: "Unblock a user",
+    usage: ".unblock (reply to a message)\n.unblock @mention",
+  },
+  async (message) => {
+    var isGroup = message.jid.endsWith("@g.us");
+    if (!isGroup) return;
+    var user = message.mention?.[0] || message.reply_message?.jid;
+    await message.client.updateBlockStatus(user, "unblock");
+  }
+);
+Module(
+  {
+    pattern: "getjids ?(.*)",
+    desc: "Get group JIDs - all groups or recent chats",
+    use: "utility",
+    usage:
+      ".getjids all (shows all group JIDs)\n.getjids recent (shows recent chat JIDs)\n.getjids recent 15 (shows 15 recent chats)",
+    fromMe: true,
+  },
+  async (message, match) => {
+    const args = match[1]?.trim().split(" ") || [];
+    const command = args[0]?.toLowerCase();
+    if (!command || (command !== "all" && command !== "recent")) {
+      return await message.sendReply(
+        "*Usage:*\n" +
+          "• `.getjids all` - Show all group JIDs\n" +
+          "• `.getjids recent` - Show recent chat JIDs (default 10)\n" +
+          "• `.getjids recent 15` - Show 15 recent chat JIDs"
+      );
+    }
+    if (command === "all") {
+      var allGroups = await message.client.groupFetchAllParticipating();
+      var groups = Object.keys(allGroups);
+      const recentChats = await fetchRecentChats(100);
+      const dmChats = recentChats.filter((chat) => chat.type === "private");
+      const totalChats = groups.length + dmChats.length;
+      if (!totalChats) return await message.sendReply("_No chats found!_");
+      const chunkSize = 100;
+      let totalMessages = Math.ceil(totalChats / chunkSize);
+      let chatIndex = 0;
+      for (let msgIndex = 0; msgIndex < totalMessages; msgIndex++) {
+        const startIdx = msgIndex * chunkSize;
+        const endIdx = Math.min(startIdx + chunkSize, totalChats);
+        let _msg = `*All Chat JIDs*\n`;
+        if (totalMessages > 1) {
+          _msg += `Part ${msgIndex + 1}/${totalMessages}: Chats ${
+            startIdx + 1
+          }-${endIdx} of ${totalChats}\n\n`;
+        }
+        while (
+          chatIndex < groups.length &&
+          chatIndex - msgIndex * chunkSize < chunkSize
+        ) {
+          const jid = groups[chatIndex - msgIndex * chunkSize];
+          if (!jid) break;
+          const count = chatIndex + 1;
+          const groupData = allGroups[jid];
+          const groupName = groupData ? groupData.subject : "Unknown Group";
+          _msg += `_*${count}. 👥 Group:*_ \`${groupName}\`\n_JID:_ \`${jid}\`\n\n`;
+          chatIndex++;
+          if (chatIndex >= startIdx + chunkSize) break;
+        }
+        const dmStartIndex = Math.max(0, startIdx - groups.length);
+        const dmEndIndex = Math.min(dmChats.length, endIdx - groups.length);
+        for (let i = dmStartIndex; i < dmEndIndex && chatIndex < endIdx; i++) {
+          const dm = dmChats[i];
+          const count = chatIndex + 1;
+          const dmName = dm.name || "Unknown";
+          _msg += `_*${count}. 💬 Private*_: \`${dmName}\`\n_JID:_ \`${dm.jid}\`\n\n`;
+          chatIndex++;
+        }
+        await message.sendReply(_msg);
+        if (msgIndex < totalMessages - 1) {
+          await new Promise((resolve) => setTimeout(resolve, 1000));
+        }
+      }
+    } else if (command === "recent") {
+      const limit = parseInt(args[1]) || 10;
+      if (limit > 50) {
+        return await message.sendReply("_*Maximum limit is 50 chats!*_");
+      }
+      const recentChats = await fetchRecentChats(limit);
+      if (!recentChats.length) {
+        return await message.sendReply("_No recent chats found!_");
+      }
+      let allGroups = {};
+      try {
+        allGroups = await message.client.groupFetchAllParticipating();
+      } catch (error) {
+        console.error("Error fetching group data:", error);
+      }
+      let _msg = `*Recent Chat JIDs*\n_Showing ${recentChats.length} most recent chats_\n\n`;
+      for (let i = 0; i < recentChats.length; i++) {
+        const chat = recentChats[i];
+        const count = i + 1;
+        const chatType = chat.type === "group" ? "👥 Group" : "💬 Private";
+        let chatName = chat.name || "Unknown";
+        if (chat.type === "group" && allGroups[chat.jid]) {
+          chatName =
+            allGroups[chat.jid].subject || chat.name || "Unknown Group";
+        }
+        const lastMessageTime = new Date(chat.lastMessageTime).toLocaleString();
+        _msg += `_*${count}. ${chatType}:*_ \`${chatName}\`\n`;
+        _msg += `_JID:_ \`${chat.jid}\`\n`;
+        _msg += `_Last Message:_ ${lastMessageTime}\n\n`;
+      }
+      const chunkSize = 4000;
+      if (_msg.length > chunkSize) {
+        const chunks = [];
+        let currentChunk = `*Recent Chat JIDs*\n_Showing ${recentChats.length} most recent chats_\n\n`;
+        for (let i = 0; i < recentChats.length; i++) {
+          const chat = recentChats[i];
+          const count = i + 1;
+          const chatType = chat.type === "group" ? "👥 Group" : "💬 Private";
+          let chatName = chat.name || "Unknown";
+          if (chat.type === "group" && allGroups[chat.jid]) {
+            chatName =
+              allGroups[chat.jid].subject || chat.name || "Unknown Group";
+          }
+          const lastMessageTime = new Date(
+            chat.lastMessageTime
+          ).toLocaleString();
+          const chatInfo = `_*${count}. ${chatType}:*_ \`${chatName}\`\n_JID:_ \`${chat.jid}\`\n_Last Message:_ ${lastMessageTime}\n\n`;
+          if (currentChunk.length + chatInfo.length > chunkSize) {
+            chunks.push(currentChunk);
+            currentChunk = chatInfo;
+          } else {
+            currentChunk += chatInfo;
+          }
+        }
+        if (currentChunk.trim()) {
+          chunks.push(currentChunk);
+        }
+        for (let i = 0; i < chunks.length; i++) {
+          await message.sendReply(chunks[i]);
+          if (i < chunks.length - 1) {
+            await new Promise((resolve) => setTimeout(resolve, 1000));
+          }
+        }
+      } else {
+        await message.sendReply(_msg);
+      }
+    }
+  }
+);
+Module(
+  {
+    pattern: "pp ?(.*)",
+    fromMe: true,
+    use: "owner",
+    desc: "Change/Get profile picture (full screen supported) with replied message",
+    usage:
+      ".pp (reply to image to set profile pic)\n.pp (reply to user to get their profile pic)",
+  },
+  async (message, match) => {
+    if (message.reply_message && message.reply_message.image) {
+      var image = await message.reply_message.download();
+      const botJid = message.client.user?.id?.split(":")[0] + "@s.whatsapp.net";
+      await message.client.setProfilePicture(botJid, {
+        url: image,
+      });
+      return await message.sendReply("_*Updated profile pic ✅*_");
+    }
+    if (message.reply_message && !message.reply_message.image) {
+      try {
+        var image = await message.client.profilePictureUrl(
+          message.reply_message?.jid,
+          "image"
+        );
+      } catch {
+        return await message.sendReply("_Profile pic not found!_");
+      }
+      return await message.sendReply({ url: image }, "image");
+    }
+  }
+);
+Module(
+  {
+    pattern: "gpp ?(.*)",
+    fromMe: false,
+    use: "owner",
+    desc: "Change/Get group icon (full screen supported) with replied message",
+    usage: ".gpp (reply to image to set group icon)",
+  },
+  async (message, match) => {
+    let adminAccesValidated = ADMIN_ACCESS
+      ? await isAdmin(message, message.sender)
+      : false;
+    if (message.fromOwner || adminAccesValidated) {
+      if (message.reply_message && message.reply_message.image) {
+        var image = await message.reply_message.download();
+        await message.client.setProfilePicture(message.jid, { url: image });
+        return await message.sendReply("_*Group icon updated ✅*_");
+      }
+      if (!message.reply_message?.image) {
+        try {
+          var image = await message.client.profilePictureUrl(
+            message.jid,
+            "image"
+          );
+        } catch {
+          return await message.sendReply("_Profile pic not found!_");
+        }
+        return await message.sendReply({ url: image }, "image");
+      }
+    }
+  }
+);
+
+Module(
+  {
+    pattern: "gstatus ?(.*)",
+    fromMe: false,
+    use: "group",
+    desc: "Post a group status update (text/image/video/audio)",
+    usage:
+      ".gstatus your text\n.gstatus (reply to image/video/audio)\n.gstatus your caption (reply to image/video)\n.gstatus 120363xxxx@g.us (reply to a message in DM or group)",
+  },
+  async (message, match) => {
+    const rawInput = (match[1] || "").trim();
+    const quoted = message.reply_message;
+    const jidMatch = rawInput.match(/(\d+(?:-\d+)?@g\.us|\d+@s\.whatsapp\.net|\d+@lid)/i);
+    const hasTargetJid = !!jidMatch;
+
+    if (!message.isGroup && !hasTargetJid) {
+      return await message.sendReply(
+        "_In DM, use .gstatus <group_jid> and reply to a message._"
+      );
+    }
+
+    let adminAccesValidated = false;
+    if (message.isGroup && ADMIN_ACCESS) {
+      adminAccesValidated = await isAdmin(message, message.sender);
+    }
+
+    if (!(message.fromOwner || adminAccesValidated)) return;
+
+    // var admin = await isAdmin(message);
+    // if (!admin) return await message.sendReply(Lang.NOT_ADMIN);
+
+    if (typeof message.sendGroupStatus !== "function") {
+      return await message.sendReply("_Group status is not supported in this build._");
+    }
+
+    const targetJid = hasTargetJid ? jidMatch[1] : message.jid;
+    const text = hasTargetJid ? rawInput.replace(jidMatch[0], "").trim() : rawInput;
+
+    if (!targetJid.endsWith("@g.us")) {
+      return await message.sendReply("_Target must be a valid group JID (..@g.us)._\n_Example: .gstatus 120363xxxx@g.us (reply to a message)_");
+    }
+
+    if (hasTargetJid && !quoted) {
+      return await message.sendReply("_Reply to a message first, then use .gstatus <jid>._");
+    }
+
+    if (!quoted && !text) {
+      return await message.sendReply(
+        "_Reply to an image/video/audio or provide text to post group status._"
+      );
+    }
+
+    const sendGroupStatusToTarget = async (payload) => {
+      const previousJid = message.jid;
+      message.jid = targetJid;
+      try {
+        await message.sendGroupStatus(payload);
+      } finally {
+        message.jid = previousJid;
+      }
+    };
+
+    const targetInfo = hasTargetJid ? ` to ${targetJid}` : "";
+
+    try {
+      if (quoted?.image) {
+        const buffer = await quoted.download("buffer");
+        await sendGroupStatusToTarget({
+          image: buffer,
+          ...(text || quoted.caption
+            ? { caption: text || quoted.caption }
+            : {}),
+        });
+        return await message.react("✅");
+      }
+
+      if (quoted?.video) {
+        const buffer = await quoted.download("buffer");
+        await sendGroupStatusToTarget({
+          video: buffer,
+          ...(text || quoted.caption
+            ? { caption: text || quoted.caption }
+            : {}),
+        });
+        return await message.react("✅");
+      }
+
+      if (quoted?.audio) {
+        const buffer = await quoted.download("buffer");
+        await sendGroupStatusToTarget({
+          audio: buffer,
+          mimetype: quoted.mimetype || "audio/mp4",
+        });
+        return await message.react("✅");
+      }
+
+      if (quoted?.text || quoted?.message) {
+        const quotedText = (quoted.text || quoted.message || "").trim();
+        const finalText = (text || quotedText || "").trim();
+        if (!finalText) {
+          return await message.sendReply(
+            "_Unsupported reply type. Use image, video, audio, or a text message._"
+          );
+        }
+        await sendGroupStatusToTarget({ text: finalText });
+        return await message.react("✅");
+      }
+
+      if (text) {
+        await sendGroupStatusToTarget({ text });
+        return await message.react("✅");
+      }
+
+      return await message.sendReply(
+        "_Unsupported reply type. Use image, video, audio, or text._"
+      );
+    } catch (error) {
+      return await message.sendReply(
+        `_Failed to post group status: ${error.message}_`
+      );
+    }
+  }
+);
