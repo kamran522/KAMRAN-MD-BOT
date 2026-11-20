@@ -139,6 +139,40 @@ same class of rc14 post-pairing 401 even with saved credentials.
 `conflict=device_removed` means the server revoked the linked companion.
 The log never includes raw error objects, phone numbers, QR codes, or auth keys.
 
+### Optional controlled test: SMB registration with WEB-only login
+
+If the logs conclusively show `pair-success → 516 → saved credentials → 401
+source=server_failure` *before* opening, you may test a separate, opt-in
+**login-only** identity. The login platform could be rejected even when the
+registration payload is accepted. This is a hypothesis, **not a verified fix**.
+
+By default `WA_BUSINESS_LINK=1` continues to use `SMB_ANDROID` on both
+registration and authenticated login. For one test, explicitly use:
+
+~~~bash
+WA_BUSINESS_LINK=1 WA_BUSINESS_LOGIN_MODE=web pm2 restart 4 --update-env
+pm2 logs 4 --lines 0
+~~~
+
+With this option, **new pairing** still uses the same patched SMB_ANDROID
+registration payload, including `webInfo` and CHROME companion ID. Only the
+next socket where `creds.me.id` exists advertises a Chrome/WEB login identity.
+Watch for `[WA Auth] selected login identity=WEB_CHROME` on the post-pair
+socket and for `connection:open` (or another 401). Do not delete the entire
+database or repeatedly attempt QR pairing.
+
+If this test still returns 401, stop and restore the baseline with:
+
+~~~bash
+WA_BUSINESS_LINK=1 WA_BUSINESS_LOGIN_MODE=smb pm2 restart 4 --update-env
+~~~
+
+The setting has **no effect** when `WA_BUSINESS_LINK` is disabled.
+Changing it does not guarantee server acceptance. The same host/IP,
+WhatsApp Business account, current WA protocol version and one PM2 process
+should be used for a meaningful comparison. Avoid switching multiple
+settings at once.
+
 Run `pm2 list` to confirm only one bot instance owns the `main` session,
 then check the log sequence after scanning QR. A real 401 may require pairing
 again; do not delete `bot.db` wholesale. If the phone linked the device but
