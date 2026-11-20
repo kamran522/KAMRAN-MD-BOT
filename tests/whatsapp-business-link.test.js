@@ -72,6 +72,9 @@ test('patched registration emits SMB_ANDROID and keeps webInfo only when opted i
   const business = getPayload({ WA_BUSINESS_LINK: 'smb_android' })({ browser: ['Android', 'Android', ''] });
   assert.equal(business.userAgent.platform, 10);
   assert.equal(business.webInfo.webSubPlatform, 'WEB_BROWSER');
+  const uppercase = getPayload({ WA_BUSINESS_LINK: 'SMB_ANDROID' })({ browser: ['Android', 'Android', ''] });
+  assert.equal(uppercase.userAgent.platform, 10);
+  assert.equal(uppercase.webInfo.webSubPlatform, 'WEB_BROWSER');
 
   const standard = getPayload({})({ browser: ['Android', 'Android', ''] });
   assert.equal(standard.userAgent.platform, 0);
