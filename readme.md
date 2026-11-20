@@ -154,6 +154,7 @@ Docker service names, but rejects public search API endpoints.
 Use these WhatsApp commands (with the configured command prefix):
 
 ~~~text
+.ai what time is it in Pakistan right now?   # precise Asia/Karachi clock
 .ai What is DNS?                    # local model; no web in auto mode
 .ai What is the latest news?        # searches in auto mode
 .ai web What happened today?        # always search
@@ -169,6 +170,17 @@ refers only to that container. The supplied Compose file runs the two
 support services, not the WhatsApp bot itself.
 
 **Privacy:** Running the LLM locally does not make searches private.
+For current-time requests about Pakistan and its major cities, the bot reads
+its own system clock with the `Asia/Karachi` timezone instead of asking
+Ollama or a web page to estimate the time. Keep the server clock synchronized
+(e.g. inspect `timedatectl status`). This works even when search is disabled.
+
+If `.ai web ...` reports `Set LOCAL_AI_SEARCH_URL`, the WhatsApp bot process
+has not loaded the search address. Put the setting in the bot's root `.env`
+file (or its process manager environment), restart the bot, then verify the
+SearXNG JSON endpoint with `curl` from that machine. Docker Compose starting
+SearXNG alone does not configure the WhatsApp bot process.
+
 When search is enabled, the search terms travel to SearXNG and its upstream
 web search engines. Do not send passwords or confidential chat content in
 search queries. Web pages and snippets are untrusted evidence, not instructions
