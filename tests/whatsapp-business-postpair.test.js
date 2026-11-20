@@ -3,7 +3,7 @@ const assert = require('node:assert/strict');
 const { test } = require('node:test');
 const fs = require('node:fs');
 const path = require('node:path');
-const { summarizeAuthDisconnect, shouldPersistPairingOnClose } = require('../core/wa-auth-diagnostics');
+const { summarizeAuthDisconnect, shouldPersistPairingOnClose, classifyDisconnectSource } = require('../core/wa-auth-diagnostics');
 
 test('redacts stream error details and retains status + conflict reason', () => {
   const error = {
@@ -13,19 +13,19 @@ test('redacts stream error details and retains status + conflict reason', () => 
       attrs: { code: '401' },
       content: [{ tag: 'conflict', attrs: { type: 'device_removed', jid: 'private-number' } }]
     },
-    message: 'Secret QR payload: 0123456789'
+    message: 'Stream Errored (conflict): Secret QR payload: 0123456789'
   };
   const result = summarizeAuthDisconnect(error,
     { registered: true, pairSuccessObserved: true, hasMeId: true, previouslyOpen: false, previousStatus: 515 });
   assert.equal(result,
-    '[WA Auth] disconnect status=401 conflict=device_removed registered=true pairSuccessObserved=true hasMeId=true previouslyOpen=false previousStatus=515');
+    '[WA Auth] disconnect status=401 source=stream_error conflict=device_removed registered=true pairSuccessObserved=true hasMeId=true previouslyOpen=false previousStatus=515');
   assert.doesNotMatch(result, /private-number|0123456789|stream:error/);
 });
 
 test('reports expected restart without leaking arbitrary errors', () => {
   const error = { output: { statusCode: 515 }, data: { content: [{ tag: 'unexpected', attrs: { phone: 'secret' } }] } };
   assert.equal(summarizeAuthDisconnect(error),
-    '[WA Auth] disconnect status=515 conflict=none registered=false pairSuccessObserved=false hasMeId=false previouslyOpen=false previousStatus=none');
+    '[WA Auth] disconnect status=515 source=unknown conflict=none registered=false pairSuccessObserved=false hasMeId=false previouslyOpen=false previousStatus=none');
 });
 
 test('ignores unsafe and malformed rejection fields', () => {
@@ -34,6 +34,19 @@ test('ignores unsafe and malformed rejection fields', () => {
   assert.match(result, /status=unknown conflict=none/);
   assert.match(result, /previousStatus=none/);
   assert.doesNotMatch(result, /private phone/);
+});
+
+test('classifies 401 source using exact known error kinds and never logs free-form errors', () => {
+  assert.equal(classifyDisconnectSource({ message: 'Connection Failure' }), 'server_failure');
+  assert.equal(classifyDisconnectSource({ message: 'Stream Errored (unknown)' }), 'stream_error');
+  assert.equal(classifyDisconnectSource({ message: '401: Secret phone +12345' }), 'unknown');
+  const out = summarizeAuthDisconnect({
+    message: 'Connection Failure',
+    output: { statusCode: 401 },
+    data: { reason: '401', phone: '+123456789', secret: 'auth-credential' }
+  }, { hasMeId: true });
+  assert.match(out, /status=401 source=server_failure conflict=none/);
+  assert.doesNotMatch(out, /123456789|auth-credential/);
 });
 
 test('515 always persists credentials; 516 requires observed pair-success and a user ID', () => {
@@ -67,4 +80,6 @@ test('socket flushes paired credentials before reconnecting on 515 or verified p
   assert.match(code, /summarizeAuthDisconnect/);
   assert.match(code, /if\(_0xwaNewLogin===true\)/);
   assert.match(code, /_waSawPairSuccess=false/);
+  assert.match(code, /socket init waVersion=/);
+  assert.match(code, /businessMode=/);
 });
