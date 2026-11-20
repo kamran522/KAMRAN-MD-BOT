@@ -58,8 +58,13 @@ function interpretPrompt(input) {
  * reliable than formatting the host's current timestamp in the target zone.
  */
 function getPakistanTimeAnswer(question, now = new Date()) {
-  const text = String(question || '').trim();
-  const clockQuestion = /^(?:what(?:'s| is)\s+(?:the\s+)?(?:(?:current|local)\s+)?time|what\s+time\s+is\s+it|tell\s+me\s+(?:the\s+)?(?:(?:current|local)\s+)?time|(?:(?:current|local)\s+)?time)\s+(?:in|at)\s+(?:pakistan|islamabad|karachi|lahore|quetta|peshawar|rawalpindi|faisalabad|multan|turbat)(?:\s+(?:right\s+now|now|currently|please|today|at\s+the\s+moment))*[?.!]*$/i;
+  // Normalize punctuation and whitespace without changing the question's intent.
+  const text = String(question || '').toLowerCase()
+    .replace(/[?!.,]+$/g, '').replace(/\s+/g, ' ').trim();
+  // Match natural current-clock questions, including "what is time right now
+  // in Pakistan" and "what time is it in Pakistan right now". Reject historic,
+  // comparative and explanatory questions so they still go to the model.
+  const clockQuestion = /^(?:(?:what(?:'s| is)?|tell me|give me|show me)(?: the)? )?(?:(?:current|local|exact) )?time(?:(?: is it| is| right now| now| currently))* (?:in|at) (?:pakistan|islamabad|karachi|lahore|quetta|peshawar|rawalpindi|faisalabad|multan|turbat)(?:(?: right now| now| currently| please| today| at the moment))*$/;
   if (!clockQuestion.test(text)) return null;
   const date = new Date(now);
   if (!Number.isFinite(date.getTime())) return null;
