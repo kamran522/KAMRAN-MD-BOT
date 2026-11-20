@@ -16,6 +16,14 @@ jobs:
         run: npm run check
       - name: Test WhatsApp Business pairing configuration
         run: node --test tests/whatsapp-business-link.test.js
+      - name: Test WhatsApp Business registration protocol
+        run: node --test tests/whatsapp-business-protocol.test.js
+      - name: Validate patch against published Baileys 7.0.0-rc14
+        run: |
+          mkdir -p "$RUNNER_TEMP/baileys-package"
+          npm pack baileys@7.0.0-rc14 --silent --pack-destination "$RUNNER_TEMP/baileys-package"
+          tar -xzf "$RUNNER_TEMP/baileys-package/baileys-7.0.0-rc14.tgz" -C "$RUNNER_TEMP/baileys-package"
+          BAILEYS_FIXTURE_ROOT="$RUNNER_TEMP/baileys-package/package" node --test tests/whatsapp-business-protocol.test.js
       - name: Test local AI without network access
         run: npm run test:ai
       - name: Test downloader services without network access
