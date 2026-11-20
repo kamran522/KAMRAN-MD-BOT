@@ -98,6 +98,34 @@ attempt. Redact all phone numbers, QR data, pairing codes and credentials.
 Further issues may involve other Baileys registration changes, QR refresh
 handling (issue #2737), or server-side restrictions.
 
+### QR succeeds but the next login logs out (401)
+
+This is different from a QR rejection. During successful registration, Baileys
+normally emits `restartRequired` (515) and reconnects with freshly registered
+credentials. The bot now commits pending credentials to the session database
+before starting that reconnect. If saving fails, it logs the error and stops
+reconnecting rather than silently proceeding with uncommitted credentials.
+
+The console prints a redacted summary for each socket close, for example:
+
+~~~text
+[WA Auth] disconnect status=515 conflict=none registered=true previouslyOpen=false previousStatus=none
+[WA Auth] credentials persisted before required reconnect
+[WA Auth] disconnect status=401 conflict=device_removed registered=true previouslyOpen=false previousStatus=515
+~~~
+
+These lines are examples, **not** a confirmed diagnosis for your account.
+`conflict=device_removed` means the server revoked the linked companion.
+The log never includes raw error objects, phone numbers, QR codes, or auth keys.
+
+Run `pm2 list` to confirm only one bot instance owns the `main` session,
+then check the log sequence after scanning QR. A real 401 may require pairing
+again; do not delete `bot.db` wholesale. If the phone linked the device but
+a new connection still gets 401 after a saved 515 restart, the failure could
+be upstream in Baileys or server-side account/host policy; the flush step
+cannot guarantee acceptance. Related upstream report:
+https://github.com/WhiskeySockets/Baileys/issues/2248 .
+
 ## Connect WhatsApp
 
 ### Option A: Pairing code (recommended for servers)
