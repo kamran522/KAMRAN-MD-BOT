@@ -27,6 +27,7 @@ test('group mode OFF can be re-enabled from inside the group by the owner', () =
   assert.equal(shouldIgnoreGroupMessage(groupMessage('.mode group on', true), config), false);
   assert.equal(shouldIgnoreGroupMessage(groupMessage(',mode group off', true), config), false);
   assert.equal(isGroupModeToggle(groupMessage('.mode group on', true), config), true);
+  assert.equal(isGroupModeToggle(groupMessage('.mode gorup on', true), config), true);
   assert.equal(isGroupModeToggle(groupMessage('.mode group maybe', true), config), false);
 });
 
