@@ -411,3 +411,12 @@ npm run audit:hosts
 ## License
 
 Licensed under **GPL-3.0-or-later**. See [LICENSE](LICENSE).
+
+### Enable or disable the bot in WhatsApp groups
+
+Run these commands as the bot owner (using your configured command prefix, `.` by default):
+
+- `.mode group off` — stop processing commands/messages and group participant updates in all groups.
+- `.mode group on` — re-enable group processing in all groups.
+
+This setting is **ON by default** and is stored in the bot database, so it persists after restart. Private chats are not affected. The owner can use `.mode group on` from a private chat or a group even when group mode is off. You can also use the `Enable bot in groups` option in `.settings`.
