@@ -28,58 +28,75 @@ cd KAMRAN-MD-BOT
 npm install
 ```
 
-### WhatsApp Business account pairing
+### WhatsApp Business account pairing (experimental SMB protocol)
 
-For some WhatsApp Business accounts, Baileys on an Android-like client reports
-"Couldn't link device — You can only link to another WhatsApp Business app".
-This bot supports an optional macOS **Chrome browser** identity for new
-pairing attempts. It does **not** use the native macOS "Desktop" identity:
-Baileys issue #2677 reports that Desktop advertises DARWIN, which WhatsApp
-may reject with 428 before issuing a QR. This corrects the earlier
-`WA_BUSINESS_LINK=1` setting. See:
-https://github.com/WhiskeySockets/Baileys/issues/2677
+If WhatsApp Business links to official WhatsApp Web but rejects KAMRAN-MD-BOT
+with "You can only link to another WhatsApp Business app", the previous
+macOS/Chrome browser-only setting may not be sufficient.
 
-Add to your bot's root `.env`:
+Baileys issue #2782 reports that some Business accounts require these
+**three** registration fields together:
+1. `ClientPayload.UserAgent.platform = SMB_ANDROID`
+2. `ClientPayload.webInfo` present
+3. `companion_platform_id = CHROME`
+
+Source: https://github.com/WhiskeySockets/Baileys/issues/2782
+
+The bot now makes an **opt-in, local patch** to the installed Baileys
+`7.0.0-rc14` library before it imports Baileys. The patch activates these
+three fields only when `WA_BUSINESS_LINK=1` and the bot is registering using
+the `SMB_Android` identity. It preserves the default handling of other
+sessions. This is an experimental interoperability fix, **not a guaranteed
+way to link**; WhatsApp can reject unsupported clients for other reasons.
+
+From the repository root, add to `.env`:
 
 ~~~env
 WA_BUSINESS_LINK=1
 ~~~
 
-After pulling the new code, stop other instances of this bot and restart it
-using PM2. Verify the selected identity:
+Then run:
 
 ~~~bash
-node - <<'NODE'
-require('dotenv').config();
-const { selectBrowserIdentity } = require('./core/wa-link-browser');
-console.log(selectBrowserIdentity(['Ubuntu', 'Chrome', '20.0.04']));
-NODE
-# Expected: [ 'Mac OS', 'Chrome', '14.4.1' ]
+git pull origin main
+# Only needed if Baileys/node_modules are missing:
+# npm install
+WA_BUSINESS_LINK=1 node scripts/patch-baileys-business.js
+pm2 restart kamran-MD-bot --update-env
+pm2 logs kamran-MD-bot --lines 60 --nostream
 ~~~
 
-**Prefer QR linking over a pairing code** for this diagnostic. If
-`PAIR_NUMBER` is set in the environment, this bot requests a pairing code.
-Remove the `PAIR_NUMBER` setting from `.env` and from the PM2 environment,
-then restart the bot so a QR is displayed in its terminal/logs. Link it from
-**WhatsApp Business** → **Linked devices** → **Link a device** on the primary
-phone. If PM2 retains an outdated `PAIR_NUMBER`, stop/delete only the PM2
-*process* (not the database), then start it again with
-`env -u PAIR_NUMBER pm2 start ecosystem.config.js`.
+Expected console output on the first application includes:
 
-The setting is an unverified compatibility workaround, not a guarantee.
-Baileys issue #2782 documents another solution using an explicitly emitted
-SMB_ANDROID registration platform and other protocol fields. Simply
-changing the browser string does not apply that deeper change:
-https://github.com/WhiskeySockets/Baileys/issues/2782
+~~~text
+[Business pairing] {"version":"7.0.0-rc14","filesPatched":2,"dryRun":false}
+~~~
 
-The bot prefers a live WhatsApp Web client version from
-`fetchLatestWaWebVersion()`, with a library-default fallback on fetch
-failure; remove stale `WA_VERSION` overrides. If linking still fails, record
-the status codes (401, 405, 428, 429 or 515) from
-`pm2 logs kamran-MD-bot --lines 100 --nostream`, redacting QR, phone
-numbers, pairing codes, and credentials. Official Web linking success means
-the account can link a legitimate Web client, but does not rule out
-Baileys fingerprint, protocol, rate-limit, or hosting-IP restrictions.
+Repeated runs should show `"filesPatched":0` (already patched). The bot also
+prints `[Business pairing] SMB_ANDROID protocol active` at startup. The
+patch will **stop the bot with an explicit error** if the installed Baileys
+version or its implementation is unsupported, rather than silently using
+a wrong Android client identity.
+
+The script patches only two installed library files, creates original copies
+with a `.kamran-business-original` suffix, and does not access or delete
+your session database or WhatsApp account. A future `npm install` can
+replace the patched files; the bot re-applies the same version-locked patch
+on startup when the flag is set. Set `WA_BUSINESS_LINK=0` to use the
+unmodified default client identity for new connections; to restore the
+original Baileys files on disk, reinstall the pinned package.
+
+Prefer a new **QR pairing** attempt from WhatsApp Business →
+**Linked devices** → **Link a device**. If `PAIR_NUMBER` is set in the
+environment, the bot requests a pairing code instead. Remove that variable
+from both the bot's root `.env` and the PM2 process environment to test QR.
+
+If official WhatsApp Web works but this still fails, record the current
+`connection.update`/disconnect status from
+`pm2 logs kamran-MD-bot --lines 100 --nostream` immediately after the
+attempt. Redact all phone numbers, QR data, pairing codes and credentials.
+Further issues may involve other Baileys registration changes, QR refresh
+handling (issue #2737), or server-side restrictions.
 
 ## Connect WhatsApp
 
