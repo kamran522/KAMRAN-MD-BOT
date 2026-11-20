@@ -186,6 +186,7 @@ const settingsMenu = [
   { title: "PM Auto blocker", env_var: "PMB_VAR" },
   { title: "Disable bot in PM", env_var: "DIS_PM" },
   { title: "Disable bot startup message", env_var: "DISABLE_START_MESSAGE" },
+  { title: "Enable bot in groups", env_var: "GROUP_MODE" },
 ];
 
 const baseConfig = {
@@ -251,6 +252,9 @@ const baseConfig = {
   TAKE_KEY: process.env.TAKE_KEY || "",
   CMD_REACTION: convertToBool(process.env.CMD_REACTION) || false,
   MODE: process.env.MODE || "private",
+  GROUP_MODE: process.env.GROUP_MODE === undefined
+    ? true
+    : convertToBool(process.env.GROUP_MODE),
   WARN: process.env.WARN || "4",
   ANTILINK_WARN: process.env.ANTILINK_WARN || "",
   ANTI_DELETE: convertToBool(process.env.ANTI_DELETE) || false,
