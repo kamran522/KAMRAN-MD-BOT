@@ -123,6 +123,19 @@ The console prints a redacted summary for each socket close, for example:
 ~~~
 
 These lines are examples, **not** a confirmed diagnosis for your account.
+The bot also logs the selected numeric WhatsApp Web protocol version at each
+socket initialization, whether SMB Android mode is active, and whether an
+account identity was present. A disconnect now includes `source=server_failure`
+for Baileys' `CB:failure` response, `source=stream_error` for `CB:stream:error`,
+or `source=unknown`. This distinction does **not** establish whether
+WhatsApp permanently revoked an account. It never prints a raw error object
+or any credentials.
+
+If `pairSuccessObserved=true`, `hasMeId=true`, and the next login returns
+401 without ever opening, check the `source` and `waVersion` lines before
+changing anything else. The stored identity proves the login path was selected,
+not that WhatsApp accepted the session. Upstream Baileys #2248 reports this
+same class of rc14 post-pairing 401 even with saved credentials.
 `conflict=device_removed` means the server revoked the linked companion.
 The log never includes raw error objects, phone numbers, QR codes, or auth keys.
 
