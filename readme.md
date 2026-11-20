@@ -45,6 +45,37 @@ Add to your bot's root `.env`:
 WA_BUSINESS_LINK=1
 ~~~
 
+If the Business app still shows **"You can only link to another WhatsApp
+Business app"**, try the experimental **SMB Android companion** mode instead:
+
+~~~env
+WA_BUSINESS_LINK=smb_android
+~~~
+
+This is a separate setting, **not** an additional variable. It is based on
+[Baileys issue #2782](https://github.com/WhiskeySockets/Baileys/issues/2782).
+For `baileys@7.0.0-rc14` it patches the installed library just before import
+and changes three new-registration fields together:
+
+- `ClientPayload.UserAgent.platform = SMB_ANDROID`
+- keep `ClientPayload.webInfo` present
+- `companion_platform_id = CHROME (1)` for QR and pairing-code links
+
+The companion retains its `ANDROID_PHONE` device properties. The patch is
+**opt-in**, version-checked, and does not change the default connection or
+the existing `WA_BUSINESS_LINK=1` behavior. Use `WA_BUSINESS_LINK=1` for
+the macOS Web identity or `WA_BUSINESS_LINK=smb_android` for the Business
+Android identity; not both. If the library changes its registration code,
+startup fails with a clear patch error instead of silently using an
+incomplete identity. The installed `node_modules/baileys` must be writable
+for first-time patching (standard npm installs are).
+
+The evidence for this workaround comes from one reported Business account,
+and does **not** prove it will work for every Android or iPhone Business
+account. WhatsApp can still reject unofficial companion clients or restrict
+linking on the account. Try a new QR code after updating the setting;
+there is no need to remove your existing session database.
+
 After pulling the new code, stop other instances of this bot and restart it
 using PM2. Verify the selected identity:
 
