@@ -58,7 +58,7 @@ async function start() {
     console.log('[Chrome] Send !ping from another chat to check the basic test reply.');
     console.log('[Chrome] This is a browser login test, not the existing Baileys command engine.');
   });
-  client.on('auth_failure', message => {
+  client.on('auth_failure', () => {
     // Avoid printing arbitrary messages that may contain identifiers or session data.
     console.error('[Chrome] Authentication failed. Confirm the linked device on your phone.');
   });
@@ -85,7 +85,6 @@ async function start() {
     } catch {
       console.error('[Chrome] Browser shutdown was not clean.');
     }
-    process.exitCode = 0;
   };
   process.once('SIGINT', stop);
   process.once('SIGTERM', stop);
