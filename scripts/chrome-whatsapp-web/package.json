@@ -1,0 +1,19 @@
+{
+  "name": "kamran-md-chrome-login",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Isolated WhatsApp Web browser login test; does not load the Baileys bot",
+  "main": "index.js",
+  "type": "commonjs",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "start": "node index.js",
+    "test": "node --test test.js"
+  },
+  "dependencies": {
+    "whatsapp-web.js": "^1.34.8",
+    "qrcode-terminal": "^0.12.0"
+  }
+}
