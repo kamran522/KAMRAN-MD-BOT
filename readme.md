@@ -102,16 +102,24 @@ handling (issue #2737), or server-side restrictions.
 
 This is different from a QR rejection. During successful registration, Baileys
 normally emits `restartRequired` (515) and reconnects with freshly registered
-credentials. The bot now commits pending credentials to the session database
-before starting that reconnect. If saving fails, it logs the error and stops
-reconnecting rather than silently proceeding with uncommitted credentials.
+credentials. Some WhatsApp Business pairings can instead emit 516 immediately
+after `pair-success` (see https://github.com/WhiskeySockets/Baileys/issues/701).
+516 is **not** a named Baileys 7.0.0-rc14 `DisconnectReason`; it is
+not automatically treated as proof of pairing.
+
+The bot records the `isNewLogin` event that Baileys emits on `pair-success`.
+It commits pending credentials to the session database before reconnecting on
+515, or on 516 **only if** pair-success was observed and a user ID was received.
+If saving fails, it stops that reconnect rather than silently continuing.
+The `registered=false` field alone does not indicate whether pairing succeeded.
 
 The console prints a redacted summary for each socket close, for example:
 
 ~~~text
-[WA Auth] disconnect status=515 conflict=none registered=true previouslyOpen=false previousStatus=none
-[WA Auth] credentials persisted before required reconnect
-[WA Auth] disconnect status=401 conflict=device_removed registered=true previouslyOpen=false previousStatus=515
+[WA Auth] pair-success received; expecting reconnect
+[WA Auth] disconnect status=516 conflict=none registered=false pairSuccessObserved=true hasMeId=true previouslyOpen=false previousStatus=none
+[WA Auth] credentials persisted before reconnect after 516
+[WA Auth] disconnect status=401 conflict=none registered=false pairSuccessObserved=false hasMeId=true previouslyOpen=false previousStatus=516
 ~~~
 
 These lines are examples, **not** a confirmed diagnosis for your account.
