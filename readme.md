@@ -98,6 +98,89 @@ attempt. Redact all phone numbers, QR data, pairing codes and credentials.
 Further issues may involve other Baileys registration changes, QR refresh
 handling (issue #2737), or server-side restrictions.
 
+### QR succeeds but the next login logs out (401)
+
+This is different from a QR rejection. During successful registration, Baileys
+normally emits `restartRequired` (515) and reconnects with freshly registered
+credentials. Some WhatsApp Business pairings can instead emit 516 immediately
+after `pair-success` (see https://github.com/WhiskeySockets/Baileys/issues/701).
+516 is **not** a named Baileys 7.0.0-rc14 `DisconnectReason`; it is
+not automatically treated as proof of pairing.
+
+The bot records the `isNewLogin` event that Baileys emits on `pair-success`.
+It commits pending credentials to the session database before reconnecting on
+515, or on 516 **only if** pair-success was observed and a user ID was received.
+If saving fails, it stops that reconnect rather than silently continuing.
+The `registered=false` field alone does not indicate whether pairing succeeded.
+
+The console prints a redacted summary for each socket close, for example:
+
+~~~text
+[WA Auth] pair-success received; expecting reconnect
+[WA Auth] disconnect status=516 conflict=none registered=false pairSuccessObserved=true hasMeId=true previouslyOpen=false previousStatus=none
+[WA Auth] credentials persisted before reconnect after 516
+[WA Auth] disconnect status=401 conflict=none registered=false pairSuccessObserved=false hasMeId=true previouslyOpen=false previousStatus=516
+~~~
+
+These lines are examples, **not** a confirmed diagnosis for your account.
+The bot also logs the selected numeric WhatsApp Web protocol version at each
+socket initialization, whether SMB Android mode is active, and whether an
+account identity was present. A disconnect now includes `source=server_failure`
+for Baileys' `CB:failure` response, `source=stream_error` for `CB:stream:error`,
+or `source=unknown`. This distinction does **not** establish whether
+WhatsApp permanently revoked an account. It never prints a raw error object
+or any credentials.
+
+If `pairSuccessObserved=true`, `hasMeId=true`, and the next login returns
+401 without ever opening, check the `source` and `waVersion` lines before
+changing anything else. The stored identity proves the login path was selected,
+not that WhatsApp accepted the session. Upstream Baileys #2248 reports this
+same class of rc14 post-pairing 401 even with saved credentials.
+`conflict=device_removed` means the server revoked the linked companion.
+The log never includes raw error objects, phone numbers, QR codes, or auth keys.
+
+### Optional controlled test: SMB registration with WEB-only login
+
+If the logs conclusively show `pair-success → 516 → saved credentials → 401
+source=server_failure` *before* opening, you may test a separate, opt-in
+**login-only** identity. The login platform could be rejected even when the
+registration payload is accepted. This is a hypothesis, **not a verified fix**.
+
+By default `WA_BUSINESS_LINK=1` continues to use `SMB_ANDROID` on both
+registration and authenticated login. For one test, explicitly use:
+
+~~~bash
+WA_BUSINESS_LINK=1 WA_BUSINESS_LOGIN_MODE=web pm2 restart 4 --update-env
+pm2 logs 4 --lines 0
+~~~
+
+With this option, **new pairing** still uses the same patched SMB_ANDROID
+registration payload, including `webInfo` and CHROME companion ID. Only the
+next socket where `creds.me.id` exists advertises a Chrome/WEB login identity.
+Watch for `[WA Auth] selected login identity=WEB_CHROME` on the post-pair
+socket and for `connection:open` (or another 401). Do not delete the entire
+database or repeatedly attempt QR pairing.
+
+If this test still returns 401, stop and restore the baseline with:
+
+~~~bash
+WA_BUSINESS_LINK=1 WA_BUSINESS_LOGIN_MODE=smb pm2 restart 4 --update-env
+~~~
+
+The setting has **no effect** when `WA_BUSINESS_LINK` is disabled.
+Changing it does not guarantee server acceptance. The same host/IP,
+WhatsApp Business account, current WA protocol version and one PM2 process
+should be used for a meaningful comparison. Avoid switching multiple
+settings at once.
+
+Run `pm2 list` to confirm only one bot instance owns the `main` session,
+then check the log sequence after scanning QR. A real 401 may require pairing
+again; do not delete `bot.db` wholesale. If the phone linked the device but
+a new connection still gets 401 after a saved 515 restart, the failure could
+be upstream in Baileys or server-side account/host policy; the flush step
+cannot guarantee acceptance. Related upstream report:
+https://github.com/WhiskeySockets/Baileys/issues/2248 .
+
 ## Connect WhatsApp
 
 ### Option A: Pairing code (recommended for servers)

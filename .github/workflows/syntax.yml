@@ -18,6 +18,8 @@ jobs:
         run: node --test tests/whatsapp-business-link.test.js
       - name: Test WhatsApp Business registration protocol
         run: node --test tests/whatsapp-business-protocol.test.js
+      - name: Test WhatsApp Business post-pair reconnect diagnostics
+        run: node --test tests/whatsapp-business-postpair.test.js
       - name: Validate patch against published Baileys 7.0.0-rc14
         run: |
           mkdir -p "$RUNNER_TEMP/baileys-package"
