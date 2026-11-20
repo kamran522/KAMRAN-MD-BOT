@@ -14,6 +14,8 @@ jobs:
           node-version: 22
       - name: Check JavaScript syntax
         run: npm run check
+      - name: Test WhatsApp Business pairing configuration
+        run: node --test tests/whatsapp-business-link.test.js
       - name: Test local AI without network access
         run: npm run test:ai
       - name: Test downloader services without network access

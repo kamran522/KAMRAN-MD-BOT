@@ -28,6 +28,40 @@ cd KAMRAN-MD-BOT
 npm install
 ```
 
+### WhatsApp Business account pairing
+
+If your WhatsApp Business phone shows "Couldn't link device — You can
+only link to another WhatsApp Business app" while pairing a fresh Baileys
+session, try the optional desktop identity for Business accounts. This is a
+compatibility workaround, not a guaranteed solution: WhatsApp can also reject
+linking for account restrictions, network/IP restrictions, or device limits.
+
+Add to your bot's environment or root `.env`:
+
+~~~env
+WA_BUSINESS_LINK=1
+~~~
+
+Stop any other bot instance using this WhatsApp account, restart this bot,
+generate a fresh QR or pairing code, and open the **WhatsApp Business** app
+on your primary phone → **Linked devices** → **Link a device**. The flag
+makes the new companion present a macOS desktop identity rather than an
+Android identity. The default client identity remains unchanged when the
+flag is not set. Setting `WA_BUSINESS_LINK=0` restores the old behavior.
+
+The bot now prefers Baileys' live `fetchLatestWaWebVersion()` over the
+bundled version when fetching the WhatsApp Web client version (a custom
+`WA_VERSION` still takes priority). This requires external access to
+WhatsApp Web's version source. If a fetch fails, the existing fallback
+behavior applies; inspect the bot logs for linking failures.
+
+To distinguish an account-level restriction from a bot protocol issue,
+try connecting the same WhatsApp Business account to the official
+https://web.whatsapp.com/ from a computer. If official Web/Desktop also
+fails, investigate device limits, the phone app version, and any temporary
+account restrictions before changing bot code. Never post your session
+database, QR codes, or pairing codes publicly.
+
 ## Connect WhatsApp
 
 ### Option A: Pairing code (recommended for servers)
