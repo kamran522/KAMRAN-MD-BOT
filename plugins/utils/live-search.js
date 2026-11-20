@@ -51,6 +51,30 @@ function interpretPrompt(input) {
   };
 }
 
+
+/**
+ * A local clock is authoritative for current Pakistan time. A language model
+ * has no clock of its own; searching for a cached "time now" page is less
+ * reliable than formatting the host's current timestamp in the target zone.
+ */
+function getPakistanTimeAnswer(question, now = new Date()) {
+  const text = String(question || '').trim();
+  const clockQuestion = /^(?:what(?:'s| is)\s+(?:the\s+)?(?:(?:current|local)\s+)?time|what\s+time\s+is\s+it|tell\s+me\s+(?:the\s+)?(?:(?:current|local)\s+)?time|(?:(?:current|local)\s+)?time)\s+(?:in|at)\s+(?:pakistan|islamabad|karachi|lahore|quetta|peshawar|rawalpindi|faisalabad|multan|turbat)(?:\s+(?:right\s+now|now|currently|please|today|at\s+the\s+moment))*[?.!]*$/i;
+  if (!clockQuestion.test(text)) return null;
+  const date = new Date(now);
+  if (!Number.isFinite(date.getTime())) return null;
+  const options = { timeZone: 'Asia/Karachi' };
+  const time = new Intl.DateTimeFormat('en-US', {
+    ...options, hour: 'numeric', minute: '2-digit', second: '2-digit', hour12: true
+  }).format(date);
+  const day = new Intl.DateTimeFormat('en-GB', {
+    ...options, weekday: 'long', day: 'numeric', month: 'long', year: 'numeric'
+  }).format(date);
+  return '*Current time in Pakistan:* ' + time + ' PKT (UTC+05:00)\n' +
+    '*Date:* ' + day + '\n' +
+    '_Source: bot server clock (Asia/Karachi), not an AI estimate._';
+}
+
 function clean(value, maxLength) {
   return String(value || '').replace(/[\u0000-\u001f\u007f]+/g, ' ').replace(/\s+/g, ' ').trim().slice(0, maxLength);
 }
@@ -103,6 +127,8 @@ async function searchWeb(question, options = {}) {
 
 async function generateWithWeb(localGenerate, options = {}, dependencies = {}) {
   const intent = interpretPrompt(options.prompt);
+  const directTime = getPakistanTimeAnswer(intent.question, dependencies.now || new Date());
+  if (directTime) return directTime;
   const settings = config();
   // No network requests for ordinary offline prompts or disabled search.
   if (intent.forceOffline) return localGenerate({ ...options, prompt: intent.question });
@@ -148,4 +174,4 @@ async function generateWithWeb(localGenerate, options = {}, dependencies = {}) {
   return String(answer) + '\n\n*Web sources (checked ' + retrievedAt + '):*\n' + links;
 }
 
-module.exports = { generateWithWeb, searchWeb, searchEndpoint, normalizeResults, interpretPrompt, config };
+module.exports = { generateWithWeb, searchWeb, searchEndpoint, normalizeResults, interpretPrompt, getPakistanTimeAnswer, config };
