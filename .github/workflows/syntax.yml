@@ -50,3 +50,5 @@ jobs:
         run: node --test tests/movies-catalog.test.js tests/movie-command.test.js
       - name: Test group moderation without WhatsApp network access
         run: node --test tests/group-moderation.test.js
+      - name: Test group mode enable/disable control
+        run: node --test tests/group-mode.test.js
