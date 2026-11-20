@@ -108,6 +108,11 @@ test('Pakistan clock questions use live server time without Ollama or SearXNG', 
   let called = false;
   for (const prompt of [
     'what time is it in Pakistan right now?',
+    'what is time right now in Pakistan',
+    'web what is time right now in Pakistan',
+    'What is the time right now in Pakistan?',
+    "what's the time in Karachi now?",
+    'tell me the exact time in Lahore please',
     'web what time is it in Pakistan right now?',
     'offline what time is it in Pakistan right now?',
     'time in Karachi now',
@@ -130,4 +135,6 @@ test('clock shortcut ignores historical or comparative questions', async () => {
   assert.equal(live.getPakistanTimeAnswer('Explain time zones in Pakistan', now), null);
   assert.equal(live.getPakistanTimeAnswer('What is the time difference between Pakistan and London?', now), null);
   assert.equal(live.getPakistanTimeAnswer('What time is it in London right now?', now), null);
+  assert.equal(live.getPakistanTimeAnswer('What time was it in Pakistan yesterday?', now), null);
+  assert.equal(live.getPakistanTimeAnswer('What is the time difference between Pakistan and India?', now), null);
 });
