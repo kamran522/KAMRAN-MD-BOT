@@ -31,7 +31,7 @@ test('reports expected restart without leaking arbitrary errors', () => {
 test('ignores unsafe and malformed rejection fields', () => {
   const error = { output: { statusCode: 'oops' }, data: [{ tag: 'conflict', attrs: { type: 'private phone 123' } }] };
   const result = summarizeAuthDisconnect(error, { previousStatus: Infinity });
-  assert.match(result, /status=unknown conflict=none/);
+  assert.match(result, /status=unknown source=unknown conflict=none/);
   assert.match(result, /previousStatus=none/);
   assert.doesNotMatch(result, /private phone/);
 });
