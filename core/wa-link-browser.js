@@ -9,6 +9,12 @@ function selectBrowserIdentity(defaultBrowser, env = process.env) {
   const businessLink = /^(1|true|yes|on)$/i.test(
     String(env.WA_BUSINESS_LINK || '').trim()
   );
+  // Experimental Business companion identity: pairs as SMB_ANDROID while
+  // preserving Android Phone device properties and a Chrome pairing ID.
+  // core/wa-business-patch.js adjusts the corresponding Baileys protocol fields.
+  if (String(env.WA_BUSINESS_LINK || '').trim().toLowerCase() === 'smb_android') {
+    return ['Android', 'Android', ''];
+  }
   if (!businessLink) return defaultBrowser;
   return ['Mac OS', 'Chrome', '14.4.1'];
 }
