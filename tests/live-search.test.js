@@ -100,3 +100,34 @@ test('search refuses missing results rather than fabricating citations', async (
   setup();
   await assert.rejects(() => live.generateWithWeb(async () => 'guess', { prompt: 'web news' }, { search: async () => [] }), /No web results/);
 });
+
+
+test('Pakistan clock questions use live server time without Ollama or SearXNG', async () => {
+  setup('off');
+  const now = new Date('2026-11-20T19:48:00.000Z'); // 00:48 on 21 Nov in Pakistan
+  let called = false;
+  for (const prompt of [
+    'what time is it in Pakistan right now?',
+    'web what time is it in Pakistan right now?',
+    'offline what time is it in Pakistan right now?',
+    'time in Karachi now',
+    'What is the current time in Islamabad?'
+  ]) {
+    const reply = await live.generateWithWeb(
+      async () => { called = true; throw new Error('Local model should not run'); },
+      { prompt },
+      { now, search: async () => { called = true; throw new Error('Search should not run'); } }
+    );
+    assert.match(reply, /12:48:00 AM/);
+    assert.match(reply, /Saturday, 21 November 2026/);
+    assert.match(reply, /Asia\/Karachi/);
+  }
+  assert.equal(called, false);
+});
+
+test('clock shortcut ignores historical or comparative questions', async () => {
+  const now = new Date('2026-11-20T19:48:00.000Z');
+  assert.equal(live.getPakistanTimeAnswer('Explain time zones in Pakistan', now), null);
+  assert.equal(live.getPakistanTimeAnswer('What is the time difference between Pakistan and London?', now), null);
+  assert.equal(live.getPakistanTimeAnswer('What time is it in London right now?', now), null);
+});
