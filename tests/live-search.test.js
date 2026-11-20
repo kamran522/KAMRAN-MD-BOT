@@ -138,3 +138,64 @@ test('clock shortcut ignores historical or comparative questions', async () => {
   assert.equal(live.getPakistanTimeAnswer('What time was it in Pakistan yesterday?', now), null);
   assert.equal(live.getPakistanTimeAnswer('What is the time difference between Pakistan and India?', now), null);
 });
+
+
+test('explicit web command uses local SearXNG with no URL or mode configured', async () => {
+  delete process.env.LOCAL_AI_SEARCH_URL;
+  delete process.env.LOCAL_AI_WEB_SEARCH;
+  let capturedEndpoint = '';
+  let localCount = 0;
+  const response = await live.generateWithWeb(
+    async () => { localCount++; return 'News is available [1].'; },
+    { prompt: 'web todays latest news from Turbat Balochistan' },
+    { search: async (_question, { settings }) => {
+      capturedEndpoint = settings.endpoint;
+      return results;
+    } }
+  );
+  assert.equal(capturedEndpoint, 'http://127.0.0.1:8080');
+  assert.equal(localCount, 1);
+  assert.match(response, /Web sources/);
+  assert.match(response, /https:\/\/example.org\/article/);
+});
+
+test('implicit search stays off when URL is not configured, including current news', async () => {
+  delete process.env.LOCAL_AI_SEARCH_URL;
+  delete process.env.LOCAL_AI_WEB_SEARCH;
+  let called = false;
+  const answer = await live.generateWithWeb(
+    async options => 'Local-only: ' + options.prompt,
+    { prompt: 'Latest news from Turbat today' },
+    { search: async () => { called = true; throw new Error('Unexpected network request'); } }
+  );
+  assert.equal(called, false);
+  assert.equal(answer, 'Local-only: Latest news from Turbat today');
+});
+
+test('explicit web command respects custom local service address and the off switch', async () => {
+  process.env.LOCAL_AI_WEB_SEARCH = 'auto';
+  process.env.LOCAL_AI_SEARCH_URL = 'http://searxng:8080';
+  let endpoint;
+  await live.generateWithWeb(async () => 'ok',
+    { prompt: 'web recent news' },
+    { search: async (_question, options) => { endpoint = options.settings.endpoint; return results; } });
+  assert.equal(endpoint, 'http://searxng:8080');
+
+  process.env.LOCAL_AI_WEB_SEARCH = 'off';
+  delete process.env.LOCAL_AI_SEARCH_URL;
+  await assert.rejects(
+    () => live.generateWithWeb(async () => 'no', { prompt: 'web recent news' }),
+    /Live search is disabled/
+  );
+});
+
+test('unavailable local search provides actionable host or Docker instructions', async () => {
+  const fakeClient = { get: async () => { throw new Error('ECONNREFUSED'); } };
+  await assert.rejects(
+    () => live.searchWeb('news', {
+      settings: { endpoint: 'http://127.0.0.1:8080', timeout: 1000 },
+      client: fakeClient
+    }),
+    /Cannot reach local SearXNG at http:\/\/127\.0\.0\.1:8080.*docker compose/
+  );
+});

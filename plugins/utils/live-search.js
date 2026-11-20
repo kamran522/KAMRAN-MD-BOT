@@ -6,6 +6,7 @@ const net = require('node:net');
 
 const CURRENT_QUERY = /\b(?:today|tonight|yesterday|tomorrow|latest|recent|recently|current|currently|now|right now|live|breaking|news|headline|update|updates|weather|forecast|score|scores|result|results|price|prices|exchange rate|stock|election|president|prime minister|202[5-9])\b/i;
 const SOURCE_LIMIT = 3;
+const DEFAULT_SEARCH_ENDPOINT = 'http://127.0.0.1:8080';
 
 function isLocalHost(hostname) {
   const host = hostname.replace(/^\[|\]$/g, '').toLowerCase();
@@ -125,7 +126,8 @@ async function searchWeb(question, options = {}) {
     if (error.response?.status === 403) {
       throw new Error('SearXNG denied JSON searches. Add json to search.formats in searxng/settings.yml.');
     }
-    throw new Error('Live search is unavailable. Check the local SearXNG service and its internet connection.');
+    throw new Error('Cannot reach local SearXNG at ' + endpoint + '. Start it with: docker compose -f compose.ai.yml up -d searxng. ' +
+      'If the bot runs inside Docker, set LOCAL_AI_SEARCH_URL=http://searxng:8080 on the same network.');
   }
   return normalizeResults(response.data);
 }
@@ -139,6 +141,12 @@ async function generateWithWeb(localGenerate, options = {}, dependencies = {}) {
   if (intent.forceOffline) return localGenerate({ ...options, prompt: intent.question });
   if (intent.forceWeb && settings.mode === 'off' && process.env.LOCAL_AI_WEB_SEARCH !== undefined) {
     throw new Error('Live search is disabled by LOCAL_AI_WEB_SEARCH=off.');
+  }
+  // Explicit .ai web opt-in uses the localhost SearXNG service supplied by
+  // compose.ai.yml, even when the operator forgot LOCAL_AI_SEARCH_URL.
+  // Regular .ai questions remain offline unless web search was configured.
+  if (intent.forceWeb && !settings.endpoint) {
+    settings.endpoint = DEFAULT_SEARCH_ENDPOINT;
   }
   const wantsWeb = intent.forceWeb || settings.mode === 'on' ||
     (settings.mode === 'auto' && CURRENT_QUERY.test(intent.question));
