@@ -102,6 +102,79 @@ The following environment variables are supported:
 | `ACR_HOST`, `ACR_ACCESS_KEY`, `ACR_ACCESS_SECRET` | Credentials for your own ACRCloud music-identification project. |
 | `WA_VERSION` | Optional WhatsApp Web version override. |
 
+## Local AI with live internet search (Ollama + SearXNG)
+
+Inference stays on your own hardware. An optional, self-hosted
+[SearXNG](https://docs.searxng.org/) service searches public web indexes and
+passes short result excerpts to Ollama for up-to-date answers. The search
+engine is **not** a second AI provider. Search results include source URLs
+and the time they were retrieved. They are not guaranteed to reflect events
+instantly: search engines can index pages late, and the model can still make
+mistakes. For important facts, verify the linked primary sources.
+
+### Start local services with Docker
+
+From the repository root:
+
+~~~bash
+docker compose -f compose.ai.yml up -d
+docker compose -f compose.ai.yml exec ollama ollama pull qwen3:1.7b
+docker compose -f compose.ai.yml exec ollama ollama pull qwen3:8b
+
+# Verify search returns JSON and has internet access.
+curl 'http://127.0.0.1:8080/search?q=latest+news&format=json'
+~~~
+
+Both services bind only to localhost on the host machine. The SearXNG
+configuration enables JSON output. Replace the sample `server.secret_key` in
+`searxng/settings.yml` with a random value before exposing the search service
+to any other machine. Do not publicly expose Ollama or SearXNG.
+
+Start the bot on the **same host** with Node.js, using these settings in its
+environment or in a local `.env` file:
+
+~~~env
+LOCAL_AI_URL=http://127.0.0.1:11434
+LOCAL_AI_SEARCH_URL=http://127.0.0.1:8080
+LOCAL_AI_WEB_SEARCH=auto
+LOCAL_AI_SEARCH_TIMEOUT_MS=10000
+~~~
+
+`LOCAL_AI_WEB_SEARCH` supports:
+- `auto` (default when a search URL is configured): retrieve web results for
+  likely time-sensitive questions, such as news, elections, weather, prices
+  or questions mentioning "today", "latest" or "current".
+- `on`: search the web for every AI question.
+- `off`: disable internet searches completely.
+
+If no search URL is set, the existing AI remains offline by default.
+`LOCAL_AI_SEARCH_URL` accepts localhost, private LAN addresses, and local
+Docker service names, but rejects public search API endpoints.
+
+Use these WhatsApp commands (with the configured command prefix):
+
+~~~text
+.ai What is DNS?                    # local model; no web in auto mode
+.ai What is the latest news?        # searches in auto mode
+.ai web What happened today?        # always search
+.ai deep web Summarize recent AI research   # stronger local model + search
+.ai offline Explain recent events  # never search
+.chatbot on                         # auto replies use the same search rules
+~~~
+
+When using Docker **for the bot too**, put it on the same Compose network
+as the services and set `LOCAL_AI_URL=http://ollama:11434` and
+`LOCAL_AI_SEARCH_URL=http://searxng:8080`; `127.0.0.1` inside a container
+refers only to that container. The supplied Compose file runs the two
+support services, not the WhatsApp bot itself.
+
+**Privacy:** Running the LLM locally does not make searches private.
+When search is enabled, the search terms travel to SearXNG and its upstream
+web search engines. Do not send passwords or confidential chat content in
+search queries. Web pages and snippets are untrusted evidence, not instructions
+to execute. The bot never executes commands or downloads pages on behalf of
+AI-generated text.
+
 ## Fully local AI chatbot (Ollama)
 
 The bot's `.ai` and `.chatbot` commands now use **Ollama only**. Kimi, Moonshot,
@@ -202,8 +275,9 @@ Large answers are split across WhatsApp messages. By default the bot
 serializes local inference, with at most three queued or running requests
 to reduce memory pressure; extra requests receive a busy message.
 
-The model handles text only and has no filesystem, browser, command execution,
-external search, or background-work capabilities. It can draft plans, code,
+The model handles text only and has no filesystem, browser automation,
+command execution, or background-work capabilities. Optional SearXNG web
+retrieval is described above; the model does not browse freely. It can draft plans, code,
 analysis and documents in chat, but cannot independently perform a software
 deployment or execute a large project. Provide relevant text and split very
 large tasks into stages. Increase context only when hardware permits.

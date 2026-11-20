@@ -1,0 +1,11 @@
+# Exposed only on the host loopback interface by compose.ai.yml.
+use_default_settings: true
+
+server:
+  secret_key: "replace-with-a-random-secret-before-exposing-searxng"
+  limiter: false
+
+search:
+  formats:
+    - html
+    - json
