@@ -147,9 +147,14 @@ LOCAL_AI_SEARCH_TIMEOUT_MS=10000
 - `on`: search the web for every AI question.
 - `off`: disable internet searches completely.
 
-If no search URL is set, the existing AI remains offline by default.
-`LOCAL_AI_SEARCH_URL` accepts localhost, private LAN addresses, and local
-Docker service names, but rejects public search API endpoints.
+If no search URL is set, ordinary `.ai` questions remain offline by default.
+However, an **explicit** `.ai web ...` command attempts the localhost service at
+`http://127.0.0.1:8080`, which is the address used by `compose.ai.yml`.
+If SearXNG is not running there, the bot returns a connection error with
+setup guidance. `LOCAL_AI_WEB_SEARCH=off` explicitly disables web searches,
+including `.ai web ...`. `LOCAL_AI_SEARCH_URL` accepts localhost, private LAN
+addresses, and local Docker service names, but rejects public search API
+endpoints.
 
 Use these WhatsApp commands (with the configured command prefix):
 
@@ -175,11 +180,15 @@ its own system clock with the `Asia/Karachi` timezone instead of asking
 Ollama or a web page to estimate the time. Keep the server clock synchronized
 (e.g. inspect `timedatectl status`). This works even when search is disabled.
 
-If `.ai web ...` reports `Set LOCAL_AI_SEARCH_URL`, the WhatsApp bot process
-has not loaded the search address. Put the setting in the bot's root `.env`
-file (or its process manager environment), restart the bot, then verify the
-SearXNG JSON endpoint with `curl` from that machine. Docker Compose starting
-SearXNG alone does not configure the WhatsApp bot process.
+When `.ai web ...` cannot connect, check `docker compose -f compose.ai.yml ps`
+and run `curl 'http://127.0.0.1:8080/search?q=Pakistan+news&format=json'`
+from the bot host. The bot uses port 8080 on localhost only if it runs on the
+host; a bot running inside Docker must set `LOCAL_AI_SEARCH_URL` to a reachable
+SearXNG service such as `http://searxng:8080` on the same Docker network.
+Setting `LOCAL_AI_WEB_SEARCH=auto` and `LOCAL_AI_SEARCH_URL` in the bot's root
+`.env` enables automatic searches for time-sensitive questions, but the bot
+process must be restarted to load these changes. A parent PM2 environment can
+override `.env` values, so inspect PM2 configuration if settings do not apply.
 
 When search is enabled, the search terms travel to SearXNG and its upstream
 web search engines. Do not send passwords or confidential chat content in
