@@ -25,6 +25,16 @@ function findConflictType(node, depth = 0) {
   return null;
 }
 
+// Distinguish the two 401 paths in Baileys rc14 without disclosing raw nodes.
+// CB:failure -> "Connection Failure", attrs only.
+// CB:stream:error -> "Stream Errored (...)", structured BinaryNode.
+function classifyDisconnectSource(error) {
+  const message = typeof error?.message === 'string' ? error.message : '';
+  if (message === 'Connection Failure') return 'server_failure';
+  if (message.startsWith('Stream Errored (')) return 'stream_error';
+  return 'unknown';
+}
+
 // 516 is not part of Baileys rc14's DisconnectReason enum. It can occur
 // after a real pair-success (see WhiskeySockets/Baileys#701), but must
 // never be treated as proof of pairing on its own.
@@ -43,6 +53,7 @@ function summarizeAuthDisconnect(error, {
     ? previous : 'none';
   const conflict = findConflictType(error?.data);
   return '[WA Auth] disconnect status=' + code +
+    ' source=' + classifyDisconnectSource(error) +
     ' conflict=' + (conflict || 'none') +
     ' registered=' + Boolean(registered) +
     ' pairSuccessObserved=' + Boolean(pairSuccessObserved) +
@@ -51,4 +62,4 @@ function summarizeAuthDisconnect(error, {
     ' previousStatus=' + previousCode;
 }
 
-module.exports = { summarizeAuthDisconnect, findConflictType, shouldPersistPairingOnClose };
+module.exports = { summarizeAuthDisconnect, findConflictType, shouldPersistPairingOnClose, classifyDisconnectSource };
