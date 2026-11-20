@@ -14,6 +14,8 @@ jobs:
           node-version: 22
       - name: Check JavaScript syntax
         run: npm run check
+      - name: Test isolated Chrome login options without a browser
+        run: node --test scripts/chrome-whatsapp-web/test.js
       - name: Test WhatsApp Business pairing configuration
         run: node --test tests/whatsapp-business-link.test.js
       - name: Test WhatsApp Business registration protocol
