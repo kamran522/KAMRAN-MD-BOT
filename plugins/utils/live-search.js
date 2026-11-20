@@ -2,7 +2,6 @@
 
 // Web retrieval is separate from inference: prompts go only to local Ollama.
 // The configured SearXNG instance queries public search engines for current results.
-const axios = require('axios');
 const net = require('node:net');
 
 const CURRENT_QUERY = /\b(?:today|tonight|yesterday|tomorrow|latest|recent|recently|current|currently|now|right now|live|breaking|news|headline|update|updates|weather|forecast|score|scores|result|results|price|prices|exchange rate|stock|election|president|prime minister|202[5-9])\b/i;
@@ -80,7 +79,7 @@ async function searchWeb(question, options = {}) {
   const settings = options.settings || config();
   if (!settings.endpoint) throw new Error('Set LOCAL_AI_SEARCH_URL to your local SearXNG instance to enable live information.');
   const endpoint = searchEndpoint(settings.endpoint);
-  const client = options.client || axios;
+  const client = options.client || require('axios');
   const query = clean(question, 240);
   if (!query) throw new Error('Enter a question after "web".');
   let response;
