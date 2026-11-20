@@ -2,6 +2,23 @@
 
 A WhatsApp bot built with Baileys. This build contains **no closed-source code and no connection to the original authors' servers**. Everything runs on your own machine or server, and WhatsApp session credentials are stored locally.
 
+## Simple Google Chrome login test
+
+If WhatsApp Business pairs but the Baileys bot gets a 401 on the first login,
+you can test the **real WhatsApp Web browser client** in Chromium without
+changing the existing bot. Stop the Baileys process first:
+
+```bash
+pm2 stop 4
+npm install --prefix scripts/chrome-whatsapp-web
+node scripts/chrome-whatsapp-web/index.js
+```
+
+Scan the printed QR and wait for `[Chrome] WhatsApp Web connected and ready.`
+The browser login persists across restarts. This isolated test can reply
+`pong` to `!ping`, but **does not yet run the existing Baileys plugins**.
+Read [the setup, security notes and rollback instructions](scripts/chrome-whatsapp-web/README.md).
+
 ## Requirements
 
 - Node.js 20 or newer and npm
