@@ -25,7 +25,17 @@ function findConflictType(node, depth = 0) {
   return null;
 }
 
-function summarizeAuthDisconnect(error, { registered, previouslyOpen, previousStatus } = {}) {
+// 516 is not part of Baileys rc14's DisconnectReason enum. It can occur
+// after a real pair-success (see WhiskeySockets/Baileys#701), but must
+// never be treated as proof of pairing on its own.
+function shouldPersistPairingOnClose(statusCode, { pairSuccessObserved, hasMeId } = {}) {
+  return Number(statusCode) === 515 ||
+    (Number(statusCode) === 516 && pairSuccessObserved === true && hasMeId === true);
+}
+
+function summarizeAuthDisconnect(error, {
+  registered, previouslyOpen, previousStatus, pairSuccessObserved, hasMeId
+} = {}) {
   const status = Number(error?.output?.statusCode);
   const code = Number.isSafeInteger(status) && status >= 100 && status <= 599 ? status : 'unknown';
   const previous = Number(previousStatus);
@@ -35,8 +45,10 @@ function summarizeAuthDisconnect(error, { registered, previouslyOpen, previousSt
   return '[WA Auth] disconnect status=' + code +
     ' conflict=' + (conflict || 'none') +
     ' registered=' + Boolean(registered) +
+    ' pairSuccessObserved=' + Boolean(pairSuccessObserved) +
+    ' hasMeId=' + Boolean(hasMeId) +
     ' previouslyOpen=' + Boolean(previouslyOpen) +
     ' previousStatus=' + previousCode;
 }
 
-module.exports = { summarizeAuthDisconnect, findConflictType };
+module.exports = { summarizeAuthDisconnect, findConflictType, shouldPersistPairingOnClose };
