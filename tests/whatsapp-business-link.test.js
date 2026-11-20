@@ -5,15 +5,16 @@ const fs = require('node:fs');
 const path = require('node:path');
 const { selectBrowserIdentity } = require('../core/wa-link-browser');
 
-test('Business pairing uses desktop identity only when explicitly opted in', () => {
+test('Business pairing uses macOS Chrome Web identity only when opted in', () => {
   const original = ['Ubuntu', 'Chrome', '20.0.04'];
   assert.equal(selectBrowserIdentity(original, {}), original);
   assert.equal(selectBrowserIdentity(original, { WA_BUSINESS_LINK: '0' }), original);
   assert.equal(selectBrowserIdentity(original, { WA_BUSINESS_LINK: 'false' }), original);
   assert.deepEqual(selectBrowserIdentity(original, { WA_BUSINESS_LINK: '1' }),
-    ['Mac OS', 'Desktop', '14.4.1']);
+    ['Mac OS', 'Chrome', '14.4.1']);
   assert.deepEqual(selectBrowserIdentity(original, { WA_BUSINESS_LINK: 'true' }),
-    ['Mac OS', 'Desktop', '14.4.1']);
+    ['Mac OS', 'Chrome', '14.4.1']);
+  assert.notEqual(selectBrowserIdentity(original, { WA_BUSINESS_LINK: '1' })[1], 'Desktop');
   assert.deepEqual(original, ['Ubuntu', 'Chrome', '20.0.04']);
 });
 
