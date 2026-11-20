@@ -29,7 +29,7 @@ function isGroupModeToggle(message, config) {
     }
   }
 
-  return new RegExp(prefix + 'mode\\s+group\\s+(?:on|off)\\s*$', 'i').test(text.trim());
+  return new RegExp(prefix + 'mode\\s+(?:group|gorup)\\s+(?:on|off)\\s*$', 'i').test(text.trim());
 }
 
 function shouldIgnoreGroupMessage(message, config) {
