@@ -30,37 +30,56 @@ npm install
 
 ### WhatsApp Business account pairing
 
-If your WhatsApp Business phone shows "Couldn't link device — You can
-only link to another WhatsApp Business app" while pairing a fresh Baileys
-session, try the optional desktop identity for Business accounts. This is a
-compatibility workaround, not a guaranteed solution: WhatsApp can also reject
-linking for account restrictions, network/IP restrictions, or device limits.
+For some WhatsApp Business accounts, Baileys on an Android-like client reports
+"Couldn't link device — You can only link to another WhatsApp Business app".
+This bot supports an optional macOS **Chrome browser** identity for new
+pairing attempts. It does **not** use the native macOS "Desktop" identity:
+Baileys issue #2677 reports that Desktop advertises DARWIN, which WhatsApp
+may reject with 428 before issuing a QR. This corrects the earlier
+`WA_BUSINESS_LINK=1` setting. See:
+https://github.com/WhiskeySockets/Baileys/issues/2677
 
-Add to your bot's environment or root `.env`:
+Add to your bot's root `.env`:
 
 ~~~env
 WA_BUSINESS_LINK=1
 ~~~
 
-Stop any other bot instance using this WhatsApp account, restart this bot,
-generate a fresh QR or pairing code, and open the **WhatsApp Business** app
-on your primary phone → **Linked devices** → **Link a device**. The flag
-makes the new companion present a macOS desktop identity rather than an
-Android identity. The default client identity remains unchanged when the
-flag is not set. Setting `WA_BUSINESS_LINK=0` restores the old behavior.
+After pulling the new code, stop other instances of this bot and restart it
+using PM2. Verify the selected identity:
 
-The bot now prefers Baileys' live `fetchLatestWaWebVersion()` over the
-bundled version when fetching the WhatsApp Web client version (a custom
-`WA_VERSION` still takes priority). This requires external access to
-WhatsApp Web's version source. If a fetch fails, the existing fallback
-behavior applies; inspect the bot logs for linking failures.
+~~~bash
+node - <<'NODE'
+require('dotenv').config();
+const { selectBrowserIdentity } = require('./core/wa-link-browser');
+console.log(selectBrowserIdentity(['Ubuntu', 'Chrome', '20.0.04']));
+NODE
+# Expected: [ 'Mac OS', 'Chrome', '14.4.1' ]
+~~~
 
-To distinguish an account-level restriction from a bot protocol issue,
-try connecting the same WhatsApp Business account to the official
-https://web.whatsapp.com/ from a computer. If official Web/Desktop also
-fails, investigate device limits, the phone app version, and any temporary
-account restrictions before changing bot code. Never post your session
-database, QR codes, or pairing codes publicly.
+**Prefer QR linking over a pairing code** for this diagnostic. If
+`PAIR_NUMBER` is set in the environment, this bot requests a pairing code.
+Remove the `PAIR_NUMBER` setting from `.env` and from the PM2 environment,
+then restart the bot so a QR is displayed in its terminal/logs. Link it from
+**WhatsApp Business** → **Linked devices** → **Link a device** on the primary
+phone. If PM2 retains an outdated `PAIR_NUMBER`, stop/delete only the PM2
+*process* (not the database), then start it again with
+`env -u PAIR_NUMBER pm2 start ecosystem.config.js`.
+
+The setting is an unverified compatibility workaround, not a guarantee.
+Baileys issue #2782 documents another solution using an explicitly emitted
+SMB_ANDROID registration platform and other protocol fields. Simply
+changing the browser string does not apply that deeper change:
+https://github.com/WhiskeySockets/Baileys/issues/2782
+
+The bot prefers a live WhatsApp Web client version from
+`fetchLatestWaWebVersion()`, with a library-default fallback on fetch
+failure; remove stale `WA_VERSION` overrides. If linking still fails, record
+the status codes (401, 405, 428, 429 or 515) from
+`pm2 logs kamran-MD-bot --lines 100 --nostream`, redacting QR, phone
+numbers, pairing codes, and credentials. Official Web linking success means
+the account can link a legitimate Web client, but does not rule out
+Baileys fingerprint, protocol, rate-limit, or hosting-IP restrictions.
 
 ## Connect WhatsApp
 
