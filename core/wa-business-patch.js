@@ -31,7 +31,7 @@ function patchValidateConnection(source) {
     SMB_UA,
     /(platform:\s*)config\.browser\[1\]\.toLocaleLowerCase\(\)\.includes\((['"])android\2\)/,
     (match, prefix) =>
-      prefix + SMB_UA + " process.env.WA_BUSINESS_LINK === 'smb_android' " +
+      prefix + SMB_UA + " String(process.env.WA_BUSINESS_LINK || '').trim().toLowerCase() === 'smb_android' " +
       '? proto.ClientPayload.UserAgent.Platform.SMB_ANDROID : ' +
       match.slice(prefix.length),
     'user-agent platform'
@@ -42,7 +42,7 @@ function patchValidateConnection(source) {
     /if\s*\(\s*!config\.browser\[1\]\.toLocaleLowerCase\(\)\.includes\((['"])android\1\)\s*\)/,
     (match, quote) =>
       'if (' + SMB_WEB +
-      " process.env.WA_BUSINESS_LINK === 'smb_android' || " +
+      " String(process.env.WA_BUSINESS_LINK || '').trim().toLowerCase() === 'smb_android' || " +
       '!config.browser[1].toLocaleLowerCase().includes(' + quote + 'android' + quote + '))',
     'webInfo'
   );
@@ -54,7 +54,7 @@ function patchCompanionPlatformId(source) {
     source,
     SMB_PAIR,
     /return\s+getCompanionWebClientType\(browser\)\.toString\(\)/,
-    'return ' + SMB_PAIR + " process.env.WA_BUSINESS_LINK === 'smb_android' " +
+    'return ' + SMB_PAIR + " String(process.env.WA_BUSINESS_LINK || '').trim().toLowerCase() === 'smb_android' " +
       "? '1' : getCompanionWebClientType(browser).toString()",
     'pairing client platform'
   );
