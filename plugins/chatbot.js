@@ -3,6 +3,7 @@
 const axios = require('axios');
 const { Module } = require('../main');
 const config = require('../config');
+const { setVar } = require('./manage');
 
 const MAX_PROMPT_LENGTH = 12000;
 const MAX_REPLY_CHUNK = 3500;
@@ -64,6 +65,48 @@ Module({
       : error.response ? 'Gemini request failed (HTTP ' + status + ').'
       : error.message;
     await message.sendReply('Gemini error: ' + explanation);
+  } finally {
+    activeChats.delete(chatId);
+  }
+});
+
+function chatbotEnabled() {
+  return config.CHATBOT === true || ['true', 'on', '1'].includes(String(config.CHATBOT).toLowerCase());
+}
+
+Module({
+  pattern: 'chatbot ?(.*)',
+  fromMe: true,
+  desc: 'Turn Gemini-powered automatic private-chat replies on or off',
+  type: 'ai'
+}, async (message, match) => {
+  const option = String(match?.[1] || '').trim().toLowerCase();
+  if (!['on', 'off'].includes(option)) {
+    return message.sendReply('Chatbot is ' + (chatbotEnabled() ? 'ON' : 'OFF') + '. Usage: .chatbot on or .chatbot off');
+  }
+  await setVar('CHATBOT', option === 'on' ? 'true' : 'false');
+  config.CHATBOT = option === 'on';
+  await message.sendReply('Gemini chatbot ' + option.toUpperCase() + '.');
+});
+
+Module({ on: 'text', fromMe: false }, async (message) => {
+  if (!chatbotEnabled() || !process.env.GEMINI_API_KEY) return;
+  // Automatic chat replies are private-only to avoid unsolicited group responses.
+  const chatId = message.jid;
+  if (!chatId || chatId.endsWith('@g.us') || chatId === 'status@broadcast') return;
+  const prompt = String(message.text || '').trim();
+  if (!prompt || prompt.length > MAX_PROMPT_LENGTH) return;
+  // Never intercept bot commands, including the Gemini and chatbot commands.
+  const prefixes = String(config.HANDLERS || '.,');
+  if (prefixes.split('').some(prefix => prompt.startsWith(prefix))) return;
+  if (activeChats.has(chatId)) return;
+  activeChats.add(chatId);
+  try {
+    await replyInChunks(message, await generateGemini(prompt));
+  } catch (error) {
+    const status = error.response?.status;
+    console.error('Gemini chatbot request failed:', status || error.message);
+    if (status === 429) await message.sendReply('Gemini free quota reached. Please try again later.');
   } finally {
     activeChats.delete(chatId);
   }
