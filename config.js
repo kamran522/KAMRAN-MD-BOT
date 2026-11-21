@@ -197,7 +197,6 @@ const baseConfig = {
   BLOCK_CHAT: process.env.BLOCK_CHAT || "",
   PM_ANTISPAM: convertToBool(process.env.PM_ANTISPAM) || "",
   ALWAYS_ONLINE: convertToBool(process.env.ALWAYS_ONLINE) || false,
-  MANGLISH_CHATBOT: convertToBool(process.env.MANGLISH_CHATBOT) || false,
   ADMIN_ACCESS: convertToBool(process.env.ADMIN_ACCESS) || false,
   PLATFORM: isHeroku
     ? "Heroku"
@@ -241,7 +240,6 @@ const baseConfig = {
   RBG_KEY: process.env.RBG_KEY || "",
   ALLOWED: process.env.ALLOWED || "91,94,2",
   NOT_ALLOWED: process.env.NOT_ALLOWED || "852",
-  CHATBOT: process.env.CHATBOT || "off",
   HANDLERS: process.env.HANDLERS || ".,",
   STICKER_DATA: process.env.STICKER_DATA || "Kamran Hasil",
   BOT_NAME: process.env.BOT_NAME || "Kamran Hasil",
