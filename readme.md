@@ -420,3 +420,7 @@ Run these commands as the bot owner (using your configured command prefix, `.` b
 - `.mode group on` — re-enable group processing in all groups.
 
 This setting is **ON by default** and is stored in the bot database, so it persists after restart. Private chats are not affected. The owner can use `.mode group on` from a private chat or a group even when group mode is off. You can also use the `Enable bot in groups` option in `.settings`.
+
+## Google Gemini AI
+
+Set `GEMINI_API_KEY` in your host's environment (obtain a key from https://aistudio.google.com/apikey). Optionally set `GEMINI_MODEL=gemini-2.5-flash`. Restart the bot and send `.gemini your question` on WhatsApp. The command works in public mode for users, or in private mode for the owner. The old automatic chatbot and local Ollama integration have been removed. Gemini free-tier access and quotas depend on Google's current availability and your account. Do not commit API keys to the repository.
